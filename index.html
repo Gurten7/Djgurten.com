@@ -3,34 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJ Gûrten – Coming Soon</title>
+  <title>KDW ’26 – The Anthem</title>
   <style>
     body {
       margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
       color: white;
+      text-align: center;
+      background: url('albumhoes.jpg') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
-      text-align: center;
-      padding: 1em;
     }
     h1 {
       font-size: 3em;
-      margin: 0.2em 0;
+      margin: 0.2em;
+      text-shadow: 0 0 10px #000;
     }
     p {
       font-size: 1.2em;
-      margin-bottom: 2em;
+      margin-bottom: 1em;
+      text-shadow: 0 0 5px #000;
+    }
+    #countdown {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 1.5em;
+      text-shadow: 0 0 10px #000;
     }
     .buttons a {
       display: inline-block;
       margin: 0.5em;
       padding: 0.75em 1.5em;
-      background-color: #00d2ff;
+      background-color: #ffffffcc;
       color: #000;
       text-decoration: none;
       border-radius: 30px;
@@ -38,26 +47,47 @@
       transition: background 0.3s;
     }
     .buttons a:hover {
-      background-color: #ffffff;
+      background-color: #fff;
     }
     footer {
       position: absolute;
       bottom: 1em;
       font-size: 0.9em;
-      opacity: 0.5;
+      text-shadow: 0 0 5px #000;
     }
   </style>
 </head>
 <body>
-  <h1>DJ Gûrten</h1>
-  <p>🎧 Nieuwe beats. Nieuwe energie. Binnenkort online.</p>
+  <h1>KDW ’26 – The Anthem</h1>
+  <p>Releasedatum: 1 april 2026, 12:00 uur</p>
+  <div id="countdown">Laden...</div>
 
   <div class="buttons">
-    <a href="#" target="_blank">Spotify</a>
-    <a href="#" target="_blank">Instagram</a>
-    <a href="mailto:info@djgurten.com">Contact</a>
+    <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74?si=PCYeS4UASaqfhKF4NT4OFA" target="_blank">🎧 Beluister op Spotify</a>
   </div>
 
   <footer>© 2025 DJ Gûrten</footer>
-</body>
-</html>
+
+  <script>
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("2026-04-01T12:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        countdown.innerHTML = "🚀 Nu beschikbaar!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}u ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown

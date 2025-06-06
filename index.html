@@ -7,7 +7,6 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', sans-serif;
       color: white;
       text-align: center;
@@ -17,17 +16,22 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 1em;
+    }
+    img.logo {
+      max-width: 200px;
+      margin-bottom: 1em;
     }
     h1 {
       font-size: 3em;
-      margin: 0.2em;
+      margin: 0.2em 0;
       text-shadow: 0 0 10px #000;
     }
     p {
       font-size: 1.2em;
       margin-bottom: 1em;
-      text-shadow: 0 0 5px #000;
+      text-shadow: 0 0 6px #000;
     }
     #countdown {
       font-size: 2em;
@@ -50,14 +54,15 @@
       background-color: #fff;
     }
     footer {
-      position: absolute;
-      bottom: 1em;
+      margin-top: auto;
       font-size: 0.9em;
       text-shadow: 0 0 5px #000;
     }
   </style>
 </head>
 <body>
+  <img src="djgurten-logo.PNG" alt="DJ Gûrten logo" class="logo">
+
   <h1>KDW ’26 – The Anthem</h1>
   <p>Releasedatum: 1 april 2026, 12:00 uur</p>
   <div id="countdown">Laden...</div>
@@ -90,4 +95,7 @@
     }
 
     updateCountdown();
-    setInterval(updateCountdown
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>

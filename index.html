@@ -79,6 +79,41 @@
       vertical-align: middle;
       margin-right: 8px;
     }
+    .tour {
+      background-color: rgba(0, 0, 0, 0.7);
+      margin: 3em auto;
+      padding: 2em;
+      border-radius: 20px;
+      max-width: 800px;
+      width: 90%;
+    }
+    .tour h2 {
+      margin-bottom: 1em;
+      font-size: 1.8em;
+      text-shadow: 0 0 10px #ff0;
+    }
+    .tour-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .tour-table th, .tour-table td {
+      border-bottom: 1px solid #ccc;
+      padding: 0.7em;
+      text-align: left;
+    }
+    .tour-table th {
+      background-color: #222;
+      color: #fff;
+    }
+    .tour-table td {
+      background-color: rgba(255,255,255,0.1);
+    }
+    footer {
+      margin: 3em 0 1em;
+      font-size: 0.9em;
+      color: #ddd;
+      text-shadow: 0 0 3px #000;
+    }
   </style>
 </head>
 <body>
@@ -99,6 +134,39 @@
     </a>
     <a class="disabled-button" href="#" onclick="return false;">🎫 Tickets – Available Soon</a>
   </div>
+
+  <section class="tour">
+    <h2>🎤 Colors of Sound Tour 2026</h2>
+    <table class="tour-table">
+      <thead>
+        <tr><th>📍 City</th><th>📅 Date</th><th>📌 Venue</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Amsterdam</td><td>April 3</td><td>Melkweg</td></tr>
+        <tr><td>Rotterdam</td><td>April 5</td><td>Maassilo</td></tr>
+        <tr><td>Utrecht</td><td>April 10</td><td>TivoliVredenburg</td></tr>
+        <tr><td>Eindhoven</td><td>April 12</td><td>Effenaar</td></tr>
+        <tr><td>Groningen</td><td>April 17</td><td>Simplon</td></tr>
+        <tr><td>Maastricht</td><td>April 19</td><td>Muziekgieterij</td></tr>
+        <tr><td>The Hague</td><td>April 24</td><td>Paard van Troje</td></tr>
+        <tr><td>Arnhem</td><td>April 26</td><td>Luxor Live</td></tr>
+        <tr><td>Antwerp (BE)</td><td>May 1</td><td>Trix</td></tr>
+        <tr><td>Ghent (BE)</td><td>May 3</td><td>Vooruit</td></tr>
+        <tr><td>Berlin (DE)</td><td>May 9</td><td>Ritter Butzke</td></tr>
+        <tr><td>Paris (FR)</td><td>May 14</td><td>La Machine du Moulin Rouge</td></tr>
+        <tr><td>London (UK)</td><td>May 17</td><td>Electric Brixton</td></tr>
+        <tr><td>Barcelona (ES)</td><td>May 23</td><td>Razzmatazz</td></tr>
+        <tr><td>Bologna (IT)</td><td>May 28</td><td>Kindergarten Club</td></tr>
+        <tr><td>Prague (CZ)</td><td>June 4</td><td>Cross Club</td></tr>
+        <tr><td>Belgrade (RS)</td><td>June 8</td><td>Drugstore</td></tr>
+        <tr><td>Dublin (IE)</td><td>June 15</td><td>The Academy</td></tr>
+        <tr><td>Lichtenvoorde (NL)</td><td>June 21</td><td>KDW Festival 🎪</td></tr>
+        <tr><td>Ibiza (ES)</td><td>June 30</td><td>Ushuaïa Closing Set 🌅</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>© 2025 DJ Gûrten</footer>
 
   <script>
     const countdown = document.getElementById('countdown');

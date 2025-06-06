@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,12 +25,13 @@
     .book-button {
       background-color: #ff0080;
       color: white;
-      padding: 0.5em 1em;
+      padding: 0.5em 1.2em;
       border: none;
       border-radius: 30px;
       font-weight: bold;
       cursor: pointer;
       text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .logo {
       margin-top: 4em;
@@ -44,102 +45,84 @@
     }
     .release {
       font-size: 1.2em;
-      margin-bottom: 1em;
+      margin-bottom: 0.5em;
+    }
+    #countdown {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 1.5em;
+      text-shadow: 0 0 5px #000;
     }
     .buttons a {
       display: inline-block;
       margin: 0.5em;
       padding: 0.75em 1.5em;
-      background-color: rgba(255,255,255,0.1);
+      background-color: rgba(255,255,255,0.2);
       color: white;
       text-decoration: none;
       border-radius: 30px;
       font-weight: bold;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
       transition: background 0.3s;
     }
     .buttons a:hover {
-      background-color: rgba(255,255,255,0.3);
+      background-color: rgba(255,255,255,0.35);
     }
     .disabled-button {
       background-color: #888888cc;
       cursor: not-allowed;
       opacity: 0.7;
     }
-    .tour {
-      background-color: rgba(0, 0, 0, 0.75);
-      margin: 3em auto;
-      padding: 2em;
-      border-radius: 20px;
-      max-width: 800px;
-      width: 90%;
-    }
-    .tour h2 {
-      margin-bottom: 1em;
-      font-size: 1.6em;
-      text-shadow: 0 0 10px #ff0;
-    }
-    .tour-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .tour-table th, .tour-table td {
-      border-bottom: 1px solid #ccc;
-      padding: 0.7em;
-      text-align: left;
-    }
-    .tour-table th {
-      background-color: #222;
-      color: #fff;
-    }
-    .tour-table td {
-      background-color: rgba(255,255,255,0.1);
+    .buttons img {
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 8px;
     }
   </style>
 </head>
 <body>
   <header>
-    <a href="mailto:boekingen@djgurten.com" class="book-button">📬 Boekingen</a>
+    <a href="mailto:bookings@djgurten.com" class="book-button">Bookings</a>
   </header>
 
-  <img src="dj-gurten-logo.png" alt="DJ Gûrten Logo" class="logo" />
+  <img src="djgurten-logo.PNG" alt="DJ Gûrten Logo" class="logo" />
   <h1>KDW '26 – The Anthem</h1>
-  <div class="release">🎧 Releasedatum: 1 april 2026 om 12:00 uur</div>
+  <div class="release">Release date: April 1st, 2026 at 12:00 PM</div>
+  <div id="countdown">Loading...</div>
 
   <div class="buttons">
-    <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" target="_blank">🎵 Beluister op Spotify</a>
-    <a href="https://www.instagram.com/dj_gurten" target="_blank">📸 Volg op Instagram</a>
+    <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" target="_blank">🎧 Listen on Spotify</a>
+    <a href="https://www.instagram.com/dj_gurten" target="_blank">
+      <img src="instagram.PNG" alt="Instagram Icon" />
+      Follow on Instagram
+    </a>
     <a class="disabled-button" href="#" onclick="return false;">🎫 Tickets – Available Soon</a>
   </div>
 
-  <section class="tour">
-    <h2>🎤 Colors of Sound Tour 2026</h2>
-    <table class="tour-table">
-      <thead>
-        <tr><th>📍 Stad</th><th>📅 Datum</th><th>📌 Locatie</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Amsterdam</td><td>3 april 2026</td><td>Melkweg</td></tr>
-        <tr><td>Rotterdam</td><td>5 april 2026</td><td>Maassilo</td></tr>
-        <tr><td>Utrecht</td><td>10 april 2026</td><td>TivoliVredenburg</td></tr>
-        <tr><td>Eindhoven</td><td>12 april 2026</td><td>Effenaar</td></tr>
-        <tr><td>Groningen</td><td>17 april 2026</td><td>Simplon</td></tr>
-        <tr><td>Maastricht</td><td>19 april 2026</td><td>Muziekgieterij</td></tr>
-        <tr><td>Den Haag</td><td>24 april 2026</td><td>Paard van Troje</td></tr>
-        <tr><td>Arnhem</td><td>26 april 2026</td><td>Luxor Live</td></tr>
-        <tr><td>Antwerpen (BE)</td><td>1 mei 2026</td><td>Trix</td></tr>
-        <tr><td>Gent (BE)</td><td>3 mei 2026</td><td>Vooruit</td></tr>
-        <tr><td>Berlijn (DE)</td><td>9 mei 2026</td><td>Ritter Butzke</td></tr>
-        <tr><td>Parijs (FR)</td><td>14 mei 2026</td><td>La Machine du Moulin Rouge</td></tr>
-        <tr><td>Londen (UK)</td><td>17 mei 2026</td><td>Electric Brixton</td></tr>
-        <tr><td>Barcelona (ES)</td><td>23 mei 2026</td><td>Razzmatazz</td></tr>
-        <tr><td>Bologna (IT)</td><td>28 mei 2026</td><td>Kindergarten Club</td></tr>
-        <tr><td>Praag (CZ)</td><td>4 juni 2026</td><td>Cross Club</td></tr>
-        <tr><td>Belgrado (RS)</td><td>8 juni 2026</td><td>Drugstore</td></tr>
-        <tr><td>Dublin (IE)</td><td>15 juni 2026</td><td>The Academy</td></tr>
-        <tr><td>Lichtenvoorde</td><td>21 juni 2026</td><td>KDW Festival 🎪</td></tr>
-        <tr><td>Ibiza (ES)</td><td>30 juni 2026</td><td>Ushuaïa Closing Set 🌅</td></tr>
-      </tbody>
-    </table>
-  </section>
+  <script>
+    const countdown = document.getElementById('countdown');
+    const releaseDate = new Date('2026-04-01T12:00:00+02:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      const distance = releaseDate - now;
+
+      if (distance <= 0) {
+        countdown.textContent = 'Now available!';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>

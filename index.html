@@ -2,175 +2,144 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Gûrten – Colors of Sound Tour</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJ Gûrten – KDW '26</title>
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
+      text-align: center;
       background: url('KDW26-albumhoes2.PNG') no-repeat center center;
       background-size: cover;
       background-attachment: fixed;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
       min-height: 100vh;
-      padding: 2em 1em;
     }
-
-    img.logo {
-      max-width: 200px;
-      margin-bottom: 1em;
+    header {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+      z-index: 100;
     }
-
+    .book-button {
+      background-color: #ff0080;
+      color: white;
+      padding: 0.5em 1em;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .logo {
+      margin-top: 4em;
+      width: 150px;
+      height: auto;
+    }
     h1 {
-      font-size: 2.8em;
-      margin: 0.2em 0;
+      font-size: 2.5em;
+      margin: 0.5em 0 0.2em;
       text-shadow: 0 0 10px #000;
     }
-
-    p {
+    .release {
       font-size: 1.2em;
       margin-bottom: 1em;
-      text-shadow: 0 0 6px #000;
     }
-
-    #countdown {
-      font-size: 2em;
-      font-weight: bold;
-      margin-bottom: 2em;
-      text-shadow: 0 0 10px #000;
-    }
-
     .buttons a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
+      display: inline-block;
       margin: 0.5em;
       padding: 0.75em 1.5em;
-      background-color: #ffffffcc;
-      color: #000;
+      background-color: rgba(255,255,255,0.1);
+      color: white;
       text-decoration: none;
       border-radius: 30px;
       font-weight: bold;
       transition: background 0.3s;
     }
-
     .buttons a:hover {
-      background-color: #fff;
+      background-color: rgba(255,255,255,0.3);
     }
-
-    .buttons img.icon {
-      width: 24px;
-      height: 24px;
+    .disabled-button {
+      background-color: #888888cc;
+      cursor: not-allowed;
+      opacity: 0.7;
     }
-
     .tour {
       background-color: rgba(0, 0, 0, 0.75);
-      margin-top: 3em;
-      padding: 1.5em;
+      margin: 3em auto;
+      padding: 2em;
       border-radius: 20px;
-      max-width: 600px;
-      width: 100%;
+      max-width: 800px;
+      width: 90%;
     }
-
     .tour h2 {
       margin-bottom: 1em;
       font-size: 1.6em;
       text-shadow: 0 0 10px #ff0;
     }
-
-    .tourlist {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .tour-table {
+      width: 100%;
+      border-collapse: collapse;
     }
-
-    .tourlist li {
-      margin-bottom: 0.6em;
+    .tour-table th, .tour-table td {
+      border-bottom: 1px solid #ccc;
+      padding: 0.7em;
       text-align: left;
     }
-
-    footer {
-      margin-top: 3em;
-      font-size: 0.9em;
-      text-shadow: 0 0 5px #000;
+    .tour-table th {
+      background-color: #222;
+      color: #fff;
+    }
+    .tour-table td {
+      background-color: rgba(255,255,255,0.1);
     }
   </style>
 </head>
 <body>
-  <img src="djgurten-logo.PNG" alt="DJ Gûrten logo" class="logo" />
+  <header>
+    <a href="mailto:boekingen@djgurten.com" class="book-button">📬 Boekingen</a>
+  </header>
 
-  <h1>KDW ’26 – The Anthem</h1>
-  <p>Releasedatum: 1 april 2026, 12:00 uur</p>
-  <div id="countdown">Laden...</div>
+  <img src="dj-gurten-logo.png" alt="DJ Gûrten Logo" class="logo" />
+  <h1>KDW '26 – The Anthem</h1>
+  <div class="release">🎧 Releasedatum: 1 april 2026 om 12:00 uur</div>
 
   <div class="buttons">
-    <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74?si=PCYeS4UASaqfhKF4NT4OFA" target="_blank">
-      🎧 Beluister op Spotify
-    </a>
-    <a href="https://www.instagram.com/dj_gurten?igsh=MWU1NmU1YjQ5emtibQ%3D%3D&utm_source=qr" target="_blank">
-      <img src="instagram.PNG" alt="Instagram" class="icon" /> Volg op Instagram
-    </a>
+    <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" target="_blank">🎵 Beluister op Spotify</a>
+    <a href="https://www.instagram.com/dj_gurten" target="_blank">📸 Volg op Instagram</a>
+    <a class="disabled-button" href="#" onclick="return false;">🎫 Tickets – Available Soon</a>
   </div>
 
   <section class="tour">
     <h2>🎤 Colors of Sound Tour 2026</h2>
-    <ul class="tourlist">
-      <li><strong>3 apr – Amsterdam</strong> @ Melkweg</li>
-      <li><strong>5 apr – Rotterdam</strong> @ Maassilo</li>
-      <li><strong>10 apr – Utrecht</strong> @ TivoliVredenburg</li>
-      <li><strong>12 apr – Eindhoven</strong> @ Effenaar</li>
-      <li><strong>17 apr – Groningen</strong> @ Simplon</li>
-      <li><strong>19 apr – Maastricht</strong> @ Muziekgieterij</li>
-      <li><strong>24 apr – Den Haag</strong> @ Paard van Troje</li>
-      <li><strong>26 apr – Arnhem</strong> @ Luxor Live</li>
-      <li><strong>1 mei – Antwerpen (BE)</strong> @ Trix</li>
-      <li><strong>3 mei – Gent (BE)</strong> @ Vooruit</li>
-      <li><strong>9 mei – Berlijn (DE)</strong> @ Ritter Butzke</li>
-      <li><strong>14 mei – Parijs (FR)</strong> @ La Machine du Moulin Rouge</li>
-      <li><strong>17 mei – Londen (UK)</strong> @ Electric Brixton</li>
-      <li><strong>23 mei – Barcelona (ES)</strong> @ Razzmatazz</li>
-      <li><strong>28 mei – Bologna (IT)</strong> @ Kindergarten Club</li>
-      <li><strong>4 juni – Praag (CZ)</strong> @ Cross Club</li>
-      <li><strong>8 juni – Belgrado (RS)</strong> @ Drugstore</li>
-      <li><strong>15 juni – Dublin (IE)</strong> @ The Academy</li>
-      <li><strong>21 juni – Lichtenvoorde</strong> @ KDW Festival 🎪</li>
-      <li><strong>30 juni – Ibiza (ES)</strong> @ Ushuaïa Closing Set 🌅</li>
-    </ul>
+    <table class="tour-table">
+      <thead>
+        <tr><th>📍 Stad</th><th>📅 Datum</th><th>📌 Locatie</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Amsterdam</td><td>3 april 2026</td><td>Melkweg</td></tr>
+        <tr><td>Rotterdam</td><td>5 april 2026</td><td>Maassilo</td></tr>
+        <tr><td>Utrecht</td><td>10 april 2026</td><td>TivoliVredenburg</td></tr>
+        <tr><td>Eindhoven</td><td>12 april 2026</td><td>Effenaar</td></tr>
+        <tr><td>Groningen</td><td>17 april 2026</td><td>Simplon</td></tr>
+        <tr><td>Maastricht</td><td>19 april 2026</td><td>Muziekgieterij</td></tr>
+        <tr><td>Den Haag</td><td>24 april 2026</td><td>Paard van Troje</td></tr>
+        <tr><td>Arnhem</td><td>26 april 2026</td><td>Luxor Live</td></tr>
+        <tr><td>Antwerpen (BE)</td><td>1 mei 2026</td><td>Trix</td></tr>
+        <tr><td>Gent (BE)</td><td>3 mei 2026</td><td>Vooruit</td></tr>
+        <tr><td>Berlijn (DE)</td><td>9 mei 2026</td><td>Ritter Butzke</td></tr>
+        <tr><td>Parijs (FR)</td><td>14 mei 2026</td><td>La Machine du Moulin Rouge</td></tr>
+        <tr><td>Londen (UK)</td><td>17 mei 2026</td><td>Electric Brixton</td></tr>
+        <tr><td>Barcelona (ES)</td><td>23 mei 2026</td><td>Razzmatazz</td></tr>
+        <tr><td>Bologna (IT)</td><td>28 mei 2026</td><td>Kindergarten Club</td></tr>
+        <tr><td>Praag (CZ)</td><td>4 juni 2026</td><td>Cross Club</td></tr>
+        <tr><td>Belgrado (RS)</td><td>8 juni 2026</td><td>Drugstore</td></tr>
+        <tr><td>Dublin (IE)</td><td>15 juni 2026</td><td>The Academy</td></tr>
+        <tr><td>Lichtenvoorde</td><td>21 juni 2026</td><td>KDW Festival 🎪</td></tr>
+        <tr><td>Ibiza (ES)</td><td>30 juni 2026</td><td>Ushuaïa Closing Set 🌅</td></tr>
+      </tbody>
+    </table>
   </section>
-
-  <footer>© 2025 DJ Gûrten</footer>
-
-  <script>
-    const countdown = document.getElementById("countdown");
-    const targetDate = new Date("2026-04-01T12:00:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance <= 0) {
-        countdown.innerHTML = "🚀 Nu beschikbaar!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdown.innerHTML = `${days}d ${hours}u ${minutes}m ${seconds}s`;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
 </body>
 </html>

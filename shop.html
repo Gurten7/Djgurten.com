@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DJ Gûrten – Shop</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -17,16 +14,11 @@
       background-size: cover;
       background-attachment: fixed;
     }
-
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
       min-height: 100vh;
-      padding: 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 2em 1em;
     }
-
     .menu-toggle {
       position: fixed;
       top: 15px;
@@ -38,7 +30,6 @@
       z-index: 1001;
       cursor: pointer;
     }
-
     .sidebar {
       position: fixed;
       top: 0;
@@ -50,11 +41,9 @@
       transition: 0.3s ease;
       z-index: 1000;
     }
-
     .sidebar.active {
       left: 0;
     }
-
     .sidebar a {
       display: block;
       color: white;
@@ -62,67 +51,69 @@
       margin: 1em 0;
       font-weight: bold;
     }
-
     h1 {
-      margin-top: 2em;
-      font-size: 2em;
-      text-transform: uppercase;
       text-align: center;
+      text-transform: uppercase;
+      font-size: 2em;
     }
-
     .shop-grid {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 2em;
+      justify-content: center;
       margin-top: 2em;
     }
-
     .product {
       background: #222;
       border-radius: 10px;
+      width: 300px;
       padding: 1em;
-      width: 250px;
       text-align: center;
-      transition: 0.3s ease;
     }
-
-    .product:hover {
-      transform: scale(1.03);
-    }
-
     .product img {
       width: 100%;
       border-radius: 10px;
     }
-
     .product h3 {
-      margin: 0.5em 0 0.2em;
+      margin: 0.6em 0 0.2em;
     }
-
     .product p {
-      margin: 0;
+      margin: 0.2em 0;
       font-size: 0.9em;
       color: #ccc;
     }
-
+    .product select {
+      margin-top: 0.5em;
+      padding: 0.5em;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+    }
     .price {
       font-weight: bold;
-      margin: 0.5em 0;
+      margin-top: 0.6em;
     }
-
-    .add-cart {
-      display: inline-block;
+    .cart-button {
+      margin-top: 1em;
       background: #1DB954;
       color: white;
-      padding: 0.6em 1.2em;
+      border: none;
       border-radius: 30px;
-      text-decoration: none;
+      padding: 0.7em 1.5em;
       font-weight: bold;
       font-size: 0.95em;
       cursor: not-allowed;
     }
-
+    .filter-bar {
+      text-align: center;
+      margin: 1em auto 2em;
+    }
+    .filter-bar select {
+      padding: 0.5em;
+      font-size: 1em;
+      border-radius: 5px;
+      border: none;
+    }
     footer {
       text-align: center;
       margin-top: 4em;
@@ -134,7 +125,6 @@
 <body>
 
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
   <div class="sidebar" id="sidebar">
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
     <a href="index.html">HOME</a>
@@ -146,45 +136,131 @@
     <a href="shop.html">SHOP</a>
     <a href="contact.html">CONTACT</a>
     <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+    <a href="cart.html">🛒 VIEW CART</a>
   </div>
 
   <div class="overlay">
-    <h1>🛍️ DJ Gûrten Shop</h1>
+    <h1>DJ GÛRTEN SHOP</h1>
+
+    <div class="filter-bar">
+      <label for="category">Filter:</label>
+      <select id="category" onchange="alert('Filter coming soon!')">
+        <option value="all">All products</option>
+        <option value="apparel">Apparel</option>
+        <option value="accessories">Accessories</option>
+        <option value="music">Music</option>
+        <option value="baby">Babywear</option>
+      </select>
+    </div>
 
     <div class="shop-grid">
-
       <div class="product">
-        <img src="shirt-zwart.PNG" alt="Zwart T-shirt">
-        <h3>Zwart T-shirt</h3>
-        <p>Met logo DJ Gûrten</p>
-        <p class="price">€29,95</p>
-        <a class="add-cart" onclick="alert('Coming soon!'); return false;">Add to cart</a>
+        <img src="T-shirt zwart.PNG" alt="Black T-shirt" />
+        <h3>Black T-shirt</h3>
+        <p>DJ Gûrten Logo</p>
+        <select>
+          <option>Select Size</option>
+          <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+        </select>
+        <div class="price">€24.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
       </div>
 
       <div class="product">
-        <img src="cap.PNG" alt="DJ Gûrten Cap">
-        <h3>Festival Cap</h3>
-        <p>One size fits all</p>
-        <p class="price">€19,95</p>
-        <a class="add-cart" onclick="alert('Coming soon!'); return false;">Add to cart</a>
+        <img src="Cap zwart.PNG" alt="Black Cap" />
+        <h3>Black Cap</h3>
+        <p>Flat brim, embroidered</p>
+        <div class="price">€19.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
       </div>
 
       <div class="product">
-        <img src="vinyl.PNG" alt="KDW ’26 Vinyl">
-        <h3>KDW ’26 – Vinyl</h3>
-        <p>Limited edition</p>
-        <p class="price">€34,95</p>
-        <a class="add-cart" onclick="alert('Coming soon!'); return false;">Add to cart</a>
+        <img src="Cap rood.PNG" alt="Red Cap" />
+        <h3>Red Cap</h3>
+        <p>Snapback edition</p>
+        <div class="price">€19.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
       </div>
 
       <div class="product">
-        <img src="hoodie.PNG" alt="DJ Gûrten Hoodie">
-        <h3>Hoodie</h3>
-        <p>Zacht, warm en stijlvol</p>
-        <p class="price">€49,95</p>
-        <a class="add-cart" onclick="alert('Coming soon!'); return false;">Add to cart</a>
+        <img src="Cap blauw.PNG" alt="Blue Cap" />
+        <h3>Blue Cap</h3>
+        <p>Snapback edition</p>
+        <div class="price">€19.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
       </div>
 
+      <div class="product">
+        <img src="Hoodie zwart.PNG" alt="Black Hoodie" />
+        <h3>Black Hoodie</h3>
+        <p>Cozy pullover with logo</p>
+        <select>
+          <option>Select Size</option>
+          <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+        </select>
+        <div class="price">€39.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
+      </div>
+
+      <div class="product">
+        <img src="Hoodie groen.PNG" alt="Green Hoodie" />
+        <h3>Green Hoodie</h3>
+        <p>Forest green edition</p>
+        <select>
+          <option>Select Size</option>
+          <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+        </select>
+        <div class="price">€39.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
+      </div>
+
+      <div class="product">
+        <img src="Koffiemok.PNG" alt="Coffee Mug" />
+        <h3>Coffee Mug</h3>
+        <p>White ceramic, DJ Gûrten logo</p>
+        <div class="price">€9.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
+      </div>
+
+      <div class="product">
+        <img src="Armbandje.PNG" alt="Wristband" />
+        <h3>Wristband</h3>
+        <p>Black silicone with white text</p>
+        <div class="price">€4.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
+      </div>
+
+      <div class="product">
+        <img src="Zonnebril.PNG" alt="Sunglasses" />
+        <h3>Sunglasses</h3>
+        <p>Festival edition</p>
+        <div class="price">€12.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
+      </div>
+
+      <div class="product">
+        <img src="Vinyl.PNG" alt="Vinyl Preorder" />
+        <h3>KDW ‘26 – The Anthem (Vinyl)</h3>
+        <p>Pre-order – Ships April 2026</p>
+        <div class="price">€29.99</div>
+        <button class="cart-button" disabled>Pre-order</button>
+      </div>
+
+      <div class="product">
+        <img src="Romper blauw.PNG" alt="Blue Romper" />
+        <h3>Baby Romper (Blue)</h3>
+        <p>DJ Gûrten printed onesie</p>
+        <div class="price">€14.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
+      </div>
+
+      <div class="product">
+        <img src="Romper roze.PNG" alt="Pink Romper" />
+        <h3>Baby Romper (Pink)</h3>
+        <p>DJ Gûrten printed onesie</p>
+        <div class="price">€14.99</div>
+        <button class="cart-button" disabled>Add to cart</button>
+      </div>
     </div>
 
     <footer>© 2025 DJ Gûrten</footer>
@@ -195,6 +271,5 @@
       document.getElementById("sidebar").classList.toggle("active");
     }
   </script>
-
 </body>
 </html>

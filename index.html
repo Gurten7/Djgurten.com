@@ -9,12 +9,8 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #111;
       color: white;
-      text-align: center;
-      background: url('KDW26-albumhoes2.PNG') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
-      min-height: 100vh;
     }
     header {
       position: fixed;
@@ -33,10 +29,17 @@
       text-decoration: none;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
+    #top {
+      background: url('KDW26-albumhoes2.PNG') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      text-align: center;
+      padding: 6em 1em 3em;
+    }
     .logo {
-      margin-top: 4em;
       width: 150px;
       height: auto;
+      margin-bottom: 1em;
     }
     h1 {
       font-size: 2.5em;
@@ -52,6 +55,9 @@
       font-weight: bold;
       margin-bottom: 1.5em;
       text-shadow: 0 0 5px #000;
+    }
+    .buttons {
+      margin-bottom: 2em;
     }
     .buttons a {
       display: inline-block;
@@ -79,40 +85,41 @@
       vertical-align: middle;
       margin-right: 8px;
     }
-    .tour {
-      background-color: rgba(0, 0, 0, 0.7);
-      margin: 3em auto;
-      padding: 2em;
-      border-radius: 20px;
-      max-width: 800px;
-      width: 90%;
+
+    #tour {
+      padding: 3em 1em 2em;
+      background-color: #111;
+      text-align: center;
     }
-    .tour h2 {
-      margin-bottom: 1em;
+    #tour h2 {
       font-size: 1.8em;
+      margin-bottom: 1em;
       text-shadow: 0 0 10px #ff0;
     }
     .tour-table {
-      width: 100%;
+      margin: 0 auto;
+      width: 90%;
+      max-width: 800px;
       border-collapse: collapse;
+      font-size: 1em;
     }
     .tour-table th, .tour-table td {
-      border-bottom: 1px solid #ccc;
-      padding: 0.7em;
+      padding: 0.8em;
       text-align: left;
+      border-bottom: 1px solid #333;
     }
     .tour-table th {
       background-color: #222;
-      color: #fff;
     }
     .tour-table td {
-      background-color: rgba(255,255,255,0.1);
+      background-color: rgba(255,255,255,0.05);
     }
+
     footer {
-      margin: 3em 0 1em;
+      text-align: center;
+      color: #ccc;
       font-size: 0.9em;
-      color: #ddd;
-      text-shadow: 0 0 3px #000;
+      margin: 2em 0;
     }
   </style>
 </head>
@@ -121,21 +128,22 @@
     <a href="mailto:bookings@djgurten.com" class="book-button">Bookings</a>
   </header>
 
-  <img src="djgurten-logo.PNG" alt="DJ Gûrten Logo" class="logo" />
-  <h1>KDW '26 – The Anthem</h1>
-  <div class="release">Release date: April 1st, 2026 at 12:00 PM</div>
-  <div id="countdown">Loading...</div>
+  <div id="top">
+    <img src="djgurten-logo.PNG" alt="DJ Gûrten Logo" class="logo" />
+    <h1>KDW '26 – The Anthem</h1>
+    <div class="release">Release date: April 1st, 2026 at 12:00 PM</div>
+    <div id="countdown">Loading...</div>
 
-  <div class="buttons">
-    <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" target="_blank">🎧 Listen on Spotify</a>
-    <a href="https://www.instagram.com/dj_gurten" target="_blank">
-      <img src="instagram.PNG" alt="Instagram Icon" />
-      Follow on Instagram
-    </a>
-    <a class="disabled-button" href="#" onclick="return false;">🎫 Tickets – Available Soon</a>
+    <div class="buttons">
+      <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" target="_blank">🎧 Listen on Spotify</a>
+      <a href="https://www.instagram.com/dj_gurten" target="_blank">
+        <img src="instagram.PNG" alt="Instagram" />Follow on Instagram
+      </a>
+      <a class="disabled-button" href="#" onclick="return false;">🎫 Tickets – Available Soon</a>
+    </div>
   </div>
 
-  <section class="tour">
+  <div id="tour">
     <h2>🎤 Colors of Sound Tour 2026</h2>
     <table class="tour-table">
       <thead>
@@ -160,11 +168,11 @@
         <tr><td>Prague (CZ)</td><td>June 4</td><td>Cross Club</td></tr>
         <tr><td>Belgrade (RS)</td><td>June 8</td><td>Drugstore</td></tr>
         <tr><td>Dublin (IE)</td><td>June 15</td><td>The Academy</td></tr>
-        <tr><td>???</td><td>???</td><td>KDW '26 Festival</td></tr>
+        <tr><td>Lichtenvoorde (NL)</td><td>June 21</td><td>KDW Festival 🎪</td></tr>
         <tr><td>Ibiza (ES)</td><td>June 30</td><td>Ushuaïa Closing Set 🌅</td></tr>
       </tbody>
     </table>
-  </section>
+  </div>
 
   <footer>© 2025 DJ Gûrten</footer>
 

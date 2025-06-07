@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DJ Gûrten – News</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 1em;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 1.5em;
+      color: white;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding: 2em 1em;
+      transition: 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 1em 0;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 2em;
+      font-size: 2em;
+      text-transform: uppercase;
+    }
+
+    .news-section {
+      max-width: 800px;
+      margin: 2em auto;
+      padding: 1em;
+    }
+
+    .news-article {
+      background: #222;
+      border-radius: 10px;
+      padding: 1.5em;
+      margin-bottom: 2em;
+    }
+
+    .news-article h2 {
+      color: yellow;
+      margin-top: 0;
+    }
+
+    .news-article p {
+      line-height: 1.6;
+    }
+
+    .news-date {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-bottom: 0.5em;
+    }
+
+    a {
+      color: yellow;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+  <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+  <a href="tour.html">TOUR DATES</a>
+  <a href="news.html">NEWS</a>
+  <a href="music.html">MUSIC</a>
+  <a href="biography.html">BIOGRAPHY</a>
+  <a href="videos.html">VIDEOS</a>
+  <a href="shop.html">SHOP</a>
+  <a href="contact.html">CONTACT</a>
+  <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+</div>
+  <div class="overlay">
+    <h1>Latest News</h1>
+    <section class="news-section">
+
+      <article class="news-article">
+        <div class="news-date">June 7, 2025</div>
+        <h2>New single ‘Colors of Sound’ out now</h2>
+        <p>
+          DJ Gûrten has just released his brand new single <strong>‘Colors of Sound’</strong>, a high-energy anthem that blends festival vibes with smooth electronic transitions.
+          The track will soon be available on Spotify and other platforms. Stay tuned for the release link!
+        </p>
+      </article>
+
+      <article class="news-article">
+        <div class="news-date">June 5, 2025</div>
+        <h2>Tour Dates Announced for 2026</h2>
+        <p>
+          DJ Gûrten is hitting the road in 2026 with the explosive <strong>Colors of Sound Tour</strong>! Expect a show filled with lights, beats and unforgettable energy.
+          From Ibiza to Berlin and KDW '26 – this tour is not to be missed. <a href="tour.html">Check all tour dates here</a>.
+        </p>
+      </article>
+
+    </section>
+
+    <footer>© 2025 DJ Gûrten</footer>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

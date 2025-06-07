@@ -19,22 +19,22 @@
       background-attachment: fixed;
     }
 
-    .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
-      min-height: 100vh;
-      padding: 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
+  .overlay {
+  position: relative; /* ← voeg deze regel toe */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+  min-height: 100vh;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
     .logo {
       width: 120px;
       margin: 1em auto;
     }
 
     .book-btn {
-      position: fixed;
+      position: absolute;
       top: 15px;
       right: 15px;
       background: deeppink;

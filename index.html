@@ -200,6 +200,12 @@
       margin-bottom: 1em;
     }
 
+  .listen-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+    
   .listen-button {
   display: inline-flex;
   align-items: center;
@@ -284,18 +290,22 @@
       <div class="view-all">View all tour dates</div>
     </section>
 
-    <section id="music">
+  <section id="music">
   <h2>🎵 Latest Music</h2>
   <div class="music-card">
     <img src="Colors of sound.PNG" alt="Colors of Sound Cover">
     <h3>Color of Sounds</h3>
     <p>The brand new single by DJ Gûrten – now on Spotify</p>
-    <a class="button" href="#" onclick="alert('Link coming soon!'); return false;">
-      <img src="spotify-icon.PNG" alt="Spotify Logo" />
-      Listen on Spotify
-    </a>
+    
+    <div class="listen-wrapper">
+      <a class="listen-button" href="#" onclick="alert('Link coming soon!'); return false;">
+        <img src="spotify-icon.PNG" alt="Spotify Logo" />
+        Listen on Spotify
+      </a>
+    </div>
   </div>
 </section>
+    
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 

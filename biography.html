@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DJ Gûrten – Biography</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 1em;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 1.5em;
+      color: white;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding: 2em 1em;
+      transition: 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 1em 0;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 2em;
+      font-size: 2em;
+      text-transform: uppercase;
+    }
+
+    .bio-content {
+      max-width: 800px;
+      margin: 2em auto;
+      background: #222;
+      padding: 2em;
+      border-radius: 12px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
+    <a href="tour.html">TOUR DATES</a>
+    <a href="news.html">NEWS</a>
+    <a href="#">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="#">VIDEOS</a>
+    <a href="#">SHOP</a>
+    <a href="#">CONTACT</a>
+    <a href="#">DJ GÛRTEN’S ALL-ACCESS</a>
+  </div>
+
+  <div class="overlay">
+    <h1>Biography</h1>
+    <div class="bio-content">
+      <p>
+        Behind the decks of Europe’s hottest clubs and the madness of KDW stands one name: <strong>DJ Gûrten</strong>.
+        Known for his genre-defying sets, energetic drops and charismatic presence, Gûrten has emerged as a driving force in the Dutch electronic music scene.
+      </p>
+      <p>
+        With roots in both beach beats and underground vibes, DJ Gûrten blends tradition with experimentation. He first broke through during the legendary
+        “Litac Sessions” and quickly captured the attention of dancefloors from Belgrade to Berkhout.
+      </p>
+      <p>
+        In 2026 he takes it up a notch with his first international headline tour: <em>Colors of Sound</em>. With a mix of EDM, brass stabs, Dutch rap and emotional buildups,
+        his new sound is made for both festival fields and neon-lit clubs.
+      </p>
+      <p>
+        Whether it's Ushuaïa at sunset, a mystery set at KDW '26, or a pop-up party in a parking garage, DJ Gûrten delivers. Every. Single. Time.
+      </p>
+    </div>
+    <footer>© 2025 DJ Gûrten</footer>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

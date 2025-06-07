@@ -3,15 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Gûrten – Colors of Sound Tour</title>
+  <title>DJ Gûrten – Colors of Sound</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
+    html, body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
       color: white;
       background: url('achtergrond-hoogres.PNG') no-repeat center top;
       background-size: cover;
@@ -19,78 +16,74 @@
     }
 
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.95));
       min-height: 100vh;
-      padding: 1em;
+      padding: 2em 1em;
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
     }
 
     .logo {
       width: 120px;
-      margin: 1em auto;
+      margin: 0 auto 1em;
     }
 
     .book-btn {
-      position: fixed;
-      top: 15px;
-      right: 15px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
       background: deeppink;
       color: white;
       border: none;
-      padding: 0.5em 1.2em;
+      padding: 0.6em 1.2em;
       border-radius: 30px;
       font-weight: bold;
       font-size: 1em;
-      z-index: 1000;
+      cursor: pointer;
       text-decoration: none;
     }
 
-    .menu-toggle {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 1.5em;
-      color: white;
-      background: transparent;
-      border: none;
-      z-index: 1001;
+    .menu-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 2em;
       cursor: pointer;
+      z-index: 1000;
     }
 
     .sidebar {
       position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #111;
-      padding: 2em 1em;
-      transition: 0.3s ease;
+      top: 20px;
+      left: 20px;
+      background-color: #000000dd;
+      padding: 1em 1.5em;
+      border-radius: 8px;
       z-index: 999;
+      display: none;
     }
 
-    .sidebar.active {
-      left: 0;
-    }
-
-    .sidebar a {
+    .sidebar.show {
       display: block;
-      color: white;
-      text-decoration: none;
-      margin: 1em 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    .sidebar ul li {
+      margin: 0.6em 0;
       font-weight: bold;
     }
 
     h1 {
       font-size: 2em;
-      margin-top: 0.5em;
-      text-align: center;
-    }
-
-    .release-date {
-      margin-bottom: 0.5em;
+      margin: 0.5em 0 0.2em;
     }
 
     #countdown {
@@ -102,12 +95,15 @@
     .button {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5em;
       background: #222;
-      padding: 0.7em 1.2em;
+      border: none;
+      padding: 0.7em 1.5em;
       border-radius: 30px;
-      color: white;
       margin: 0.5em 0;
+      font-size: 1em;
+      color: white;
       text-decoration: none;
     }
 
@@ -127,127 +123,136 @@
       color: yellow;
       text-shadow: 0 0 8px yellow;
       margin-bottom: 1em;
-      text-transform: uppercase;
     }
 
     .tour-card {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      background: #111;
-      border-radius: 12px;
+      background-color: #111;
+      border-radius: 10px;
       padding: 1em;
       margin-bottom: 1em;
+      justify-content: space-between;
     }
 
     .tour-date {
       text-align: center;
       color: yellow;
-      font-weight: bold;
-      font-size: 1em;
+      margin-right: 1em;
       min-width: 60px;
+    }
+
+    .tour-date .day {
+      font-size: 1.5em;
+      font-weight: bold;
     }
 
     .tour-info {
       flex-grow: 1;
       text-align: left;
-      margin-left: 1em;
     }
 
-    .ticket-button {
-      background-color: white;
-      color: black;
-      border: none;
-      padding: 0.5em 1.2em;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: not-allowed;
-    }
-
-    .view-all {
-      color: yellow;
-      text-align: center;
-      text-decoration: underline;
-      cursor: pointer;
+    .tour-footer {
       margin-top: 1em;
+      font-size: 0.95em;
     }
 
     footer {
       margin-top: 4em;
-      font-size: 0.9em;
+      font-size: 0.85em;
       opacity: 0.7;
     }
 
     @media (max-width: 600px) {
-      .button {
+      .book-btn {
+        top: 15px;
+        right: 15px;
         font-size: 0.9em;
+        padding: 0.5em 1em;
+      }
+
+      .menu-btn {
+        font-size: 1.6em;
+        top: 15px;
+        left: 15px;
+      }
+
+      .sidebar {
+        top: 60px;
+        left: 15px;
       }
     }
   </style>
 </head>
 <body>
-
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-  <a href="mailto:info@djgurten.com" class="book-btn">BOOK NOW</a>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
   <div class="sidebar" id="sidebar">
-    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
-    <a href="#">TOUR DATES</a>
-    <a href="#">NEWS</a>
-    <a href="#">MUSIC</a>
-    <a href="#">BIOGRAPHY</a>
-    <a href="#">VIDEOS</a>
-    <a href="#">SHOP</a>
-    <a href="#">CONTACT</a>
-    <a href="#">DJ GÛRTEN’S ALL-ACCESS</a>
+    <ul>
+      <li>TOUR DATES</li>
+      <li>NEWS</li>
+      <li>MUSIC</li>
+      <li>BIOGRAPHY</li>
+      <li>VIDEO’S</li>
+      <li>SHOP</li>
+      <li>CONTACT</li>
+      <li>DJ GÛRTEN’S ALL-ACCESS</li>
+    </ul>
   </div>
 
+  <a href="mailto:info@djgurten.com" class="book-btn">🎫 BOOK NOW</a>
+
   <div class="overlay">
-    <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo" />
-    <h1>KDW '26 – The Anthem</h1>
-    <div class="release-date">Release date: April 1st, 2026 at 12:00 PM</div>
+    <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo">
+    <h1>COLORS OF SOUND</h1>
     <div id="countdown">Loading...</div>
 
     <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" class="button" target="_blank">
-      <img src="spotify-icon.PNG" alt="Spotify" /> Listen on Spotify
+      <img src="spotify-icon.PNG" alt="Spotify"> Spotify
     </a>
-
     <a href="https://www.instagram.com/dj_gurten" class="button" target="_blank">
-      <img src="instagram.PNG" alt="Instagram" /> Follow on Instagram
+      <img src="instagram.PNG" alt="Instagram"> Instagram
     </a>
 
     <section id="tour">
-      <h2>🎤 Colors of Sound Tour 2026</h2>
+      <h2>🎤 NEXT SHOWS</h2>
 
       <div class="tour-card">
-        <div class="tour-date">30<br>JUN<br>2026</div>
-        <div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div>
-        <button class="ticket-button" disabled>Tickets</button>
+        <div class="tour-date">
+          <span class="day">20</span><br>JUL<br>2026
+        </div>
+        <div class="tour-info">
+          <strong>Ushuaïa</strong><br>Ibiza, Spain
+        </div>
       </div>
 
       <div class="tour-card">
-        <div class="tour-date">23<br>MAY<br>2026</div>
-        <div class="tour-info"><strong>Razzmatazz</strong><br>Barcelona</div>
-        <button class="ticket-button" disabled>Tickets</button>
+        <div class="tour-date">
+          <span class="day">28</span><br>AUG<br>2026
+        </div>
+        <div class="tour-info">
+          <strong>INPUT Club</strong><br>Barcelona, Spain
+        </div>
       </div>
 
       <div class="tour-card">
-        <div class="tour-date">--<br>---</br>----</div>
-        <div class="tour-info"><strong>KDW '26</strong><br>Location TBA</div>
-        <button class="ticket-button" disabled>Tickets</button>
+        <div class="tour-date">
+          <span class="day">??</span><br>???<br>2026
+        </div>
+        <div class="tour-info">
+          <strong>KDW '26</strong><br>To be announced
+        </div>
       </div>
 
-      <div class="view-all">View all tour dates</div>
+      <div class="tour-footer">
+        <a href="#" style="color: yellow; text-decoration: underline;">VIEW ALL TOUR DATES</a>
+      </div>
     </section>
 
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
   <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
-    }
-
     function updateCountdown() {
       const target = new Date("April 1, 2026 12:00:00").getTime();
       const now = new Date().getTime();
@@ -263,12 +268,17 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      document.getElementById("countdown").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      document.getElementById("countdown").innerText =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
-  </script>
 
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("show");
+    }
+  </script>
 </body>
 </html>

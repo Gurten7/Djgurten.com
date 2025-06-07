@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DJ Gûrten – Your Cart</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 2em 1em;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 1em;
+      font-size: 2em;
+      text-transform: uppercase;
+    }
+
+    .cart-container {
+      max-width: 800px;
+      margin: 2em auto;
+      background: #222;
+      padding: 1.5em;
+      border-radius: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5em;
+      border-bottom: 1px solid #444;
+      padding-bottom: 1em;
+    }
+
+    .cart-item img {
+      width: 80px;
+      border-radius: 5px;
+      margin-right: 1em;
+    }
+
+    .item-details {
+      flex-grow: 1;
+    }
+
+    .item-details h3 {
+      margin: 0 0 0.2em;
+    }
+
+    .item-details p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .item-price {
+      font-weight: bold;
+      margin-left: 1em;
+    }
+
+    .checkout {
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    .checkout button {
+      background: #1DB954;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 1em 2em;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: not-allowed;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay">
+    <h1>Your Shopping Cart</h1>
+
+    <div class="cart-container">
+      <div class="cart-item">
+        <img src="T-shirt zwart.PNG" alt="Black T-shirt" />
+        <div class="item-details">
+          <h3>Black T-shirt</h3>
+          <p>Size: L</p>
+        </div>
+        <div class="item-price">€24.99</div>
+      </div>
+
+      <div class="cart-item">
+        <img src="Vinyl.PNG" alt="KDW '26 Vinyl" />
+        <div class="item-details">
+          <h3>KDW ‘26 Vinyl (Pre-order)</h3>
+          <p>Ships April 2026</p>
+        </div>
+        <div class="item-price">€29.99</div>
+      </div>
+
+      <div class="cart-item">
+        <img src="Koffiemok.PNG" alt="Coffee Mug" />
+        <div class="item-details">
+          <h3>DJ Gûrten Mug</h3>
+          <p>Ceramic – White</p>
+        </div>
+        <div class="item-price">€9.99</div>
+      </div>
+
+      <div class="checkout">
+        <button disabled>Checkout (coming soon)</button>
+      </div>
+    </div>
+
+    <footer>© 2025 DJ Gûrten</footer>
+  </div>
+
+</body>
+</html>

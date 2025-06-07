@@ -2,220 +2,215 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DJ Gurten – KDW ’26 Anthem</title>
-  <link rel="icon" href="djgurten-logo.PNG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ Gurten - KDW '26 Anthem</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 0;
+      font-family: Arial, sans-serif;
       color: white;
       text-align: center;
-      background: #000;
-    }
-
-    .hero {
       background: url('achtergrond-hoogres.PNG') no-repeat center top;
       background-size: contain;
-      background-color: #000;
-      background-repeat: no-repeat;
-      background-attachment: scroll;
-      background-position: center top;
-      padding: 100px 20px 60px;
+      background-color: black;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .logo {
-      max-width: 120px;
-      margin-bottom: 20px;
+      width: 120px;
+      margin: 0 auto 1em;
     }
 
-    .book-now {
+    .book-btn {
       position: absolute;
       top: 20px;
       right: 20px;
-      background: hotpink;
+      background: deeppink;
       color: white;
-      font-weight: bold;
-      padding: 10px 18px;
+      border: none;
+      padding: 0.6em 1.2em;
       border-radius: 30px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
       text-decoration: none;
-      font-size: 16px;
     }
 
     h1 {
-      font-size: 2.2em;
-      margin: 20px 0 10px;
+      font-size: 2em;
+      margin: 0.5em 0 0.2em;
     }
 
-    .release {
-      margin-bottom: 10px;
-      font-size: 1.1em;
+    .release-date {
+      margin-bottom: 0.5em;
     }
 
     #countdown {
-      font-size: 1.6em;
+      font-size: 1.5em;
       font-weight: bold;
-      margin-bottom: 30px;
+      margin-bottom: 1.5em;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 30px;
-      padding: 12px 20px;
-      margin: 10px auto;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1em;
-      max-width: 280px;
-    }
-
-    .btn img {
-      height: 20px;
-    }
-
-    .tour-preview {
-      background: #000;
-      padding: 50px 20px;
-    }
-
-    .tour-preview h2 {
-      font-size: 1.6em;
-      color: #ffe600;
-      text-shadow: 0 0 5px #ffe600;
-      margin-bottom: 30px;
-    }
-
-    .gig {
+    .button {
       display: flex;
       align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      background: #222;
+      border: none;
+      padding: 0.7em 1.5em;
+      border-radius: 30px;
+      margin: 0.5em 0;
+      font-size: 1em;
+      color: white;
+      text-decoration: none;
+    }
+
+    .button img {
+      width: 24px;
+      height: 24px;
+    }
+
+    #tour {
+      width: 100%;
+      max-width: 700px;
+      margin-top: 3em;
+      padding: 0 1em;
+    }
+
+    #tour h2 {
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
+      margin-bottom: 1em;
+    }
+
+    .tour-card {
+      display: flex;
+      align-items: center;
+      background-color: #111;
+      border-radius: 10px;
+      padding: 1em;
+      margin-bottom: 1em;
       justify-content: space-between;
-      background: #111;
-      border: 1px solid #333;
-      padding: 15px;
-      margin: 10px auto;
-      max-width: 500px;
-      border-radius: 8px;
     }
 
-    .date {
+    .tour-date {
       text-align: center;
-      color: #ffe600;
+      color: yellow;
+      margin-right: 1em;
+      min-width: 60px;
     }
 
-    .date strong {
+    .tour-date .day {
       font-size: 1.5em;
+      font-weight: bold;
     }
 
-    .info {
-      flex: 1;
-      margin: 0 20px;
+    .tour-info {
+      flex-grow: 1;
       text-align: left;
     }
 
-    .venue {
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-
-    .city {
-      font-size: 0.9em;
-      color: #ccc;
-    }
-
     .ticket-button {
-      background: white;
+      background-color: white;
       color: black;
-      text-decoration: none;
-      padding: 8px 16px;
+      border: none;
+      padding: 0.5em 1.2em;
+      border-radius: 25px;
       font-weight: bold;
-      border-radius: 20px;
-      border: 1px solid #000;
+      cursor: not-allowed;
     }
 
     footer {
-      padding: 40px 20px;
-      background: #000;
-      color: #aaa;
+      margin-top: 3em;
       font-size: 0.9em;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .book-btn {
+        top: 15px;
+        right: 15px;
+        font-size: 0.9em;
+        padding: 0.5em 1em;
+      }
     }
   </style>
 </head>
 <body>
+  <a href="mailto:info@djgurten.com" class="book-btn">🎫 Book Now</a>
 
-  <div class="hero">
-    <a href="#" class="book-now">🎟️ Book Now</a>
+  <div class="overlay">
     <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo">
     <h1>KDW '26 – The Anthem</h1>
-    <div class="release">Release date: April 1st, 2026 at 12:00 PM</div>
+    <div class="release-date">Release date: April 1st, 2026 at 12:00 PM</div>
     <div id="countdown">Loading...</div>
 
-    <a class="btn" href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" target="_blank">
-      <img src="spotify-icon.PNG" alt="Spotify">Listen on Spotify
+    <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" class="button" target="_blank">
+      <img src="spotify-icon.PNG" alt="Spotify"> Listen on Spotify
     </a>
 
-    <a class="btn" href="https://www.instagram.com/dj_gurten" target="_blank">
-      <img src="instagram.PNG" alt="Instagram">Follow on Instagram
+    <a href="https://www.instagram.com/dj_gurten" class="button" target="_blank">
+      <img src="instagram.PNG" alt="Instagram"> Follow on Instagram
     </a>
 
-    <a class="btn" href="#">
-      <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/facebook/65/admission-tickets_1f39f.png" style="height: 18px;">Tickets – Available Soon
-    </a>
+    <section id="tour">
+      <h2>🎤 Colors of Sound Tour 2026</h2>
+
+      <div class="tour-card">
+        <div class="tour-date">
+          <span class="day">03</span><br>APR<br>2026
+        </div>
+        <div class="tour-info">
+          <strong>Melkweg</strong><br>Amsterdam
+        </div>
+        <button class="ticket-button" disabled>Tickets</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">
+          <span class="day">05</span><br>APR<br>2026
+        </div>
+        <div class="tour-info">
+          <strong>Maassilo</strong><br>Rotterdam
+        </div>
+        <button class="ticket-button" disabled>Tickets</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">
+          <span class="day">10</span><br>APR<br>2026
+        </div>
+        <div class="tour-info">
+          <strong>TivoliVredenburg</strong><br>Utrecht
+        </div>
+        <button class="ticket-button" disabled>Tickets</button>
+      </div>
+    </section>
+
+    <footer>© 2025 DJ Gûrten</footer>
   </div>
 
-  <section class="tour-preview">
-    <h2>🎤 Colors of Sound Tour 2026</h2>
-
-    <div class="gig">
-      <div class="date"><strong>03</strong><br>APR<br>2026</div>
-      <div class="info">
-        <div class="venue">Melkweg</div>
-        <div class="city">Amsterdam</div>
-      </div>
-      <a href="#" class="ticket-button">Tickets</a>
-    </div>
-
-    <div class="gig">
-      <div class="date"><strong>05</strong><br>APR<br>2026</div>
-      <div class="info">
-        <div class="venue">Maassilo</div>
-        <div class="city">Rotterdam</div>
-      </div>
-      <a href="#" class="ticket-button">Tickets</a>
-    </div>
-
-    <div class="gig">
-      <div class="date"><strong>10</strong><br>APR<br>2026</div>
-      <div class="info">
-        <div class="venue">TivoliVredenburg</div>
-        <div class="city">Utrecht</div>
-      </div>
-      <a href="#" class="ticket-button">Tickets</a>
-    </div>
-
-    <div style="margin-top: 20px;">
-      <a href="#" style="color: #ffe600; text-decoration: underline;">View all tour dates</a>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 DJ Gûrten
-  </footer>
-
   <script>
-    // Countdown Timer
-    const countdown = document.getElementById("countdown");
-    const targetDate = new Date("April 1, 2026 12:00:00").getTime();
-
-    setInterval(() => {
+    function updateCountdown() {
+      const target = new Date("April 1, 2026 12:00:00").getTime();
       const now = new Date().getTime();
-      const diff = targetDate - now;
+      const diff = target - now;
 
       if (diff <= 0) {
-        countdown.textContent = "Out now!";
+        document.getElementById("countdown").innerText = "Released!";
         return;
       }
 
@@ -224,8 +219,11 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      countdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }, 1000);
+      document.getElementById("countdown").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cart – DJ Gûrten</title>
+  <title>Your Cart – DJ Gûrten</title>
   <style>
     * {
       box-sizing: border-box;
@@ -21,7 +21,7 @@
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
-      padding: 1em;
+      padding: 1.5em;
     }
 
     .menu-toggle {
@@ -29,10 +29,10 @@
       top: 15px;
       left: 15px;
       font-size: 1.5em;
+      color: white;
       background: transparent;
       border: none;
       z-index: 1001;
-      color: white;
       cursor: pointer;
     }
 
@@ -62,81 +62,71 @@
 
     h1 {
       text-align: center;
-      margin-top: 2em;
+      font-size: 2em;
+      margin: 2em 0 1em;
     }
 
-    .cart-container {
-      max-width: 800px;
-      margin: 2em auto;
+    .cart {
+      max-width: 500px;
+      margin: auto;
       background: #222;
       padding: 2em;
-      border-radius: 10px;
+      border-radius: 12px;
     }
 
     .cart-item {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       border-bottom: 1px solid #444;
       padding: 1em 0;
+      gap: 1em;
     }
 
-    .cart-item:last-child {
-      border-bottom: none;
+    .cart-thumb {
+      width: 60px;
+      height: auto;
+      border-radius: 6px;
     }
 
     .item-name {
-      font-weight: bold;
+      flex: 1;
     }
 
     .item-quantity {
-      background: #111;
-      color: white;
-      padding: 0.5em;
+      width: 40px;
+      padding: 0.3em;
+      border-radius: 6px;
       border: none;
-      border-radius: 5px;
-      width: 60px;
       text-align: center;
     }
 
-    .cart-actions {
+    .checkout, .continue {
       display: flex;
       justify-content: center;
-      gap: 1em;
-      margin-top: 2em;
-      flex-wrap: wrap;
+      margin-top: 1.5em;
     }
-    
-.checkout-button {
-  display: inline-block;
-  padding: 1em 2em;
-  background: #1DB954;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  border: none;
-  border-radius: 30px;
-  font-size: 1em;
-  cursor: pointer;
-  text-align: center;
-}
-    .continue-shopping-button,
-    .checkout-button {
-      display: inline-block;
+
+    .checkout button, .continue a {
       padding: 1em 2em;
-      background: #1DB954;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
       border: none;
       border-radius: 30px;
+      font-weight: bold;
       font-size: 1em;
       cursor: pointer;
+      text-decoration: none;
       text-align: center;
     }
 
-    .continue-shopping-button {
+    .checkout button {
+      background: #1DB954;
+      color: white;
+    }
+
+    .continue a {
       background: #444;
+      color: white;
+      margin-bottom: 1em;
     }
 
     footer {
@@ -166,25 +156,33 @@
 
   <div class="overlay">
     <h1>🛒 Your Cart</h1>
-
-    <div class="cart-container">
+    <div class="cart">
+      
       <div class="cart-item">
+        <img src="T-shirt zwart.PNG" alt="Black T-Shirt" class="cart-thumb" />
         <span class="item-name">Black T-Shirt (Size M)</span>
         <input class="item-quantity" type="number" value="1" min="1" />
       </div>
+
       <div class="cart-item">
+        <img src="Cap rood.PNG" alt="Red Cap" class="cart-thumb" />
         <span class="item-name">Red Cap</span>
         <input class="item-quantity" type="number" value="1" min="1" />
       </div>
+
       <div class="cart-item">
+        <img src="Vinyl.PNG" alt="Vinyl – KDW '26" class="cart-thumb" />
         <span class="item-name">Vinyl – KDW ‘26 (Pre-order)</span>
         <input class="item-quantity" type="number" value="1" min="1" />
       </div>
-    </div>
 
-    <div class="cart-actions">
-      <a href="shop.html" class="continue-shopping-button">← Continue Shopping</a>
-      <a href="checkout.html" class="checkout-button">Proceed to Checkout</a>
+      <div class="continue">
+        <a href="shop.html">← Continue Shopping</a>
+      </div>
+
+      <div class="checkout">
+        <a href="checkout.html"><button>Proceed to Checkout</button></a>
+      </div>
     </div>
 
     <footer>© 2025 DJ Gûrten</footer>

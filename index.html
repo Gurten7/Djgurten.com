@@ -5,22 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DJ Gûrten – Colors of Sound Tour</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  background: url('achtergrond-hoogres.PNG') no-repeat center top;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-}
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: contain;
+      background-color: black;
+    }
 
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.95));
       min-height: 100vh;
       padding: 1em;
       display: flex;
@@ -117,18 +114,19 @@
       height: 24px;
     }
 
-    #tour {
+    #tour, #music {
       width: 100%;
       max-width: 700px;
       margin-top: 3em;
       padding: 0 1em;
     }
 
-    #tour h2 {
+    #tour h2, #music h2 {
       color: yellow;
       text-shadow: 0 0 8px yellow;
       margin-bottom: 1em;
       text-transform: uppercase;
+      text-align: center;
     }
 
     .tour-card {
@@ -173,10 +171,25 @@
       margin-top: 1em;
     }
 
+    #music .music-block {
+      background-color: #111;
+      border-radius: 12px;
+      padding: 1em;
+      text-align: center;
+    }
+
+    #music img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 12px;
+      margin-bottom: 1em;
+    }
+
     footer {
       margin-top: 4em;
       font-size: 0.9em;
       opacity: 0.7;
+      text-align: center;
     }
 
     @media (max-width: 600px) {
@@ -218,13 +231,7 @@
     </a>
 
     <section id="tour">
-      <h2>Colors of Sound Tour 2026</h2>
-
-      <div class="tour-card">
-        <div class="tour-date">30<br>JUN<br>2026</div>
-        <div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div>
-        <button class="ticket-button" disabled>Tickets</button>
-      </div>
+      <h2>🎤 Colors of Sound Tour 2026</h2>
 
       <div class="tour-card">
         <div class="tour-date">23<br>MAY<br>2026</div>
@@ -233,12 +240,30 @@
       </div>
 
       <div class="tour-card">
-        <div class="tour-date">--<br>---</br>----</div>
+        <div class="tour-date">30<br>JUN<br>2026</div>
+        <div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div>
+        <button class="ticket-button" disabled>Tickets</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">--<br>---<br>----</div>
         <div class="tour-info"><strong>KDW '26</strong><br>Location TBA</div>
         <button class="ticket-button" disabled>Tickets</button>
       </div>
 
       <div class="view-all">View all tour dates</div>
+    </section>
+
+    <section id="music">
+      <h2>🎵 Latest Music</h2>
+      <div class="music-block">
+        <img src="9069455D-42B0-4D29-A87F-A2EAFBF3759F.png" alt="Colors of Sound cover" />
+        <p style="font-size: 1.2em; font-weight: bold;">Colors of Sound</p>
+        <p style="font-size: 0.9em; margin-bottom: 1em;">The brand new single by DJ Gûrten – now on Spotify</p>
+        <a href="https://open.spotify.com/track/YOUR_TRACK_ID" class="button" target="_blank">
+          <img src="spotify-icon.PNG" alt="Spotify"> Listen Now
+        </a>
+      </div>
     </section>
 
     <footer>© 2025 DJ Gûrten</footer>

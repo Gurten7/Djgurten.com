@@ -25,7 +25,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
     }
 
     .menu-toggle {
@@ -65,19 +64,63 @@
     }
 
     h1 {
-      font-size: 2em;
       margin-top: 2em;
+      font-size: 2em;
+      text-transform: uppercase;
       text-align: center;
     }
 
-    .construction-message {
-      font-size: 1.2em;
+    .shop-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+      margin-top: 2em;
+    }
+
+    .product {
       background: #222;
-      padding: 2em;
       border-radius: 10px;
-      max-width: 600px;
+      padding: 1em;
+      width: 250px;
       text-align: center;
-      line-height: 1.6;
+      transition: 0.3s ease;
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product h3 {
+      margin: 0.5em 0 0.2em;
+    }
+
+    .product p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .price {
+      font-weight: bold;
+      margin: 0.5em 0;
+    }
+
+    .add-cart {
+      display: inline-block;
+      background: #1DB954;
+      color: white;
+      padding: 0.6em 1.2em;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95em;
+      cursor: not-allowed;
     }
 
     footer {
@@ -107,10 +150,43 @@
 
   <div class="overlay">
     <h1>🛍️ DJ Gûrten Shop</h1>
-    <div class="construction-message">
-      <p>🚧 The shop is under construction!</p>
-      <p>Soon you’ll be able to get exclusive DJ Gûrten merchandise – from tour shirts to limited edition vinyls. Stay tuned!</p>
+
+    <div class="shop-grid">
+
+      <div class="product">
+        <img src="shirt-zwart.PNG" alt="Zwart T-shirt">
+        <h3>Zwart T-shirt</h3>
+        <p>Met logo DJ Gûrten</p>
+        <p class="price">€29,95</p>
+        <a class="add-cart" onclick="alert('Coming soon!'); return false;">Add to cart</a>
+      </div>
+
+      <div class="product">
+        <img src="cap.PNG" alt="DJ Gûrten Cap">
+        <h3>Festival Cap</h3>
+        <p>One size fits all</p>
+        <p class="price">€19,95</p>
+        <a class="add-cart" onclick="alert('Coming soon!'); return false;">Add to cart</a>
+      </div>
+
+      <div class="product">
+        <img src="vinyl.PNG" alt="KDW ’26 Vinyl">
+        <h3>KDW ’26 – Vinyl</h3>
+        <p>Limited edition</p>
+        <p class="price">€34,95</p>
+        <a class="add-cart" onclick="alert('Coming soon!'); return false;">Add to cart</a>
+      </div>
+
+      <div class="product">
+        <img src="hoodie.PNG" alt="DJ Gûrten Hoodie">
+        <h3>Hoodie</h3>
+        <p>Zacht, warm en stijlvol</p>
+        <p class="price">€49,95</p>
+        <a class="add-cart" onclick="alert('Coming soon!'); return false;">Add to cart</a>
+      </div>
+
     </div>
+
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 

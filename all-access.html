@@ -82,6 +82,13 @@
       border-radius: 10px;
     }
 
+    .aaa-description ul {
+      text-align: left;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      padding-left: 1.2em;
+    }
+
     .login-box {
       background: #111;
       padding: 2em;
@@ -109,7 +116,19 @@
       border-radius: 5px;
       font-weight: bold;
       font-size: 1em;
-      cursor: not-allowed;
+      cursor: pointer;
+    }
+
+    .login-links {
+      margin-top: 1em;
+    }
+
+    .login-links a {
+      color: #1DB954;
+      text-decoration: none;
+      font-size: 0.9em;
+      display: inline-block;
+      margin: 0.3em;
     }
 
     footer {
@@ -141,15 +160,26 @@
     <h1>DJ GÛRTEN’S ALL-ACCESS</h1>
 
     <div class="aaa-description">
-      <p>Welcome to the inner circle.</p>
-      <p>All-Access gives you exclusive behind-the-scenes content, priority ticket sales, unreleased tracks, and direct interaction with DJ Gûrten.</p>
-      <p>Members only. Not for the faint of bass.</p>
+      <p>🎧 Welcome to DJ Gûrten’s inner circle – where the beat never stops.</p>
+      <p>By joining <strong>All-Access</strong>, you unlock the doors to an exclusive experience beyond the main stage. Dive into:</p>
+      <ul>
+        <li>• Early access to tour tickets, often before the general public</li>
+        <li>• Behind-the-scenes content, studio sessions & personal video updates</li>
+        <li>• Exclusive unreleased tracks, remixes and mashups</li>
+        <li>• Private Q&A’s and livestreams with DJ Gûrten</li>
+        <li>• Member-only merchandise drops</li>
+      </ul>
+      <p>Whether you're a day-one fan or a new follower of the sound, All-Access brings you closer to the music, the movement, and the madness. This isn’t just a club — it’s a family.</p>
+      <p><em>Ready to take the next step? Log in or sign up below.</em></p>
     </div>
 
     <div class="login-box">
-      <input type="text" placeholder="Username" disabled>
-      <input type="password" placeholder="Password" disabled>
-      <button disabled>Login (coming soon)</button>
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
+      <button>Login</button>
+      <div class="login-links">
+        <a href="#">Register</a> | <a href="#">Forgot password?</a>
+      </div>
     </div>
 
     <footer>© 2025 DJ Gûrten</footer>

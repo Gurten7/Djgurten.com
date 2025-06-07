@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Gûrten - KDW '26 Anthem</title>
+  <title>DJ Gûrten – Colors of Sound Tour</title>
   <style>
-    html, body {
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
       margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
       color: white;
       background: url('achtergrond-hoogres.PNG') no-repeat center top;
       background-size: cover;
-      background-color: black;
-      text-align: center;
+      background-attachment: fixed;
     }
 
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.95));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
-      padding: 2em 1em;
+      padding: 1em;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -27,67 +29,64 @@
 
     .logo {
       width: 120px;
-      margin: 0 auto 1em;
+      margin: 1em auto;
     }
 
     .book-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+      position: fixed;
+      top: 15px;
+      right: 15px;
       background: deeppink;
       color: white;
       border: none;
-      padding: 0.6em 1.2em;
+      padding: 0.5em 1.2em;
       border-radius: 30px;
       font-weight: bold;
       font-size: 1em;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
+      z-index: 1000;
       text-decoration: none;
     }
 
-    .menu-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 2em;
-      background: none;
-      border: none;
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 1.5em;
       color: white;
+      background: transparent;
+      border: none;
+      z-index: 1001;
       cursor: pointer;
     }
 
-    .menu {
+    .sidebar {
       position: fixed;
       top: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.95);
-      width: 100%;
+      left: -250px;
+      width: 250px;
       height: 100%;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
+      background: #111;
+      padding: 2em 1em;
+      transition: 0.3s ease;
+      z-index: 999;
     }
 
-    .menu a {
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
       color: white;
-      font-size: 1.4em;
-      margin: 1em 0;
       text-decoration: none;
+      margin: 1em 0;
       font-weight: bold;
-    }
-
-    .menu.active {
-      display: flex;
     }
 
     h1 {
       font-size: 2em;
-      margin: 0.5em 0 0.2em;
+      margin-top: 0.5em;
+      text-align: center;
     }
 
     .release-date {
@@ -103,15 +102,12 @@
     .button {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 0.5em;
       background: #222;
-      border: none;
-      padding: 0.7em 1.5em;
+      padding: 0.7em 1.2em;
       border-radius: 30px;
-      margin: 0.5em 0;
-      font-size: 1em;
       color: white;
+      margin: 0.5em 0;
       text-decoration: none;
     }
 
@@ -136,29 +132,26 @@
 
     .tour-card {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      background-color: #111;
-      border-radius: 10px;
+      background: #111;
+      border-radius: 12px;
       padding: 1em;
       margin-bottom: 1em;
-      justify-content: space-between;
     }
 
     .tour-date {
       text-align: center;
       color: yellow;
-      margin-right: 1em;
-      min-width: 60px;
-    }
-
-    .tour-date .day {
-      font-size: 1.5em;
       font-weight: bold;
+      font-size: 1em;
+      min-width: 60px;
     }
 
     .tour-info {
       flex-grow: 1;
       text-align: left;
+      margin-left: 1em;
     }
 
     .ticket-button {
@@ -171,105 +164,90 @@
       cursor: not-allowed;
     }
 
-    .view-link {
-      margin-top: 1.5em;
-      font-size: 1em;
+    .view-all {
       color: yellow;
+      text-align: center;
       text-decoration: underline;
+      cursor: pointer;
+      margin-top: 1em;
     }
 
     footer {
-      margin-top: 3em;
+      margin-top: 4em;
       font-size: 0.9em;
       opacity: 0.7;
     }
 
     @media (max-width: 600px) {
-      .book-btn {
-        top: 15px;
-        right: 15px;
+      .button {
         font-size: 0.9em;
-        padding: 0.5em 1em;
-      }
-      .menu-btn {
-        top: 15px;
-        left: 15px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Menu button -->
-  <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  <!-- Fullscreen menu -->
-  <div class="menu" id="mobileMenu">
+
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <a href="mailto:info@djgurten.com" class="book-btn">BOOK NOW</a>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
     <a href="#">TOUR DATES</a>
     <a href="#">NEWS</a>
     <a href="#">MUSIC</a>
     <a href="#">BIOGRAPHY</a>
-    <a href="#">VIDEO’S</a>
+    <a href="#">VIDEOS</a>
     <a href="#">SHOP</a>
     <a href="#">CONTACT</a>
     <a href="#">DJ GÛRTEN’S ALL-ACCESS</a>
   </div>
 
-  <!-- Book Now -->
-  <a href="mailto:info@djgurten.com" class="book-btn">🎫 BOOK NOW</a>
-
   <div class="overlay">
-    <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo">
+    <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo" />
     <h1>KDW '26 – The Anthem</h1>
     <div class="release-date">Release date: April 1st, 2026 at 12:00 PM</div>
     <div id="countdown">Loading...</div>
 
     <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" class="button" target="_blank">
-      <img src="spotify-icon.PNG" alt="Spotify"> LISTEN ON SPOTIFY
+      <img src="spotify-icon.PNG" alt="Spotify" /> Listen on Spotify
     </a>
 
     <a href="https://www.instagram.com/dj_gurten" class="button" target="_blank">
-      <img src="instagram.PNG" alt="Instagram"> FOLLOW ON INSTAGRAM
+      <img src="instagram.PNG" alt="Instagram" /> Follow on Instagram
     </a>
 
     <section id="tour">
-      <h2>COLORS OF SOUND TOUR 2026</h2>
+      <h2>🎤 Colors of Sound Tour 2026</h2>
 
       <div class="tour-card">
-        <div class="tour-date">
-          <span class="day">30</span><br>JUN<br>2026
-        </div>
-        <div class="tour-info">
-          <strong>Ushuaïa</strong><br>Ibiza
-        </div>
+        <div class="tour-date">30<br>JUN<br>2026</div>
+        <div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div>
         <button class="ticket-button" disabled>Tickets</button>
       </div>
 
       <div class="tour-card">
-        <div class="tour-date">
-          <span class="day">23</span><br>MAY<br>2026
-        </div>
-        <div class="tour-info">
-          <strong>Opium</strong><br>Barcelona
-        </div>
+        <div class="tour-date">23<br>MAY<br>2026</div>
+        <div class="tour-info"><strong>Razzmatazz</strong><br>Barcelona</div>
         <button class="ticket-button" disabled>Tickets</button>
       </div>
 
       <div class="tour-card">
-        <div class="tour-date">
-          <span class="day">??</span><br>TBA<br>2026
-        </div>
-        <div class="tour-info">
-          <strong>KDW ’26</strong><br>Location TBA
-        </div>
+        <div class="tour-date">--<br>---</br>----</div>
+        <div class="tour-info"><strong>KDW '26</strong><br>Location TBA</div>
         <button class="ticket-button" disabled>Tickets</button>
       </div>
 
-      <div class="view-link">View all tour dates</div>
+      <div class="view-all">View all tour dates</div>
     </section>
 
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
   <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
     function updateCountdown() {
       const target = new Date("April 1, 2026 12:00:00").getTime();
       const now = new Date().getTime();
@@ -288,12 +266,9 @@
       document.getElementById("countdown").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    function toggleMenu() {
-      document.getElementById("mobileMenu").classList.toggle("active");
-    }
-
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
+
 </body>
 </html>

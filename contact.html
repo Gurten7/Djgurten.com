@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DJ Gûrten – Contact</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 1.5em;
+      color: white;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding: 2em 1em;
+      transition: 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 1em 0;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    .contact-section {
+      max-width: 700px;
+      width: 100%;
+      margin-bottom: 2em;
+      background: #111;
+      padding: 2em;
+      border-radius: 12px;
+    }
+
+    .contact-section h2 {
+      font-size: 1.2em;
+      color: yellow;
+      margin-bottom: 0.5em;
+      text-transform: uppercase;
+    }
+
+    .contact-section p {
+      margin: 0.5em 0;
+      line-height: 1.6;
+    }
+
+    a.mail-link {
+      color: white;
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8em;
+      opacity: 0.7;
+      margin-top: 3em;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+  <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+  <a href="tour.html">TOUR DATES</a>
+  <a href="news.html">NEWS</a>
+  <a href="music.html">MUSIC</a>
+  <a href="biography.html">BIOGRAPHY</a>
+  <a href="videos.html">VIDEOS</a>
+  <a href="shop.html">SHOP</a>
+  <a href="contact.html">CONTACT</a>
+  <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+</div>
+
+  <div class="overlay">
+    <h1>📬 Contact DJ Gûrten</h1>
+
+    <div class="contact-section">
+      <h2>Bookings</h2>
+      <p>For national and international booking inquiries, please contact:</p>
+      <p><strong>Gûrten Bookings Agency</strong><br>
+      Email: <a class="mail-link" href="mailto:bookings@djgurten.com">bookings@djgurten.com</a></p>
+    </div>
+
+    <div class="contact-section">
+      <h2>Management</h2>
+      <p>For business collaborations, brand partnerships or general management inquiries:</p>
+      <p><strong>NextWave Artist Management</strong><br>
+      Email: <a class="mail-link" href="mailto:management@djgurten.com">management@djgurten.com</a></p>
+    </div>
+
+    <div class="contact-section">
+      <h2>Press & Media</h2>
+      <p>For interviews, press kits or promotional content:</p>
+      <p><strong>Press Department DJ Gûrten</strong><br>
+      Email: <a class="mail-link" href="mailto:press@djgurten.com">press@djgurten.com</a></p>
+    </div>
+
+    <footer>© 2025 DJ Gûrten</footer>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

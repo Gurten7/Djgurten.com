@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Gûrten – Your Cart</title>
+  <title>Cart – DJ Gûrten</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -15,73 +19,111 @@
     }
 
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
+      padding: 1em;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 1.5em;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+      color: white;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
       padding: 2em 1em;
+      transition: 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 1em 0;
+      font-weight: bold;
     }
 
     h1 {
       text-align: center;
-      margin-top: 1em;
-      font-size: 2em;
-      text-transform: uppercase;
+      margin-top: 2em;
     }
 
     .cart-container {
       max-width: 800px;
       margin: 2em auto;
       background: #222;
-      padding: 1.5em;
+      padding: 2em;
       border-radius: 10px;
     }
 
     .cart-item {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5em;
       border-bottom: 1px solid #444;
-      padding-bottom: 1em;
+      padding: 1em 0;
     }
 
-    .cart-item img {
-      width: 80px;
-      border-radius: 5px;
-      margin-right: 1em;
+    .cart-item:last-child {
+      border-bottom: none;
     }
 
-    .item-details {
-      flex-grow: 1;
-    }
-
-    .item-details h3 {
-      margin: 0 0 0.2em;
-    }
-
-    .item-details p {
-      margin: 0;
-      font-size: 0.9em;
-      color: #ccc;
-    }
-
-    .item-price {
+    .item-name {
       font-weight: bold;
-      margin-left: 1em;
     }
 
-    .checkout {
+    .item-quantity {
+      background: #111;
+      color: white;
+      padding: 0.5em;
+      border: none;
+      border-radius: 5px;
+      width: 60px;
       text-align: center;
-      margin-top: 2em;
     }
 
-    .checkout button {
+    .cart-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      margin-top: 2em;
+      flex-wrap: wrap;
+    }
+
+    .continue-shopping-button,
+    .checkout-button {
+      display: inline-block;
+      padding: 1em 2em;
       background: #1DB954;
       color: white;
       font-weight: bold;
+      text-decoration: none;
       border: none;
-      padding: 1em 2em;
       border-radius: 30px;
       font-size: 1em;
-      cursor: not-allowed;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .continue-shopping-button {
+      background: #444;
     }
 
     footer {
@@ -94,43 +136,52 @@
 </head>
 <body>
 
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
+    <a href="tour.html">TOUR DATES</a>
+    <a href="news.html">NEWS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="videos.html">VIDEOS</a>
+    <a href="shop.html">SHOP</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+  </div>
+
   <div class="overlay">
-    <h1>Your Shopping Cart</h1>
+    <h1>🛒 Your Cart</h1>
 
     <div class="cart-container">
       <div class="cart-item">
-        <img src="T-shirt zwart.PNG" alt="Black T-shirt" />
-        <div class="item-details">
-          <h3>Black T-shirt</h3>
-          <p>Size: L</p>
-        </div>
-        <div class="item-price">€24.99</div>
+        <span class="item-name">Black T-Shirt (Size M)</span>
+        <input class="item-quantity" type="number" value="1" min="1" />
       </div>
-
       <div class="cart-item">
-        <img src="Vinyl.PNG" alt="KDW '26 Vinyl" />
-        <div class="item-details">
-          <h3>KDW ‘26 Vinyl (Pre-order)</h3>
-          <p>Ships April 2026</p>
-        </div>
-        <div class="item-price">€29.99</div>
+        <span class="item-name">Red Cap</span>
+        <input class="item-quantity" type="number" value="1" min="1" />
       </div>
-
       <div class="cart-item">
-        <img src="Koffiemok.PNG" alt="Coffee Mug" />
-        <div class="item-details">
-          <h3>DJ Gûrten Mug</h3>
-          <p>Ceramic – White</p>
-        </div>
-        <div class="item-price">€9.99</div>
+        <span class="item-name">Vinyl – KDW ‘26 (Pre-order)</span>
+        <input class="item-quantity" type="number" value="1" min="1" />
       </div>
+    </div>
 
-      <div class="checkout">
-  <a href="checkout.html" class="checkout-button">Proceed to Checkout</a>
-</div>
+    <div class="cart-actions">
+      <a href="shop.html" class="continue-shopping-button">← Continue Shopping</a>
+      <a href="checkout.html" class="checkout-button">Proceed to Checkout</a>
+    </div>
 
     <footer>© 2025 DJ Gûrten</footer>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
 
 </body>
 </html>

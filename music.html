@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DJ Gûrten – Music</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 1.5em;
+      color: white;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding: 2em 1em;
+      transition: 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 1em 0;
+      font-weight: bold;
+    }
+
+    h1 {
+      margin-top: 2em;
+      font-size: 2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .music-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+      margin-top: 2em;
+    }
+
+    .release {
+      background: #222;
+      border-radius: 10px;
+      padding: 1em;
+      width: 250px;
+      text-align: center;
+    }
+
+    .release img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .release h3 {
+      margin: 0.5em 0 0.2em;
+    }
+
+    .release p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      background: #1DB954;
+      padding: 0.6em 1.2em;
+      border-radius: 30px;
+      color: white;
+      margin-top: 1em;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95em;
+      cursor: not-allowed;
+    }
+
+    .button img {
+      width: 20px;
+      height: auto;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
+    <a href="tour.html">TOUR DATES</a>
+    <a href="news.html">NEWS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="videos.html">VIDEOS</a>
+    <a href="shop.html">SHOP</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+  </div>
+
+  <div class="overlay">
+    <h1>🎶 Music Releases</h1>
+
+    <div class="music-grid">
+
+      <div class="release">
+        <img src="Colors of sound.PNG" alt="Colors of Sound">
+        <h3>Colors of Sound</h3>
+        <p>Release: June 2025</p>
+        <a href="#" class="button" onclick="alert('Spotify link coming soon!'); return false;">
+          <img src="spotify-icon.PNG" alt="Spotify" />
+          Listen on Spotify
+        </a>
+      </div>
+
+      <div class="release">
+        <img src="cover-anthem.jpg" alt="The Anthem">
+        <h3>KDW ‘26 – The Anthem</h3>
+        <p>Release: May 2025</p>
+        <a href="#" class="button" onclick="alert('Spotify link coming soon!'); return false;">
+          <img src="spotify-icon.PNG" alt="Spotify" />
+          Listen on Spotify
+        </a>
+      </div>
+
+      <!-- Voeg hier later meer releases toe -->
+
+    </div>
+
+    <footer>© 2025 DJ Gûrten</footer>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

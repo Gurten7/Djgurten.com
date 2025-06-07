@@ -1,141 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KDW '26 – The Anthem</title>
+  <meta charset="UTF-8">
+  <title>DJ Gurten – KDW ’26 Anthem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Arial', sans-serif;
+      background-color: black;
+      background-image: url('achtergrond-hoogres.PNG');
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: contain;
       color: white;
-      background: url('achtergrond-hoogres.PNG') no-repeat center center;
-      background-size: cover;
       text-align: center;
     }
 
-    .overlay {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 2em 1em;
+    .book-button {
+      display: inline-block;
+      background-color: #ff007a;
+      color: white;
+      font-weight: bold;
+      border-radius: 25px;
+      padding: 12px 22px;
+      text-decoration: none;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 16px;
     }
 
     .logo {
-      width: 120px;
-      margin: 20px auto;
-    }
-
-    .bookings-button {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #ff0077;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-weight: bold;
-      text-decoration: none;
-      z-index: 1000;
+      margin-top: 100px;
+      max-width: 180px;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.2em;
+      font-size: 36px;
+      margin: 0.5em 0;
     }
 
-    .release-date, .countdown {
-      font-size: 1.2em;
-      margin: 0.3em 0;
+    .release-date {
+      margin-top: 10px;
+      font-size: 18px;
     }
 
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin: 2em auto;
+    #countdown {
+      font-size: 28px;
+      margin: 10px 0 30px;
     }
 
     .button {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-size: 1.1em;
+      display: inline-block;
+      margin: 10px auto;
+      padding: 14px 28px;
+      border-radius: 30px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
       font-weight: bold;
       text-decoration: none;
-      color: white;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(4px);
+      font-size: 18px;
+    }
+
+    .button img {
+      vertical-align: middle;
+      height: 20px;
+      margin-right: 8px;
     }
 
     .tour-section {
-      background: #000000ee;
-      padding: 40px 20px;
-      margin-top: 30px;
+      background-color: #000;
+      margin-top: 80px;
+      padding: 40px 10px;
     }
 
-    .tour-section h2 {
-      font-size: 2em;
+    .tour-title {
       color: #ffff66;
-      text-shadow: 0 0 10px #ff0;
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #ffff66;
     }
 
     table {
-      margin: 20px auto;
-      border-collapse: collapse;
       width: 90%;
       max-width: 700px;
-      background: #111;
+      margin: auto;
+      border-collapse: collapse;
+      color: white;
     }
 
     th, td {
-      border: 1px solid #333;
-      padding: 10px;
+      padding: 12px;
+      border-bottom: 1px solid #444;
     }
 
     th {
-      background-color: #222;
       color: #ffcc00;
     }
 
-    td {
-      background-color: #111;
+    .footer {
+      margin: 40px 0 20px;
+      font-size: 14px;
+      color: #aaa;
     }
 
-    footer {
-      padding: 20px;
-      background: #000;
-      font-size: 0.9em;
-      color: #aaa;
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+      .book-button {
+        font-size: 14px;
+        padding: 10px 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <a href="#" class="bookings-button">🎟 Book Now</a>
 
-  <div class="overlay">
-    <img src="djgurten-logo.PNG" alt="DJ Gûrten Logo" class="logo" />
-    <h1>KDW '26 – The Anthem</h1>
-    <p class="release-date">Release date: April 1st, 2026 at 12:00 PM</p>
-    <p class="countdown" id="countdown">Loading countdown...</p>
+  <a href="mailto:bookings@djgurten.com" class="book-button">🎟️ Book Now</a>
 
-    <div class="buttons">
-      <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" target="_blank" class="button">🎧 Listen on Spotify</a>
-      <a href="https://www.instagram.com/dj_gurten" target="_blank" class="button">📸 Follow on Instagram</a>
-      <span class="button">🎫 Tickets – Available Soon</span>
-    </div>
+  <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo">
+
+  <h1>KDW '26 – The Anthem</h1>
+  <p class="release-date">Release date: April 1st, 2026 at 12:00 PM</p>
+  <div id="countdown">Loading...</div>
+
+  <div>
+    <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" class="button">
+      <img src="spotify-icon.PNG" alt="Spotify">Listen on Spotify
+    </a><br>
+    <a href="https://www.instagram.com/dj_gurten" class="button">
+      <img src="instagram.PNG" alt="Instagram">Follow on Instagram
+    </a><br>
+    <span class="button" style="opacity: 0.6; cursor: default;">
+      <img src="tickets-icon.PNG" alt="Tickets">Tickets – Available Soon
+    </span>
   </div>
 
   <div class="tour-section">
-    <h2>🎤 Colors of Sound Tour 2026</h2>
+    <h2 class="tour-title">🎤 Colors of Sound Tour 2026</h2>
     <table>
       <tr><th>📍 City</th><th>📅 Date</th><th>📌 Venue</th></tr>
-      <tr><td>Amsterdam</td><td>April 3</td><td>Melkweg</td></tr>
-      <tr><td>Rotterdam</td><td>April 5</td><td>Maassilo</td></tr>
-      <tr><td>Utrecht</td><td>April 10</td><td>TivoliVredenburg</td></tr>
-      <tr><td>Eindhoven</td><td>April 12</td><td>Effenaar</td></tr>
-      <tr><td>Groningen</td><td>April 17</td><td>Simplon</td></tr>
-      <tr><td>Maastricht</td><td>April 19</td><td>Muziekgieterij</td></tr>
-      <tr><td>The Hague</td><td>April 24</td><td>Paard van Troje</td></tr>
-      <tr><td>Arnhem</td><td>April 26</td><td>Luxor Live</td></tr>
+      <tr><td>Amsterdam</td><td>Apr 3</td><td>Melkweg</td></tr>
+      <tr><td>Rotterdam</td><td>Apr 5</td><td>Maassilo</td></tr>
+      <tr><td>Utrecht</td><td>Apr 10</td><td>TivoliVredenburg</td></tr>
+      <tr><td>Eindhoven</td><td>Apr 12</td><td>Effenaar</td></tr>
+      <tr><td>Groningen</td><td>Apr 17</td><td>Simplon</td></tr>
+      <tr><td>Maastricht</td><td>Apr 19</td><td>Muziekgieterij</td></tr>
+      <tr><td>The Hague</td><td>Apr 24</td><td>Paard van Troje</td></tr>
+      <tr><td>Arnhem</td><td>Apr 26</td><td>Luxor Live</td></tr>
       <tr><td>Antwerp (BE)</td><td>May 1</td><td>Trix</td></tr>
       <tr><td>Ghent (BE)</td><td>May 3</td><td>Vooruit</td></tr>
       <tr><td>Berlin (DE)</td><td>May 9</td><td>Ritter Butzke</td></tr>
@@ -143,23 +158,25 @@
       <tr><td>London (UK)</td><td>May 17</td><td>Electric Brixton</td></tr>
       <tr><td>Barcelona (ES)</td><td>May 23</td><td>Razzmatazz</td></tr>
       <tr><td>Bologna (IT)</td><td>May 28</td><td>Kindergarten Club</td></tr>
-      <tr><td>Prague (CZ)</td><td>June 4</td><td>Cross Club</td></tr>
-      <tr><td>Belgrade (RS)</td><td>June 8</td><td>Drugstore</td></tr>
-      <tr><td>Dublin (IE)</td><td>June 15</td><td>The Academy</td></tr>
-      <tr><td>Ibiza (ES)</td><td>June 30</td><td>Ushuaïa Closing Set</td></tr>
+      <tr><td>Prague (CZ)</td><td>Jun 4</td><td>Cross Club</td></tr>
+      <tr><td>Belgrade (RS)</td><td>Jun 8</td><td>Drugstore</td></tr>
+      <tr><td>Dublin (IE)</td><td>Jun 15</td><td>The Academy</td></tr>
+      <tr><td>Ibiza (ES)</td><td>Jun 30</td><td>Ushuaïa</td></tr>
     </table>
   </div>
 
-  <footer>© 2025 DJ Gûrten</footer>
+  <div class="footer">© 2025 DJ Gurten</div>
 
   <script>
-    function updateCountdown() {
-      const releaseDate = new Date("April 1, 2026 12:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+    const releaseDate = new Date("April 1, 2026 12:00:00").getTime();
+
+    setInterval(() => {
       const now = new Date().getTime();
       const distance = releaseDate - now;
 
-      if (distance <= 0) {
-        document.getElementById("countdown").innerHTML = "Released!";
+      if (distance < 0) {
+        countdown.innerHTML = "Out now!";
         return;
       }
 
@@ -168,12 +185,9 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("countdown").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
   </script>
+
 </body>
 </html>

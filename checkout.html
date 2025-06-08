@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -63,28 +63,14 @@
       font-size: 1em;
       font-weight: bold;
       border: none;
-      border-radius: 30px;
+      border-radius: 8px;
       padding: 1em;
       width: 100%;
       cursor: pointer;
       text-align: center;
       text-decoration: none;
+      display: block;
     }
-    .pay-button {
-  margin-top: 2em;
-  background: white;
-  color: black;
-  font-size: 1em;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px; /* in plaats van 30px */
-  padding: 1em;
-  width: 100%;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-}
     .error {
       color: red;
       font-size: 0.9em;
@@ -123,72 +109,72 @@
     <h1>Checkout</h1>
     <div class="checkout-container">
       <form id="checkoutForm">
-        <label>Voornaam *</label>
-        <input type="text" required>
+        <label>First Name *</label>
+        <input type="text" required placeholder="First Name">
 
-        <label>Achternaam *</label>
-        <input type="text" required>
+        <label>Last Name *</label>
+        <input type="text" required placeholder="Last Name">
 
-        <label>Adres *</label>
-        <input type="text" required placeholder="Straatnaam en huisnummer">
+        <label>Address *</label>
+        <input type="text" required placeholder="Street name and number">
 
-        <label>Aanvullende info</label>
-        <input type="text">
+        <label>Additional info</label>
+        <input type="text" placeholder="Apartment, floor, etc.">
 
-        <label>Postcode *</label>
-        <input type="text" required placeholder="Bijvoorbeeld: 1234 AB">
+        <label>Postal Code *</label>
+        <input type="text" required placeholder="e.g. 1234 AB">
 
-        <label>Plaats *</label>
-        <input type="text" required placeholder="E.g. Amsterdam">
+        <label>City *</label>
+        <input type="text" required placeholder="e.g. Amsterdam">
 
-        <label>Land: <strong>Netherlands</strong></label>
+        <label>Country: <strong>Netherlands</strong></label>
 
-        <label>Telefoonnummer (optioneel)</label>
-        <input type="tel" placeholder="06 12345678">
+        <label>Phone number (optional)</label>
+        <input type="tel" placeholder="e.g. 06 12345678">
 
         <div class="checkbox-group">
           <input type="checkbox" id="differentInvoice" onchange="toggleInvoiceFields()" />
-          <label for="differentInvoice" style="display:inline;">Mijn factuur- en bezorggegevens zijn verschillend</label>
+          <label for="differentInvoice" style="display:inline;">My billing and shipping details are different</label>
         </div>
 
         <div id="invoiceFields" style="display:none; margin-top:1.5em;">
-          <h3>Factuuradres</h3>
-          <label>Voornaam *</label>
-          <input type="text">
+          <h3>Billing Address</h3>
+          <label>First Name *</label>
+          <input type="text" placeholder="First Name">
 
-          <label>Achternaam *</label>
-          <input type="text">
+          <label>Last Name *</label>
+          <input type="text" placeholder="Last Name">
 
-          <label>Adres *</label>
-          <input type="text" placeholder="Straatnaam en huisnummer">
+          <label>Address *</label>
+          <input type="text" placeholder="Street name and number">
 
-          <label>Aanvullende info</label>
-          <input type="text">
+          <label>Additional info</label>
+          <input type="text" placeholder="Apartment, floor, etc.">
 
-          <label>Postcode *</label>
-          <input type="text" placeholder="Bijvoorbeeld: 1234 AB">
+          <label>Postal Code *</label>
+          <input type="text" placeholder="e.g. 1234 AB">
 
-          <label>Plaats *</label>
-          <input type="text" placeholder="E.g. Amsterdam">
+          <label>City *</label>
+          <input type="text" placeholder="e.g. Amsterdam">
 
-          <label>Telefoonnummer (optioneel)</label>
-          <input type="tel" placeholder="06 12345678">
+          <label>Phone number (optional)</label>
+          <input type="tel" placeholder="e.g. 06 12345678">
 
-          <p style="font-size: 0.85em; color: #ccc; margin-top: 1em;">Je ontvangt de factuur enkel digitaal, tenzij anders aangegeven.</p>
+          <p style="font-size: 0.85em; color: #ccc; margin-top: 1em;">You will receive the invoice digitally unless stated otherwise.</p>
         </div>
 
         <div class="checkbox-group">
           <input type="checkbox" id="ageCheck" checked onchange="checkAge()" />
-          <label for="ageCheck" style="display:inline;">Ik ben 16 jaar of ouder</label>
-          <div id="ageError" class="error" style="display:none;">Je bent te jong om je aan te melden of te bestellen.</div>
+          <label for="ageCheck" style="display:inline;">I am 16 years or older</label>
+          <div id="ageError" class="error" style="display:none;">You are too young to place an order.</div>
         </div>
 
         <div class="checkbox-group">
           <input type="checkbox" id="marketingCheck" checked />
-          <label for="marketingCheck" style="display:inline;">Ik wil DJ Gûrten-aanbiedingen en het laatste nieuws ontvangen</label>
+          <label for="marketingCheck" style="display:inline;">Yes, keep me updated on DJ Gûrten offers and news</label>
         </div>
 
-        <a href="shipping.html" id="submitBtn" class="pay-button">BESTEL NU</a>
+        <a href="shipping.html" id="submitBtn" class="pay-button">CONTINUE TO SHIPPING</a>
       </form>
     </div>
 
@@ -204,11 +190,11 @@
     </div>
 
     <ul class="usp-list">
-      <li>Gratis verzending vanaf €50</li>
-      <li>Bestel nu, betaal achteraf met Riverty</li>
-      <li>Vandaag besteld, woensdag in huis</li>
-      <li>Binnen 60 dagen retourneren</li>
-      <li>365 dagen kwaliteitsgarantie op elk product</li>
+      <li>Free shipping from €50</li>
+      <li>Order now, pay later with Riverty</li>
+      <li>Order today, delivered by Wednesday</li>
+      <li>Returns within 60 days</li>
+      <li>365-day quality guarantee on all products</li>
     </ul>
 
     <footer>© 2025 DJ Gûrten</footer>

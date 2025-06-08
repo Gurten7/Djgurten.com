@@ -5,12 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bezorgopties – DJ Gûrten</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: black;
       color: white;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+      min-height: 100vh;
       padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h1 {
@@ -27,6 +41,8 @@
       border-radius: 10px;
       cursor: pointer;
       transition: border-color 0.3s;
+      max-width: 600px;
+      width: 100%;
     }
 
     .option:hover {
@@ -49,9 +65,17 @@
       color: #ccc;
     }
 
-    .button {
-      display: block;
+    .buttons {
+      display: flex;
+      gap: 1em;
+      margin-top: 2em;
       width: 100%;
+      max-width: 600px;
+      justify-content: space-between;
+    }
+
+    .button {
+      flex: 1;
       padding: 1em;
       background: white;
       color: black;
@@ -60,32 +84,36 @@
       font-weight: bold;
       font-size: 1em;
       border-radius: 6px;
-      margin-top: 2em;
     }
   </style>
 </head>
 <body>
-  <h1>Bezorgopties</h1>
+  <div class="overlay">
+    <h1>Bezorgopties</h1>
 
-  <div class="option selected" onclick="selectOption(this)">
-    <h2>Uiterlijk woensdag 11 juni</h2>
-    <p><strong>Gratis</strong></p>
-    <p>PNL – Standaardverzending<br>08:00 – 18:00</p>
+    <div class="option selected" onclick="selectOption(this)">
+      <h2>Uiterlijk woensdag 11 juni</h2>
+      <p><strong>Gratis</strong></p>
+      <p>PNL – Standaardverzending<br>08:00 – 18:00</p>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <h2>Haal op vanaf donderdag 12 juni</h2>
+      <p><strong>Gratis</strong></p>
+      <p>adidas Originals Store Amsterdam<br>Leidsestraat 7 (43,2 km)</p>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <h2>Kan opgehaald worden over 2-3 dagen</h2>
+      <p><strong>Gratis</strong></p>
+      <p>Hoogvliet, Houten<br>Cardo 10 (0,3 km)</p>
+    </div>
+
+    <div class="buttons">
+      <a href="checkout.html" class="button">← VORIGE</a>
+      <a href="payment.html" class="button">VOLGENDE →</a>
+    </div>
   </div>
-
-  <div class="option" onclick="selectOption(this)">
-    <h2>Haal op vanaf donderdag 12 juni</h2>
-    <p><strong>Gratis</strong></p>
-    <p>adidas Originals Store Amsterdam<br>Leidsestraat 7 (43,2 km)</p>
-  </div>
-
-  <div class="option" onclick="selectOption(this)">
-    <h2>Kan opgehaald worden over 2-3 dagen</h2>
-    <p><strong>Gratis</strong></p>
-    <p>Hoogvliet, Houten<br>Cardo 10 (0,3 km)</p>
-  </div>
-
-  <a href="payment.html" class="button">VOLGENDE →</a>
 
   <script>
     function selectOption(selectedDiv) {

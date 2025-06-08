@@ -5,21 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Checkout – DJ Gûrten</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background: #000 url('achtergrond-hoogres.PNG') no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       color: white;
     }
 
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
       min-height: 100vh;
       padding: 2em 1em;
       display: flex;
@@ -30,73 +28,64 @@
     h1 {
       font-size: 2em;
       text-transform: uppercase;
-      text-align: center;
       margin-bottom: 1em;
     }
 
     .checkout-container {
       background: #222;
       padding: 2em;
-      border-radius: 10px;
-      width: 100%;
+      border-radius: 12px;
       max-width: 600px;
-      margin-bottom: 2em;
+      width: 100%;
     }
 
     label {
-      display: block;
-      margin-top: 1em;
       font-weight: bold;
+      margin-top: 1em;
+      display: block;
     }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    select {
+    input, select {
       width: 100%;
       padding: 0.8em;
-      margin-top: 0.3em;
-      border: none;
       border-radius: 5px;
+      border: none;
+      margin-top: 0.4em;
       font-size: 1em;
     }
 
     .checkbox {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.7em;
       margin-top: 1em;
     }
 
-    .checkbox input {
-      margin-top: 0.3em;
-      transform: scale(1.3);
-    }
-
     .checkbox label {
-      flex: 1;
-      font-size: 0.9em;
-      line-height: 1.4;
-      color: white;
+      font-weight: normal;
+      display: inline;
+      margin-left: 0.5em;
     }
 
     .pay-button {
-      margin-top: 2em;
-      padding: 1em;
+      width: 100%;
       background: white;
       color: black;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
+      padding: 1em;
+      border-radius: 30px;
       font-size: 1em;
+      font-weight: bold;
+      border: none;
+      margin-top: 2em;
       cursor: pointer;
-      width: 100%;
-      text-align: center;
+      transition: opacity 0.3s;
+    }
+
+    .pay-button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
     }
 
     .payment-logos {
-      margin-top: 2em;
       text-align: center;
+      margin-top: 3em;
     }
 
     .payment-logos img {
@@ -108,101 +97,113 @@
     .usp-list {
       margin-top: 2em;
       font-size: 0.9em;
-      color: white;
       list-style: none;
-      padding-left: 0;
+      padding: 0;
     }
 
     .usp-list li::before {
-      content: '✓';
+      content: "✓";
       color: white;
       margin-right: 0.5em;
     }
 
     footer {
       text-align: center;
-      margin-top: 3em;
+      margin-top: 4em;
       font-size: 0.8em;
-      opacity: 0.6;
+      opacity: 0.7;
+    }
+
+    #billing-address {
+      display: none;
+      margin-top: 2em;
     }
   </style>
 </head>
 <body>
   <div class="overlay">
     <h1>Checkout</h1>
-
     <div class="checkout-container">
-      <form>
-        <label for="firstName">Voornaam *</label>
-        <input type="text" id="firstName" placeholder="Voornaam" required>
+      <form id="checkoutForm">
+        <label>Voornaam *</label>
+        <input type="text" placeholder="Bijv. John" required>
 
-        <label for="lastName">Achternaam *</label>
-        <input type="text" id="lastName" placeholder="Achternaam" required>
+        <label>Achternaam *</label>
+        <input type="text" placeholder="Bijv. Doe" required>
 
-        <label for="address">Adres *</label>
-        <input type="text" id="address" placeholder="Straatnaam en huisnummer" required>
+        <label>Adres *</label>
+        <input type="text" placeholder="Straatnaam 123" required>
 
-        <label for="info">Aanvullende info</label>
-        <input type="text" id="info" placeholder="Bv. verdieping, belnummer">
+        <label>Aanvullende info</label>
+        <input type="text" placeholder="Etage of toevoeging (optioneel)">
 
-        <label for="postcode">Postcode *</label>
-        <input type="text" id="postcode" placeholder="1234 AB" required>
+        <label>Postcode *</label>
+        <input type="text" placeholder="1234 AB" required>
 
-        <label for="city">Plaats *</label>
-        <input type="text" id="city" placeholder="Amsterdam" required>
+        <label>Plaats *</label>
+        <input type="text" placeholder="Amsterdam" required>
 
-        <label for="country">Land</label>
-        <select id="country">
-          <option selected>Netherlands</option>
-        </select>
+        <label>Land</label>
+        <input type="text" value="Netherlands" disabled>
 
-        <label for="phone">Telefoonnummer (optioneel)</label>
-        <input type="tel" id="phone" placeholder="06 12345678">
+        <label>Telefoonnummer (optioneel)</label>
+        <input type="tel" placeholder="06 12345678">
 
         <div class="checkbox">
-          <input type="checkbox" id="sameInfo" checked>
-          <label for="sameInfo">Mijn factuur- en bezorggegevens zijn identiek.</label>
+          <input type="checkbox" id="sameAddress" checked onchange="toggleBilling()">
+          <label for="sameAddress">Mijn factuur- en bezorggegevens zijn identiek.</label>
+        </div>
+
+        <div id="billing-address">
+          <label>Factuuradres</label>
+          <input type="text" placeholder="Straat en huisnummer">
+          <input type="text" placeholder="Postcode">
+          <input type="text" placeholder="Plaats">
         </div>
 
         <div class="checkbox">
-          <input type="checkbox" id="ageCheck" checked>
-          <label for="ageCheck">Ik ben 16 jaar of ouder.</label>
+          <input type="checkbox" id="ageCheck" onchange="toggleButton()">
+          <label for="ageCheck">Ik ben 16 jaar of ouder</label>
         </div>
 
         <div class="checkbox">
           <input type="checkbox" id="marketing" checked>
-          <label for="marketing">Verwijder het vinkje als je geen gepersonaliseerde marketingberichten van DJ Gûrten via e-mail wilt ontvangen.</label>
+          <label for="marketing">Ja, ik wil DJ Gûrten-aanbiedingen ontvangen via e-mail en digitale media</label>
         </div>
 
-        <div class="checkbox">
-          <input type="checkbox" id="ads">
-          <label for="ads">Ja, ik wil DJ Gûrten-aanbiedingen en het laatste nieuws ontvangen via advertenties op digitale media.</label>
-        </div>
-
-        <button type="submit" class="pay-button">BESTEL NU</button>
+        <button class="pay-button" id="orderButton" type="submit" disabled>BESTEL NU</button>
       </form>
     </div>
 
     <div class="payment-logos">
-      <img src="ideal.PNG" alt="iDEAL" />
-      <img src="mastercard.PNG" alt="Mastercard" />
-      <img src="visa.PNG" alt="Visa" />
-      <img src="amex.PNG" alt="American Express" />
-      <img src="paypal.PNG" alt="PayPal" />
-      <img src="riverty.PNG" alt="Riverty" />
-      <img src="gpay.PNG" alt="Google Pay" />
-      <img src="applepay.PNG" alt="Apple Pay" />
+      <img src="ideal-wit.PNG" alt="iDEAL">
+      <img src="applepay-wit.PNG" alt="Apple Pay">
+      <img src="visa.PNG" alt="Visa">
+      <img src="mastercard.PNG" alt="Mastercard">
+      <img src="paypal.PNG" alt="PayPal">
     </div>
 
     <ul class="usp-list">
       <li>Gratis verzending vanaf €50</li>
-      <li>Bestel nu, betaal achteraf met Riverty</li>
+      <li>Betaal achteraf met Riverty</li>
       <li>Vandaag besteld, woensdag in huis</li>
       <li>Binnen 60 dagen retourneren</li>
-      <li>365 dagen kwaliteitsgarantie op elk product</li>
+      <li>365 dagen kwaliteitsgarantie</li>
     </ul>
 
     <footer>© 2025 DJ Gûrten</footer>
   </div>
+
+  <script>
+    function toggleBilling() {
+      const isChecked = document.getElementById("sameAddress").checked;
+      document.getElementById("billing-address").style.display = isChecked ? "none" : "block";
+    }
+
+    function toggleButton() {
+      const allowed = document.getElementById("ageCheck").checked;
+      document.getElementById("orderButton").disabled = !allowed;
+    }
+  </script>
 </body>
 </html>

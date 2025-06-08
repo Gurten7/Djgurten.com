@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KDW ’26 Vinyl – DJ Gûrten</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-color: black;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      background: #111;
+      border-radius: 12px;
+      padding: 2em;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 1em;
+      color: #ccc;
+    }
+
+    .preorder-note {
+      font-size: 0.9em;
+      color: #999;
+      font-style: italic;
+      margin-top: -0.5em;
+      margin-bottom: 1em;
+    }
+
+    label {
+      display: block;
+      margin-top: 1.5em;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 0.7em;
+      margin-top: 0.5em;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .button {
+      margin-top: 2em;
+      display: block;
+      width: 100%;
+      background: #1DB954;
+      color: white;
+      padding: 0.8em;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: not-allowed;
+    }
+
+    .back-link,
+    .cart-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.5em;
+      text-decoration: underline;
+    }
+
+    .back-link {
+      color: yellow;
+    }
+
+    .cart-link {
+      color: violet;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <img src="Vinyl.PNG" alt="KDW ’26 Vinyl">
+      <h1>KDW ’26 Vinyl</h1>
+      <p>The official KDW ’26 soundtrack, pressed on limited-edition 180g vinyl. Featuring summer anthems, festival chaos and the unforgettable energy of the Kameraden Doe Weekend.</p>
+      <div class="preorder-note">Pre-order now – shipping April 2026</div>
+
+      <label for="qty">Quantity</label>
+      <input type="number" id="qty" value="1" min="1" />
+
+      <button class="button" disabled>Add to Cart</button>
+
+      <a href="shop.html" class="back-link">← Back to Shop</a>
+      <a href="cart.html" class="cart-link">🛒 Go to Cart</a>
+    </div>
+    <footer>© 2025 DJ Gûrten</footer>
+  </div>
+</body>
+</html>

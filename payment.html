@@ -106,13 +106,24 @@
       cursor: pointer;
     }
 
-    .back-button {
-      display: inline-block;
+    .terms {
+      font-size: 0.85em;
       margin-top: 1em;
+      text-align: center;
+    }
+
+    .terms a {
       color: yellow;
       text-decoration: underline;
+    }
+
+    .back-button {
+      display: block;
       text-align: center;
-      cursor: pointer;
+      margin-top: 1.5em;
+      color: yellow;
+      text-decoration: underline;
+      font-weight: bold;
     }
 
     footer {
@@ -186,12 +197,13 @@
         </div>
         <small>(Incl. VAT €41.65)</small>
 
-        <button class="place-button" onclick="alert('We get it – you\'re a true DJ Gûrten fan and these products are 🔥. But... this is not a real webshop. No actual order will be placed. Enjoy the vibe!');">
-        <p style="margin-top: 1em; font-size: 0.85em;">
-          By clicking 'Place Order', you agree to the <a href="#" style="color: yellow;">Terms & Conditions</a> and <a href="#" style="color: yellow;">Shipping Policy</a>.
+        <button class="place-button" onclick="showPopup()">PLACE ORDER</button>
+
+        <p class="terms">
+          By clicking 'Place Order', you agree to the <a href="#">Terms & Conditions</a> and <a href="#">Shipping Policy</a>.
         </p>
 
-        <a class="back-button" href="shipping.html">← Back</a>
+        <a href="shipping.html" class="back-button">← Back</a>
       </div>
     </div>
 
@@ -205,6 +217,10 @@
       });
       el.classList.add('selected');
       document.getElementById('cardFields').style.display = showCard ? 'block' : 'none';
+    }
+
+    function showPopup() {
+      alert("We get it – you're a true DJ Gûrten fan and these products are 🔥. But... this is not a real webshop. No actual order will be placed. Enjoy the vibe!");
     }
   </script>
 </body>

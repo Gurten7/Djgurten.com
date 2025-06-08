@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Betaling – DJ Gûrten</title>
   <style>
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -19,72 +17,61 @@
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
       min-height: 100vh;
-      padding: 2em 1em;
+      padding: 2em;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    .container {
-      background: #111;
-      padding: 2em;
-      border-radius: 12px;
-      max-width: 700px;
-      width: 100%;
-    }
-
     h1 {
-      font-size: 1.8em;
+      text-align: center;
       margin-bottom: 1em;
-    }
-
-    .info {
-      background: #333;
-      padding: 1em;
-      font-size: 0.9em;
-      border-radius: 8px;
-      margin-bottom: 2em;
     }
 
     .payment-option {
       background: #222;
-      padding: 1em;
-      border: 2px solid transparent;
+      border: 2px solid #444;
       border-radius: 10px;
-      margin-bottom: 1em;
+      padding: 1em;
+      margin: 1em 0;
+      width: 100%;
+      max-width: 500px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
 
-    .payment-option.selected {
+    .payment-option.active {
       border-color: #1DB954;
     }
 
-    .payment-option img {
-      height: 30px;
-      margin-left: 1em;
+    .payment-logos img {
+      height: 32px;
+      margin: 0.3em 0.5em;
+      vertical-align: middle;
     }
 
-    .summary {
-      margin-top: 2em;
-      border-top: 1px solid #444;
-      padding-top: 1em;
-    }
-
-    .summary-item {
-      display: flex;
-      justify-content: space-between;
-      margin: 0.5em 0;
-    }
-
-    .place-button {
-      width: 100%;
-      background: #1DB954;
-      color: white;
+    .card-details {
+      display: none;
+      margin-top: 1em;
+      background: #111;
       padding: 1em;
-      margin-top: 1.5em;
+      border-radius: 8px;
+    }
+
+    .card-details input {
+      width: 100%;
+      padding: 0.7em;
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .button {
+      margin-top: 2em;
+      background: white;
+      color: black;
+      padding: 1em 2em;
       border: none;
       border-radius: 30px;
       font-weight: bold;
@@ -92,93 +79,73 @@
       cursor: pointer;
     }
 
-    .back-button {
-      display: inline-block;
+    .notice {
       margin-top: 1em;
-      color: yellow;
-      text-decoration: underline;
+      font-size: 0.9em;
       text-align: center;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3em;
-      font-size: 0.8em;
-      opacity: 0.7;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <div class="container">
-      <h1>BETALING</h1>
+    <h1>Betaalmethode kiezen</h1>
 
-      <div class="info">
-        Betalingen zijn via SSL versleuteld zodat je creditcard- en betaalgegevens veilig blijven.
-      </div>
-
-      <!-- Selecteerbare betaalopties met jouw logo’s -->
-      <div class="payment-option" onclick="selectPayment(this)">
-        iDEAL <img src="ideal.PNG" alt="iDEAL">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        Mastercard <img src="mastercard.PNG" alt="Mastercard">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        Visa <img src="visa.PNG" alt="Visa">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        American Express <img src="amex.PNG" alt="American Express">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        PayPal <img src="paypal.PNG" alt="PayPal">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        Riverty (achteraf betalen) <img src="riverty.PNG" alt="Riverty">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        Google Pay <img src="gpay.PNG" alt="Google Pay">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        Apple Pay <img src="applepay.PNG" alt="Apple Pay">
-      </div>
-
-      <!-- Besteloverzicht -->
-      <div class="summary">
-        <h2>BESTELOVERZICHT</h2>
-        <div class="summary-item">
-          <span>2 artikelen</span>
-          <span>€240,00</span>
-        </div>
-        <div class="summary-item">
-          <span>Bezorging</span>
-          <span>Gratis</span>
-        </div>
-        <div class="summary-item">
-          <strong>Totaal</strong>
-          <strong>€240,00</strong>
-        </div>
-        <small>(Inclusief btw €41,65)</small>
-
-        <button class="place-button">BESTELLING PLAATSEN</button>
-        <p style="margin-top: 1em; font-size: 0.85em;">
-          Door op 'Bestelling plaatsen' te klikken, ga je akkoord met de <a href="#" style="color: yellow;">Algemene Voorwaarden</a> en <a href="#" style="color: yellow;">Leveringsvoorwaarden</a>.
-        </p>
-
-        <div class="back-button" onclick="history.back()">← Vorige</div>
-      </div>
+    <div class="payment-logos">
+      <img src="ideal.PNG" alt="iDEAL">
+      <img src="mastercard.PNG" alt="Mastercard">
+      <img src="visa.PNG" alt="Visa">
+      <img src="amex.PNG" alt="American Express">
+      <img src="paypal.PNG" alt="PayPal">
+      <img src="riverty.PNG" alt="Riverty">
+      <img src="gpay.PNG" alt="Google Pay">
+      <img src="applepay.PNG" alt="Apple Pay">
     </div>
 
-    <footer>© 2025 DJ Gûrten</footer>
+    <div class="payment-option" onclick="selectPayment('card')">Creditcard / Debitkaart (Visa, Mastercard, Amex)</div>
+    <div class="payment-option" onclick="selectPayment('ideal')">iDEAL</div>
+    <div class="payment-option" onclick="selectPayment('klarna')">Klarna – Betaal in 30 dagen</div>
+    <div class="payment-option" onclick="selectPayment('paypal')">PayPal</div>
+
+    <div id="cardDetails" class="card-details">
+      <p style="font-size: 0.9em; color: #ccc;">
+        Als gevolg van Europese betalingsregels (PSD2) kan je bank om extra verificatie vragen.
+      </p>
+      <input type="text" placeholder="Kaartnummer *" />
+      <input type="text" placeholder="Naam op de kaart *" value="Geerten Liesker" />
+      <input type="text" placeholder="MM/JJ *" />
+      <input type="text" placeholder="CVV *" />
+    </div>
+
+    <button class="button" onclick="showWarning()">BESTELLING PLAATSEN</button>
+
+    <p class="notice">
+      Door op 'Bestelling plaatsen' te klikken, ga je akkoord met de algemene voorwaarden.
+    </p>
   </div>
 
   <script>
-    function selectPayment(el) {
-      document.querySelectorAll('.payment-option').forEach(option => {
-        option.classList.remove('selected');
-      });
-      el.classList.add('selected');
+    let selected = null;
+
+    function selectPayment(type) {
+      document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('active'));
+      const options = document.querySelectorAll('.payment-option');
+
+      if (type === 'card') {
+        document.getElementById('cardDetails').style.display = 'block';
+        options[0].classList.add('active');
+      } else {
+        document.getElementById('cardDetails').style.display = 'none';
+        if (type === 'ideal') options[1].classList.add('active');
+        if (type === 'klarna') options[2].classList.add('active');
+        if (type === 'paypal') options[3].classList.add('active');
+      }
+
+      selected = type;
+    }
+
+    function showWarning() {
+      alert("Let op: dit is een demonstratie – dit is geen echte webshop en er wordt niets afgeschreven.");
     }
   </script>
 </body>

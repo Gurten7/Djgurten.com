@@ -40,6 +40,7 @@
       border-radius: 10px;
       width: 100%;
       max-width: 600px;
+      margin-bottom: 2em;
     }
 
     label {
@@ -50,15 +51,7 @@
 
     input[type="text"],
     input[type="email"],
-    input[type="tel"] {
-      width: 100%;
-      padding: 0.8em;
-      margin-top: 0.3em;
-      border: none;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-
+    input[type="tel"],
     select {
       width: 100%;
       padding: 0.8em;
@@ -76,7 +69,7 @@
     }
 
     .checkbox input {
-      margin-top: 0.2em;
+      margin-top: 0.3em;
       transform: scale(1.3);
     }
 
@@ -101,14 +94,34 @@
       text-align: center;
     }
 
-    .pay-button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+    .payment-logos {
+      margin-top: 2em;
+      text-align: center;
+    }
+
+    .payment-logos img {
+      height: 32px;
+      margin: 0.5em 0.7em;
+      vertical-align: middle;
+    }
+
+    .usp-list {
+      margin-top: 2em;
+      font-size: 0.9em;
+      color: white;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .usp-list li::before {
+      content: '✓';
+      color: white;
+      margin-right: 0.5em;
     }
 
     footer {
       text-align: center;
-      margin-top: 4em;
+      margin-top: 3em;
       font-size: 0.8em;
       opacity: 0.6;
     }
@@ -169,6 +182,25 @@
         <button type="submit" class="pay-button">BESTEL NU</button>
       </form>
     </div>
+
+    <div class="payment-logos">
+      <img src="ideal.PNG" alt="iDEAL" />
+      <img src="mastercard.PNG" alt="Mastercard" />
+      <img src="visa.PNG" alt="Visa" />
+      <img src="amex.PNG" alt="American Express" />
+      <img src="paypal.PNG" alt="PayPal" />
+      <img src="riverty.PNG" alt="Riverty" />
+      <img src="gpay.PNG" alt="Google Pay" />
+      <img src="applepay.PNG" alt="Apple Pay" />
+    </div>
+
+    <ul class="usp-list">
+      <li>Gratis verzending vanaf €50</li>
+      <li>Bestel nu, betaal achteraf met Riverty</li>
+      <li>Vandaag besteld, woensdag in huis</li>
+      <li>Binnen 60 dagen retourneren</li>
+      <li>365 dagen kwaliteitsgarantie op elk product</li>
+    </ul>
 
     <footer>© 2025 DJ Gûrten</footer>
   </div>

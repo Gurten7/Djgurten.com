@@ -1,161 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout – DJ Gûrten</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<div class="checkbox">
+  <input type="checkbox" id="older16" checked disabled>
+  <label for="older16">Ik ben 16 jaar of ouder</label>
+</div>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url('achtergrond-hoogres.PNG') no-repeat center top;
-      background-size: cover;
-      background-attachment: fixed;
-      color: white;
-    }
+<div class="checkbox">
+  <input type="checkbox" id="noMarketing" checked disabled>
+  <label for="noMarketing">
+    Verwijder het vinkje als je geen gepersonaliseerde marketingberichten van DJ Gûrten via e-mail wilt ontvangen.
+  </label>
+</div>
 
-    .overlay {
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.95));
-      min-height: 100vh;
-      padding: 2em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    h1 {
-      margin-top: 1em;
-      font-size: 2em;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .checkout-container {
-      background: #222;
-      padding: 2em;
-      border-radius: 10px;
-      width: 100%;
-      max-width: 600px;
-      margin-bottom: 2em;
-    }
-
-    label {
-      display: block;
-      margin-top: 1em;
-      font-weight: bold;
-    }
-
-    input {
-      width: 100%;
-      padding: 0.8em;
-      margin-top: 0.3em;
-      border: none;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-
-    .pay-button {
-      margin-top: 2em;
-      padding: 1em 2em;
-      background: white;
-      border: none;
-      border-radius: 8px;
-      color: black;
-      font-size: 1em;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .notice {
-      margin-top: 1em;
-      font-size: 0.9em;
-      color: #ccc;
-      text-align: center;
-    }
-
-    .payment-logos {
-      margin-top: 2em;
-      text-align: center;
-    }
-
-    .payment-logos img {
-      height: 32px;
-      margin: 0.5em 0.7em;
-      vertical-align: middle;
-    }
-
-    .usp-list {
-      margin-top: 2em;
-      font-size: 0.9em;
-      color: white;
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .usp-list li::before {
-      content: '✓';
-      color: white;
-      margin-right: 0.5em;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 4em;
-      font-size: 0.8em;
-      opacity: 0.6;
-    }
-  </style>
-</head>
-<body>
-  <div class="overlay">
-    <h1>Checkout</h1>
-
-    <div class="checkout-container">
-      <form>
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="John Doe" disabled>
-
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="you@example.com" disabled>
-
-        <label for="address">Shipping Address</label>
-        <input type="text" id="address" placeholder="123 Party Lane, Amsterdam" disabled>
-
-        <label for="card">Credit Card Number</label>
-        <input type="text" id="card" placeholder="1234 5678 9012 3456" disabled>
-
-        <a href="shipping.html" class="pay-button">BESTEL NU</a>
-      </form>
-    </div>
-
-    <div class="payment-logos">
-      <img src="ideal.PNG" alt="iDEAL" />
-      <img src="mastercard.PNG" alt="Mastercard" />
-      <img src="visa.PNG" alt="Visa" />
-      <img src="amex.PNG" alt="American Express" />
-      <img src="paypal.PNG" alt="PayPal" />
-      <img src="riverty.PNG" alt="Riverty" />
-      <img src="gpay.PNG" alt="Google Pay" />
-      <img src="applepay.PNG" alt="Apple Pay" />
-    </div>
-
-    <ul class="usp-list">
-      <li>Gratis verzending vanaf €50</li>
-      <li>Bestel nu, betaal achteraf met Riverty</li>
-      <li>Vandaag besteld, woensdag in huis</li>
-      <li>Binnen 60 dagen retourneren</li>
-      <li>365 dagen kwaliteitsgarantie op elk product</li>
-    </ul>
-
-    <footer>© 2025 DJ Gûrten</footer>
-  </div>
-</body>
-</html>
+<div class="checkbox">
+  <input type="checkbox" id="adsConsent" disabled>
+  <label for="adsConsent">
+    Ja, ik wil de nieuwste DJ Gûrten-aanbiedingen en het laatste productnieuws ontvangen via advertenties op digitale media.
+  </label>
+</div>

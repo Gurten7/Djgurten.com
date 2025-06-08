@@ -58,7 +58,7 @@
       font-weight: bold;
     }
 
-    select, input[type="number"] {
+    input[type="number"] {
       width: 100%;
       padding: 0.7em;
       margin-top: 0.5em;
@@ -81,21 +81,21 @@
       cursor: not-allowed;
     }
 
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 2em;
-      color: yellow;
-      text-decoration: underline;
-    }
-
+    .back-link,
     .cart-link {
       display: block;
       text-align: center;
-      margin-top: 1em;
-      color: white;
+      margin-top: 1.5em;
       text-decoration: underline;
-      font-size: 0.9em;
+    }
+
+    .back-link {
+      color: yellow;
+    }
+
+    .cart-link {
+      color: violet;
+      font-weight: bold;
     }
 
     footer {
@@ -111,7 +111,7 @@
     <div class="container">
       <img src="Cap zwart.PNG" alt="Black Cap">
       <h1>Black DJ Gûrten Cap</h1>
-      <p>Shield yourself from the sun in style with this sleek black cap. Embroidered with the DJ Gûrten logo, it’s the perfect addition to your party outfit or streetwear look.</p>
+      <p>The ultimate essential for any fan: this black cap with embroidered DJ Gûrten logo pairs with any outfit. Breathable, bold and adjustable – fit for every occasion.</p>
 
       <label for="qty">Quantity</label>
       <input type="number" id="qty" value="1" min="1" />

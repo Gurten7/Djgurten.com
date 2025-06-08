@@ -6,6 +6,7 @@
   <title>Checkout – DJ Gûrten</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -14,6 +15,7 @@
       background-attachment: fixed;
       color: white;
     }
+
     .overlay {
       background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
       min-height: 100vh;
@@ -22,6 +24,7 @@
       flex-direction: column;
       align-items: center;
     }
+
     .checkout-container {
       background: #222;
       padding: 2em;
@@ -30,16 +33,19 @@
       max-width: 600px;
       margin-bottom: 2em;
     }
+
     h1 {
       font-size: 1.8em;
       text-align: center;
       margin-bottom: 1em;
     }
+
     label {
       display: block;
       margin-top: 1em;
       font-weight: bold;
     }
+
     input[type="text"],
     input[type="email"],
     input[type="tel"] {
@@ -50,12 +56,15 @@
       margin-top: 0.3em;
       font-size: 1em;
     }
+
     .checkbox-group {
       margin-top: 1em;
     }
+
     .checkbox-group input {
       margin-right: 0.5em;
     }
+
     .pay-button {
       margin-top: 2em;
       background: white;
@@ -71,31 +80,46 @@
       text-decoration: none;
       display: block;
     }
+
+    .back-link {
+      display: block;
+      margin-top: 1em;
+      text-align: center;
+      color: yellow;
+      text-decoration: underline;
+      font-size: 0.9em;
+    }
+
     .error {
       color: red;
       font-size: 0.9em;
       margin-top: 0.3em;
     }
+
     .payment-logos {
       text-align: center;
       margin-top: 2em;
     }
+
     .payment-logos img {
       height: 32px;
       margin: 0.5em;
       vertical-align: middle;
     }
+
     ul.usp-list {
       list-style: none;
       padding-left: 0;
       font-size: 0.9em;
       margin-top: 1em;
     }
+
     ul.usp-list li::before {
       content: '✓';
       margin-right: 0.5em;
       color: white;
     }
+
     footer {
       text-align: center;
       font-size: 0.8em;
@@ -110,16 +134,16 @@
     <div class="checkout-container">
       <form id="checkoutForm">
         <label>First Name *</label>
-        <input type="text" required placeholder="First Name">
+        <input type="text" required>
 
         <label>Last Name *</label>
-        <input type="text" required placeholder="Last Name">
+        <input type="text" required>
 
         <label>Address *</label>
-        <input type="text" required placeholder="Street name and number">
+        <input type="text" required placeholder="Street name and house number">
 
-        <label>Additional info</label>
-        <input type="text" placeholder="Apartment, floor, etc.">
+        <label>Additional Info</label>
+        <input type="text">
 
         <label>Postal Code *</label>
         <input type="text" required placeholder="e.g. 1234 AB">
@@ -129,27 +153,27 @@
 
         <label>Country: <strong>Netherlands</strong></label>
 
-        <label>Phone number (optional)</label>
+        <label>Phone Number (optional)</label>
         <input type="tel" placeholder="e.g. 06 12345678">
 
         <div class="checkbox-group">
           <input type="checkbox" id="differentInvoice" onchange="toggleInvoiceFields()" />
-          <label for="differentInvoice" style="display:inline;">My billing and shipping details are different</label>
+          <label for="differentInvoice" style="display:inline;">My billing and shipping address are different</label>
         </div>
 
         <div id="invoiceFields" style="display:none; margin-top:1.5em;">
           <h3>Billing Address</h3>
           <label>First Name *</label>
-          <input type="text" placeholder="First Name">
+          <input type="text">
 
           <label>Last Name *</label>
-          <input type="text" placeholder="Last Name">
+          <input type="text">
 
           <label>Address *</label>
-          <input type="text" placeholder="Street name and number">
+          <input type="text" placeholder="Street name and house number">
 
-          <label>Additional info</label>
-          <input type="text" placeholder="Apartment, floor, etc.">
+          <label>Additional Info</label>
+          <input type="text">
 
           <label>Postal Code *</label>
           <input type="text" placeholder="e.g. 1234 AB">
@@ -157,24 +181,25 @@
           <label>City *</label>
           <input type="text" placeholder="e.g. Amsterdam">
 
-          <label>Phone number (optional)</label>
+          <label>Phone Number (optional)</label>
           <input type="tel" placeholder="e.g. 06 12345678">
 
-          <p style="font-size: 0.85em; color: #ccc; margin-top: 1em;">You will receive the invoice digitally unless stated otherwise.</p>
+          <p style="font-size: 0.85em; color: #ccc; margin-top: 1em;">Invoices are sent digitally unless otherwise noted.</p>
         </div>
 
         <div class="checkbox-group">
           <input type="checkbox" id="ageCheck" checked onchange="checkAge()" />
           <label for="ageCheck" style="display:inline;">I am 16 years or older</label>
-          <div id="ageError" class="error" style="display:none;">You are too young to place an order.</div>
+          <div id="ageError" class="error" style="display:none;">You must be at least 16 years old to order.</div>
         </div>
 
         <div class="checkbox-group">
           <input type="checkbox" id="marketingCheck" checked />
-          <label for="marketingCheck" style="display:inline;">Yes, keep me updated on DJ Gûrten offers and news</label>
+          <label for="marketingCheck" style="display:inline;">Yes, keep me updated about DJ Gûrten news & offers</label>
         </div>
 
         <a href="shipping.html" id="submitBtn" class="pay-button">CONTINUE TO SHIPPING</a>
+        <a href="cart.html" class="back-link">← BACK TO CART</a>
       </form>
     </div>
 
@@ -190,11 +215,11 @@
     </div>
 
     <ul class="usp-list">
-      <li>Free shipping from €50</li>
-      <li>Order now, pay later with Riverty</li>
-      <li>Order today, delivered by Wednesday</li>
-      <li>Returns within 60 days</li>
-      <li>365-day quality guarantee on all products</li>
+      <li>Free shipping on orders over €50</li>
+      <li>Buy now, pay later with Riverty</li>
+      <li>Order today, delivered Wednesday</li>
+      <li>60-day return policy</li>
+      <li>365-day quality guarantee on every product</li>
     </ul>
 
     <footer>© 2025 DJ Gûrten</footer>

@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Red Cap – DJ Gûrten</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: url('achtergrond-hoogres.PNG') no-repeat center top;
       background-size: cover;
+      background-color: black;
       background-attachment: fixed;
       color: white;
     }
@@ -55,7 +58,7 @@
       font-weight: bold;
     }
 
-    select, input[type="number"] {
+    input[type="number"] {
       width: 100%;
       padding: 0.7em;
       margin-top: 0.5em;
@@ -78,12 +81,21 @@
       cursor: not-allowed;
     }
 
-    .back-link {
+    .back-link,
+    .cart-link {
       display: block;
       text-align: center;
-      margin-top: 2em;
-      color: yellow;
+      margin-top: 1.5em;
       text-decoration: underline;
+    }
+
+    .back-link {
+      color: yellow;
+    }
+
+    .cart-link {
+      color: violet;
+      font-weight: bold;
     }
 
     footer {
@@ -108,7 +120,6 @@
 
       <a href="shop.html" class="back-link">← Back to Shop</a>
       <a href="cart.html" class="cart-link">🛒 Go to Cart</a>
-  
     </div>
     <footer>© 2025 DJ Gûrten</footer>
   </div>

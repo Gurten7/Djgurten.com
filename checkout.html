@@ -6,7 +6,6 @@
   <title>Checkout – DJ Gûrten</title>
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -15,7 +14,6 @@
       background-attachment: fixed;
       color: white;
     }
-
     .overlay {
       background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
       min-height: 100vh;
@@ -24,99 +22,88 @@
       flex-direction: column;
       align-items: center;
     }
-
-    h1 {
-      font-size: 2em;
-      text-transform: uppercase;
-      margin-bottom: 1em;
-    }
-
     .checkout-container {
       background: #222;
       padding: 2em;
       border-radius: 12px;
+      width: 100%;
       max-width: 600px;
-      width: 100%;
+      margin-bottom: 2em;
     }
-
-    label {
-      font-weight: bold;
-      margin-top: 1em;
-      display: block;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 0.8em;
-      border-radius: 5px;
-      border: none;
-      margin-top: 0.4em;
-      font-size: 1em;
-    }
-
-    .checkbox {
-      margin-top: 1em;
-    }
-
-    .checkbox label {
-      font-weight: normal;
-      display: inline;
-      margin-left: 0.5em;
-    }
-
-    .pay-button {
-      width: 100%;
-      background: white;
-      color: black;
-      padding: 1em;
-      border-radius: 30px;
-      font-size: 1em;
-      font-weight: bold;
-      border: none;
-      margin-top: 2em;
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
-
-    .pay-button:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .payment-logos {
+    h1 {
+      font-size: 1.8em;
       text-align: center;
-      margin-top: 3em;
+      margin-bottom: 1em;
     }
-
-    .payment-logos img {
-      height: 32px;
-      margin: 0.5em 0.7em;
-      vertical-align: middle;
+    label {
+      display: block;
+      margin-top: 1em;
+      font-weight: bold;
     }
-
-    .usp-list {
-      margin-top: 2em;
-      font-size: 0.9em;
-      list-style: none;
-      padding: 0;
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 0.7em;
+      border: none;
+      border-radius: 5px;
+      margin-top: 0.3em;
+      font-size: 1em;
     }
-
-    .usp-list li::before {
-      content: "✓";
-      color: white;
+    .checkbox-group {
+      margin-top: 1em;
+    }
+    .checkbox-group input {
       margin-right: 0.5em;
     }
-
+    .pay-button {
+      margin-top: 2em;
+      background: white;
+      color: black;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      padding: 1em;
+      width: 100%;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+    .pay-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 0.3em;
+    }
+    .payment-logos {
+      text-align: center;
+      margin-top: 2em;
+    }
+    .payment-logos img {
+      height: 32px;
+      margin: 0.5em;
+      vertical-align: middle;
+    }
+    ul.usp-list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.9em;
+      margin-top: 1em;
+    }
+    ul.usp-list li::before {
+      content: '✓';
+      margin-right: 0.5em;
+      color: white;
+    }
     footer {
       text-align: center;
-      margin-top: 4em;
       font-size: 0.8em;
-      opacity: 0.7;
-    }
-
-    #billing-address {
-      display: none;
-      margin-top: 2em;
+      opacity: 0.6;
+      margin-top: 3em;
     }
   </style>
 </head>
@@ -126,83 +113,120 @@
     <div class="checkout-container">
       <form id="checkoutForm">
         <label>Voornaam *</label>
-        <input type="text" placeholder="Bijv. John" required>
+        <input type="text" required>
 
         <label>Achternaam *</label>
-        <input type="text" placeholder="Bijv. Doe" required>
+        <input type="text" required>
 
         <label>Adres *</label>
-        <input type="text" placeholder="Straatnaam 123" required>
+        <input type="text" required placeholder="Straatnaam en huisnummer">
 
         <label>Aanvullende info</label>
-        <input type="text" placeholder="Etage of toevoeging (optioneel)">
+        <input type="text">
 
         <label>Postcode *</label>
-        <input type="text" placeholder="1234 AB" required>
+        <input type="text" required placeholder="Bijvoorbeeld: 1234 AB">
 
         <label>Plaats *</label>
-        <input type="text" placeholder="Amsterdam" required>
+        <input type="text" required placeholder="E.g. Amsterdam">
 
-        <label>Land</label>
-        <input type="text" value="Netherlands" disabled>
+        <label>Land: <strong>Netherlands</strong></label>
 
         <label>Telefoonnummer (optioneel)</label>
         <input type="tel" placeholder="06 12345678">
 
-        <div class="checkbox">
-          <input type="checkbox" id="sameAddress" checked onchange="toggleBilling()">
-          <label for="sameAddress">Mijn factuur- en bezorggegevens zijn identiek.</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="differentInvoice" onchange="toggleInvoiceFields()" />
+          <label for="differentInvoice" style="display:inline;">Mijn factuur- en bezorggegevens zijn verschillend</label>
         </div>
 
-        <div id="billing-address">
-          <label>Factuuradres</label>
-          <input type="text" placeholder="Straat en huisnummer">
-          <input type="text" placeholder="Postcode">
-          <input type="text" placeholder="Plaats">
+        <div id="invoiceFields" style="display:none; margin-top:1.5em;">
+          <h3>Factuuradres</h3>
+          <label>Voornaam *</label>
+          <input type="text">
+
+          <label>Achternaam *</label>
+          <input type="text">
+
+          <label>Adres *</label>
+          <input type="text" placeholder="Straatnaam en huisnummer">
+
+          <label>Aanvullende info</label>
+          <input type="text">
+
+          <label>Postcode *</label>
+          <input type="text" placeholder="Bijvoorbeeld: 1234 AB">
+
+          <label>Plaats *</label>
+          <input type="text" placeholder="E.g. Amsterdam">
+
+          <label>Telefoonnummer (optioneel)</label>
+          <input type="tel" placeholder="06 12345678">
+
+          <p style="font-size: 0.85em; color: #ccc; margin-top: 1em;">Je ontvangt de factuur enkel digitaal, tenzij anders aangegeven.</p>
         </div>
 
-        <div class="checkbox">
-          <input type="checkbox" id="ageCheck" onchange="toggleButton()">
-          <label for="ageCheck">Ik ben 16 jaar of ouder</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="ageCheck" checked onchange="checkAge()" />
+          <label for="ageCheck" style="display:inline;">Ik ben 16 jaar of ouder</label>
+          <div id="ageError" class="error" style="display:none;">Je bent te jong om je aan te melden of te bestellen.</div>
         </div>
 
-        <div class="checkbox">
-          <input type="checkbox" id="marketing" checked>
-          <label for="marketing">Ja, ik wil DJ Gûrten-aanbiedingen ontvangen via e-mail en digitale media</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="marketingCheck" checked />
+          <label for="marketingCheck" style="display:inline;">Ik wil DJ Gûrten-aanbiedingen en het laatste nieuws ontvangen</label>
         </div>
 
-        <button class="pay-button" id="orderButton" type="submit" disabled>BESTEL NU</button>
+        <a href="shipping.html" id="submitBtn" class="pay-button">BESTEL NU</a>
       </form>
     </div>
 
     <div class="payment-logos">
-      <img src="ideal-wit.PNG" alt="iDEAL">
-      <img src="applepay-wit.PNG" alt="Apple Pay">
-      <img src="visa.PNG" alt="Visa">
-      <img src="mastercard.PNG" alt="Mastercard">
-      <img src="paypal.PNG" alt="PayPal">
+      <img src="ideal-dark.png" alt="iDEAL">
+      <img src="mastercard.png" alt="Mastercard">
+      <img src="visa.png" alt="Visa">
+      <img src="amex.png" alt="American Express">
+      <img src="paypal.png" alt="PayPal">
+      <img src="riverty.png" alt="Riverty">
+      <img src="gpay.png" alt="Google Pay">
+      <img src="applepay-dark.png" alt="Apple Pay">
     </div>
 
     <ul class="usp-list">
       <li>Gratis verzending vanaf €50</li>
-      <li>Betaal achteraf met Riverty</li>
+      <li>Bestel nu, betaal achteraf met Riverty</li>
       <li>Vandaag besteld, woensdag in huis</li>
       <li>Binnen 60 dagen retourneren</li>
-      <li>365 dagen kwaliteitsgarantie</li>
+      <li>365 dagen kwaliteitsgarantie op elk product</li>
     </ul>
 
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
   <script>
-    function toggleBilling() {
-      const isChecked = document.getElementById("sameAddress").checked;
-      document.getElementById("billing-address").style.display = isChecked ? "none" : "block";
+    function toggleInvoiceFields() {
+      const fields = document.getElementById("invoiceFields");
+      fields.style.display = fields.style.display === "none" ? "block" : "none";
     }
 
-    function toggleButton() {
-      const allowed = document.getElementById("ageCheck").checked;
-      document.getElementById("orderButton").disabled = !allowed;
+    function checkAge() {
+      const ageBox = document.getElementById("ageCheck");
+      const errorMsg = document.getElementById("ageError");
+      const submitBtn = document.getElementById("submitBtn");
+
+      if (!ageBox.checked) {
+        errorMsg.style.display = "block";
+        submitBtn.classList.add("disabled");
+        submitBtn.setAttribute("aria-disabled", "true");
+        submitBtn.style.pointerEvents = "none";
+        submitBtn.style.opacity = "0.5";
+      } else {
+        errorMsg.style.display = "none";
+        submitBtn.classList.remove("disabled");
+        submitBtn.removeAttribute("aria-disabled");
+        submitBtn.style.pointerEvents = "auto";
+        submitBtn.style.opacity = "1";
+      }
     }
   </script>
 </body>

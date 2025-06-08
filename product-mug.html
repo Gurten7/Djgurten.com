@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Coffee Mug – DJ Gûrten</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: url('achtergrond-hoogres.PNG') no-repeat center top;
       background-size: cover;
+      background-color: black;
       background-attachment: fixed;
       color: white;
     }
@@ -78,12 +81,21 @@
       cursor: not-allowed;
     }
 
-    .back-link {
+    .back-link,
+    .cart-link {
       display: block;
       text-align: center;
-      margin-top: 2em;
-      color: yellow;
+      margin-top: 1.5em;
       text-decoration: underline;
+    }
+
+    .back-link {
+      color: yellow;
+    }
+
+    .cart-link {
+      color: violet;
+      font-weight: bold;
     }
 
     footer {
@@ -97,14 +109,14 @@
 <body>
   <div class="overlay">
     <div class="container">
-      <img src="Koffiemok.PNG" alt="Coffee Mug">
+      <img src="Koffiemok.PNG" alt="DJ Gûrten Coffee Mug">
       <h1>DJ Gûrten Coffee Mug</h1>
-      <p>Start your day the DJ Gûrten way. This sturdy ceramic mug holds the perfect brew while repping your favorite beatsmith. Ideal for home, studio, or festival mornings.</p>
+      <p>Start your morning like a true fan with the DJ Gûrten mug. Ceramic, sturdy, and designed for good vibes only. Perfect for your home, studio, or festival camper!</p>
 
       <label for="qty">Quantity</label>
       <input type="number" id="qty" value="1" min="1" />
 
-   <button class="button" disabled>Add to Cart</button>
+      <button class="button" disabled>Add to Cart</button>
 
       <a href="shop.html" class="back-link">← Back to Shop</a>
       <a href="cart.html" class="cart-link">🛒 Go to Cart</a>

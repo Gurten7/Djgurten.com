@@ -19,28 +19,26 @@
       min-height: 100vh;
       padding: 1em;
     }
-   .menu-toggle {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  font-size: 1.5em;
-  background: transparent;
-  border: none;
-  z-index: 1001;
-  color: white;
-  cursor: pointer;
-}
-
-.cart-icon {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  font-size: 1.5em;
-  color: white;
-  text-decoration: none;
-  z-index: 1001;
-}
-
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 1.5em;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+      color: white;
+      cursor: pointer;
+    }
+    .cart-icon {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5em;
+      color: white;
+      text-decoration: none;
+      z-index: 1001;
+    }
     .sidebar {
       position: fixed;
       top: 0;
@@ -60,63 +58,42 @@
       margin: 1em 0;
       font-weight: bold;
     }
-
     h1 {
       margin-top: 2.5em;
       text-align: center;
     }
-
     .filter-bar {
       text-align: center;
       margin: 2em 0 1em;
     }
-
     .product-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 2em;
     }
-
     .product {
       background: #222;
       border-radius: 10px;
       width: 280px;
-      padding: 1em;
       text-align: center;
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
     }
-
     .product img {
       width: 100%;
-      border-radius: 10px;
+      border-radius: 10px 10px 0 0;
     }
-
-    .product h3 { margin: 0.5em 0 0.2em; }
+    .product h3 {
+      margin: 0.5em 0 0.2em;
+    }
     .product p {
       font-size: 0.9em;
       color: #ccc;
+      margin-bottom: 1em;
     }
-
-    select, input[type="number"] {
-      width: 100%;
-      margin: 0.3em 0;
-      padding: 0.5em;
-      border-radius: 5px;
-      border: none;
-    }
-
-    button {
-      width: 100%;
-      background: #1DB954;
-      color: white;
-      border: none;
-      padding: 0.7em;
-      margin-top: 0.5em;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
     footer {
       text-align: center;
       margin-top: 4em;
@@ -158,116 +135,78 @@
     </div>
 
     <div class="product-grid" id="productGrid">
-
       <!-- Products -->
-      <div class="product" data-category="apparel">
+      <a class="product" data-category="apparel" href="product-tshirt.html">
         <img src="T-shirt zwart.PNG" alt="T-shirt">
         <h3>Black T-shirt</h3>
         <p>€24.95</p>
-        <select>
-          <option>Select size</option>
-          <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-        </select>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="apparel">
+      <a class="product" data-category="apparel" href="product-hoodie-black.html">
         <img src="Hoodie zwart.PNG" alt="Hoodie">
         <h3>Black Hoodie</h3>
         <p>€49.95</p>
-        <select>
-          <option>Select size</option>
-          <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-        </select>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="apparel">
+      <a class="product" data-category="apparel" href="product-hoodie-green.html">
         <img src="Hoodie groen.PNG" alt="Hoodie">
         <h3>Green Hoodie</h3>
         <p>€49.95</p>
-        <select>
-          <option>Select size</option>
-          <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-        </select>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="apparel">
+      <a class="product" data-category="apparel" href="product-cap-black.html">
         <img src="Cap zwart.PNG" alt="Cap">
         <h3>Black Cap</h3>
         <p>€19.95</p>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="apparel">
+      <a class="product" data-category="apparel" href="product-cap-red.html">
         <img src="Cap rood.PNG" alt="Cap">
         <h3>Red Cap</h3>
         <p>€19.95</p>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="apparel">
+      <a class="product" data-category="apparel" href="product-cap-blue.html">
         <img src="Cap blauw.PNG" alt="Cap">
         <h3>Blue Cap</h3>
         <p>€19.95</p>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="accessories">
+      <a class="product" data-category="accessories" href="product-mug.html">
         <img src="Koffiemok.PNG" alt="Mug">
         <h3>Coffee Mug</h3>
         <p>€12.95</p>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="accessories">
+      <a class="product" data-category="accessories" href="product-wristband.html">
         <img src="Armbandje.PNG" alt="Wristband">
         <h3>Wristband</h3>
         <p>€5.00</p>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="accessories">
+      <a class="product" data-category="accessories" href="product-sunglasses.html">
         <img src="Zonnebril.PNG" alt="Sunglasses">
         <h3>Sunglasses</h3>
         <p>€14.95</p>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="music">
+      <a class="product" data-category="music" href="product-vinyl.html">
         <img src="Vinyl.PNG" alt="Vinyl">
         <h3>KDW ‘26 Vinyl</h3>
-        <p>€29.95 <br><small>Pre-order – Shipping April 2026</small></p>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+        <p>€29.95<br><small>Pre-order – Shipping April 2026</small></p>
+      </a>
 
-      <div class="product" data-category="baby">
+      <a class="product" data-category="baby" href="product-romper-blue.html">
         <img src="Romper blauw.PNG" alt="Blue Romper">
         <h3>Blue Baby Romper</h3>
         <p>€17.95</p>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
+      </a>
 
-      <div class="product" data-category="baby">
+      <a class="product" data-category="baby" href="product-romper-pink.html">
         <img src="Romper roze.PNG" alt="Pink Romper">
         <h3>Pink Baby Romper</h3>
         <p>€17.95</p>
-        <input type="number" value="1" min="1" />
-        <button>Add to cart</button>
-      </div>
-
+      </a>
     </div>
 
     <footer>© 2025 DJ Gûrten</footer>
@@ -277,6 +216,7 @@
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
     }
+
     function filterProducts() {
       const category = document.getElementById("category").value;
       document.querySelectorAll(".product").forEach(p => {

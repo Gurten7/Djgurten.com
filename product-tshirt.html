@@ -67,26 +67,35 @@
       font-size: 1em;
     }
 
-    .button-link {
+    .button {
       margin-top: 2em;
       display: block;
-      text-align: center;
       width: 100%;
       background: #1DB954;
       color: white;
       padding: 0.8em;
+      border: none;
       border-radius: 30px;
       font-weight: bold;
       font-size: 1em;
-      text-decoration: none;
+      cursor: not-allowed;
+    }
+
+    .back-link,
+    .cart-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.5em;
+      text-decoration: underline;
     }
 
     .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 2em;
       color: yellow;
-      text-decoration: underline;
+    }
+
+    .cart-link {
+      color: violet;
+      font-weight: bold;
     }
 
     footer {
@@ -100,7 +109,7 @@
 <body>
   <div class="overlay">
     <div class="container">
-      <img src="T-shirt zwart.PNG" alt="Black T-Shirt">
+      <img src="T-shirt zwart.PNG" alt="Black DJ Gûrten T-Shirt">
       <h1>Black DJ Gûrten T-Shirt</h1>
       <p>This classic black tee features the DJ Gûrten logo in bold white. Made from 100% soft cotton, it’s your new favorite outfit for festivals, parties, and everyday vibes.</p>
 
@@ -121,7 +130,7 @@
 
       <a href="shop.html" class="back-link">← Back to Shop</a>
       <a href="cart.html" class="cart-link">🛒 Go to Cart</a>
-      
+    </div>
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 </body>

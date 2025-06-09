@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shipping Options – DJ Gûrten</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -84,6 +82,15 @@
       font-weight: bold;
       font-size: 1em;
       border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #selectedOptionText {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-top: 0.5em;
+      text-align: center;
+      max-width: 600px;
     }
   </style>
 </head>
@@ -91,27 +98,29 @@
   <div class="overlay">
     <h1>Shipping Options</h1>
 
-    <div class="option selected" onclick="selectOption(this)">
+    <div class="option selected" role="button" tabindex="0" onclick="selectOption(this)" onkeydown="if(event.key==='Enter')selectOption(this)">
       <h2>Delivered by Wednesday, June 11</h2>
       <p><strong>Free</strong></p>
       <p>PNL – Standard shipping<br>08:00 – 18:00</p>
     </div>
 
-    <div class="option" onclick="selectOption(this)">
+    <div class="option" role="button" tabindex="0" onclick="selectOption(this)" onkeydown="if(event.key==='Enter')selectOption(this)">
       <h2>Pick up from Thursday, June 12</h2>
       <p><strong>Free</strong></p>
       <p>DJ Gûrten Originals Store Houten<br>Wegenbouw 108 (43.2 km)</p>
     </div>
 
-    <div class="option" onclick="selectOption(this)">
+    <div class="option" role="button" tabindex="0" onclick="selectOption(this)" onkeydown="if(event.key==='Enter')selectOption(this)">
       <h2>Ready for pickup in 2–3 days</h2>
       <p><strong>Free</strong></p>
       <p>Hoogvliet, Houten<br>Cardo 10 (0.3 km)</p>
     </div>
 
+    <p id="selectedOptionText">You selected: Delivered by Wednesday, June 11</p>
+
     <div class="buttons">
       <a href="checkout.html" class="button">← BACK</a>
-      <a href="payment.html" class="button">NEXT →</a>
+      <button class="button" id="nextButton">NEXT →</button>
     </div>
   </div>
 
@@ -121,7 +130,28 @@
         option.classList.remove('selected');
       });
       selectedDiv.classList.add('selected');
+
+      const selectedInfo = selectedDiv.querySelector('h2').textContent;
+      localStorage.setItem('shippingMethod', selectedInfo);
+      document.getElementById('selectedOptionText').textContent = "You selected: " + selectedInfo;
     }
+
+    document.getElementById("nextButton").addEventListener("click", function () {
+      const method = localStorage.getItem("shippingMethod");
+      if (!method) {
+        alert("Please select a shipping option before continuing.");
+      } else {
+        window.location.href = "payment.html";
+      }
+    });
+
+    // Initial selection default
+    window.addEventListener("DOMContentLoaded", () => {
+      const defaultOption = document.querySelector(".option.selected");
+      const selectedInfo = defaultOption.querySelector("h2").textContent;
+      localStorage.setItem("shippingMethod", selectedInfo);
+      document.getElementById('selectedOptionText').textContent = "You selected: " + selectedInfo;
+    });
   </script>
 </body>
 </html>

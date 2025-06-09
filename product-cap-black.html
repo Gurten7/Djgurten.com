@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Black Cap – DJ Gûrten</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -78,11 +76,10 @@
       border-radius: 30px;
       font-weight: bold;
       font-size: 1em;
-      cursor: not-allowed;
+      cursor: pointer;
     }
 
-    .back-link,
-    .cart-link {
+    .back-link, .cart-link {
       display: block;
       text-align: center;
       margin-top: 1.5em;
@@ -116,12 +113,46 @@
       <label for="qty">Quantity</label>
       <input type="number" id="qty" value="1" min="1" />
 
-      <button class="button" disabled>Add to Cart</button>
+      <button class="button" id="addToCart">Add to Cart</button>
 
       <a href="shop.html" class="back-link">← Back to Shop</a>
       <a href="cart.html" class="cart-link">🛒 Go to Cart</a>
     </div>
     <footer>© 2025 DJ Gûrten</footer>
   </div>
+
+  <script>
+    const addToCartBtn = document.getElementById('addToCart');
+    const qtyInput = document.getElementById('qty');
+
+    addToCartBtn.addEventListener('click', () => {
+      const qty = parseInt(qtyInput.value);
+
+      if (qty < 1) {
+        alert("Please enter a valid quantity.");
+        return;
+      }
+
+      const item = {
+        name: "Black Cap",
+        size: "", // no size for caps
+        qty: qty,
+        price: 19.95,
+        image: "Cap zwart.PNG"
+      };
+
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(i => i.name === item.name);
+
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push(item);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = "cart.html";
+    });
+  </script>
 </body>
 </html>

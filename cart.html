@@ -6,7 +6,6 @@
   <title>Your Cart – DJ Gûrten</title>
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -19,13 +18,13 @@
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
-      padding: 2em 1em;
+      padding: 1.5em;
     }
 
     h1 {
       text-align: center;
       font-size: 2em;
-      margin-bottom: 1em;
+      margin: 2em 0 1em;
     }
 
     .cart {
@@ -51,12 +50,8 @@
       border-radius: 6px;
     }
 
-    .item-info {
+    .item-name {
       flex: 1;
-    }
-
-    .item-info span {
-      display: block;
     }
 
     .item-quantity {
@@ -69,65 +64,51 @@
 
     .remove-button {
       background: red;
-      color: white;
       border: none;
-      padding: 0.3em 0.6em;
+      color: white;
+      font-size: 0.9em;
+      padding: 0.4em 0.7em;
       border-radius: 6px;
       cursor: pointer;
     }
 
-    .summary {
-      margin-top: 2em;
-      border-top: 1px solid #444;
-      padding-top: 1em;
-      font-size: 1em;
-    }
-
-    .summary div {
+    .continue, .checkout, .back-to-shop {
       display: flex;
-      justify-content: space-between;
-      margin: 0.5em 0;
+      justify-content: center;
+      margin-top: 1.5em;
     }
 
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 2em;
-      gap: 1em;
-    }
-
-    .actions a,
-    .actions button {
-      flex: 1;
-      padding: 1em;
-      border: none;
-      border-radius: 30px;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-    }
-
-    .checkout {
-      background: #1DB954;
-      color: white;
-    }
-
-    .continue {
+    .continue a, .back-to-shop a {
       background: #444;
       color: white;
+      padding: 1em 2em;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    .empty-message {
-      text-align: center;
-      padding: 3em 1em;
-      font-size: 1.2em;
+    .checkout a {
+      display: inline-block;
+      background: #1DB954;
+      color: white;
+      padding: 1em 2em;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .totals {
+      margin-top: 2em;
+      text-align: right;
+    }
+
+    .totals div {
+      margin: 0.3em 0;
     }
 
     footer {
       text-align: center;
-      margin-top: 3em;
+      margin-top: 4em;
       font-size: 0.8em;
       opacity: 0.7;
     }
@@ -136,77 +117,70 @@
 <body>
   <div class="overlay">
     <h1>🛒 Your Cart</h1>
-    <div class="cart" id="cartContainer"></div>
+    <div class="cart" id="cartContainer">
+      <p>Loading cart...</p>
+    </div>
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
   <script>
     function renderCart() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const cartContainer = document.getElementById('cartContainer');
-      cartContainer.innerHTML = '';
+      const cartContainer = document.getElementById("cartContainer");
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
       if (cart.length === 0) {
         cartContainer.innerHTML = `
-          <div class="empty-message">
-            Your cart is currently empty.<br><br>
-            <a href="shop.html" class="continue">← Back to Shop</a>
-          </div>`;
+          <p>Your cart is currently empty.</p>
+          <div class="back-to-shop"><a href="shop.html">← Back to Shop</a></div>
+        `;
         return;
       }
 
-      let subtotal = 0;
-
-      cart.forEach((item, index) => {
-        const totalPrice = item.price * item.quantity;
-        subtotal += totalPrice;
-
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'cart-item';
-        itemDiv.innerHTML = `
-          <img src="${item.image}" alt="${item.name}" class="cart-thumb" />
-          <div class="item-info">
-            <span><strong>${item.name}</strong> (${item.size})</span>
-            <span>€${item.price.toFixed(2)}</span>
+      let total = 0;
+      let itemsHtml = cart.map((item, index) => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+        return `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" class="cart-thumb" />
+            <span class="item-name">${item.name} (Size ${item.size})</span>
+            <input class="item-quantity" type="number" value="${item.qty}" min="1" onchange="updateQty(${index}, this.value)" />
+            <button class="remove-button" onclick="removeItem(${index})">✕</button>
           </div>
-          <input class="item-quantity" type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)" />
-          <button class="remove-button" onclick="removeItem(${index})">×</button>
         `;
-        cartContainer.appendChild(itemDiv);
-      });
+      }).join("");
 
-      const shippingCost = subtotal < 50 ? 6.95 : 0;
-      const total = subtotal + shippingCost;
+      const shipping = total >= 50 ? 0 : 6.95;
+      const grandTotal = (total + shipping).toFixed(2);
 
-      const summary = document.createElement('div');
-      summary.className = 'summary';
-      summary.innerHTML = `
-        <div><span>Subtotal</span><span>€${subtotal.toFixed(2)}</span></div>
-        <div><span>Shipping</span><span>${shippingCost === 0 ? 'Free' : '€6.95'}</span></div>
-        <div><strong>Total</strong><strong>€${total.toFixed(2)}</strong></div>
-        <div class="actions">
-          <a href="shop.html" class="continue">← Continue Shopping</a>
-          <a href="checkout.html" class="checkout">Proceed to Checkout</a>
+      cartContainer.innerHTML = `
+        ${itemsHtml}
+        <div class="totals">
+          <div>Subtotal: €${total.toFixed(2)}</div>
+          <div>Shipping: ${shipping === 0 ? "Free" : "€6.95"}</div>
+          <div><strong>Total: €${grandTotal}</strong></div>
         </div>
+
+        <div class="continue"><a href="shop.html">← Continue Shopping</a></div>
+        <div class="checkout"><a href="checkout.html">Proceed to Checkout</a></div>
       `;
-      cartContainer.appendChild(summary);
     }
 
-    function updateQuantity(index, newQty) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart[index].quantity = parseInt(newQty);
-      localStorage.setItem('cart', JSON.stringify(cart));
+    function updateQty(index, newQty) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart[index].qty = parseInt(newQty);
+      localStorage.setItem("cart", JSON.stringify(cart));
       renderCart();
     }
 
     function removeItem(index) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
       renderCart();
     }
 
-    document.addEventListener('DOMContentLoaded', renderCart);
+    document.addEventListener("DOMContentLoaded", renderCart);
   </script>
 </body>
 </html>

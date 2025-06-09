@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Cart – DJ Gûrten</title>
   <style>
-    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -17,12 +16,7 @@
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
-      padding: 1.5em;
-    }
-    h1 {
-      text-align: center;
-      font-size: 2em;
-      margin: 2em 0 1em;
+      padding: 2em;
     }
     .cart {
       max-width: 600px;
@@ -31,119 +25,141 @@
       padding: 2em;
       border-radius: 12px;
     }
+    h1 {
+      text-align: center;
+    }
     .cart-item {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      margin: 1em 0;
       border-bottom: 1px solid #444;
-      padding: 1em 0;
-      gap: 1em;
+      padding-bottom: 1em;
     }
     .cart-thumb {
       width: 60px;
-      height: auto;
       border-radius: 6px;
     }
-    .item-name {
+    .item-info {
       flex: 1;
+      margin-left: 1em;
+    }
+    .item-quantity {
+      width: 50px;
+      text-align: center;
+    }
+    .remove-button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 0.3em 0.7em;
+      border-radius: 6px;
+      cursor: pointer;
     }
     .summary {
       margin-top: 2em;
-      font-size: 0.95em;
-    }
-    .summary-item {
-      display: flex;
-      justify-content: space-between;
-      margin: 0.5em 0;
+      font-size: 1em;
+      text-align: right;
     }
     .checkout, .continue {
-      display: flex;
-      justify-content: center;
-      margin-top: 1.5em;
+      margin-top: 2em;
+      text-align: center;
     }
     .checkout button, .continue a {
+      background: #1DB954;
+      color: white;
       padding: 1em 2em;
       border: none;
       border-radius: 30px;
       font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
       text-decoration: none;
-      text-align: center;
-    }
-    .checkout button {
-      background: #1DB954;
-      color: white;
+      cursor: pointer;
     }
     .continue a {
       background: #444;
-      color: white;
-      margin-bottom: 1em;
+      display: inline-block;
+      margin-top: 1em;
     }
-    footer {
+    .empty {
       text-align: center;
-      margin-top: 4em;
-      font-size: 0.8em;
-      opacity: 0.7;
-    }
-    .empty-cart {
-      text-align: center;
-      color: #aaa;
       font-size: 1.2em;
-      margin-top: 4em;
+      margin-top: 3em;
     }
   </style>
 </head>
 <body>
   <div class="overlay">
     <h1>🛒 Your Cart</h1>
-    <div class="cart" id="cartContainer">
-      <!-- Cart content gets injected here -->
-    </div>
-    <footer>© 2025 DJ Gûrten</footer>
+    <div class="cart" id="cartContainer"></div>
+    <div class="continue"><a href="shop.html">← Continue Shopping</a></div>
   </div>
 
   <script>
-    function loadCart() {
+    function updateCartView(cart) {
       const container = document.getElementById('cartContainer');
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
       container.innerHTML = '';
 
       if (cart.length === 0) {
-        container.innerHTML = '<div class="empty-cart">Your cart is empty.</div>';
+        container.innerHTML = '<p class="empty">Your cart is empty.</p>';
         return;
       }
 
-      let subtotal = 0;
-      cart.forEach(item => {
-        const itemTotal = parseFloat(item.price) * parseInt(item.quantity);
-        subtotal += itemTotal;
+      let total = 0;
 
-        container.innerHTML += `
-          <div class="cart-item">
-            <img src="${item.image}" class="cart-thumb" alt="${item.name}" />
-            <div class="item-name">${item.name} (${item.size})<br>€${item.price} x ${item.quantity}</div>
-            <div>€${itemTotal.toFixed(2)}</div>
-          </div>`;
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.image}" class="cart-thumb" />
+          <div class="item-info">
+            <strong>${item.name}</strong> (Size ${item.size})<br>
+            €${item.price.toFixed(2)} x 
+            <input class="item-quantity" type="number" min="1" value="${item.quantity}" 
+              oninput="changeQuantity(${index}, this)">
+          </div>
+          <button class="remove-button" onclick="removeItem(${index})">X</button>
+        `;
+        container.appendChild(div);
       });
 
-      const shipping = subtotal >= 50 ? 0 : 6.95;
-      const tax = subtotal * 0.21;
-      const total = subtotal + shipping;
+      const shipping = total >= 50 ? 0 : 6.95;
+      const grandTotal = total + shipping;
 
-      container.innerHTML += `
-        <div class="summary">
-          <div class="summary-item"><span>Subtotal</span><span>€${subtotal.toFixed(2)}</span></div>
-          <div class="summary-item"><span>Shipping</span><span>${shipping === 0 ? 'Free' : '€6.95'}</span></div>
-          <div class="summary-item"><span>VAT (21%)</span><span>€${tax.toFixed(2)}</span></div>
-          <div class="summary-item"><strong>Total</strong><strong>€${total.toFixed(2)}</strong></div>
-        </div>
-        <div class="continue"><a href="shop.html">← Continue Shopping</a></div>
+      const summary = document.createElement('div');
+      summary.className = 'summary';
+      summary.innerHTML = `
+        <p>Subtotal: €${total.toFixed(2)}</p>
+        <p>Shipping: €${shipping.toFixed(2)}</p>
+        <p><strong>Total: €${grandTotal.toFixed(2)}</strong></p>
         <div class="checkout"><a href="checkout.html"><button>Proceed to Checkout</button></a></div>
       `;
+      container.appendChild(summary);
     }
 
-    document.addEventListener('DOMContentLoaded', loadCart);
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartView(cart);
+    }
+
+    function changeQuantity(index, input) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const value = parseInt(input.value);
+      if (!isNaN(value) && value > 0) {
+        cart[index].quantity = value;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartView(cart);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      updateCartView(cart);
+    });
   </script>
 </body>
 </html>

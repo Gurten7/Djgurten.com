@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Cart – DJ Gûrten</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -17,63 +14,23 @@
       background-size: cover;
       background-attachment: fixed;
     }
-
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
       padding: 1.5em;
     }
-
-    .menu-toggle {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 1.5em;
-      color: white;
-      background: transparent;
-      border: none;
-      z-index: 1001;
-      cursor: pointer;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #111;
-      padding: 2em 1em;
-      transition: 0.3s ease;
-      z-index: 1000;
-    }
-
-    .sidebar.active {
-      left: 0;
-    }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 1em 0;
-      font-weight: bold;
-    }
-
     h1 {
       text-align: center;
       font-size: 2em;
       margin: 2em 0 1em;
     }
-
     .cart {
-      max-width: 500px;
+      max-width: 600px;
       margin: auto;
       background: #222;
       padding: 2em;
       border-radius: 12px;
     }
-
     .cart-item {
       display: flex;
       align-items: center;
@@ -82,31 +39,28 @@
       padding: 1em 0;
       gap: 1em;
     }
-
     .cart-thumb {
       width: 60px;
       height: auto;
       border-radius: 6px;
     }
-
     .item-name {
       flex: 1;
     }
-
-    .item-quantity {
-      width: 40px;
-      padding: 0.3em;
-      border-radius: 6px;
-      border: none;
-      text-align: center;
+    .summary {
+      margin-top: 2em;
+      font-size: 0.95em;
     }
-
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5em 0;
+    }
     .checkout, .continue {
       display: flex;
       justify-content: center;
       margin-top: 1.5em;
     }
-
     .checkout button, .continue a {
       padding: 1em 2em;
       border: none;
@@ -117,82 +71,79 @@
       text-decoration: none;
       text-align: center;
     }
-
     .checkout button {
       background: #1DB954;
       color: white;
     }
-
     .continue a {
       background: #444;
       color: white;
       margin-bottom: 1em;
     }
-
     footer {
       text-align: center;
       margin-top: 4em;
       font-size: 0.8em;
       opacity: 0.7;
     }
+    .empty-cart {
+      text-align: center;
+      color: #aaa;
+      font-size: 1.2em;
+      margin-top: 4em;
+    }
   </style>
 </head>
 <body>
-
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-  <div class="sidebar" id="sidebar">
-    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
-    <a href="index.html">HOME</a>
-    <a href="tour.html">TOUR DATES</a>
-    <a href="news.html">NEWS</a>
-    <a href="music.html">MUSIC</a>
-    <a href="biography.html">BIOGRAPHY</a>
-    <a href="videos.html">VIDEOS</a>
-    <a href="shop.html">SHOP</a>
-    <a href="contact.html">CONTACT</a>
-    <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
-  </div>
-
   <div class="overlay">
     <h1>🛒 Your Cart</h1>
-    <div class="cart">
-      
-      <div class="cart-item">
-        <img src="T-shirt zwart.PNG" alt="Black T-Shirt" class="cart-thumb" />
-        <span class="item-name">Black T-Shirt (Size M)</span>
-        <input class="item-quantity" type="number" value="1" min="1" />
-      </div>
-
-      <div class="cart-item">
-        <img src="Cap rood.PNG" alt="Red Cap" class="cart-thumb" />
-        <span class="item-name">Red Cap</span>
-        <input class="item-quantity" type="number" value="1" min="1" />
-      </div>
-
-      <div class="cart-item">
-        <img src="Vinyl.PNG" alt="Vinyl – KDW '26" class="cart-thumb" />
-        <span class="item-name">Vinyl – KDW ‘26 (Pre-order)</span>
-        <input class="item-quantity" type="number" value="1" min="1" />
-      </div>
-
-      <div class="continue">
-        <a href="shop.html">← Continue Shopping</a>
-      </div>
-
-      <div class="checkout">
-        <a href="checkout.html"><button>Proceed to Checkout</button></a>
-      </div>
+    <div class="cart" id="cartContainer">
+      <!-- Cart content gets injected here -->
     </div>
-
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
   <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
-    }
-  </script>
+    function loadCart() {
+      const container = document.getElementById('cartContainer');
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      container.innerHTML = '';
 
+      if (cart.length === 0) {
+        container.innerHTML = '<div class="empty-cart">Your cart is empty.</div>';
+        return;
+      }
+
+      let subtotal = 0;
+      cart.forEach(item => {
+        const itemTotal = parseFloat(item.price) * parseInt(item.quantity);
+        subtotal += itemTotal;
+
+        container.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.image}" class="cart-thumb" alt="${item.name}" />
+            <div class="item-name">${item.name} (${item.size})<br>€${item.price} x ${item.quantity}</div>
+            <div>€${itemTotal.toFixed(2)}</div>
+          </div>`;
+      });
+
+      const shipping = subtotal >= 50 ? 0 : 6.95;
+      const tax = subtotal * 0.21;
+      const total = subtotal + shipping;
+
+      container.innerHTML += `
+        <div class="summary">
+          <div class="summary-item"><span>Subtotal</span><span>€${subtotal.toFixed(2)}</span></div>
+          <div class="summary-item"><span>Shipping</span><span>${shipping === 0 ? 'Free' : '€6.95'}</span></div>
+          <div class="summary-item"><span>VAT (21%)</span><span>€${tax.toFixed(2)}</span></div>
+          <div class="summary-item"><strong>Total</strong><strong>€${total.toFixed(2)}</strong></div>
+        </div>
+        <div class="continue"><a href="shop.html">← Continue Shopping</a></div>
+        <div class="checkout"><a href="checkout.html"><button>Proceed to Checkout</button></a></div>
+      `;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadCart);
+  </script>
 </body>
 </html>

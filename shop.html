@@ -14,11 +14,13 @@
       background-attachment: fixed;
       color: white;
     }
+
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
       padding: 1em;
     }
+
     .menu-toggle {
       position: fixed;
       top: 15px;
@@ -30,6 +32,7 @@
       color: white;
       cursor: pointer;
     }
+
     .cart-icon {
       position: fixed;
       top: 15px;
@@ -39,6 +42,21 @@
       text-decoration: none;
       z-index: 1001;
     }
+
+    #shippingNotice {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75em;
+      color: #1DB954;
+      background: rgba(0,0,0,0.7);
+      padding: 0.3em 0.8em;
+      border-radius: 5px;
+      z-index: 1000;
+      white-space: nowrap;
+    }
+
     .sidebar {
       position: fixed;
       top: 0;
@@ -50,7 +68,9 @@
       transition: 0.3s ease;
       z-index: 1000;
     }
+
     .sidebar.active { left: 0; }
+
     .sidebar a {
       display: block;
       color: white;
@@ -58,20 +78,24 @@
       margin: 1em 0;
       font-weight: bold;
     }
+
     h1 {
-      margin-top: 2.5em;
+      margin-top: 3.5em;
       text-align: center;
     }
+
     .filter-bar {
       text-align: center;
       margin: 2em 0 1em;
     }
+
     .product-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 2em;
     }
+
     .product {
       background: #222;
       border-radius: 10px;
@@ -82,18 +106,22 @@
       text-decoration: none;
       color: white;
     }
+
     .product img {
       width: 100%;
       border-radius: 10px 10px 0 0;
     }
+
     .product h3 {
       margin: 0.5em 0 0.2em;
     }
+
     .product p {
       font-size: 0.9em;
       color: #ccc;
       margin-bottom: 1em;
     }
+
     footer {
       text-align: center;
       margin-top: 4em;
@@ -106,6 +134,8 @@
 
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   <a href="cart.html" class="cart-icon" title="View Cart">🛒</a>
+
+  <div id="shippingNotice">Loading delivery info...</div>
 
   <div class="sidebar" id="sidebar">
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
@@ -135,7 +165,7 @@
     </div>
 
     <div class="product-grid" id="productGrid">
-      <!-- Products -->
+      <!-- Example products -->
       <a class="product" data-category="apparel" href="product-tshirt.html">
         <img src="T-shirt zwart.PNG" alt="T-shirt">
         <h3>Black T-shirt</h3>
@@ -160,52 +190,10 @@
         <p>€19.95</p>
       </a>
 
-      <a class="product" data-category="apparel" href="product-cap-red.html">
-        <img src="Cap rood.PNG" alt="Cap">
-        <h3>Red Cap</h3>
-        <p>€19.95</p>
-      </a>
-
-      <a class="product" data-category="apparel" href="product-cap-blue.html">
-        <img src="Cap blauw.PNG" alt="Cap">
-        <h3>Blue Cap</h3>
-        <p>€19.95</p>
-      </a>
-
       <a class="product" data-category="accessories" href="product-mug.html">
         <img src="Koffiemok.PNG" alt="Mug">
         <h3>Coffee Mug</h3>
         <p>€12.95</p>
-      </a>
-
-      <a class="product" data-category="accessories" href="product-wristband.html">
-        <img src="Armbandje.PNG" alt="Wristband">
-        <h3>Wristband</h3>
-        <p>€5.00</p>
-      </a>
-
-      <a class="product" data-category="accessories" href="product-sunglasses.html">
-        <img src="Zonnebril.PNG" alt="Sunglasses">
-        <h3>Sunglasses</h3>
-        <p>€14.95</p>
-      </a>
-
-      <a class="product" data-category="music" href="product-vinyl.html">
-        <img src="Vinyl.PNG" alt="Vinyl">
-        <h3>KDW ‘26 Vinyl</h3>
-        <p>€29.95<br><small>Pre-order – Shipping April 2026</small></p>
-      </a>
-
-      <a class="product" data-category="baby" href="product-romper-blue.html">
-        <img src="Romper blauw.PNG" alt="Blue Romper">
-        <h3>Blue Baby Romper</h3>
-        <p>€17.95</p>
-      </a>
-
-      <a class="product" data-category="baby" href="product-romper-pink.html">
-        <img src="Romper roze.PNG" alt="Pink Romper">
-        <h3>Pink Baby Romper</h3>
-        <p>€17.95</p>
       </a>
     </div>
 
@@ -220,12 +208,22 @@
     function filterProducts() {
       const category = document.getElementById("category").value;
       document.querySelectorAll(".product").forEach(p => {
-        if (category === "all" || p.dataset.category === category) {
-          p.style.display = "block";
-        } else {
-          p.style.display = "none";
-        }
+        p.style.display = (category === "all" || p.dataset.category === category) ? "block" : "none";
       });
+    }
+
+    // Dynamische verzendmelding
+    const now = new Date();
+    const hour = now.getHours();
+    const day = now.getDay();
+    const notice = document.getElementById("shippingNotice");
+
+    if (day === 0) {
+      notice.textContent = "Orders placed today (Sunday) will be delivered on Tuesday.";
+    } else if (hour < 21) {
+      notice.textContent = "Order before 21:00 = delivered tomorrow";
+    } else {
+      notice.textContent = "Orders placed after 21:00 will be delivered the day after tomorrow";
     }
   </script>
 </body>

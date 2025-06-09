@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Black Hoodie – DJ Gûrten</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -78,17 +76,18 @@
       border-radius: 30px;
       font-weight: bold;
       font-size: 1em;
-      cursor: not-allowed;
+      cursor: pointer;
     }
 
-    .back-link,
-    .cart-link {
+    .back-link, .cart-link {
       display: block;
       text-align: center;
       margin-top: 1.5em;
-      color: yellow;
       text-decoration: underline;
     }
+
+    .back-link { color: yellow; }
+    .cart-link { color: violet; font-weight: bold; }
 
     footer {
       text-align: center;
@@ -118,12 +117,55 @@
       <label for="qty">Quantity</label>
       <input type="number" id="qty" value="1" min="1" />
 
-      <button class="button" disabled>Add to Cart</button>
+      <button class="button" id="addToCart" disabled>Add to Cart</button>
 
       <a href="shop.html" class="back-link">← Back to Shop</a>
       <a href="cart.html" class="cart-link">🛒 Go to Cart</a>
     </div>
     <footer>© 2025 DJ Gûrten</footer>
   </div>
+
+  <script>
+    const addToCartBtn = document.getElementById('addToCart');
+    const sizeSelect = document.getElementById('size');
+    const qtyInput = document.getElementById('qty');
+
+    function updateButtonState() {
+      addToCartBtn.disabled = !sizeSelect.value || qtyInput.value < 1;
+    }
+
+    sizeSelect.addEventListener('change', updateButtonState);
+    qtyInput.addEventListener('input', updateButtonState);
+
+    addToCartBtn.addEventListener('click', () => {
+      const size = sizeSelect.value;
+      const qty = parseInt(qtyInput.value);
+
+      if (!size || qty < 1) {
+        alert("Please select a size and quantity.");
+        return;
+      }
+
+      const item = {
+        name: "Black Hoodie",
+        size: size,
+        qty: qty,
+        price: 45.00, // hoodie prijs als getal
+        image: "Hoodie zwart.PNG"
+      };
+
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      const existing = cart.find(i => i.name === item.name && i.size === item.size);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push(item);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = "cart.html";
+    });
+  </script>
 </body>
 </html>

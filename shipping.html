@@ -124,6 +124,28 @@
       font-size: 1em;
       border-radius: 6px;
     }
+
+    .pay-button {
+  margin-top: 2em;
+  background: white;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 1em;
+  width: 100%;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.back-link {
+  display: block;
+  margin-top: 1em;
+  text-align: center;
+  color: yellow;
+  text-decoration: underline;
+  font-size: 0.9em;
+}
   </style>
 </head>
 <body>
@@ -164,11 +186,10 @@
       </p>
     </div>
 
-    <div class="buttons">
-      <a href="checkout.html" class="button">← BACK</a>
-      <a href="payment.html" class="button">NEXT →</a>
-    </div>
-  </div>
+   <div class="buttons">
+  <a href="checkout.html" class="back-link">← BACK TO CHECKOUT</a>
+  <button class="pay-button" onclick="window.location.href='payment.html'">CONTINUE TO PAYMENT</button>
+</div>
 
   <script>
     // Summary

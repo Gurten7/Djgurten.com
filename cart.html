@@ -92,8 +92,6 @@
     }
 
     .buttons a {
-      background: white;
-      color: black;
       padding: 1em;
       border-radius: 8px;
       text-decoration: none;
@@ -101,9 +99,16 @@
       text-align: center;
     }
 
+    .buttons a:first-child {
+      color: yellow;
+      background: none;
+      text-decoration: underline;
+      font-size: 0.9em;
+    }
+
     .buttons a:last-child {
-      background: #1DB954;
-      color: white;
+      background: white;
+      color: black;
     }
 
     footer {
@@ -124,7 +129,7 @@
   </div>
 
   <script>
-    const CART_EXPIRY_MS = 10 * 60 * 1000; // 10 minutes
+    const CART_EXPIRY_MS = 10 * 60 * 1000;
 
     function renderCart() {
       const cartContainer = document.getElementById("cartContainer");
@@ -134,7 +139,7 @@
         cartContainer.innerHTML = `
           <p>Your cart is currently empty.</p>
           <div class="buttons">
-            <a href="shop.html">← Back to Shop</a>
+            <a href="shop.html">← BACK TO SHOP</a>
           </div>
         `;
         return;
@@ -165,8 +170,8 @@
           <div><strong>Total: €${grandTotal}</strong></div>
         </div>
         <div class="buttons">
-          <a href="shop.html">← Continue Shopping</a>
-          <a href="checkout.html">Proceed to Checkout</a>
+          <a href="shop.html">← BACK TO SHOP</a>
+          <a href="checkout.html">CONTINUE TO CHECKOUT</a>
         </div>
       `;
     }

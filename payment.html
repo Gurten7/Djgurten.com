@@ -77,6 +77,24 @@
       margin-left: 1em;
     }
 
+    #idealBanks {
+      display: none;
+      margin-bottom: 1em;
+    }
+
+    #idealBanks label {
+      margin-top: 0.5em;
+      display: block;
+    }
+
+    #bankSelect {
+      width: 100%;
+      padding: 0.7em;
+      font-size: 1em;
+      border-radius: 6px;
+      border: none;
+    }
+
     .card-fields {
       display: none;
       margin-top: 1em;
@@ -204,6 +222,23 @@
       <div class="payment-option" onclick="selectPayment(this)">
         iDEAL <img src="ideal.PNG" alt="iDEAL">
       </div>
+      <div id="idealBanks">
+        <label for="bankSelect">Choose your bank</label>
+        <select id="bankSelect">
+          <option value="">– Select your bank –</option>
+          <option value="abn">ABN AMRO</option>
+          <option value="asn">ASN Bank</option>
+          <option value="bunq">Bunq</option>
+          <option value="ing">ING</option>
+          <option value="knab">Knab</option>
+          <option value="rabobank">Rabobank</option>
+          <option value="regiobank">RegioBank</option>
+          <option value="sns">SNS Bank</option>
+          <option value="triodos">Triodos Bank</option>
+          <option value="vanlanschot">Van Lanschot</option>
+        </select>
+      </div>
+
       <div class="payment-option" onclick="selectPayment(this, true)">
         Mastercard <img src="mastercard.PNG" alt="Mastercard">
       </div>
@@ -226,7 +261,7 @@
         Apple Pay <img src="applepay.PNG" alt="Apple Pay">
       </div>
 
-      <!-- Credit Card Details -->
+      <!-- Credit Card Fields -->
       <div class="card-fields" id="cardFields">
         <p style="font-size: 0.9em; color: #ccc;">
           As required by European regulations (PSD2), your bank may ask for extra verification to complete the transaction.
@@ -237,7 +272,6 @@
         <input type="text" id="cardCVV" placeholder="CVV" required />
       </div>
 
-      <!-- Summary -->
       <div class="summary">
         <h2>ORDER SUMMARY</h2>
         <div class="summary-item">
@@ -268,24 +302,25 @@
   </div>
 
   <!-- Loading Screen -->
-  <div id="loadingScreen" style="display: none; flex;">
+  <div id="loadingScreen">
     <div class="loader"></div>
     <p style="margin-top: 1em;">Processing your payment...</p>
   </div>
 
   <script>
-    // Herstel opgeslagen gegevens en betaalmethode
+    // Herstel eerder gekozen bank + betaalmethode
     document.addEventListener('DOMContentLoaded', () => {
-      ['cardNumber', 'cardName', 'cardExpiry', 'cardCVV'].forEach(id => {
-        const saved = localStorage.getItem(id);
-        if (saved) document.getElementById(id).value = saved;
-      });
+      const savedBank = localStorage.getItem('selectedBank');
+      if (savedBank) document.getElementById('bankSelect').value = savedBank;
 
       const savedPayment = localStorage.getItem('selectedPayment');
       if (savedPayment) {
         document.querySelectorAll('.payment-option').forEach(option => {
           if (option.textContent.trim() === savedPayment) {
             option.classList.add('selected');
+            if (savedPayment.includes('iDEAL')) {
+              document.getElementById('idealBanks').style.display = 'block';
+            }
             if (['Mastercard', 'Visa', 'American Express'].includes(savedPayment)) {
               document.getElementById('cardFields').style.display = 'block';
             }
@@ -294,11 +329,9 @@
       }
     });
 
-    // Opslaan bij typen
-    document.querySelectorAll('.card-fields input').forEach(input => {
-      input.addEventListener('input', () => {
-        localStorage.setItem(input.id, input.value);
-      });
+    // Sla bank op
+    document.getElementById('bankSelect').addEventListener('change', function () {
+      localStorage.setItem('selectedBank', this.value);
     });
 
     function selectPayment(el, showCard = false) {
@@ -306,7 +339,10 @@
         option.classList.remove('selected');
       });
       el.classList.add('selected');
+
       document.getElementById('cardFields').style.display = showCard ? 'block' : 'none';
+      document.getElementById('idealBanks').style.display = el.textContent.includes('iDEAL') ? 'block' : 'none';
+
       localStorage.setItem('selectedPayment', el.textContent.trim());
     }
 
@@ -315,6 +351,14 @@
       if (!selected) {
         alert("Please select a payment method before continuing.");
         return;
+      }
+
+      if (selected.textContent.includes('iDEAL')) {
+        const bank = document.getElementById('bankSelect').value;
+        if (!bank) {
+          alert("Please select your bank for iDEAL.");
+          return;
+        }
       }
 
       const cardSection = document.getElementById('cardFields');
@@ -328,7 +372,6 @@
         }
       }
 
-      // Show loading screen
       document.getElementById('loadingScreen').style.display = 'flex';
 
       setTimeout(() => {

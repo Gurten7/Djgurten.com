@@ -202,7 +202,6 @@
   </div>
 
   <script>
-    // Winkelmandje samenvatting
     function calculateCartSummary() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       const summaryList = document.getElementById('summaryList');
@@ -227,10 +226,46 @@
       totalDisplay.textContent = `€${total.toFixed(2)}`;
     }
 
-    // Factuur toggle
+    // ✅ Herstel opgeslagen waarden bij pagina openen
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateCartSummary();
+
+      const form = document.getElementById('checkoutForm');
+      const inputs = form.querySelectorAll('input');
+
+      inputs.forEach(input => {
+        const savedValue = localStorage.getItem('checkout_' + input.name);
+        if (savedValue) input.value = savedValue;
+      });
+
+      // Checkboxen
+      document.getElementById('invoiceCheck').checked = localStorage.getItem('checkout_invoiceCheck') === 'true';
+      document.getElementById('ageCheck').checked = localStorage.getItem('checkout_ageCheck') === 'true';
+      document.getElementById('marketingCheck').checked = localStorage.getItem('checkout_marketingCheck') === 'true';
+
+      // Toon factuurvelden indien nodig
+      if (document.getElementById('invoiceCheck').checked) {
+        document.getElementById('invoiceFields').style.display = 'block';
+        document.querySelectorAll('#invoiceFields input').forEach(i => i.setAttribute('required', 'required'));
+      }
+    });
+
+    // ✅ Sla wijzigingen op
+    document.querySelectorAll('#checkoutForm input').forEach(input => {
+      input.addEventListener('input', () => {
+        localStorage.setItem('checkout_' + input.name, input.value);
+      });
+
+      input.addEventListener('change', () => {
+        if (input.type === 'checkbox') {
+          localStorage.setItem('checkout_' + input.id, input.checked);
+        }
+      });
+    });
+
+    // ✅ Toon factuurvelden + toggle required
     document.getElementById('invoiceCheck').addEventListener('change', function () {
       document.getElementById('invoiceFields').style.display = this.checked ? 'block' : 'none';
-
       const fields = document.querySelectorAll('#invoiceFields input');
       fields.forEach(input => {
         if (this.checked) {
@@ -239,12 +274,12 @@
           input.removeAttribute('required');
         }
       });
+      localStorage.setItem('checkout_invoiceCheck', this.checked);
     });
 
-    // Form validatie + redirect
+    // ✅ Validatie en redirect
     document.getElementById('checkoutForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
       const requiredFields = this.querySelectorAll('input[required]');
       let valid = true;
 
@@ -263,8 +298,6 @@
         alert('Please complete all required fields.');
       }
     });
-
-    window.addEventListener('DOMContentLoaded', calculateCartSummary);
   </script>
 </body>
 </html>

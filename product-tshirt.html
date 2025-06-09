@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Black T-Shirt – DJ Gûrten</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -81,27 +79,15 @@
       cursor: pointer;
     }
 
-    .button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .back-link,
-    .cart-link {
+    .back-link, .cart-link {
       display: block;
       text-align: center;
       margin-top: 1.5em;
       text-decoration: underline;
     }
 
-    .back-link {
-      color: yellow;
-    }
-
-    .cart-link {
-      color: violet;
-      font-weight: bold;
-    }
+    .back-link { color: yellow; }
+    .cart-link { color: violet; font-weight: bold; }
 
     footer {
       text-align: center;
@@ -131,7 +117,7 @@
       <label for="qty">Quantity</label>
       <input type="number" id="qty" value="1" min="1" />
 
-      <button class="button" id="addToCartBtn" disabled>Add to Cart</button>
+      <button class="button" id="addToCart" disabled>Add to Cart</button>
 
       <a href="shop.html" class="back-link">← Back to Shop</a>
       <a href="cart.html" class="cart-link">🛒 Go to Cart</a>
@@ -140,38 +126,40 @@
   </div>
 
   <script>
+    const addToCartBtn = document.getElementById('addToCart');
     const sizeSelect = document.getElementById('size');
     const qtyInput = document.getElementById('qty');
-    const addToCartBtn = document.getElementById('addToCartBtn');
 
     function updateButtonState() {
-      addToCartBtn.disabled = sizeSelect.value === '' || qtyInput.value < 1;
+      addToCartBtn.disabled = !sizeSelect.value || qtyInput.value < 1;
     }
 
     sizeSelect.addEventListener('change', updateButtonState);
     qtyInput.addEventListener('input', updateButtonState);
 
     addToCartBtn.addEventListener('click', () => {
-      const item = {
-        id: 'tshirt-black',
-        name: 'Black DJ Gûrten T-Shirt',
-        size: sizeSelect.value,
-        qty: parseInt(qtyInput.value),
-        image: 'T-shirt zwart.PNG'
-      };
+      const size = sizeSelect.value;
+      const qty = parseInt(qtyInput.value);
 
-      let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-
-      // Check if same item with same size already in cart
-      const existing = cart.find(i => i.id === item.id && i.size === item.size);
-      if (existing) {
-        existing.qty += item.qty;
-      } else {
-        cart.push(item);
+      if (!size || qty < 1) {
+        alert("Please select a size and quantity.");
+        return;
       }
 
-      sessionStorage.setItem('cart', JSON.stringify(cart));
-      window.location.href = 'cart.html';
+      const item = {
+        name: "Black T-Shirt",
+        size: size,
+        quantity: qty,
+        price: "25.00",
+        image: "T-shirt zwart.PNG"
+      };
+
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(item);
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      alert("Item added to cart!");
+      window.location.href = "cart.html";
     });
   </script>
 </body>

@@ -19,6 +19,9 @@
       background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
       padding: 1.5em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h1 {
@@ -29,7 +32,7 @@
 
     .cart {
       max-width: 600px;
-      margin: auto;
+      width: 100%;
       background: #222;
       padding: 2em;
       border-radius: 12px;
@@ -72,31 +75,6 @@
       cursor: pointer;
     }
 
-    .continue, .checkout, .back-to-shop {
-      display: flex;
-      justify-content: center;
-      margin-top: 1.5em;
-    }
-
-    .continue a, .back-to-shop a {
-      background: #444;
-      color: white;
-      padding: 1em 2em;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .checkout a {
-      display: inline-block;
-      background: #1DB954;
-      color: white;
-      padding: 1em 2em;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
     .totals {
       margin-top: 2em;
       text-align: right;
@@ -104,6 +82,28 @@
 
     .totals div {
       margin: 0.3em 0;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      margin-top: 2em;
+    }
+
+    .buttons a {
+      background: white;
+      color: black;
+      padding: 1em;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .buttons a:last-child {
+      background: #1DB954;
+      color: white;
     }
 
     footer {
@@ -124,6 +124,8 @@
   </div>
 
   <script>
+    const CART_EXPIRY_MS = 10 * 60 * 1000; // 10 minutes
+
     function renderCart() {
       const cartContainer = document.getElementById("cartContainer");
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -131,13 +133,15 @@
       if (cart.length === 0) {
         cartContainer.innerHTML = `
           <p>Your cart is currently empty.</p>
-          <div class="back-to-shop"><a href="shop.html">← Back to Shop</a></div>
+          <div class="buttons">
+            <a href="shop.html">← Back to Shop</a>
+          </div>
         `;
         return;
       }
 
       let total = 0;
-      let itemsHtml = cart.map((item, index) => {
+      const itemsHtml = cart.map((item, index) => {
         const itemTotal = item.price * item.qty;
         total += itemTotal;
         return `
@@ -160,9 +164,10 @@
           <div>Shipping: ${shipping === 0 ? "Free" : "€6.95"}</div>
           <div><strong>Total: €${grandTotal}</strong></div>
         </div>
-
-        <div class="continue"><a href="shop.html">← Continue Shopping</a></div>
-        <div class="checkout"><a href="checkout.html">Proceed to Checkout</a></div>
+        <div class="buttons">
+          <a href="shop.html">← Continue Shopping</a>
+          <a href="checkout.html">Proceed to Checkout</a>
+        </div>
       `;
     }
 
@@ -170,6 +175,7 @@
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart[index].qty = parseInt(newQty);
       localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartExpiry();
       renderCart();
     }
 
@@ -177,10 +183,26 @@
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart.splice(index, 1);
       localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartExpiry();
       renderCart();
     }
 
-    document.addEventListener("DOMContentLoaded", renderCart);
+    function updateCartExpiry() {
+      localStorage.setItem("cart_timestamp", Date.now().toString());
+    }
+
+    function checkCartExpiry() {
+      const saved = localStorage.getItem("cart_timestamp");
+      if (saved && Date.now() - parseInt(saved) > CART_EXPIRY_MS) {
+        localStorage.removeItem("cart");
+        localStorage.removeItem("cart_timestamp");
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      checkCartExpiry();
+      renderCart();
+    });
   </script>
 </body>
 </html>

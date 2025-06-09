@@ -128,20 +128,20 @@
       <div class="line"><span>Total</span><span id="total-cost">€0.00</span></div>
     </div>
 
-    <div class="option selected" data-method="home">
-      <h2>Delivered by Wednesday, June 11</h2>
+    <div class="option selected" data-method="home" id="homeOption">
+      <h2 id="homeDate">Delivered by –</h2>
       <p><strong>PostNL – Standard Shipping</strong></p>
       <p>08:00 – 18:00</p>
     </div>
 
-    <div class="option" data-method="store">
-      <h2>Pick up from Thursday, June 12</h2>
+    <div class="option" data-method="store" id="storeOption">
+      <h2 id="storeDate">Pick up from –</h2>
       <p><strong>DJ Gûrten Originals Store Houten</strong></p>
       <p>Wegenbouw 108 (43.2 km) – Always free</p>
     </div>
 
-    <div class="option" data-method="pickup">
-      <h2>Ready for pickup in 2–3 days</h2>
+    <div class="option" data-method="pickup" id="pickupOption">
+      <h2 id="pickupDate">Ready for pickup –</h2>
       <p><strong>Hoogvliet Houten (PostNL Point)</strong></p>
       <p>Cardo 10 (0.3 km)</p>
     </div>
@@ -153,6 +153,7 @@
   </div>
 
   <script>
+    // Cart summary
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     const itemsList = document.getElementById("cart-items");
     const subtotalEl = document.getElementById("subtotal");
@@ -172,8 +173,6 @@
       let shipping = 0;
       if (subtotal < 50 && (method === "home" || method === "pickup")) {
         shipping = 6.95;
-      } else {
-        shipping = 0;
       }
       shippingCostEl.textContent = `€${shipping.toFixed(2)}`;
       totalCostEl.textContent = `€${(subtotal + shipping).toFixed(2)}`;
@@ -181,14 +180,40 @@
 
     updateShipping("home");
 
-    const options = document.querySelectorAll('.option');
-    options.forEach(option => {
+    document.querySelectorAll('.option').forEach(option => {
       option.addEventListener("click", () => {
-        options.forEach(o => o.classList.remove("selected"));
+        document.querySelectorAll('.option').forEach(o => o.classList.remove("selected"));
         option.classList.add("selected");
         updateShipping(option.dataset.method);
       });
     });
+
+    // Dynamic delivery date
+    function formatDate(d) {
+      return d.toLocaleDateString('en-GB', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long'
+      });
+    }
+
+    function getNextWeekday(date) {
+      const day = date.getDay();
+      if (day === 5 && date.getHours() >= 21) date.setDate(date.getDate() + 3); // vrijdag na 21:00 → maandag
+      else if (day === 6) date.setDate(date.getDate() + 2); // zaterdag → maandag
+      else if (day === 0) date.setDate(date.getDate() + 1); // zondag → maandag
+      else if (date.getHours() >= 21) date.setDate(date.getDate() + 1); // na 21:00 → overmorgen
+      else date.setDate(date.getDate() + 1); // morgen
+      return date;
+    }
+
+    const today = new Date();
+    const deliveryDate = formatDate(getNextWeekday(new Date(today)));
+    const pickupDate = formatDate(new Date(today.setDate(today.getDate() + 2)));
+
+    document.getElementById('homeDate').textContent = `Delivered by ${deliveryDate}`;
+    document.getElementById('storeDate').textContent = `Pick up from ${formatDate(new Date(today.getTime() + 86400000))}`;
+    document.getElementById('pickupDate').textContent = `Ready for pickup from ${pickupDate}`;
   </script>
 </body>
 </html>

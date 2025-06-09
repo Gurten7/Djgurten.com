@@ -6,7 +6,6 @@
   <title>Payment – DJ Gûrten</title>
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -15,7 +14,6 @@
       background-attachment: fixed;
       color: white;
     }
-
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
       min-height: 100vh;
@@ -24,7 +22,6 @@
       flex-direction: column;
       align-items: center;
     }
-
     .container {
       background: #111;
       padding: 2em;
@@ -32,12 +29,10 @@
       max-width: 700px;
       width: 100%;
     }
-
     h1 {
       font-size: 1.8em;
       margin-bottom: 1em;
     }
-
     .info {
       background: #333;
       padding: 1em;
@@ -45,8 +40,7 @@
       border-radius: 8px;
       margin-bottom: 2em;
     }
-
-    .payment-option {
+        .payment-option {
       background: #222;
       padding: 1em;
       border: 2px solid transparent;
@@ -58,11 +52,9 @@
       justify-content: space-between;
       position: relative;
     }
-
     .payment-option.selected {
       border-color: #1DB954;
     }
-
     .payment-option.selected::after {
       content: "✔";
       position: absolute;
@@ -71,35 +63,25 @@
       color: #1DB954;
       font-size: 1.2em;
     }
-
     .payment-option img {
       height: 30px;
       margin-left: 1em;
     }
-
-    #idealBanks {
+    #idealBanks, #rivertyFields {
       display: none;
       margin-bottom: 1em;
     }
-
-    #idealBanks label {
-      margin-top: 0.5em;
-      display: block;
-    }
-
-    #bankSelect {
+    select, input[type="date"], input[type="tel"] {
       width: 100%;
       padding: 0.7em;
       font-size: 1em;
       border-radius: 6px;
       border: none;
     }
-
     .card-fields {
       display: none;
       margin-top: 1em;
     }
-
     .card-fields input {
       width: 100%;
       padding: 0.8em;
@@ -108,19 +90,16 @@
       border-radius: 5px;
       font-size: 1em;
     }
-
-    .summary {
+        .summary {
       margin-top: 2em;
       border-top: 1px solid #444;
       padding-top: 1em;
     }
-
     .summary-item {
       display: flex;
       justify-content: space-between;
       margin: 0.5em 0;
     }
-
     .place-button {
       width: 100%;
       background: #1DB954;
@@ -133,34 +112,13 @@
       font-size: 1em;
       cursor: pointer;
     }
-
-    .terms {
+    .terms, .back-button {
       font-size: 0.85em;
       margin-top: 1em;
       text-align: center;
-    }
-
-    .terms a {
       color: yellow;
       text-decoration: underline;
     }
-
-    .back-button {
-      display: block;
-      text-align: center;
-      margin-top: 1.5em;
-      color: yellow;
-      text-decoration: underline;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3em;
-      font-size: 0.8em;
-      opacity: 0.7;
-    }
-
     #loadingScreen {
       display: none;
       position: fixed;
@@ -171,9 +129,7 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      color: white;
     }
-
     .loader {
       border: 6px solid #333;
       border-top: 6px solid #1DB954;
@@ -182,30 +138,9 @@
       height: 50px;
       animation: spin 1s linear infinite;
     }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
-    }
-
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 1.4em;
-      }
-
-      .container {
-        padding: 1.5em;
-      }
-
-      .payment-option {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .payment-option img {
-        margin-left: 0;
-        margin-top: 0.5em;
-      }
     }
   </style>
 </head>
@@ -213,170 +148,92 @@
   <div class="overlay">
     <div class="container">
       <h1>PAYMENT</h1>
+      <div class="info">Payments are encrypted via SSL to keep your credit card and payment information safe.</div>
 
-      <div class="info">
-        Payments are encrypted via SSL to keep your credit card and payment information safe.
-      </div>
-
-      <!-- Payment Options -->
-      <div class="payment-option" onclick="selectPayment(this)">
-        iDEAL <img src="ideal.PNG" alt="iDEAL">
-      </div>
+            <div class="payment-option" onclick="selectPayment(this)">iDEAL <img src="ideal.PNG" alt="iDEAL"></div>
       <div id="idealBanks">
         <label for="bankSelect">Choose your bank</label>
         <select id="bankSelect">
           <option value="">– Select your bank –</option>
           <option value="abn">ABN AMRO</option>
-          <option value="asn">ASN Bank</option>
-          <option value="bunq">Bunq</option>
           <option value="ing">ING</option>
-          <option value="knab">Knab</option>
           <option value="rabobank">Rabobank</option>
-          <option value="regiobank">RegioBank</option>
-          <option value="sns">SNS Bank</option>
-          <option value="triodos">Triodos Bank</option>
-          <option value="vanlanschot">Van Lanschot</option>
         </select>
       </div>
 
-      <div class="payment-option" onclick="selectPayment(this, true)">
-        Mastercard <img src="mastercard.PNG" alt="Mastercard">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this, true)">
-        Visa <img src="visa.PNG" alt="Visa">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this, true)">
-        American Express <img src="amex.PNG" alt="American Express">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        PayPal <img src="paypal.PNG" alt="PayPal">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        Riverty (Pay later) <img src="riverty.PNG" alt="Riverty">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        Google Pay <img src="gpay.PNG" alt="Google Pay">
-      </div>
-      <div class="payment-option" onclick="selectPayment(this)">
-        Apple Pay <img src="applepay.PNG" alt="Apple Pay">
+      <div class="payment-option" onclick="selectPayment(this, true)">Mastercard <img src="mastercard.PNG" alt="Mastercard"></div>
+
+      <div class="payment-option" onclick="selectPayment(this)">Riverty (Pay later) <img src="riverty.PNG" alt="Riverty"></div>
+      <div id="rivertyFields">
+        <label for="birthdate">Geboortedatum</label>
+        <input type="date" id="birthdate">
+        <label for="rivertyPhone">Telefoonnummer</label>
+        <input type="tel" id="rivertyPhone" placeholder="e.g. 0612345678">
+        <div style="margin-top: 1em;">
+          <input type="checkbox" id="rivertyTerms">
+          <label for="rivertyTerms">Je moet minimaal 18+ zijn om deze dienst te gebruiken. Zie de <a href="#" style="color:#1DB954;">voorwaarden</a>.</label>
+        </div>
       </div>
 
-      <!-- Credit Card Fields -->
-      <div class="card-fields" id="cardFields">
-        <p style="font-size: 0.9em; color: #ccc;">
-          As required by European regulations (PSD2), your bank may ask for extra verification to complete the transaction.
-        </p>
-        <input type="text" id="cardNumber" placeholder="Card Number" required />
-        <input type="text" id="cardName" placeholder="Name on card" required />
-        <input type="text" id="cardExpiry" placeholder="MM/YY" required />
-        <input type="text" id="cardCVV" placeholder="CVV" required />
+            <div class="card-fields" id="cardFields">
+        <input type="text" id="cardNumber" placeholder="Card Number">
+        <input type="text" id="cardName" placeholder="Name on card">
+        <input type="text" id="cardExpiry" placeholder="MM/YY">
+        <input type="text" id="cardCVV" placeholder="CVV">
       </div>
 
       <div class="summary">
         <h2>ORDER SUMMARY</h2>
-        <div class="summary-item">
-          <span>2 items</span>
-          <span>€240.00</span>
-        </div>
-        <div class="summary-item">
-          <span>Shipping</span>
-          <span>Free</span>
-        </div>
-        <div class="summary-item">
-          <strong>Total</strong>
-          <strong>€240.00</strong>
-        </div>
-        <small>(Incl. VAT €41.65)</small>
-
+        <div class="summary-item"><span>2 items</span><span>€240.00</span></div>
+        <div class="summary-item"><strong>Total</strong><strong>€240.00</strong></div>
         <button class="place-button" onclick="validateAndPlaceOrder()">PLACE ORDER</button>
-
-        <p class="terms">
-          By clicking 'Place Order', you agree to the <a href="terms.html">Terms & Conditions</a> and <a href="shipping-policy.html">Shipping Policy</a>.
-        </p>
-
-        <a href="shipping.html" class="back-button">← Back</a>
+        <p class="terms">By clicking you accept the terms and conditions.</p>
+        <a href="#" class="back-button">← Back</a>
       </div>
     </div>
-
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
-  <!-- Loading Screen -->
-  <div id="loadingScreen">
+    <div id="loadingScreen">
     <div class="loader"></div>
-    <p style="margin-top: 1em;">Processing your payment...</p>
+    <p>Processing your payment...</p>
   </div>
 
   <script>
-    // Herstel eerder gekozen bank + betaalmethode
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedBank = localStorage.getItem('selectedBank');
-      if (savedBank) document.getElementById('bankSelect').value = savedBank;
-
-      const savedPayment = localStorage.getItem('selectedPayment');
-      if (savedPayment) {
-        document.querySelectorAll('.payment-option').forEach(option => {
-          if (option.textContent.trim() === savedPayment) {
-            option.classList.add('selected');
-            if (savedPayment.includes('iDEAL')) {
-              document.getElementById('idealBanks').style.display = 'block';
-            }
-            if (['Mastercard', 'Visa', 'American Express'].includes(savedPayment)) {
-              document.getElementById('cardFields').style.display = 'block';
-            }
-          }
-        });
-      }
-    });
-
-    // Sla bank op
-    document.getElementById('bankSelect').addEventListener('change', function () {
-      localStorage.setItem('selectedBank', this.value);
-    });
-
     function selectPayment(el, showCard = false) {
-      document.querySelectorAll('.payment-option').forEach(option => {
-        option.classList.remove('selected');
-      });
+      document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
       el.classList.add('selected');
-
       document.getElementById('cardFields').style.display = showCard ? 'block' : 'none';
       document.getElementById('idealBanks').style.display = el.textContent.includes('iDEAL') ? 'block' : 'none';
-
-      localStorage.setItem('selectedPayment', el.textContent.trim());
+      document.getElementById('rivertyFields').style.display = el.textContent.includes('Riverty') ? 'block' : 'none';
     }
 
     function validateAndPlaceOrder() {
       const selected = document.querySelector('.payment-option.selected');
-      if (!selected) {
-        alert("Please select a payment method before continuing.");
-        return;
+      if (!selected) return alert("Select a payment method.");
+
+      if (selected.textContent.includes('iDEAL') && !document.getElementById('bankSelect').value)
+        return alert("Select your bank for iDEAL.");
+
+      if (selected.textContent.includes('Riverty')) {
+        if (!document.getElementById('birthdate').value ||
+            !document.getElementById('rivertyPhone').value ||
+            !document.getElementById('rivertyTerms').checked)
+          return alert("Complete all Riverty fields.");
       }
 
-      if (selected.textContent.includes('iDEAL')) {
-        const bank = document.getElementById('bankSelect').value;
-        if (!bank) {
-          alert("Please select your bank for iDEAL.");
-          return;
-        }
-      }
-
-      const cardSection = document.getElementById('cardFields');
-      if (cardSection.style.display === 'block') {
-        const inputs = cardSection.querySelectorAll('input');
+      const card = document.getElementById('cardFields');
+      if (card.style.display === 'block') {
+        const inputs = card.querySelectorAll('input');
         for (let input of inputs) {
-          if (!input.value.trim()) {
-            alert("Please fill out all credit card fields.");
-            return;
-          }
+          if (!input.value.trim()) return alert("Fill out all credit card fields.");
         }
       }
 
       document.getElementById('loadingScreen').style.display = 'flex';
-
       setTimeout(() => {
         document.getElementById('loadingScreen').style.display = 'none';
-        alert("We get it – you're a true DJ Gûrten fan and these products are 🔥. But... this is not a real webshop. No actual order will be placed. Enjoy the vibe!");
+        alert("No real order will be placed. Enjoy the vibe!");
       }, 3000);
     }
   </script>

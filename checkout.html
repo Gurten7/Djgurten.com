@@ -6,7 +6,6 @@
   <title>Checkout – DJ Gûrten</title>
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -15,7 +14,6 @@
       background-attachment: fixed;
       color: white;
     }
-
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
       min-height: 100vh;
@@ -24,7 +22,6 @@
       flex-direction: column;
       align-items: center;
     }
-
     .checkout-container {
       background: #222;
       padding: 2em;
@@ -32,19 +29,16 @@
       max-width: 700px;
       width: 100%;
     }
-
     h1 {
       text-align: center;
       font-size: 2em;
       margin-bottom: 1em;
     }
-
     label {
       display: block;
       margin-top: 1em;
       font-weight: bold;
     }
-
     input[type="text"],
     input[type="email"],
     input[type="tel"] {
@@ -55,45 +49,21 @@
       margin-top: 0.3em;
       font-size: 1em;
     }
-
-    .error {
-      color: red;
-      font-size: 0.85em;
-      display: none;
-      margin-top: 0.3em;
-    }
-
     .cart-summary {
       background: #111;
       padding: 1em;
       border-radius: 10px;
       margin-bottom: 2em;
     }
-
-    .cart-summary h2 {
-      font-size: 1.2em;
-      margin-bottom: 0.5em;
-    }
-
-    .cart-summary ul {
-      list-style: none;
-      padding: 0;
-    }
-
+    .cart-summary h2 { font-size: 1.2em; margin-bottom: 0.5em; }
+    .cart-summary ul { list-style: none; padding: 0; }
     .cart-summary li {
       display: flex;
       justify-content: space-between;
       margin-bottom: 0.5em;
     }
-
-    .checkbox-group {
-      margin-top: 1em;
-    }
-
-    .checkbox-group input {
-      margin-right: 0.5em;
-    }
-
+    .checkbox-group { margin-top: 1em; }
+    .checkbox-group input { margin-right: 0.5em; }
     .pay-button {
       margin-top: 2em;
       background: white;
@@ -106,19 +76,12 @@
       font-size: 1em;
       cursor: pointer;
     }
-
-    .pay-button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
     footer {
       text-align: center;
       font-size: 0.8em;
       opacity: 0.6;
       margin-top: 3em;
     }
-
     a.back-link {
       display: block;
       margin-top: 1em;
@@ -130,174 +93,178 @@
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <div class="checkout-container">
-      <h1>Checkout</h1>
-
-      <div class="cart-summary" id="cartSummary">
-        <h2>Cart Summary</h2>
-        <ul id="summaryList"></ul>
-        <li><strong>Shipping</strong><span>€5.95</span></li>
-        <li><strong>VAT (21%)</strong><span id="vatAmount">–</span></li>
-        <li><strong>Total</strong><span id="totalAmount">–</span></li>
-      </div>
-
-      <form id="checkoutForm">
-        <label>First Name *</label>
-        <input type="text" name="firstName" placeholder="e.g. Jan" required>
-
-        <label>Last Name *</label>
-        <input type="text" name="lastName" placeholder="e.g. Jansen" required>
-
-        <label>Address *</label>
-        <input type="text" name="address" placeholder="Street + house number" required>
-
-        <label>Postal Code *</label>
-        <input type="text" name="postcode" placeholder="e.g. 1234 AB" required>
-
-        <label>City *</label>
-        <input type="text" name="city" placeholder="e.g. Amsterdam" required>
-
-        <label>Phone</label>
-        <input type="tel" name="phone" placeholder="e.g. 06 12345678">
-
-        <div class="checkbox-group">
-          <input type="checkbox" id="invoiceCheck">
-          <label for="invoiceCheck">My billing and shipping address are different</label>
-        </div>
-
-        <div id="invoiceFields" style="display:none;">
-          <label>Invoice First Name *</label>
-          <input type="text" name="invFirstName" placeholder="e.g. Jan">
-
-          <label>Invoice Last Name *</label>
-          <input type="text" name="invLastName" placeholder="e.g. Jansen">
-
-          <label>Invoice Address *</label>
-          <input type="text" name="invAddress" placeholder="Street + house number">
-
-          <label>Invoice City *</label>
-          <input type="text" name="invCity" placeholder="e.g. Utrecht">
-
-          <label>Invoice Postcode *</label>
-          <input type="text" name="invPostcode" placeholder="e.g. 5678 CD">
-        </div>
-
-        <div class="checkbox-group">
-          <input type="checkbox" id="ageCheck" required>
-          <label for="ageCheck">I am 16 years or older *</label>
-        </div>
-
-        <div class="checkbox-group">
-          <input type="checkbox" id="marketingCheck">
-          <label for="marketingCheck">Yes, keep me updated with DJ Gûrten news</label>
-        </div>
-
-        <button type="submit" class="pay-button">CONTINUE TO SHIPPING</button>
-        <a href="cart.html" class="back-link">← BACK TO CART</a>
-      </form>
+<div class="overlay">
+  <div class="checkout-container">
+    <h1>Checkout</h1>
+    <div class="cart-summary" id="cartSummary">
+      <h2>Cart Summary</h2>
+      <ul id="summaryList"></ul>
+      <li><strong>Shipping</strong><span>€5.95</span></li>
+      <li><strong>VAT (21%)</strong><span id="vatAmount">–</span></li>
+      <li><strong>Total</strong><span id="totalAmount">–</span></li>
     </div>
 
-    <footer>© 2025 DJ Gûrten</footer>
+    <form id="checkoutForm">
+      <label>First Name *</label>
+      <input type="text" name="firstName" placeholder="e.g. Jan" required>
+      <label>Last Name *</label>
+      <input type="text" name="lastName" placeholder="e.g. Jansen" required>
+      <label>Address *</label>
+      <input type="text" name="address" placeholder="Street + house number" required>
+      <label>Postal Code *</label>
+      <input type="text" name="postcode" placeholder="e.g. 1234 AB" required>
+      <label>City *</label>
+      <input type="text" name="city" placeholder="e.g. Amsterdam" required>
+      <label>Phone</label>
+      <input type="tel" name="phone" placeholder="e.g. 06 12345678">
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="invoiceCheck">
+        <label for="invoiceCheck">My billing and shipping address are different</label>
+      </div>
+
+      <div id="invoiceFields" style="display:none;">
+        <label>Invoice First Name *</label>
+        <input type="text" name="invFirstName" placeholder="e.g. Jan">
+        <label>Invoice Last Name *</label>
+        <input type="text" name="invLastName" placeholder="e.g. Jansen">
+        <label>Invoice Address *</label>
+        <input type="text" name="invAddress" placeholder="Street + house number">
+        <label>Invoice City *</label>
+        <input type="text" name="invCity" placeholder="e.g. Utrecht">
+        <label>Invoice Postcode *</label>
+        <input type="text" name="invPostcode" placeholder="e.g. 5678 CD">
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="ageCheck" required>
+        <label for="ageCheck">I am 16 years or older *</label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="marketingCheck">
+        <label for="marketingCheck">Yes, keep me updated with DJ Gûrten news</label>
+      </div>
+
+      <button type="submit" class="pay-button">CONTINUE TO SHIPPING</button>
+      <a href="cart.html" class="back-link">← BACK TO CART</a>
+    </form>
   </div>
+  <footer>© 2025 DJ Gûrten</footer>
+</div>
 
-  <script>
-    function calculateCartSummary() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const summaryList = document.getElementById('summaryList');
-      const vatDisplay = document.getElementById('vatAmount');
-      const totalDisplay = document.getElementById('totalAmount');
-      summaryList.innerHTML = "";
+<script>
+  const form = document.getElementById('checkoutForm');
+  let inactivityTimer;
 
-      let subtotal = 0;
-      cart.forEach(item => {
-        const li = document.createElement("li");
-        const itemTotal = item.qty * item.price;
-        li.innerHTML = `<span>${item.name} x${item.qty}</span><span>€${itemTotal.toFixed(2)}</span>`;
-        summaryList.appendChild(li);
-        subtotal += itemTotal;
-      });
+  function calculateCartSummary() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const summaryList = document.getElementById('summaryList');
+    const vatDisplay = document.getElementById('vatAmount');
+    const totalDisplay = document.getElementById('totalAmount');
+    summaryList.innerHTML = "";
 
-      const shipping = 5.95;
-      const vat = 0.21 * (subtotal + shipping);
-      const total = subtotal + shipping + vat;
-
-      vatDisplay.textContent = `€${vat.toFixed(2)}`;
-      totalDisplay.textContent = `€${total.toFixed(2)}`;
-    }
-
-    // ✅ Herstel opgeslagen waarden bij pagina openen
-    window.addEventListener('DOMContentLoaded', () => {
-      calculateCartSummary();
-
-      const form = document.getElementById('checkoutForm');
-      const inputs = form.querySelectorAll('input');
-
-      inputs.forEach(input => {
-        const savedValue = localStorage.getItem('checkout_' + input.name);
-        if (savedValue) input.value = savedValue;
-      });
-
-      // Checkboxen
-      document.getElementById('invoiceCheck').checked = localStorage.getItem('checkout_invoiceCheck') === 'true';
-      document.getElementById('ageCheck').checked = localStorage.getItem('checkout_ageCheck') === 'true';
-      document.getElementById('marketingCheck').checked = localStorage.getItem('checkout_marketingCheck') === 'true';
-
-      // Toon factuurvelden indien nodig
-      if (document.getElementById('invoiceCheck').checked) {
-        document.getElementById('invoiceFields').style.display = 'block';
-        document.querySelectorAll('#invoiceFields input').forEach(i => i.setAttribute('required', 'required'));
-      }
+    let subtotal = 0;
+    cart.forEach(item => {
+      const li = document.createElement("li");
+      const itemTotal = item.qty * item.price;
+      li.innerHTML = `<span>${item.name} x${item.qty}</span><span>€${itemTotal.toFixed(2)}</span>`;
+      summaryList.appendChild(li);
+      subtotal += itemTotal;
     });
 
-    // ✅ Sla wijzigingen op
+    const shipping = 5.95;
+    const vat = 0.21 * (subtotal + shipping);
+    const total = subtotal + shipping + vat;
+
+    vatDisplay.textContent = `€${vat.toFixed(2)}`;
+    totalDisplay.textContent = `€${total.toFixed(2)}`;
+  }
+
+  function restoreFormData() {
+    const inputs = form.querySelectorAll('input');
+    inputs.forEach(input => {
+      const saved = localStorage.getItem('checkout_' + input.name);
+      if (saved) input.value = saved;
+    });
+    document.getElementById('invoiceCheck').checked = localStorage.getItem('checkout_invoiceCheck') === 'true';
+    document.getElementById('ageCheck').checked = localStorage.getItem('checkout_ageCheck') === 'true';
+    document.getElementById('marketingCheck').checked = localStorage.getItem('checkout_marketingCheck') === 'true';
+
+    if (document.getElementById('invoiceCheck').checked) {
+      document.getElementById('invoiceFields').style.display = 'block';
+    }
+  }
+
+  function saveFormData() {
     document.querySelectorAll('#checkoutForm input').forEach(input => {
       input.addEventListener('input', () => {
         localStorage.setItem('checkout_' + input.name, input.value);
+        resetInactivityTimer();
       });
-
       input.addEventListener('change', () => {
         if (input.type === 'checkbox') {
           localStorage.setItem('checkout_' + input.id, input.checked);
         }
+        resetInactivityTimer();
       });
     });
+  }
 
-    // ✅ Toon factuurvelden + toggle required
-    document.getElementById('invoiceCheck').addEventListener('change', function () {
-      document.getElementById('invoiceFields').style.display = this.checked ? 'block' : 'none';
-      const fields = document.querySelectorAll('#invoiceFields input');
-      fields.forEach(input => {
-        if (this.checked) {
-          input.setAttribute('required', 'required');
-        } else {
-          input.removeAttribute('required');
-        }
-      });
-      localStorage.setItem('checkout_invoiceCheck', this.checked);
-    });
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(clearCheckoutData, 10 * 60 * 1000); // 10 minuten
+  }
 
-    // ✅ Validatie en redirect
-    document.getElementById('checkoutForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const requiredFields = this.querySelectorAll('input[required]');
-      let valid = true;
-
-      requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-          valid = false;
-          field.style.border = '1px solid red';
-        } else {
-          field.style.border = '';
-        }
-      });
-
-      if (valid) {
-        window.location.href = 'shipping.html';
-      } else {
-        alert('Please complete all required fields.');
+  function clearCheckoutData() {
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith("checkout_")) {
+        localStorage.removeItem(key);
       }
     });
-  </script>
+  }
+
+  document.getElementById('invoiceCheck').addEventListener('change', function () {
+    const fields = document.querySelectorAll('#invoiceFields input');
+    if (this.checked) {
+      document.getElementById('invoiceFields').style.display = 'block';
+      fields.forEach(input => input.required = true);
+    } else {
+      document.getElementById('invoiceFields').style.display = 'none';
+      fields.forEach(input => input.required = false);
+    }
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const requiredFields = this.querySelectorAll('input[required]');
+    let valid = true;
+
+    requiredFields.forEach(field => {
+      if (!field.value.trim()) {
+        valid = false;
+        field.style.border = '1px solid red';
+      } else {
+        field.style.border = '';
+      }
+    });
+
+    if (valid) {
+      clearCheckoutData(); // 🧹 Leeg data bij bevestiging
+      window.location.href = 'shipping.html';
+    } else {
+      alert('Please complete all required fields.');
+    }
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    calculateCartSummary();
+    restoreFormData();
+    saveFormData();
+    resetInactivityTimer();
+  });
+
+  document.addEventListener('mousemove', resetInactivityTimer);
+  document.addEventListener('keydown', resetInactivityTimer);
+</script>
 </body>
 </html>

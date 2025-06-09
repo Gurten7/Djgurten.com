@@ -96,6 +96,20 @@
       margin-top: 0.3em;
     }
 
+    .cart-summary {
+      background: #111;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 1em;
+      margin-bottom: 2em;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .cart-summary h2 {
+      margin-top: 0;
+    }
+
     .payment-logos {
       text-align: center;
       margin-top: 2em;
@@ -131,30 +145,32 @@
 <body>
   <div class="overlay">
     <h1>Checkout</h1>
+    <div class="cart-summary" id="cartSummary"></div>
+
     <div class="checkout-container">
       <form id="checkoutForm">
         <label>First Name *</label>
-        <input type="text" required>
+        <input type="text" name="firstName" required>
 
         <label>Last Name *</label>
-        <input type="text" required>
+        <input type="text" name="lastName" required>
 
         <label>Address *</label>
-        <input type="text" required placeholder="Street name and house number">
+        <input type="text" name="address" required placeholder="Street name and house number">
 
         <label>Additional Info</label>
-        <input type="text">
+        <input type="text" name="additional">
 
         <label>Postal Code *</label>
-        <input type="text" required placeholder="e.g. 1234 AB">
+        <input type="text" name="postal" required placeholder="e.g. 1234 AB">
 
         <label>City *</label>
-        <input type="text" required placeholder="e.g. Amsterdam">
+        <input type="text" name="city" required placeholder="e.g. Amsterdam">
 
         <label>Country: <strong>Netherlands</strong></label>
 
         <label>Phone Number (optional)</label>
-        <input type="tel" placeholder="e.g. 06 12345678">
+        <input type="tel" name="phone" placeholder="e.g. 06 12345678">
 
         <div class="checkbox-group">
           <input type="checkbox" id="differentInvoice" onchange="toggleInvoiceFields()" />
@@ -198,7 +214,7 @@
           <label for="marketingCheck" style="display:inline;">Yes, keep me updated about DJ Gûrten news & offers</label>
         </div>
 
-        <a href="shipping.html" id="submitBtn" class="pay-button">CONTINUE TO SHIPPING</a>
+        <button type="submit" id="submitBtn" class="pay-button">CONTINUE TO SHIPPING</button>
         <a href="cart.html" class="back-link">← BACK TO CART</a>
       </form>
     </div>
@@ -238,18 +254,52 @@
 
       if (!ageBox.checked) {
         errorMsg.style.display = "block";
-        submitBtn.classList.add("disabled");
-        submitBtn.setAttribute("aria-disabled", "true");
-        submitBtn.style.pointerEvents = "none";
+        submitBtn.disabled = true;
         submitBtn.style.opacity = "0.5";
+        submitBtn.style.cursor = "not-allowed";
       } else {
         errorMsg.style.display = "none";
-        submitBtn.classList.remove("disabled");
-        submitBtn.removeAttribute("aria-disabled");
-        submitBtn.style.pointerEvents = "auto";
+        submitBtn.disabled = false;
         submitBtn.style.opacity = "1";
+        submitBtn.style.cursor = "pointer";
       }
     }
+
+    // Show cart items
+    document.addEventListener("DOMContentLoaded", () => {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartSummary = document.getElementById("cartSummary");
+
+      if (cart.length === 0) {
+        cartSummary.innerHTML = "<h2>Your cart is empty</h2>";
+        return;
+      }
+
+      let total = 0;
+      let html = "<h2>Your Cart</h2><ul>";
+      cart.forEach(item => {
+        const line = `${item.qty} × ${item.name} – €${(item.price * item.qty).toFixed(2)}`;
+        html += `<li>${line}</li>`;
+        total += item.price * item.qty;
+      });
+      html += "</ul>";
+
+      if (total < 50) {
+        html += `<p>Subtotal: €${total.toFixed(2)}<br>Shipping: €6.95</p>`;
+        total += 6.95;
+      } else {
+        html += `<p>Subtotal: €${total.toFixed(2)}<br><strong>Free shipping</strong></p>`;
+      }
+      html += `<p><strong>Total: €${total.toFixed(2)}</strong></p>`;
+      cartSummary.innerHTML = html;
+    });
+
+    document.getElementById("checkoutForm").addEventListener("submit", function(e) {
+      if (!this.checkValidity()) {
+        e.preventDefault();
+        alert("Please fill in all required fields.");
+      }
+    });
   </script>
 </body>
 </html>

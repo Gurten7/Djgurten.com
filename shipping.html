@@ -31,13 +31,14 @@
       margin-bottom: 1em;
     }
 
-    .note {
+    .notice {
+      background: #ffc107;
+      color: black;
+      padding: 1em;
+      border-radius: 5px;
       margin-bottom: 1em;
-      background: #333;
-      padding: 0.7em 1em;
-      border-radius: 8px;
-      font-size: 0.9em;
-      text-align: center;
+      font-size: 0.95em;
+      max-width: 600px;
     }
 
     .summary {
@@ -103,15 +104,6 @@
       color: #ccc;
     }
 
-    #pickupSelect {
-      margin-top: 0.5em;
-      width: 100%;
-      padding: 0.6em;
-      font-size: 1em;
-      border-radius: 6px;
-      border: none;
-    }
-
     .buttons {
       display: flex;
       gap: 1em;
@@ -137,7 +129,10 @@
 <body>
   <div class="overlay">
     <h1>Shipping Options</h1>
-    <div class="note">Order before 21:00 for next-day delivery.</div>
+
+    <div class="notice" id="noticeMsg" style="display:none;">
+      Orders placed after 21:00 will be delivered the day after tomorrow.
+    </div>
 
     <div class="summary">
       <h2>Shopping Summary</h2>
@@ -148,23 +143,25 @@
     </div>
 
     <div class="option selected" data-method="home">
-      <h2>Delivered tomorrow</h2>
+      <h2 id="home-date">Delivered –</h2>
       <p><strong>PostNL – Standard Shipping</strong></p>
       <p>08:00 – 18:00</p>
     </div>
 
     <div class="option" data-method="store">
-      <h2>Pick up from store</h2>
+      <h2 id="store-date">Available –</h2>
       <p><strong>DJ Gûrten Originals Store Houten</strong></p>
       <p>Wegenbouw 108 – Always free</p>
     </div>
 
     <div class="option" data-method="pickup">
-      <h2>Pick up at PostNL Point</h2>
-      <p>Select a nearby location:</p>
-      <select id="pickupSelect">
-        <option>Loading nearby pickup points...</option>
-      </select>
+      <h2 id="pickup-date">Pick up –</h2>
+      <p><strong>Nearby PostNL Point</strong></p>
+      <p>
+        <select id="pickupSelect" style="width:100%;padding:0.5em;">
+          <option>Loading nearby pickup points...</option>
+        </select>
+      </p>
     </div>
 
     <div class="buttons">
@@ -174,6 +171,7 @@
   </div>
 
   <script>
+    // Summary
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     const itemsList = document.getElementById("cart-items");
     const subtotalEl = document.getElementById("subtotal");
@@ -193,8 +191,6 @@
       let shipping = 0;
       if (subtotal < 50 && (method === "home" || method === "pickup")) {
         shipping = 6.95;
-      } else {
-        shipping = 0;
       }
       shippingCostEl.textContent = `€${shipping.toFixed(2)}`;
       totalCostEl.textContent = `€${(subtotal + shipping).toFixed(2)}`;
@@ -211,31 +207,45 @@
       });
     });
 
-    // Simulate PostNL locations based on city
-    function simulatePostNLPoints(city = "your area") {
-      const select = document.getElementById("pickupSelect");
-      select.innerHTML = `
-        <option>Albert Heijn – ${city} – 0.4 km</option>
-        <option>Bruna – ${city} – 0.7 km</option>
-        <option>Primera – ${city} – 1.0 km</option>
-      `;
+    // Dynamic delivery dates
+    function formatDate(date) {
+      const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+      const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
     }
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
-            .then(res => res.json())
-            .then(data => {
-              const city = data.address.city || data.address.town || data.address.village || "your area";
-              simulatePostNLPoints(city);
-            }).catch(() => simulatePostNLPoints());
-        },
-        () => simulatePostNLPoints()
-      );
-    } else {
-      simulatePostNLPoints();
+    function getNextWeekday(fromDate, offset = 1) {
+      const date = new Date(fromDate);
+      date.setDate(date.getDate() + offset);
+      while (date.getDay() === 0) { date.setDate(date.getDate() + 1); }
+      return date;
     }
+
+    const now = new Date();
+    const hour = now.getHours();
+    const isBefore21 = hour < 21;
+
+    const deliveryDate = isBefore21 ? getNextWeekday(now, 1) : getNextWeekday(now, 2);
+    const storeDate = getNextWeekday(now, 1);
+
+    document.getElementById("home-date").textContent = `Delivered ${formatDate(deliveryDate)}`;
+    document.getElementById("pickup-date").textContent = `Pick up ${formatDate(deliveryDate)}`;
+    document.getElementById("store-date").textContent = `Available ${formatDate(storeDate)}`;
+    if (!isBefore21) document.getElementById("noticeMsg").style.display = "block";
+
+    // Fake geolocation and PostNL points
+    const pickupPoints = [
+      { name: "Albert Heijn", address: "Marktplein 3", distance: "0.4 km" },
+      { name: "Bruna", address: "Stationsstraat 12", distance: "0.7 km" },
+      { name: "Primera", address: "Dorpsstraat 5", distance: "1.0 km" }
+    ];
+    const pickupSelect = document.getElementById("pickupSelect");
+    pickupSelect.innerHTML = "";
+    pickupPoints.forEach(p => {
+      const opt = document.createElement("option");
+      opt.textContent = `${p.name} – ${p.address} (${p.distance})`;
+      pickupSelect.appendChild(opt);
+    });
   </script>
 </body>
 </html>

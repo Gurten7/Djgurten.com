@@ -98,25 +98,25 @@
   <div class="overlay">
     <h1>Shipping Options</h1>
 
-    <div class="option selected" data-cost="2.95" onclick="selectOption(this)">
-      <h2>Home delivery – Wednesday, June 11</h2>
-      <p><strong>€2,95</strong></p>
+    <div class="option selected" data-method="Home Delivery" onclick="selectOption(this)">
+      <h2>Home Delivery – Wednesday, June 11</h2>
+      <p class="cost-label"><strong></strong></p>
       <p>PNL – Standard shipping, 08:00–18:00</p>
     </div>
 
-    <div class="option" data-cost="0.00" onclick="selectOption(this)">
+    <div class="option" data-method="Store Pickup – Houten" onclick="selectOption(this)">
       <h2>Pick up – Thursday, June 12</h2>
-      <p><strong>Free</strong></p>
-      <p>DJ Gûrten Store Houten – Wegenbouw 108 (43.2 km)</p>
+      <p class="cost-label"><strong></strong></p>
+      <p>DJ Gûrten Originals Store Houten – Wegenbouw 108</p>
     </div>
 
-    <div class="option" data-cost="0.00" onclick="selectOption(this)">
+    <div class="option" data-method="Pickup – Hoogvliet Houten" onclick="selectOption(this)">
       <h2>Ready for pickup in 2–3 days</h2>
-      <p><strong>Free</strong></p>
+      <p class="cost-label"><strong></strong></p>
       <p>Hoogvliet Houten – Cardo 10 (0.3 km)</p>
     </div>
 
-    <p id="selectedOptionText">You selected: Home delivery – €2,95 shipping</p>
+    <p id="selectedOptionText">You selected: Home delivery – shipping fee will be calculated</p>
 
     <div class="buttons">
       <a href="checkout.html" class="button">← BACK</a>
@@ -125,40 +125,57 @@
   </div>
 
   <script>
+    let shippingCost = 6.95;
+    let cartTotal = 0;
+
+    function calculateShippingCost() {
+      // Ophalen van cart uit localStorage
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      // Gratis verzending vanaf €50
+      if (cartTotal >= 50) {
+        shippingCost = 0;
+      } else {
+        shippingCost = 6.95;
+      }
+
+      // Update alle opties met correcte prijs
+      document.querySelectorAll('.cost-label').forEach(el => {
+        el.innerHTML = shippingCost === 0 ? '<strong>Free</strong>' : `<strong>€${shippingCost.toFixed(2)}</strong>`;
+      });
+
+      // Update initiële tekst
+      const defaultMethod = document.querySelector('.option.selected h2').textContent;
+      document.getElementById('selectedOptionText').textContent =
+        `You selected: ${defaultMethod} – ${shippingCost === 0 ? "Free shipping" : `€${shippingCost.toFixed(2)} shipping`}`;
+      
+      // Standaard opslaan
+      localStorage.setItem('shippingCost', shippingCost.toFixed(2));
+      localStorage.setItem('shippingMethod', defaultMethod);
+    }
+
     function selectOption(selectedDiv) {
       document.querySelectorAll('.option').forEach(option => option.classList.remove('selected'));
       selectedDiv.classList.add('selected');
 
-      const method = selectedDiv.querySelector('h2').textContent;
-      const cost = parseFloat(selectedDiv.dataset.cost).toFixed(2);
+      const method = selectedDiv.dataset.method;
+      document.getElementById('selectedOptionText').textContent =
+        `You selected: ${method} – ${shippingCost === 0 ? "Free shipping" : `€${shippingCost.toFixed(2)} shipping`}`;
 
       localStorage.setItem('shippingMethod', method);
-      localStorage.setItem('shippingCost', cost);
-
-      document.getElementById('selectedOptionText').textContent = `You selected: ${method} – €${cost} shipping`;
+      localStorage.setItem('shippingCost', shippingCost.toFixed(2));
     }
 
     document.getElementById('nextButton').addEventListener('click', () => {
-      const method = localStorage.getItem('shippingMethod');
-      const cost = localStorage.getItem('shippingCost');
-      if (!method || !cost) {
-        alert("Please select a shipping option before continuing.");
+      if (!localStorage.getItem('shippingMethod')) {
+        alert("Please select a shipping option.");
         return;
       }
       window.location.href = "payment.html";
     });
 
-    // Initial default selection
-    window.addEventListener("DOMContentLoaded", () => {
-      const defaultOption = document.querySelector(".option.selected");
-      if (defaultOption) {
-        const method = defaultOption.querySelector("h2").textContent;
-        const cost = parseFloat(defaultOption.dataset.cost).toFixed(2);
-        localStorage.setItem("shippingMethod", method);
-        localStorage.setItem("shippingCost", cost);
-        document.getElementById('selectedOptionText').textContent = `You selected: ${method} – €${cost} shipping`;
-      }
-    });
+    window.addEventListener("DOMContentLoaded", calculateShippingCost);
   </script>
 </body>
 </html>

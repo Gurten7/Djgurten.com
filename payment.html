@@ -40,7 +40,7 @@
       border-radius: 8px;
       margin-bottom: 2em;
     }
-        .payment-option {
+    .payment-option {
       background: #222;
       padding: 1em;
       border: 2px solid transparent;
@@ -69,28 +69,26 @@
     }
     #idealBanks, #rivertyFields {
       display: none;
-      margin-bottom: 1em;
+      margin-bottom: 1.5em;
     }
-    select, input[type="date"], input[type="tel"] {
+    label {
+      display: block;
+      margin-top: 1em;
+      font-weight: bold;
+    }
+    select, input[type="date"], input[type="tel"], input[type="text"] {
       width: 100%;
       padding: 0.7em;
       font-size: 1em;
       border-radius: 6px;
       border: none;
+      margin-top: 0.3em;
     }
     .card-fields {
       display: none;
       margin-top: 1em;
     }
-    .card-fields input {
-      width: 100%;
-      padding: 0.8em;
-      margin: 0.5em 0;
-      border: none;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-        .summary {
+    .summary {
       margin-top: 2em;
       border-top: 1px solid #444;
       padding-top: 1em;
@@ -112,12 +110,28 @@
       font-size: 1em;
       cursor: pointer;
     }
-    .terms, .back-button {
+    .terms {
       font-size: 0.85em;
       margin-top: 1em;
       text-align: center;
+    }
+    .terms a {
       color: yellow;
       text-decoration: underline;
+    }
+    .back-button {
+      display: block;
+      text-align: center;
+      margin-top: 1.5em;
+      color: yellow;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3em;
+      font-size: 0.8em;
+      opacity: 0.7;
     }
     #loadingScreen {
       display: none;
@@ -129,6 +143,7 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      color: white;
     }
     .loader {
       border: 6px solid #333;
@@ -150,7 +165,8 @@
       <h1>PAYMENT</h1>
       <div class="info">Payments are encrypted via SSL to keep your credit card and payment information safe.</div>
 
-            <div class="payment-option" onclick="selectPayment(this)">iDEAL <img src="ideal.PNG" alt="iDEAL"></div>
+            <!-- Payment Options -->
+      <div class="payment-option" onclick="selectPayment(this)">iDEAL <img src="ideal.PNG" alt="iDEAL"></div>
       <div id="idealBanks">
         <label for="bankSelect">Choose your bank</label>
         <select id="bankSelect">
@@ -162,71 +178,95 @@
       </div>
 
       <div class="payment-option" onclick="selectPayment(this, true)">Mastercard <img src="mastercard.PNG" alt="Mastercard"></div>
-
       <div class="payment-option" onclick="selectPayment(this)">Riverty (Pay later) <img src="riverty.PNG" alt="Riverty"></div>
+
+      <!-- Riverty Fields -->
       <div id="rivertyFields">
         <label for="birthdate">Geboortedatum</label>
         <input type="date" id="birthdate">
         <label for="rivertyPhone">Telefoonnummer</label>
         <input type="tel" id="rivertyPhone" placeholder="e.g. 0612345678">
-        <div style="margin-top: 1em;">
+        <div style="background: #333; padding: 0.8em; border-radius: 8px; margin-top: 1em; font-size: 0.9em;">
           <input type="checkbox" id="rivertyTerms">
-          <label for="rivertyTerms">Je moet minimaal 18+ zijn om deze dienst te gebruiken. Zie de <a href="#" style="color:#1DB954;">voorwaarden</a>.</label>
+          <label for="rivertyTerms">
+            Je moet minimaal 18+ zijn om deze dienst te gebruiken. Door verder te gaan, accepteer je de
+            <a href="https://documents.riverty.com/terms/" target="_blank" style="color: #1DB954;">betalingsvoorwaarden</a>
+            en bevestig je dat je de Privacyverklaring en Cookieverklaring hebt gelezen.
+          </label>
         </div>
       </div>
 
-            <div class="card-fields" id="cardFields">
+      <!-- Credit Card Fields -->
+      <div class="card-fields" id="cardFields">
         <input type="text" id="cardNumber" placeholder="Card Number">
         <input type="text" id="cardName" placeholder="Name on card">
         <input type="text" id="cardExpiry" placeholder="MM/YY">
         <input type="text" id="cardCVV" placeholder="CVV">
       </div>
 
-      <div class="summary">
+      <!-- Order Summary -->
+      <div class="summary" id="summary">
         <h2>ORDER SUMMARY</h2>
-        <div class="summary-item"><span>2 items</span><span>€240.00</span></div>
-        <div class="summary-item"><strong>Total</strong><strong>€240.00</strong></div>
-        <button class="place-button" onclick="validateAndPlaceOrder()">PLACE ORDER</button>
-        <p class="terms">By clicking you accept the terms and conditions.</p>
-        <a href="#" class="back-button">← Back</a>
+        <div class="summary-item"><span>Loading cart...</span><span>€0.00</span></div>
       </div>
+
+      <!-- Button + Terms -->
+      <button class="place-button" onclick="validateAndPlaceOrder()">PLACE ORDER</button>
+      <p class="terms">
+        By clicking 'Place Order', you agree to the <a href="#">Terms & Conditions</a> and <a href="#">Shipping Policy</a>.
+      </p>
+      <a href="shipping.html" class="back-button">← Back</a>
     </div>
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
-    <div id="loadingScreen">
+  <!-- Fake loading -->
+  <div id="loadingScreen">
     <div class="loader"></div>
     <p>Processing your payment...</p>
   </div>
 
+  <!-- Scripts -->
   <script>
     function selectPayment(el, showCard = false) {
-      document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+      document.querySelectorAll('.payment-option').forEach(option => option.classList.remove('selected'));
       el.classList.add('selected');
+      const isIdeal = el.textContent.includes('iDEAL');
+      const isRiverty = el.textContent.includes('Riverty');
       document.getElementById('cardFields').style.display = showCard ? 'block' : 'none';
-      document.getElementById('idealBanks').style.display = el.textContent.includes('iDEAL') ? 'block' : 'none';
-      document.getElementById('rivertyFields').style.display = el.textContent.includes('Riverty') ? 'block' : 'none';
+      document.getElementById('idealBanks').style.display = isIdeal ? 'block' : 'none';
+      document.getElementById('rivertyFields').style.display = isRiverty ? 'block' : 'none';
+
+      if (!isRiverty) {
+        document.getElementById('birthdate').value = '';
+        document.getElementById('rivertyPhone').value = '';
+        document.getElementById('rivertyTerms').checked = false;
+      }
     }
 
     function validateAndPlaceOrder() {
       const selected = document.querySelector('.payment-option.selected');
       if (!selected) return alert("Select a payment method.");
 
-      if (selected.textContent.includes('iDEAL') && !document.getElementById('bankSelect').value)
+      if (selected.textContent.includes('iDEAL') && !document.getElementById('bankSelect').value) {
         return alert("Select your bank for iDEAL.");
+      }
 
       if (selected.textContent.includes('Riverty')) {
         if (!document.getElementById('birthdate').value ||
             !document.getElementById('rivertyPhone').value ||
-            !document.getElementById('rivertyTerms').checked)
-          return alert("Complete all Riverty fields.");
+            !document.getElementById('rivertyTerms').checked) {
+          return alert("Vul je geboortedatum, telefoonnummer in en vink de voorwaarden aan.");
+        }
       }
 
-      const card = document.getElementById('cardFields');
-      if (card.style.display === 'block') {
-        const inputs = card.querySelectorAll('input');
-        for (let input of inputs) {
-          if (!input.value.trim()) return alert("Fill out all credit card fields.");
+      if (document.getElementById('cardFields').style.display === 'block') {
+        const fields = ['cardNumber', 'cardName', 'cardExpiry', 'cardCVV'];
+        for (let id of fields) {
+          if (!document.getElementById(id).value.trim()) {
+            alert("Please fill all credit card fields.");
+            return;
+          }
         }
       }
 
@@ -236,6 +276,25 @@
         alert("No real order will be placed. Enjoy the vibe!");
       }, 3000);
     }
+
+    function updateOrderSummary() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const summary = document.getElementById('summary');
+      let html = '<h2>ORDER SUMMARY</h2>';
+      let subtotal = 0;
+      cart.forEach(item => {
+        const line = item.qty * item.price;
+        html += `<div class="summary-item"><span>${item.name} ×${item.qty}</span><span>€${line.toFixed(2)}</span></div>`;
+        subtotal += line;
+      });
+      const vat = subtotal * 0.21;
+      html += `<div class="summary-item"><span>Shipping</span><span>Free</span></div>`;
+      html += `<div class="summary-item"><strong>Total</strong><strong>€${subtotal.toFixed(2)}</strong></div>`;
+      html += `<small>(Incl. VAT €${vat.toFixed(2)})</small>`;
+      summary.innerHTML = html;
+    }
+
+    window.addEventListener('DOMContentLoaded', updateOrderSummary);
   </script>
 </body>
 </html>

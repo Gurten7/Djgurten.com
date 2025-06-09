@@ -15,6 +15,15 @@
       color: white;
     }
 
+    .shipping-note {
+      text-align: center;
+      padding: 1em 0 0.5em;
+      font-weight: bold;
+      color: white;
+      line-height: 1.4;
+      font-size: 1em;
+    }
+
     .overlay {
       background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
@@ -66,16 +75,8 @@
     }
 
     h1 {
-      margin-top: 3em;
+      margin-top: 1em;
       text-align: center;
-    }
-
-    #shippingNotice {
-      text-align: center;
-      font-size: 0.9em;
-      color: #1DB954;
-      margin-top: 0.5em;
-      line-height: 1.4;
     }
 
     .filter-bar {
@@ -143,11 +144,12 @@
   </div>
 
   <div class="overlay">
-    <h1>DJ Gûrten Merchandise Shop</h1>
-
-    <div id="shippingNotice">
-      <!-- JS will insert text here -->
+    <div class="shipping-note">
+      Orders placed before 21:00 will be delivered tomorrow.<br>
+      Applies to both home delivery and PostNL pickup.
     </div>
+
+    <h1>DJ Gûrten Merchandise Shop</h1>
 
     <div class="filter-bar">
       <label for="category">Filter by category: </label>
@@ -166,7 +168,61 @@
         <h3>Black T-shirt</h3>
         <p>€24.95</p>
       </a>
-      <!-- Voeg hier je andere producten toe -->
+      <a class="product" data-category="apparel" href="product-hoodie-black.html">
+        <img src="Hoodie zwart.PNG" alt="Hoodie">
+        <h3>Black Hoodie</h3>
+        <p>€49.95</p>
+      </a>
+      <a class="product" data-category="apparel" href="product-hoodie-green.html">
+        <img src="Hoodie groen.PNG" alt="Hoodie">
+        <h3>Green Hoodie</h3>
+        <p>€49.95</p>
+      </a>
+      <a class="product" data-category="apparel" href="product-cap-black.html">
+        <img src="Cap zwart.PNG" alt="Cap">
+        <h3>Black Cap</h3>
+        <p>€19.95</p>
+      </a>
+      <a class="product" data-category="apparel" href="product-cap-red.html">
+        <img src="Cap rood.PNG" alt="Cap">
+        <h3>Red Cap</h3>
+        <p>€19.95</p>
+      </a>
+      <a class="product" data-category="apparel" href="product-cap-blue.html">
+        <img src="Cap blauw.PNG" alt="Cap">
+        <h3>Blue Cap</h3>
+        <p>€19.95</p>
+      </a>
+      <a class="product" data-category="accessories" href="product-mug.html">
+        <img src="Koffiemok.PNG" alt="Mug">
+        <h3>Coffee Mug</h3>
+        <p>€12.95</p>
+      </a>
+      <a class="product" data-category="accessories" href="product-wristband.html">
+        <img src="Armbandje.PNG" alt="Wristband">
+        <h3>Wristband</h3>
+        <p>€5.00</p>
+      </a>
+      <a class="product" data-category="accessories" href="product-sunglasses.html">
+        <img src="Zonnebril.PNG" alt="Sunglasses">
+        <h3>Sunglasses</h3>
+        <p>€14.95</p>
+      </a>
+      <a class="product" data-category="music" href="product-vinyl.html">
+        <img src="Vinyl.PNG" alt="Vinyl">
+        <h3>KDW ‘26 Vinyl</h3>
+        <p>€29.95<br><small>Pre-order – Shipping April 2026</small></p>
+      </a>
+      <a class="product" data-category="baby" href="product-romper-blue.html">
+        <img src="Romper blauw.PNG" alt="Blue Romper">
+        <h3>Blue Baby Romper</h3>
+        <p>€17.95</p>
+      </a>
+      <a class="product" data-category="baby" href="product-romper-pink.html">
+        <img src="Romper roze.PNG" alt="Pink Romper">
+        <h3>Pink Baby Romper</h3>
+        <p>€17.95</p>
+      </a>
     </div>
 
     <footer>© 2025 DJ Gûrten</footer>
@@ -183,20 +239,7 @@
         p.style.display = (category === "all" || p.dataset.category === category) ? "block" : "none";
       });
     }
-
-    // Dynamische verzendmelding
-    const now = new Date();
-    const hour = now.getHours();
-    const day = now.getDay();
-    const notice = document.getElementById("shippingNotice");
-
-    if (day === 0) {
-      notice.innerHTML = "Orders placed today (Sunday)<br>will be delivered on Tuesday.";
-    } else if (hour < 21) {
-      notice.innerHTML = "Order before 21:00<br>= delivered tomorrow";
-    } else {
-      notice.innerHTML = "Orders placed after 21:00<br>will be delivered the day after tomorrow";
-    }
   </script>
 </body>
 </html>
+  

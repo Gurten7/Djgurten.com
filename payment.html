@@ -56,10 +56,20 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
     }
 
     .payment-option.selected {
       border-color: #1DB954;
+    }
+
+    .payment-option.selected::after {
+      content: "✔";
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: #1DB954;
+      font-size: 1.2em;
     }
 
     .payment-option img {
@@ -132,6 +142,54 @@
       font-size: 0.8em;
       opacity: 0.7;
     }
+
+    #loadingScreen {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: white;
+    }
+
+    .loader {
+      border: 6px solid #333;
+      border-top: 6px solid #1DB954;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.4em;
+      }
+
+      .container {
+        padding: 1.5em;
+      }
+
+      .payment-option {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .payment-option img {
+        margin-left: 0;
+        margin-top: 0.5em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -172,12 +230,12 @@
       <!-- Credit Card Details -->
       <div class="card-fields" id="cardFields">
         <p style="font-size: 0.9em; color: #ccc;">
-          As required by European regulations (PSD2), your bank may ask for extra verification to complete the transaction. Please contact your bank for questions.
+          As required by European regulations (PSD2), your bank may ask for extra verification to complete the transaction.
         </p>
-        <input type="text" placeholder="Card Number" />
-        <input type="text" placeholder="Name on card" />
-        <input type="text" placeholder="MM/YY" />
-        <input type="text" placeholder="CVV" />
+        <input type="text" placeholder="Card Number" required />
+        <input type="text" placeholder="Name on card" required />
+        <input type="text" placeholder="MM/YY" required />
+        <input type="text" placeholder="CVV" required />
       </div>
 
       <!-- Summary -->
@@ -197,7 +255,7 @@
         </div>
         <small>(Incl. VAT €41.65)</small>
 
-        <button class="place-button" onclick="showPopup()">PLACE ORDER</button>
+        <button class="place-button" onclick="validateAndPlaceOrder()">PLACE ORDER</button>
 
         <p class="terms">
           By clicking 'Place Order', you agree to the <a href="terms.html">Terms & Conditions</a> and <a href="shipping-policy.html">Shipping Policy</a>.
@@ -210,6 +268,12 @@
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
+  <!-- Loading screen -->
+  <div id="loadingScreen">
+    <div class="loader"></div>
+    <p style="margin-top: 1em;">Processing your payment...</p>
+  </div>
+
   <script>
     function selectPayment(el, showCard = false) {
       document.querySelectorAll('.payment-option').forEach(option => {
@@ -219,8 +283,31 @@
       document.getElementById('cardFields').style.display = showCard ? 'block' : 'none';
     }
 
-    function showPopup() {
-      alert("We get it – you're a true DJ Gûrten fan and these products are 🔥. But... this is not a real webshop. No actual order will be placed. Enjoy the vibe!");
+    function validateAndPlaceOrder() {
+      const selected = document.querySelector('.payment-option.selected');
+      if (!selected) {
+        alert("Please select a payment method before continuing.");
+        return;
+      }
+
+      const cardSection = document.getElementById('cardFields');
+      if (cardSection.style.display === 'block') {
+        const inputs = cardSection.querySelectorAll('input');
+        for (let input of inputs) {
+          if (!input.value.trim()) {
+            alert("Please fill out all credit card fields.");
+            return;
+          }
+        }
+      }
+
+      // Show fake loading screen
+      document.getElementById('loadingScreen').style.display = 'flex';
+
+      setTimeout(() => {
+        document.getElementById('loadingScreen').style.display = 'none';
+        alert("We get it – you're a true DJ Gûrten fan and these products are 🔥. But... this is not a real webshop. No actual order will be placed. Enjoy the vibe!");
+      }, 3000);
     }
   </script>
 </body>

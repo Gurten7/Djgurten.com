@@ -43,20 +43,6 @@
       z-index: 1001;
     }
 
-    #shippingNotice {
-      position: fixed;
-      top: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.75em;
-      color: #1DB954;
-      background: rgba(0,0,0,0.7);
-      padding: 0.3em 0.8em;
-      border-radius: 5px;
-      z-index: 1000;
-      white-space: nowrap;
-    }
-
     .sidebar {
       position: fixed;
       top: 0;
@@ -80,8 +66,16 @@
     }
 
     h1 {
-      margin-top: 3.5em;
+      margin-top: 3em;
       text-align: center;
+    }
+
+    #shippingNotice {
+      text-align: center;
+      font-size: 0.9em;
+      color: #1DB954;
+      margin-top: 0.5em;
+      line-height: 1.4;
     }
 
     .filter-bar {
@@ -135,8 +129,6 @@
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   <a href="cart.html" class="cart-icon" title="View Cart">🛒</a>
 
-  <div id="shippingNotice">Loading delivery info...</div>
-
   <div class="sidebar" id="sidebar">
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
     <a href="index.html">HOME</a>
@@ -153,6 +145,10 @@
   <div class="overlay">
     <h1>DJ Gûrten Merchandise Shop</h1>
 
+    <div id="shippingNotice">
+      <!-- JS will insert text here -->
+    </div>
+
     <div class="filter-bar">
       <label for="category">Filter by category: </label>
       <select id="category" onchange="filterProducts()">
@@ -165,36 +161,12 @@
     </div>
 
     <div class="product-grid" id="productGrid">
-      <!-- Example products -->
       <a class="product" data-category="apparel" href="product-tshirt.html">
         <img src="T-shirt zwart.PNG" alt="T-shirt">
         <h3>Black T-shirt</h3>
         <p>€24.95</p>
       </a>
-
-      <a class="product" data-category="apparel" href="product-hoodie-black.html">
-        <img src="Hoodie zwart.PNG" alt="Hoodie">
-        <h3>Black Hoodie</h3>
-        <p>€49.95</p>
-      </a>
-
-      <a class="product" data-category="apparel" href="product-hoodie-green.html">
-        <img src="Hoodie groen.PNG" alt="Hoodie">
-        <h3>Green Hoodie</h3>
-        <p>€49.95</p>
-      </a>
-
-      <a class="product" data-category="apparel" href="product-cap-black.html">
-        <img src="Cap zwart.PNG" alt="Cap">
-        <h3>Black Cap</h3>
-        <p>€19.95</p>
-      </a>
-
-      <a class="product" data-category="accessories" href="product-mug.html">
-        <img src="Koffiemok.PNG" alt="Mug">
-        <h3>Coffee Mug</h3>
-        <p>€12.95</p>
-      </a>
+      <!-- Voeg hier je andere producten toe -->
     </div>
 
     <footer>© 2025 DJ Gûrten</footer>
@@ -219,11 +191,11 @@
     const notice = document.getElementById("shippingNotice");
 
     if (day === 0) {
-      notice.textContent = "Orders placed today (Sunday) will be delivered on Tuesday.";
+      notice.innerHTML = "Orders placed today (Sunday)<br>will be delivered on Tuesday.";
     } else if (hour < 21) {
-      notice.textContent = "Order before 21:00 = delivered tomorrow";
+      notice.innerHTML = "Order before 21:00<br>= delivered tomorrow";
     } else {
-      notice.textContent = "Orders placed after 21:00 will be delivered the day after tomorrow";
+      notice.innerHTML = "Orders placed after 21:00<br>will be delivered the day after tomorrow";
     }
   </script>
 </body>

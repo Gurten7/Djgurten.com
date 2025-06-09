@@ -167,29 +167,36 @@
     <div class="container">
       <h1>PAYMENT</h1>
 
-      <!-- Payment Options -->
-      <select id="bankSelect">
-  <option value="">– Select your bank –</option>
-  <option value="abnamro">ABN AMRO</option>
-  <option value="asn">ASN Bank</option>
-  <option value="bunq">Bunq</option>
-  <option value="ing">ING</option>
-  <option value="knab">Knab</option>
-  <option value="moneyou">Moneyou</option>
-  <option value="n26">N26</option>
-  <option value="rabobank">Rabobank</option>
-  <option value="regiobank">RegioBank</option>
-  <option value="revolut">Revolut</option>
-  <option value="sns">SNS Bank</option>
-  <option value="triodos">Triodos Bank</option>
-  <option value="vanlanschot">Van Lanschot</option>
-  <option value="yourbank">YourBank</option>
-</select>
+      <!-- iDEAL Option -->
+      <div class="payment-option" onclick="selectPayment(this)">iDEAL <img src="ideal.PNG" alt="iDEAL"></div>
+      <div id="idealBanks">
+        <label for="bankSelect">Kies je bank</label>
+        <select id="bankSelect">
+          <option value="">– Select your bank –</option>
+          <option value="abnamro">ABN AMRO</option>
+          <option value="asn">ASN Bank</option>
+          <option value="bunq">Bunq</option>
+          <option value="ing">ING</option>
+          <option value="knab">Knab</option>
+          <option value="moneyou">Moneyou</option>
+          <option value="n26">N26</option>
+          <option value="rabobank">Rabobank</option>
+          <option value="regiobank">RegioBank</option>
+          <option value="revolut">Revolut</option>
+          <option value="sns">SNS Bank</option>
+          <option value="triodos">Triodos Bank</option>
+          <option value="vanlanschot">Van Lanschot</option>
+          <option value="yourbank">YourBank</option>
+        </select>
+      </div>
 
+      <!-- Other Payment Options -->
       <div class="payment-option" onclick="selectPayment(this, true)">Mastercard <img src="mastercard.PNG" alt="Mastercard"></div>
       <div class="payment-option" onclick="selectPayment(this, true)">Visa <img src="visa.PNG" alt="Visa"></div>
       <div class="payment-option" onclick="selectPayment(this, true)">American Express <img src="amex.PNG" alt="American Express"></div>
       <div class="payment-option" onclick="selectPayment(this)">PayPal <img src="paypal.PNG" alt="PayPal"></div>
+
+      <!-- Riverty Option -->
       <div class="payment-option" onclick="selectPayment(this)">Riverty (Pay later) <img src="riverty.PNG" alt="Riverty"></div>
       <div id="rivertyFields">
         <label for="birthdate">Geboortedatum</label>
@@ -204,6 +211,7 @@
           </label>
         </div>
       </div>
+
       <div class="payment-option" onclick="selectPayment(this)">Google Pay <img src="gpay.PNG" alt="Google Pay"></div>
       <div class="payment-option" onclick="selectPayment(this)">Apple Pay <img src="applepay.PNG" alt="Apple Pay"></div>
 
@@ -215,7 +223,7 @@
         <input type="text" id="cardCVV" placeholder="CVV">
       </div>
 
-      <!-- Summary -->
+      <!-- Order Summary -->
       <div class="summary" id="summary">
         <h2>ORDER SUMMARY</h2>
         <div class="summary-item"><span>Loading...</span><span>–</span></div>
@@ -248,7 +256,6 @@
     function validateAndPlaceOrder() {
       const selected = document.querySelector('.payment-option.selected');
       if (!selected) return alert("Select a payment method.");
-
       const method = selected.textContent;
 
       if (method.includes('iDEAL') && !document.getElementById('bankSelect').value) {
@@ -294,9 +301,7 @@
       const vat = 0.21 * (subtotal + shipping);
       const total = subtotal + shipping;
 
-      if (shipping > 0) html += `<div class="summary-item"><span>Shipping</span><span>€${shipping.toFixed(2)}</span></div>`;
-      else html += `<div class="summary-item"><span>Shipping</span><span>Free</span></div>`;
-
+      html += `<div class="summary-item"><span>Shipping</span><span>${shipping > 0 ? '€' + shipping.toFixed(2) : 'Free'}</span></div>`;
       html += `<div class="summary-item"><strong>Total</strong><strong>€${total.toFixed(2)}</strong></div>`;
       html += `<small>(Incl. VAT €${vat.toFixed(2)})</small>`;
 

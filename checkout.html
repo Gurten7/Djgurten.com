@@ -6,7 +6,6 @@
   <title>Checkout – DJ Gûrten</title>
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -15,37 +14,30 @@
       background-attachment: fixed;
       color: white;
     }
-
     .overlay {
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
       min-height: 100vh;
       padding: 2em 1em;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
     .checkout-container {
       background: #222;
       padding: 2em;
       border-radius: 12px;
+      max-width: 700px;
       width: 100%;
-      max-width: 600px;
-      margin-bottom: 2em;
     }
-
     h1 {
-      font-size: 1.8em;
       text-align: center;
-      margin-bottom: 1em;
+      font-size: 2em;
     }
-
     label {
       display: block;
       margin-top: 1em;
       font-weight: bold;
     }
-
     input[type="text"],
     input[type="email"],
     input[type="tel"] {
@@ -56,91 +48,51 @@
       margin-top: 0.3em;
       font-size: 1em;
     }
-
+    .cart-summary {
+      background: #111;
+      padding: 1em;
+      border-radius: 10px;
+      margin-bottom: 2em;
+    }
+    .cart-summary h2 {
+      font-size: 1.2em;
+      margin-bottom: 0.5em;
+    }
+    .cart-summary ul {
+      list-style: none;
+      padding: 0;
+    }
+    .cart-summary li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5em;
+    }
     .checkbox-group {
       margin-top: 1em;
     }
-
     .checkbox-group input {
       margin-right: 0.5em;
     }
-
     .pay-button {
       margin-top: 2em;
       background: white;
       color: black;
-      font-size: 1em;
       font-weight: bold;
       border: none;
       border-radius: 8px;
       padding: 1em;
       width: 100%;
+      font-size: 1em;
       cursor: pointer;
-      text-align: center;
-      display: block;
     }
-
-    .back-link {
-      display: block;
-      margin-top: 1em;
-      text-align: center;
-      color: yellow;
-      text-decoration: underline;
-      font-size: 0.9em;
+    .pay-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
-
     .error {
       color: red;
       font-size: 0.9em;
-      margin-top: 0.3em;
     }
-
-    .summary {
-      background: #333;
-      padding: 1em;
-      margin-bottom: 1em;
-      border-radius: 8px;
-    }
-
-    .summary h2 {
-      margin-top: 0;
-      font-size: 1.2em;
-    }
-
-    .summary ul {
-      padding-left: 1em;
-      margin: 0;
-    }
-
-    .summary li {
-      font-size: 0.95em;
-      margin-bottom: 0.5em;
-    }
-
-    .payment-logos {
-      text-align: center;
-      margin-top: 2em;
-    }
-
-    .payment-logos img {
-      height: 32px;
-      margin: 0.5em;
-      vertical-align: middle;
-    }
-
-    ul.usp-list {
-      list-style: none;
-      padding-left: 0;
-      font-size: 0.9em;
-      margin-top: 1em;
-    }
-
-    ul.usp-list li::before {
-      content: '✓';
-      margin-right: 0.5em;
-      color: white;
-    }
-
     footer {
       text-align: center;
       font-size: 0.8em;
@@ -151,13 +103,15 @@
 </head>
 <body>
   <div class="overlay">
-    <h1>Checkout</h1>
-
     <div class="checkout-container">
-      <div class="summary" id="cartSummary">
+      <h1>Checkout</h1>
+
+      <div class="cart-summary" id="cartSummary">
         <h2>Cart Summary</h2>
-        <ul id="cartItems"></ul>
-        <p><strong>Total: €<span id="cartTotal">0.00</span></strong></p>
+        <ul id="summaryList"></ul>
+        <li><strong>Shipping</strong><span>€5.95</span></li>
+        <li><strong>VAT (21%)</strong><span id="vatAmount">–</span></li>
+        <li><strong>Total</strong><span id="totalAmount">–</span></li>
       </div>
 
       <form id="checkoutForm">
@@ -168,133 +122,94 @@
         <input type="text" name="lastName" required>
 
         <label>Address *</label>
-        <input type="text" name="address" required placeholder="Street name and house number">
-
-        <label>Additional Info</label>
-        <input type="text" name="extra">
+        <input type="text" name="address" required>
 
         <label>Postal Code *</label>
-        <input type="text" name="postal" required placeholder="e.g. 1234 AB">
+        <input type="text" name="postcode" required>
 
         <label>City *</label>
-        <input type="text" name="city" required placeholder="e.g. Amsterdam">
+        <input type="text" name="city" required>
 
-        <label>Country: <strong>Netherlands</strong></label>
-
-        <label>Phone Number (optional)</label>
-        <input type="tel" name="phone" placeholder="e.g. 06 12345678">
+        <label>Phone (optional)</label>
+        <input type="tel" name="phone">
 
         <div class="checkbox-group">
-          <input type="checkbox" id="differentInvoice" onchange="toggleInvoiceFields()" />
-          <label for="differentInvoice" style="display:inline;">My billing and shipping address are different</label>
+          <input type="checkbox" id="invoiceCheck">
+          <label for="invoiceCheck">My billing and shipping address are different</label>
         </div>
 
-        <div id="invoiceFields" style="display:none; margin-top:1.5em;">
-          <h3>Billing Address</h3>
-          <label>First Name *</label>
-          <input type="text" name="invFirstName">
+        <div id="invoiceFields" style="display:none;">
+          <label>Invoice First Name *</label>
+          <input type="text" name="invFirstName" required>
 
-          <label>Last Name *</label>
-          <input type="text" name="invLastName">
+          <label>Invoice Last Name *</label>
+          <input type="text" name="invLastName" required>
 
-          <label>Address *</label>
-          <input type="text" name="invAddress" placeholder="Street name and house number">
+          <label>Invoice Address *</label>
+          <input type="text" name="invAddress" required>
 
-          <label>Additional Info</label>
-          <input type="text" name="invExtra">
+          <label>Invoice City *</label>
+          <input type="text" name="invCity" required>
 
-          <label>Postal Code *</label>
-          <input type="text" name="invPostal" placeholder="e.g. 1234 AB">
-
-          <label>City *</label>
-          <input type="text" name="invCity" placeholder="e.g. Amsterdam">
-
-          <label>Phone Number (optional)</label>
-          <input type="tel" name="invPhone" placeholder="e.g. 06 12345678">
+          <label>Invoice Postcode *</label>
+          <input type="text" name="invPostcode" required>
         </div>
 
         <div class="checkbox-group">
-          <input type="checkbox" id="ageCheck" checked onchange="checkAge()" />
-          <label for="ageCheck" style="display:inline;">I am 16 years or older</label>
-          <div id="ageError" class="error" style="display:none;">You must be at least 16 years old to order.</div>
+          <input type="checkbox" id="ageCheck" required>
+          <label for="ageCheck">I am 16 years or older *</label>
         </div>
 
         <div class="checkbox-group">
-          <input type="checkbox" id="marketingCheck" checked />
-          <label for="marketingCheck" style="display:inline;">Yes, keep me updated about DJ Gûrten news & offers</label>
+          <input type="checkbox" id="marketingCheck">
+          <label for="marketingCheck">Yes, keep me updated with DJ Gûrten news</label>
         </div>
 
         <button type="submit" class="pay-button">CONTINUE TO SHIPPING</button>
-        <a href="cart.html" class="back-link">← BACK TO CART</a>
+        <a href="cart.html" style="color: yellow; display: block; margin-top: 1em; text-align: center;">← BACK TO CART</a>
       </form>
     </div>
-
-    <div class="payment-logos">
-      <img src="ideal.PNG" alt="iDEAL">
-      <img src="mastercard.PNG" alt="Mastercard">
-      <img src="visa.PNG" alt="Visa">
-      <img src="amex.PNG" alt="American Express">
-      <img src="paypal.PNG" alt="PayPal">
-      <img src="riverty.PNG" alt="Riverty">
-      <img src="gpay.PNG" alt="Google Pay">
-      <img src="applepay.PNG" alt="Apple Pay">
-    </div>
-
-    <ul class="usp-list">
-      <li>Free shipping on orders over €50</li>
-      <li>Buy now, pay later with Riverty</li>
-      <li>Order today, delivered Wednesday</li>
-      <li>60-day return policy</li>
-      <li>365-day quality guarantee on every product</li>
-    </ul>
 
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
   <script>
-    function toggleInvoiceFields() {
-      const fields = document.getElementById("invoiceFields");
-      fields.style.display = fields.style.display === "none" ? "block" : "none";
+    function calculateCartSummary() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const summaryList = document.getElementById('summaryList');
+      const vatDisplay = document.getElementById('vatAmount');
+      const totalDisplay = document.getElementById('totalAmount');
+      summaryList.innerHTML = "";
+
+      let subtotal = 0;
+      cart.forEach(item => {
+        const line = document.createElement("li");
+        const itemTotal = item.qty * item.price;
+        line.innerHTML = `<span>${item.name} x${item.qty}</span><span>€${itemTotal.toFixed(2)}</span>`;
+        summaryList.appendChild(line);
+        subtotal += itemTotal;
+      });
+
+      const shipping = 5.95;
+      const vat = 0.21 * (subtotal + shipping);
+      const total = subtotal + shipping + vat;
+
+      vatDisplay.textContent = `€${vat.toFixed(2)}`;
+      totalDisplay.textContent = `€${total.toFixed(2)}`;
     }
 
-    function checkAge() {
-      const ageBox = document.getElementById("ageCheck");
-      const errorMsg = document.getElementById("ageError");
-      const submitBtn = document.querySelector(".pay-button");
+    document.getElementById('invoiceCheck').addEventListener('change', function () {
+      document.getElementById('invoiceFields').style.display = this.checked ? 'block' : 'none';
+    });
 
-      if (!ageBox.checked) {
-        errorMsg.style.display = "block";
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = "0.5";
-      } else {
-        errorMsg.style.display = "none";
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = "1";
-      }
-    }
-
-    document.getElementById("checkoutForm").addEventListener("submit", function(e) {
+    document.getElementById('checkoutForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
-      const requiredFields = [...this.querySelectorAll("input[required]")];
-      const invoiceFieldsVisible = document.getElementById("invoiceFields").style.display === "block";
+      const form = e.target;
+      const requiredFields = [...form.querySelectorAll('input[required]')];
       let valid = true;
 
-      if (invoiceFieldsVisible) {
-        const invoiceRequired = ["invFirstName", "invLastName", "invAddress", "invPostal", "invCity"];
-        invoiceRequired.forEach(name => {
-          const field = this.querySelector(`[name="${name}"]`);
-          if (field && field.value.trim() === "") {
-            valid = false;
-            field.style.border = "1px solid red";
-          } else if (field) {
-            field.style.border = "";
-          }
-        });
-      }
-
       requiredFields.forEach(field => {
-        if (field.value.trim() === "") {
+        if (field.offsetParent !== null && !field.value.trim()) {
           valid = false;
           field.style.border = "1px solid red";
         } else {
@@ -302,33 +217,14 @@
         }
       });
 
-      if (!valid) {
+      if (valid) {
+        window.location.href = "shipping.html";
+      } else {
         alert("Please complete all required fields.");
-        return;
       }
-
-      window.location.href = "shipping.html";
     });
 
-    // Cart rendering
-    function renderCartSummary() {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const list = document.getElementById("cartItems");
-      const total = document.getElementById("cartTotal");
-      list.innerHTML = "";
-      let sum = 0;
-
-      cart.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `${item.qty} × ${item.name} (€${item.price.toFixed(2)} each)`;
-        list.appendChild(li);
-        sum += item.qty * item.price;
-      });
-
-      total.textContent = sum.toFixed(2);
-    }
-
-    document.addEventListener("DOMContentLoaded", renderCartSummary);
+    window.addEventListener('DOMContentLoaded', calculateCartSummary);
   </script>
 </body>
 </html>

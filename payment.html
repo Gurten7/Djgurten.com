@@ -150,7 +150,6 @@
       width: 100%; height: 100%;
       background: rgba(0,0,0,0.9);
       z-index: 9999;
-      display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
@@ -232,10 +231,10 @@
         <p style="font-size: 0.9em; color: #ccc;">
           As required by European regulations (PSD2), your bank may ask for extra verification to complete the transaction.
         </p>
-        <input type="text" placeholder="Card Number" required />
-        <input type="text" placeholder="Name on card" required />
-        <input type="text" placeholder="MM/YY" required />
-        <input type="text" placeholder="CVV" required />
+        <input type="text" id="cardNumber" placeholder="Card Number" required />
+        <input type="text" id="cardName" placeholder="Name on card" required />
+        <input type="text" id="cardExpiry" placeholder="MM/YY" required />
+        <input type="text" id="cardCVV" placeholder="CVV" required />
       </div>
 
       <!-- Summary -->
@@ -268,19 +267,47 @@
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
-  <!-- Loading screen -->
-  <div id="loadingScreen">
+  <!-- Loading Screen -->
+  <div id="loadingScreen" style="display: none; flex;">
     <div class="loader"></div>
     <p style="margin-top: 1em;">Processing your payment...</p>
   </div>
 
   <script>
+    // Herstel opgeslagen gegevens en betaalmethode
+    document.addEventListener('DOMContentLoaded', () => {
+      ['cardNumber', 'cardName', 'cardExpiry', 'cardCVV'].forEach(id => {
+        const saved = localStorage.getItem(id);
+        if (saved) document.getElementById(id).value = saved;
+      });
+
+      const savedPayment = localStorage.getItem('selectedPayment');
+      if (savedPayment) {
+        document.querySelectorAll('.payment-option').forEach(option => {
+          if (option.textContent.trim() === savedPayment) {
+            option.classList.add('selected');
+            if (['Mastercard', 'Visa', 'American Express'].includes(savedPayment)) {
+              document.getElementById('cardFields').style.display = 'block';
+            }
+          }
+        });
+      }
+    });
+
+    // Opslaan bij typen
+    document.querySelectorAll('.card-fields input').forEach(input => {
+      input.addEventListener('input', () => {
+        localStorage.setItem(input.id, input.value);
+      });
+    });
+
     function selectPayment(el, showCard = false) {
       document.querySelectorAll('.payment-option').forEach(option => {
         option.classList.remove('selected');
       });
       el.classList.add('selected');
       document.getElementById('cardFields').style.display = showCard ? 'block' : 'none';
+      localStorage.setItem('selectedPayment', el.textContent.trim());
     }
 
     function validateAndPlaceOrder() {
@@ -301,7 +328,7 @@
         }
       }
 
-      // Show fake loading screen
+      // Show loading screen
       document.getElementById('loadingScreen').style.display = 'flex';
 
       setTimeout(() => {

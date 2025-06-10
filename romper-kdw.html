@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KDW '26 Baby Romper – DJ Gûrten</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-color: black;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      background: #111;
+      border-radius: 12px;
+      padding: 2em;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 1em;
+      color: #ccc;
+    }
+
+    label {
+      display: block;
+      margin-top: 1.5em;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 0.7em;
+      margin-top: 0.5em;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .button {
+      margin-top: 2em;
+      display: block;
+      width: 100%;
+      background: #1DB954;
+      color: white;
+      padding: 0.8em;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .back-link,
+    .cart-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.5em;
+      text-decoration: underline;
+    }
+
+    .back-link { color: yellow; }
+    .cart-link { color: violet; font-weight: bold; }
+
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <img src="romper-kdw.PNG" alt="KDW '26 Baby Romper">
+      <h1>KDW '26 Baby Romper</h1>
+      <p>Let even the littlest ones join the party with this vibrant romper in full festival style. Inspired by the KDW '26 anthem hoodie, now in baby size – featuring the DJ Gûrten logo!</p>
+
+      <label for="qty">Quantity</label>
+      <input type="number" id="qty" value="1" min="1" />
+
+      <button class="button" id="addToCart">Add to Cart</button>
+
+      <a href="shop.html" class="back-link">← Back to Shop</a>
+      <a href="cart.html" class="cart-link">🛒 Go to Cart</a>
+    </div>
+    <footer>© 2025 DJ Gûrten</footer>
+  </div>
+
+  <script>
+    const addToCartBtn = document.getElementById('addToCart');
+    const qtyInput = document.getElementById('qty');
+
+    addToCartBtn.addEventListener('click', () => {
+      const qty = parseInt(qtyInput.value);
+      if (qty < 1) {
+        alert("Please enter a valid quantity.");
+        return;
+      }
+
+      const item = {
+        name: "KDW '26 Baby Romper",
+        size: "",
+        qty: qty,
+        price: 17.95,
+        image: "romper-kdw.PNG"
+      };
+
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(i => i.name === item.name && i.size === item.size);
+
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push(item);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = "cart.html";
+    });
+  </script>
+</body>
+</html>

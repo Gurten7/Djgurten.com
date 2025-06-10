@@ -89,26 +89,34 @@
       flex-direction: column;
       gap: 1em;
       margin-top: 2em;
+      text-align: center;
     }
 
-    .buttons a {
+    .checkout-button {
+      background: white;
+      color: black;
       padding: 1em;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      text-align: center;
+      display: inline-block;
     }
 
-    .buttons a:first-child {
+    .back-link {
       color: yellow;
-      background: none;
+      font-weight: bold;
       text-decoration: underline;
       font-size: 0.9em;
     }
 
-    .buttons a:last-child {
+    .back-button-white {
       background: white;
       color: black;
+      padding: 1em;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
     }
 
     footer {
@@ -139,7 +147,7 @@
         cartContainer.innerHTML = `
           <p>Your cart is currently empty.</p>
           <div class="buttons">
-            <a href="shop.html">← BACK TO SHOP</a>
+            <a href="shop.html" class="back-button-white">← BACK TO SHOP</a>
           </div>
         `;
         return;
@@ -170,9 +178,8 @@
           <div><strong>Total: €${grandTotal}</strong></div>
         </div>
         <div class="buttons">
-          <a href="checkout.html">CONTINUE TO CHECKOUT</a>
-          <a href="shop.html">← BACK TO SHOP</a>
-          
+          <a href="checkout.html" class="checkout-button">CONTINUE TO CHECKOUT</a>
+          <a href="shop.html" class="back-link">← BACK TO SHOP</a>
         </div>
       `;
     }

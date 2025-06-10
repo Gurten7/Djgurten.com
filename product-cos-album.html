@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color of Sounds – DJ GURTEN</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-color: black;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      background: #111;
+      border-radius: 12px;
+      padding: 2em;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 1em;
+      color: #ccc;
+      line-height: 1.6em;
+    }
+
+    label {
+      display: block;
+      margin-top: 1.5em;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 0.7em;
+      margin-top: 0.5em;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .button {
+      margin-top: 2em;
+      display: block;
+      width: 100%;
+      background: #1DB954;
+      color: white;
+      padding: 0.8em;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .back-link,
+    .cart-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.5em;
+      text-decoration: underline;
+    }
+
+    .back-link { color: yellow; }
+    .cart-link { color: violet; font-weight: bold; }
+
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <img src="color-of-sounds-album.png" alt="Color of Sounds Album by DJ GURTEN">
+      <h1>Color of Sounds (CD)</h1>
+      <p>Experience the full sonic spectrum with DJ GURTEN's debut album <strong>Color of Sounds</strong>. This physical CD features all 12 high-energy tracks, from hypnotic build-ups to explosive drops. The limited edition cover and vibrant inlay make it a collector's item.</p>
+
+      <p><strong>Tracklist:</strong><br>
+      1. Color of Sounds<br>
+      2. Echoes in the Night<br>
+      3. Golden Horizon<br>
+      4. Sway Like The Sun<br>
+      5. Midnight Mirage<br>
+      6. Sunset Sax<br>
+      7. Gravity Lies<br>
+      8. Only You Know<br>
+      9. Save Me From the Silence<br>
+      10. Don’t Slow Down<br>
+      11. Higher Ground<br>
+      12. ALL INN</p>
+
+      <label for="qty">Quantity</label>
+      <input type="number" id="qty" value="1" min="1" />
+
+      <button class="button" id="addToCart">Add to Cart – €12.95</button>
+
+      <a href="shop.html" class="back-link">← Back to Shop</a>
+      <a href="cart.html" class="cart-link">🛒 Go to Cart</a>
+    </div>
+    <footer>© 2025 DJ GURTEN</footer>
+  </div>
+
+  <script>
+    const addToCartBtn = document.getElementById('addToCart');
+    const qtyInput = document.getElementById('qty');
+
+    addToCartBtn.addEventListener('click', () => {
+      const qty = parseInt(qtyInput.value);
+      if (qty < 1) {
+        alert("Please enter a valid quantity.");
+        return;
+      }
+
+      const item = {
+        name: "Color of Sounds (CD)",
+        size: "",
+        qty: qty,
+        price: 12.95,
+        image: "color-of-sounds-album.png"
+      };
+
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(i => i.name === item.name && i.size === item.size);
+
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push(item);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = "cart.html";
+    });
+  </script>
+</body>
+</html>

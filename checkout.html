@@ -103,18 +103,25 @@
       <li><strong>VAT (21%)</strong><span id="vatAmount">–</span></li>
       <li><strong>Total</strong><span id="totalAmount">–</span></li>
     </div>
+        <form id="checkoutForm">
+      <label>Email Address *</label>
+      <input type="email" name="email" placeholder="e.g. jan@example.com" required>
 
-    <form id="checkoutForm">
       <label>First Name *</label>
       <input type="text" name="firstName" placeholder="e.g. Jan" required>
+
       <label>Last Name *</label>
       <input type="text" name="lastName" placeholder="e.g. Jansen" required>
+
       <label>Address *</label>
       <input type="text" name="address" placeholder="Street + house number" required>
+
       <label>Postal Code *</label>
       <input type="text" name="postcode" placeholder="e.g. 1234 AB" required>
+
       <label>City *</label>
       <input type="text" name="city" placeholder="e.g. Amsterdam" required>
+
       <label>Phone</label>
       <input type="tel" name="phone" placeholder="e.g. 06 12345678">
 
@@ -126,12 +133,16 @@
       <div id="invoiceFields" style="display:none;">
         <label>Invoice First Name *</label>
         <input type="text" name="invFirstName" placeholder="e.g. Jan">
+
         <label>Invoice Last Name *</label>
         <input type="text" name="invLastName" placeholder="e.g. Jansen">
+
         <label>Invoice Address *</label>
         <input type="text" name="invAddress" placeholder="Street + house number">
+
         <label>Invoice City *</label>
         <input type="text" name="invCity" placeholder="e.g. Utrecht">
+
         <label>Invoice Postcode *</label>
         <input type="text" name="invPostcode" placeholder="e.g. 5678 CD">
       </div>
@@ -140,6 +151,7 @@
         <input type="checkbox" id="ageCheck" required>
         <label for="ageCheck">I am 16 years or older *</label>
       </div>
+
       <div class="checkbox-group">
         <input type="checkbox" id="marketingCheck">
         <label for="marketingCheck">Yes, keep me updated with DJ Gûrten news</label>
@@ -150,29 +162,27 @@
     </form>
 
     <div style="margin-top: 2.5em; text-align: center;">
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5em; margin-bottom: 0.5em;">
-    <img src="ideal2.PNG" alt="iDEAL" style="height: 35px;">
-    <img src="mastercard.PNG" alt="Mastercard" style="height: 35px;">
-    <img src="visa.PNG" alt="Visa" style="height: 35px;">
-    <img src="amex.PNG" alt="Amex" style="height: 35px;">
-    <img src="paypal.PNG" alt="PayPal" style="height: 35px;">
-    <img src="riverty.PNG" alt="Riverty" style="height: 35px;">
-  </div>
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5em; margin-bottom: 1.5em;">
-    
-    <img src="gpay.PNG" alt="Google Pay" style="height: 35px;">
-    <img src="applepay.PNG" alt="Apple Pay" style="height: 35px;">
-  </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5em; margin-bottom: 0.5em;">
+        <img src="ideal2.PNG" alt="iDEAL" style="height: 35px;">
+        <img src="mastercard.PNG" alt="Mastercard" style="height: 35px;">
+        <img src="visa.PNG" alt="Visa" style="height: 35px;">
+        <img src="amex.PNG" alt="Amex" style="height: 35px;">
+        <img src="paypal.PNG" alt="PayPal" style="height: 35px;">
+        <img src="riverty.PNG" alt="Riverty" style="height: 35px;">
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5em; margin-bottom: 1.5em;">
+        <img src="gpay.PNG" alt="Google Pay" style="height: 35px;">
+        <img src="applepay.PNG" alt="Apple Pay" style="height: 35px;">
+      </div>
 
-  <ul style="text-align: left; list-style: none; font-size: 0.9em; max-width: 600px; margin: auto; padding-left: 0;">
-    <li style="margin-bottom: 0.5em;">✅ Free shipping from €50</li>
-    <li style="margin-bottom: 0.5em;">✅ Order now, pay later with Riverty</li>
-    <li style="margin-bottom: 0.5em;">✅ Ordered today before 21.00 , delivered tomorrow</li>
-    <li style="margin-bottom: 0.5em;">✅ Return within 60 days</li>
-    <li style="margin-bottom: 0.5em;">✅ 365-day quality guarantee on every item</li>
-  </ul>
-</div>
-    
+      <ul style="text-align: left; list-style: none; font-size: 0.9em; max-width: 600px; margin: auto; padding-left: 0;">
+        <li style="margin-bottom: 0.5em;">✅ Free shipping from €50</li>
+        <li style="margin-bottom: 0.5em;">✅ Order now, pay later with Riverty</li>
+        <li style="margin-bottom: 0.5em;">✅ Ordered today before 21:00, delivered tomorrow</li>
+        <li style="margin-bottom: 0.5em;">✅ Return within 60 days</li>
+        <li style="margin-bottom: 0.5em;">✅ 365-day quality guarantee on every item</li>
+      </ul>
+    </div>
   </div>
   <footer>© 2025 DJ Gûrten</footer>
 </div>
@@ -211,17 +221,17 @@
       const saved = localStorage.getItem('checkout_' + input.name);
       if (saved) input.value = saved;
     });
-    document.getElementById('invoiceCheck').checked = localStorage.getItem('checkout_invoiceCheck') === 'true';
-    document.getElementById('ageCheck').checked = localStorage.getItem('checkout_ageCheck') === 'true';
-    document.getElementById('marketingCheck').checked = localStorage.getItem('checkout_marketingCheck') === 'true';
-
+    ['invoiceCheck', 'ageCheck', 'marketingCheck'].forEach(id => {
+      const checkbox = document.getElementById(id);
+      checkbox.checked = localStorage.getItem('checkout_' + id) === 'true';
+    });
     if (document.getElementById('invoiceCheck').checked) {
       document.getElementById('invoiceFields').style.display = 'block';
     }
   }
 
   function saveFormData() {
-    document.querySelectorAll('#checkoutForm input').forEach(input => {
+    form.querySelectorAll('input').forEach(input => {
       input.addEventListener('input', () => {
         localStorage.setItem('checkout_' + input.name, input.value);
         resetInactivityTimer();
@@ -237,7 +247,7 @@
 
   function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(clearCheckoutData, 10 * 60 * 1000); // 10 minuten
+    inactivityTimer = setTimeout(clearCheckoutData, 10 * 60 * 1000); // 10 minutes
   }
 
   function clearCheckoutData() {
@@ -261,7 +271,7 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    const requiredFields = this.querySelectorAll('input[required]');
+    const requiredFields = form.querySelectorAll('input[required]');
     let valid = true;
 
     requiredFields.forEach(field => {
@@ -274,7 +284,7 @@
     });
 
     if (valid) {
-      clearCheckoutData(); // 🧹 Leeg data bij bevestiging
+      clearCheckoutData();
       window.location.href = 'shipping.html';
     } else {
       alert('Please complete all required fields.');

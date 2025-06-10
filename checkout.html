@@ -295,10 +295,11 @@
     });
 
 if (valid) {
+  clearCheckoutData(); // Data wissen bij succesvolle verzending
   window.location.href = 'shipping.html';
 }
-    } else {
-      alert('Please complete all required fields.');
+else {
+alert('Please complete all required fields.');
     }
   });
 

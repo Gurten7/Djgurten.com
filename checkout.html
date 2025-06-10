@@ -284,12 +284,10 @@
     });
 
     if (valid) {
-      clearCheckoutData();
-      window.location.href = 'shipping.html';
-    } else {
-      alert('Please complete all required fields.');
-    }
-  });
+  window.location.href = 'shipping.html';
+} else {
+  alert('Please complete all required fields.');
+}
 
   window.addEventListener('DOMContentLoaded', () => {
     calculateCartSummary();

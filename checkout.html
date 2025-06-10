@@ -94,7 +94,7 @@
 </head>
 <body>
 <div class="overlay">
-  <div class="checkout-container">
+    <div class="checkout-container">
     <h1>Checkout</h1>
     <div class="cart-summary" id="cartSummary">
       <h2>Cart Summary</h2>
@@ -103,7 +103,8 @@
       <li><strong>VAT (21%)</strong><span id="vatAmount">–</span></li>
       <li><strong>Total</strong><span id="totalAmount">–</span></li>
     </div>
-        <form id="checkoutForm">
+
+    <form id="checkoutForm">
       <label>Email Address *</label>
       <input type="email" name="email" placeholder="e.g. jan@example.com" required>
 
@@ -186,8 +187,7 @@
   </div>
   <footer>© 2025 DJ Gûrten</footer>
 </div>
-
-<script>
+    <script>
   const form = document.getElementById('checkoutForm');
   let inactivityTimer;
 
@@ -247,7 +247,7 @@
 
   function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(clearCheckoutData, 10 * 60 * 1000); // 10 minutes
+    inactivityTimer = setTimeout(clearCheckoutData, 10 * 60 * 1000); // 10 minuten
   }
 
   function clearCheckoutData() {
@@ -284,10 +284,11 @@
     });
 
     if (valid) {
-  window.location.href = 'shipping.html';
-} else {
-  alert('Please complete all required fields.');
-}
+      window.location.href = 'shipping.html';
+    } else {
+      alert('Please complete all required fields.');
+    }
+  });
 
   window.addEventListener('DOMContentLoaded', () => {
     calculateCartSummary();
@@ -298,6 +299,7 @@
 
   document.addEventListener('mousemove', resetInactivityTimer);
   document.addEventListener('keydown', resetInactivityTimer);
-</script>
+  </script>
 </body>
 </html>
+

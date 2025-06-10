@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Limited DJ Booth – DJ Gûrten</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-color: black;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      background: #111;
+      border-radius: 12px;
+      padding: 2em;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.05em;
+      color: #ccc;
+      margin-bottom: 1.5em;
+    }
+
+    ul {
+      padding-left: 1.2em;
+      margin-bottom: 2em;
+    }
+
+    ul li {
+      margin-bottom: 0.8em;
+    }
+
+    label {
+      display: block;
+      margin-top: 1.5em;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 0.7em;
+      margin-top: 0.5em;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .button {
+      margin-top: 2em;
+      display: block;
+      width: 100%;
+      background: #e60073;
+      color: white;
+      padding: 0.8em;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .back-link,
+    .cart-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.5em;
+      text-decoration: underline;
+    }
+
+    .back-link { color: yellow; }
+    .cart-link { color: violet; font-weight: bold; }
+
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <img src="booth.PNG" alt="Limited Edition DJ Gûrten Booth Set">
+      <h1>DJ Gûrten Booth Set</h1>
+      <p>
+        Enter the stage like a legend. <strong>This is not just a DJ booth – this is the GÛRTEN EXPERIENCE</strong>. With only 10 sets in existence, you’ll be one of the few to own the heartbeat of the 'Color of Sounds' tour.
+      </p>
+      <p>
+        Designed for festivals, clubs, or your ultimate home setup – the DJ Gûrten Booth Set is the centerpiece of every night to remember.
+      </p>
+
+      <ul>
+        <li>🎛 Full-size DJ Booth Cover with custom DJ Gûrten branding and glow-in-the-dark highlights</li>
+        <li>🎇 LED backdrop with pulsating Soundwave animation – personalize with your own logo</li>
+        <li>🧳 Foldable design with heavy-duty flightcase included</li>
+        <li>🎵 Includes the single “Color of Sounds” on signed limited edition vinyl</li>
+        <li>🌍 Only <strong>10 pieces worldwide</strong>, numbered & certified</li>
+      </ul>
+
+      <p><strong>Price: €1999</strong><br><small>Includes free worldwide shipping and authenticity certificate</small></p>
+
+      <label for="qty">Quantity</label>
+      <input type="number" id="qty" value="1" min="1" max="1" />
+
+      <button class="button" id="addToCart">Add to Cart</button>
+
+      <a href="shop.html" class="back-link">← Back to Shop</a>
+      <a href="cart.html" class="cart-link">🛒 Go to Cart</a>
+    </div>
+    <footer>© 2025 DJ Gûrten</footer>
+  </div>
+
+  <script>
+    const addToCartBtn = document.getElementById('addToCart');
+    const qtyInput = document.getElementById('qty');
+
+    addToCartBtn.addEventListener('click', () => {
+      const qty = parseInt(qtyInput.value);
+      if (qty < 1 || qty > 1) {
+        alert("Only 1 unit per customer available.");
+        return;
+      }
+
+      const item = {
+        name: "DJ Booth Set (Limited Edition)",
+        size: "",
+        qty: qty,
+        price: 1999.00,
+        image: "booth.PNG"
+      };
+
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(i => i.name === item.name && i.size === item.size);
+
+      if (existing) {
+        alert("Only 1 unit available. You’ve already added it.");
+        return;
+      } else {
+        cart.push(item);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = "cart.html";
+    });
+  </script>
+</body>
+</html>

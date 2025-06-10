@@ -126,38 +126,33 @@
       <label>Phone</label>
       <input type="tel" name="phone" placeholder="e.g. 0612345678">
 
-      <div class="checkbox-group">
-        <input type="checkbox" id="invoiceCheck">
-        <label for="invoiceCheck">My billing and shipping address are different</label>
-      </div>
+      <label class="checkbox-group">
+  <input type="checkbox" id="invoiceCheck">
+  My billing and shipping address are different
+</label>
 
-      <div id="invoiceFields" style="display:none;">
-        <label>Invoice First Name *</label>
-        <input type="text" name="invFirstName" placeholder="e.g. Jan">
+<div id="invoiceFields" style="display:none;">
+  <label>Invoice First Name *</label>
+  <input type="text" name="invFirstName" placeholder="e.g. Jan">
+  <label>Invoice Last Name *</label>
+  <input type="text" name="invLastName" placeholder="e.g. Jansen">
+  <label>Invoice Address *</label>
+  <input type="text" name="invAddress" placeholder="Street + house number">
+  <label>Invoice City *</label>
+  <input type="text" name="invCity" placeholder="e.g. Utrecht">
+  <label>Invoice Postcode *</label>
+  <input type="text" name="invPostcode" placeholder="e.g. 5678 CD">
+</div>
 
-        <label>Invoice Last Name *</label>
-        <input type="text" name="invLastName" placeholder="e.g. Jansen">
+<label class="checkbox-group">
+  <input type="checkbox" id="ageCheck" required>
+  I am 16 years or older *
+</label>
 
-        <label>Invoice Address *</label>
-        <input type="text" name="invAddress" placeholder="Street + house number">
-
-        <label>Invoice City *</label>
-        <input type="text" name="invCity" placeholder="e.g. Utrecht">
-
-        <label>Invoice Postcode *</label>
-        <input type="text" name="invPostcode" placeholder="e.g. 5678 CD">
-      </div>
-
-      <div class="checkbox-group">
-        <input type="checkbox" id="ageCheck" required>
-        <label for="ageCheck">I am 16 years or older *</label>
-      </div>
-
-      <div class="checkbox-group">
-        <input type="checkbox" id="marketingCheck">
-        <label for="marketingCheck">Yes, keep me updated with DJ Gûrten news</label>
-      </div>
-
+<label class="checkbox-group">
+  <input type="checkbox" id="marketingCheck">
+  Yes, keep me updated with DJ Gûrten news
+</label>
       <button type="submit" class="pay-button">CONTINUE TO SHIPPING</button>
       <a href="cart.html" class="back-link">← BACK TO CART</a>
     </form>

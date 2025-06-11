@@ -299,6 +299,66 @@
       <div class="view-all" id="view-all-link" onclick="goToFullTour()">View all tour dates</div>
     </section>
 
+    <!-- Andere secties zoals countdown, buttons etc. -->
+<section id="tour">
+  <h2 id="tour-title">Colors of Sound Tour 2026</h2>
+  <div id="tour-cards">
+    <!-- Tourcards worden hier automatisch geladen -->
+  </div>
+  <div class="view-all" id="view-all-link" onclick="goToFullTour()">View all tour dates</div>
+</section>
+
+<!-- PLAK HIER DIT SCRIPT -->
+<script>
+  async function fetchTourCards(year) {
+    const file = year === 2025 ? 'tour2025.html' : 'tour.html';
+    const response = await fetch(file);
+    const text = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    const cards = Array.from(doc.querySelectorAll('.tour-card'));
+
+    function parseDate(card) {
+      const dateText = card.querySelector('.tour-date').innerText.trim();
+      const [day, monthText] = dateText.split('\n');
+      const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+      const month = months.indexOf(monthText.trim().toUpperCase());
+      if (month < 0 || !day) return null;
+      return new Date(year, month, parseInt(day));
+    }
+
+    const today = new Date();
+    const upcoming = cards
+      .map(card => ({ card, date: parseDate(card) }))
+      .filter(item => item.date && item.date >= today)
+      .sort((a, b) => a.date - b.date)
+      .slice(0, 3)
+      .map(item => item.card);
+
+    const container = document.getElementById('tour-cards');
+    container.innerHTML = '';
+    upcoming.forEach(card => container.appendChild(card));
+  }
+
+  fetchTourCards(2026); // Initial load
+
+  function showTour(year) {
+    document.getElementById('btn2025').classList.remove('active');
+    document.getElementById('btn2026').classList.remove('active');
+    document.getElementById(`btn${year}`).classList.add('active');
+
+    document.getElementById('tour-title').textContent =
+      year === 2025 ? 'Electric Groove Tour 2025' : 'Colors of Sound Tour 2026';
+
+    document.getElementById('view-all-link').onclick = function () {
+      window.location.href = year === 2025 ? 'tour2025.html' : 'tour.html';
+    };
+
+    fetchTourCards(year);
+  }
+</script>
+</body>
         <section id="music">
       <h2>🎵 Latest Music</h2>
       <div class="music-card">

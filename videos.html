@@ -64,6 +64,19 @@
       font-weight: bold;
     }
 
+    .dropdown-menu {
+      display: none;
+      margin-left: 1em;
+    }
+
+    .dropdown-menu a {
+      font-weight: normal;
+    }
+
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+
     h1 {
       font-size: 2em;
       margin-top: 2em;
@@ -92,18 +105,26 @@
 
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
+  <!-- Sidebar met dropdown -->
   <div class="sidebar" id="sidebar">
-  <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
-  <a href="index.html">HOME</a>
-  <a href="tour.html">TOUR DATES</a>
-  <a href="news.html">NEWS</a>
-  <a href="music.html">MUSIC</a>
-  <a href="biography.html">BIOGRAPHY</a>
-  <a href="videos.html">VIDEOS</a>
-  <a href="shop.html">SHOP</a>
-  <a href="contact.html">CONTACT</a>
-  <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
-</div>
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+      <div class="dropdown-menu" id="tourDropdown">
+        <a href="tour2025.html">Tour 2025</a>
+        <a href="tour.html">Tour 2026</a>
+      </div>
+    </div>
+    <a href="news.html">NEWS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="videos.html">VIDEOS</a>
+    <a href="shop.html">SHOP</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+  </div>
+
   <div class="overlay">
     <h1>🎬 Videos</h1>
     <div class="construction-message">
@@ -116,6 +137,13 @@
   <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function toggleDropdown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const dropdown = e.target.parentElement;
+      dropdown.classList.toggle('active');
     }
   </script>
 

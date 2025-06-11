@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Gurten – Colors of Sound Tour</title>
+  <title>DJ Gurten – Tour</title>
   <style>
     * { box-sizing: border-box; }
 
@@ -71,7 +71,9 @@
       z-index: 999;
     }
 
-    .sidebar.active { left: 0; }
+    .sidebar.active {
+      left: 0;
+    }
 
     .sidebar a {
       display: block;
@@ -131,113 +133,6 @@
       vertical-align: middle;
       display: block;
     }
-
-    #tour {
-      width: 100%;
-      max-width: 700px;
-      margin-top: 3em;
-      padding: 0 1em;
-    }
-
-    #tour h2 {
-      color: yellow;
-      text-shadow: 0 0 8px yellow;
-      margin-bottom: 1em;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .tour-switch {
-      background: none;
-      border: 2px solid yellow;
-      color: yellow;
-      padding: 0.5em 1em;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 0 0.5em;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .tour-switch.active {
-      background: yellow;
-      color: black;
-    }
-
-    .tour-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #111;
-      border-radius: 12px;
-      padding: 1em;
-      margin-bottom: 1em;
-    }
-
-    .tour-date {
-      text-align: center;
-      color: yellow;
-      font-weight: bold;
-      font-size: 1em;
-      min-width: 60px;
-    }
-
-    .tour-info {
-      flex-grow: 1;
-      text-align: left;
-      margin-left: 1em;
-    }
-
-    .ticket-button {
-      background-color: white;
-      color: black;
-      border: none;
-      padding: 0.5em 1.2em;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: not-allowed;
-    }
-
-    .view-all {
-      color: yellow;
-      text-align: center;
-      text-decoration: underline;
-      margin-top: 1em;
-    }
-
-    #music {
-      width: 100%;
-      max-width: 700px;
-      margin: 4em auto 2em;
-      padding: 0 1em;
-      text-align: center;
-    }
-
-    #music h2 {
-      color: yellow;
-      text-shadow: 0 0 8px yellow;
-      text-transform: uppercase;
-      margin-bottom: 1em;
-    }
-
-    .music-card {
-      background: #111;
-      padding: 1em;
-      border-radius: 15px;
-    }
-
-    .music-card img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1em;
-    }
-
-    footer {
-      margin-top: 4em;
-      font-size: 0.9em;
-      opacity: 0.7;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
@@ -247,15 +142,13 @@
   <div class="sidebar" id="sidebar">
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
     <a href="index.html">HOME</a>
-
     <div class="dropdown">
       <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
-      <div class="dropdown-menu">
+      <div class="dropdown-menu" id="tourDropdown">
         <a href="tour2025.html">Tour 2025</a>
         <a href="tour.html">Tour 2026</a>
       </div>
     </div>
-
     <a href="news.html">NEWS</a>
     <a href="music.html">MUSIC</a>
     <a href="biography.html">BIOGRAPHY</a>
@@ -266,8 +159,8 @@
   </div>
 
   <div class="overlay">
-    <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo" />
-    <h1>KDW '26 – The Anthem</h1>
+    <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo"/>
+      <h1 id="tour-title">Loading tour...</h1>
     <div class="release-date">Release date: April 1st, 2026 at 12:00 PM</div>
     <div id="countdown">Loading...</div>
 
@@ -279,19 +172,14 @@
       <img src="instagram.PNG" alt="Instagram" /> Follow on Instagram
     </a>
 
-    <section id="tour">
-      <h2 id="tourTitle">Color of Sounds Tour 2026</h2>
-
+    <section id="tour" style="margin-top: 3em;">
       <div style="text-align:center; margin-bottom: 1em;">
-        <button onclick="showTour(2025)" class="tour-switch" id="btn2025">2025</button>
-        <button onclick="showTour(2026)" class="tour-switch active" id="btn2026">2026</button>
+        <button onclick="setTourYear(2025)" class="button" id="btn2025">2025</button>
+        <button onclick="setTourYear(2026)" class="button" id="btn2026">2026</button>
       </div>
-
-      <div id="tourList"></div>
-
-      <div class="view-all">
-        View all tour dates: <a id="viewLink" href="tour.html" style="color: yellow;">2026</a>
-      </div>
+      <h2 style="text-align: center;" id="tour-subtitle"></h2>
+      <div id="tour-list"></div>
+      <div id="view-all" class="view-all">View all tour dates</div>
     </section>
 
     <section id="music">
@@ -300,85 +188,101 @@
         <img src="Colors of sound.PNG" alt="Colors of Sound Cover">
         <h3>Color of Sounds</h3>
         <p>The brand new single by DJ Gurten – now on Spotify</p>
-
         <a href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ?si=Q3_VM_m9RcO4Jr4vNBSS5A" target="_blank" class="button">
-          <img src="spotify-icon.PNG" alt="Spotify Logo"> Listen now on Spotify
+          <img src="spotify-icon.PNG" alt="Spotify Logo">
+          Listen now on Spotify
         </a>
       </div>
     </section>
 
     <footer>© 2025 DJ Gurten</footer>
   </div>
-
   <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+  }
+
+  function toggleDropdown(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const dropdown = e.target.parentElement;
+    dropdown.classList.toggle('active');
+  }
+
+  function updateCountdown() {
+    const target = new Date("April 1, 2026 12:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").innerText = "Released!";
+      return;
     }
 
-    function toggleDropdown(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      const dropdown = e.target.parentElement;
-      dropdown.classList.toggle('active');
-    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-    function updateCountdown() {
-      const target = new Date("April 1, 2026 12:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = target - now;
+    document.getElementById("countdown").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
 
-      if (diff <= 0) {
-        document.getElementById("countdown").innerText = "Released!";
-        return;
-      }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+  const tourData = {
+    2025: [
+      { date: '2025-07-05', location: 'Nikki Beach', city: 'St. Tropez' },
+      { date: '2025-08-14', location: 'Zrće Beach Club', city: 'Pag Island' },
+      { date: '2025-09-20', location: 'Copacabana Stage', city: 'Rio de Janeiro' },
+      { date: '2025-10-18', location: 'Shōko', city: 'Barcelona' }
+    ],
+    2026: [
+      { date: '2026-05-23', location: 'Razzmatazz', city: 'Barcelona' },
+      { date: '2026-06-30', location: 'Ushuaïa', city: 'Ibiza' },
+      { date: '2026-07-21', location: 'Papaya Club', city: 'Zrće Beach' },
+      { date: '2026-08-02', location: 'Tomorrowland Afterparty', city: 'Antwerp' },
+      { date: '2026-09-10', location: 'KDW \'26', city: 'Location TBA' }
+    ]
+  };
 
-      document.getElementById("countdown").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
+  let currentYear = 2026;
 
-    const tourData = {
-      2025: [
-        { date: "12<br>JUL<br>2025", venue: "Beach Club Fuel", city: "Bloemendaal" },
-        { date: "25<br>AUG<br>2025", venue: "Papaya Playa Project", city: "Tulum" },
-        { date: "09<br>SEP<br>2025", venue: "Cavo Paradiso", city: "Mykonos" }
-      ],
-      2026: [
-        { date: "23<br>MAY<br>2026", venue: "Razzmatazz", city: "Barcelona" },
-        { date: "30<br>JUN<br>2026", venue: "Ushuaïa", city: "Ibiza" },
-        { date: "--<br>---<br>----", venue: "KDW '26", city: "Location TBA" }
-      ]
+  function setTourYear(year) {
+    currentYear = year;
+    document.getElementById("btn2025").style.backgroundColor = year === 2025 ? "deeppink" : "#222";
+    document.getElementById("btn2026").style.backgroundColor = year === 2026 ? "deeppink" : "#222";
+
+    const data = tourData[year];
+    const upcoming = data.filter(item => new Date(item.date) >= new Date()).slice(0, 3);
+
+    const tourList = document.getElementById("tour-list");
+    tourList.innerHTML = '';
+
+    upcoming.forEach(t => {
+      const d = new Date(t.date);
+      const card = document.createElement("div");
+      card.className = "tour-card";
+      card.innerHTML = `
+        <div class="tour-date">${d.getDate()}<br>${d.toLocaleString('en-US', { month: 'short' }).toUpperCase()}<br>${d.getFullYear()}</div>
+        <div class="tour-info"><strong>${t.location}</strong><br>${t.city}</div>
+        <button class="ticket-button" disabled>Tickets</button>
+      `;
+      tourList.appendChild(card);
+    });
+
+    // Titel aanpassen
+    document.getElementById("tour-subtitle").innerText = year === 2025 ? "Electric Groove Tour 2025" : "Color of Sounds Tour 2026";
+
+    // Link onderaan
+    const viewAll = document.getElementById("view-all");
+    viewAll.onclick = () => {
+      window.location.href = year === 2025 ? "tour2025.html" : "tour.html";
     };
+  }
 
-    function showTour(year) {
-      document.getElementById("btn2025").classList.remove("active");
-      document.getElementById("btn2026").classList.remove("active");
-      document.getElementById(`btn${year}`).classList.add("active");
-
-      const tourList = document.getElementById("tourList");
-      tourList.innerHTML = "";
-
-      tourData[year].forEach(item => {
-        const card = `
-          <div class="tour-card">
-            <div class="tour-date">${item.date}</div>
-            <div class="tour-info"><strong>${item.venue}</strong><br>${item.city}</div>
-            <button class="ticket-button" disabled>Tickets</button>
-          </div>`;
-        tourList.innerHTML += card;
-      });
-
-      document.getElementById("tourTitle").innerText = year === 2025 ? "Electric Groove Tour 2025" : "Color of Sounds Tour 2026";
-      document.getElementById("viewLink").href = year === 2025 ? "tour2025.html" : "tour.html";
-      document.getElementById("viewLink").innerText = year;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-    showTour(2026); // default
-  </script>
-</body>
-</html>
+  // Init
+  document.addEventListener("DOMContentLoaded", () => {
+    setTourYear(2026); // standaard
+  });
+</script>

@@ -60,6 +60,19 @@
       font-weight: bold;
     }
 
+    .dropdown-menu {
+      display: none;
+      margin-left: 1em;
+    }
+
+    .dropdown-menu a {
+      font-weight: normal;
+    }
+
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+
     h1 {
       text-align: center;
       margin-top: 2em;
@@ -89,50 +102,64 @@
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
   <div class="sidebar" id="sidebar">
-  <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
-  <a href="index.html">HOME</a>
-  <a href="tour.html">TOUR DATES</a>
-  <a href="news.html">NEWS</a>
-  <a href="music.html">MUSIC</a>
-  <a href="biography.html">BIOGRAPHY</a>
-  <a href="videos.html">VIDEOS</a>
-  <a href="shop.html">SHOP</a>
-  <a href="contact.html">CONTACT</a>
-  <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
-</div>
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+      <div class="dropdown-menu">
+        <a href="tour2025.html">Tour 2025</a>
+        <a href="tour.html">Tour 2026</a>
+      </div>
+    </div>
+    <a href="news.html">NEWS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="videos.html">VIDEOS</a>
+    <a href="shop.html">SHOP</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+  </div>
+
   <div class="overlay">
     <h1>Biography</h1>
-<div class="bio-content">
-  <p>
-    Behind the decks of Europe’s hottest clubs and the madness of KDW stands one name: <strong>DJ Gûrten</strong>.  
-    Known for his genre-defying sets, explosive drops, and magnetic stage presence, Gûrten has become an unstoppable force in the Dutch electronic scene – and far beyond.
-  </p>
-  <p>
-    But before the mainstage lights, before the fireworks and the global tour banners, there was a boy with a discman, a dream, and a slightly too loud speaker at his first backyard party in Lichtenvoorde. 
-    From spinning CDs at teenage birthdays to bootleg mashups that mysteriously started circulating in underground forums, Gûrten’s rise was as unconventional as his sound.
-  </p>
-  <p>
-    He first broke through during the legendary <em>Soundlab Nights Sessions</em> – that have become folklore – where his fusion of beach beats, underground techno and unexpected brass stabs left crowds breathless and barefoot.
-    Word spread fast. From Belgrade to Dublin , and from secret warehouse raves to velvet-lined VIP lounges, DJ Gûrten didn’t just play – he <em>transformed</em> the room.
-  </p>
-  <p>
-    By 2024, he was the not-so-secret weapon of festival lineups and private events that needed that one unforgettable set. By 2025, he had his own merch empire, 
-    a cult following in both Ibiza and Houten, and an unofficial fanbase known only as <strong>De Gûrtengang</strong>.
-  </p>
-  <p>
-    Now, in 2026, he’s taking things up a notch – or ten – with his first international headline tour: <em>Color of Sounds</em>. Expect pounding EDM, saxophone solos that send chills, and…
-    rooftop house anthems, Berlin-style techno kicks, Ibiza sunrise moments, Parisian electro chic, hypnotic loops from Tulum, London grime flashes, and global Gûrten madness!
-  </p>
-  <p>
-    Whether it’s sunset at Ushuaïa, a mystery set at KDW '26, or a pop-up party in a Berlin parking garage – <strong>DJ Gûrten delivers. Every. Single. Time.</strong>
-  </p>
-</div>
+    <div class="bio-content">
+      <p>
+        Behind the decks of Europe’s hottest clubs and the madness of KDW stands one name: <strong>DJ Gûrten</strong>.  
+        Known for his genre-defying sets, explosive drops, and magnetic stage presence, Gûrten has become an unstoppable force in the Dutch electronic scene – and far beyond.
+      </p>
+      <p>
+        But before the mainstage lights, before the fireworks and the global tour banners, there was a boy with a discman, a dream, and a slightly too loud speaker at his first backyard party in Lichtenvoorde. 
+        From spinning CDs at teenage birthdays to bootleg mashups that mysteriously started circulating in underground forums, Gûrten’s rise was as unconventional as his sound.
+      </p>
+      <p>
+        He first broke through during the legendary <em>Soundlab Nights Sessions</em> – that have become folklore – where his fusion of beach beats, underground techno and unexpected brass stabs left crowds breathless and barefoot.
+        Word spread fast. From Belgrade to Dublin , and from secret warehouse raves to velvet-lined VIP lounges, DJ Gûrten didn’t just play – he <em>transformed</em> the room.
+      </p>
+      <p>
+        By 2024, he was the not-so-secret weapon of festival lineups and private events that needed that one unforgettable set. By 2025, he had his own merch empire, 
+        a cult following in both Ibiza and Houten, and an unofficial fanbase known only as <strong>De Gûrtengang</strong>.
+      </p>
+      <p>
+        Now, in 2026, he’s taking things up a notch – or ten – with his first international headline tour: <em>Color of Sounds</em>. Expect pounding EDM, saxophone solos that send chills, and…
+        rooftop house anthems, Berlin-style techno kicks, Ibiza sunrise moments, Parisian electro chic, hypnotic loops from Tulum, London grime flashes, and global Gûrten madness!
+      </p>
+      <p>
+        Whether it’s sunset at Ushuaïa, a mystery set at KDW '26, or a pop-up party in a Berlin parking garage – <strong>DJ Gûrten delivers. Every. Single. Time.</strong>
+      </p>
+    </div>
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
   <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function toggleDropdown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const dropdown = e.target.parentElement;
+      dropdown.classList.toggle('active');
     }
   </script>
 

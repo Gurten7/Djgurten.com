@@ -412,27 +412,28 @@
     }
 
     async function loadTourData(year) {
-      const response = await fetch(year === 2025 ? 'tour2025.html' : 'tour.html');
-      const html = await response.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const cards = doc.querySelectorAll('.tour-card');
+  const response = await fetch(year === 2025 ? 'tour2025.html' : 'tour.html');
+  const html = await response.text();
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const cards = doc.querySelectorAll('.tour-card');
 
-      const futureCards = Array.from(cards).filter(card => {
-        const dateText = card.querySelector('.tour-date')?.innerText;
-        if (!dateText) return false;
-        const parts = dateText.split('\n');
-        if (parts.length !== 3) return false;
+  const futureCards = Array.from(cards).filter(card => {
+    const dateText = card.querySelector('.tour-date')?.textContent.trim();
+    if (!dateText) return false;
 
-        const [day, monthStr, yearStr] = parts;
-        const date = new Date(`${monthStr} ${day}, ${yearStr}`);
-        return date >= new Date();
-      });
+    const parts = dateText.split(/\s+/); // Splits op witruimte (werkt ook bij <br>)
+    if (parts.length < 3) return false;
 
-      const container = document.getElementById("tour-cards");
-      container.innerHTML = "";
-      futureCards.slice(0, 3).forEach(card => container.appendChild(card.cloneNode(true)));
-    }
+    const [day, monthStr, yearStr] = parts;
+    const parsedDate = new Date(`${monthStr} ${day}, ${yearStr}`);
+    return parsedDate >= new Date();
+  });
+
+  const container = document.getElementById("tour-cards");
+  container.innerHTML = "";
+  futureCards.slice(0, 3).forEach(card => container.appendChild(card.cloneNode(true)));
+}
 
     let currentYear = 2026;
     setInterval(updateCountdown, 1000);

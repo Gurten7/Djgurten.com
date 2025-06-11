@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Gurten – Colors of Sound Tour</title>
+  <title>DJ GURTEN – Colors of Sound Tour</title>
   <style>
     * { box-sizing: border-box; }
 
@@ -83,6 +83,10 @@
       font-weight: bold;
     }
 
+    .dropdown a {
+      cursor: pointer;
+    }
+
     .dropdown-menu {
       display: none;
       margin-left: 1em;
@@ -92,7 +96,7 @@
       font-weight: normal;
     }
 
-    .dropdown.active .dropdown-menu {
+    .dropdown.open .dropdown-menu {
       display: block;
     }
 
@@ -124,14 +128,12 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 1em;
-      line-height: 1;
     }
 
     .button img {
       width: 24px;
       height: 24px;
       vertical-align: middle;
-      display: block;
     }
 
     #tour {
@@ -147,10 +149,6 @@
       margin-bottom: 1em;
       text-transform: uppercase;
       text-align: center;
-      line-height: 1.2;
-      max-width: 90%;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .tour-card {
@@ -195,33 +193,6 @@
       margin-top: 1em;
     }
 
-    #music {
-      width: 100%;
-      max-width: 700px;
-      margin: 4em auto 2em;
-      padding: 0 1em;
-      text-align: center;
-    }
-
-    #music h2 {
-      color: yellow;
-      text-shadow: 0 0 8px yellow;
-      text-transform: uppercase;
-      margin-bottom: 1em;
-    }
-
-    .music-card {
-      background: #111;
-      padding: 1em;
-      border-radius: 15px;
-    }
-
-    .music-card img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1em;
-    }
-
     footer {
       margin-top: 4em;
       font-size: 0.9em;
@@ -239,8 +210,8 @@
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
     <a href="index.html">HOME</a>
 
-    <div class="dropdown">
-      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+    <div class="dropdown" onclick="toggleDropdown(event)">
+      <a>TOUR DATES ▾</a>
       <div class="dropdown-menu" id="tourDropdown">
         <a href="tour2025.html">Tour 2025</a>
         <a href="tour.html">Tour 2026</a>
@@ -271,44 +242,28 @@
     </a>
 
     <section id="tour">
-      <h2>Color of Sounds Tour 2026</h2>
+      <h2>🎤 Colors of Sound Tour 2026</h2>
 
       <div class="tour-card">
         <div class="tour-date">23<br>MAY<br>2026</div>
         <div class="tour-info"><strong>Razzmatazz</strong><br>Barcelona</div>
         <button class="ticket-button" disabled>Tickets</button>
       </div>
-
       <div class="tour-card">
         <div class="tour-date">30<br>JUN<br>2026</div>
         <div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div>
         <button class="ticket-button" disabled>Tickets</button>
       </div>
-
       <div class="tour-card">
         <div class="tour-date">--<br>---<br>----</div>
         <div class="tour-info"><strong>KDW '26</strong><br>Location TBA</div>
         <button class="ticket-button" disabled>Available soon</button>
       </div>
 
-      <div class="view-all">View all tour dates</div>
+      <div class="view-all" onclick="window.location='tour.html'">View all tour dates</div>
     </section>
 
-    <section id="music">
-      <h2>🎵 Latest Music</h2>
-      <div class="music-card">
-        <img src="Colors of sound.PNG" alt="Colors of Sound Cover">
-        <h3>Color of Sounds</h3>
-        <p>The brand new single by DJ Gurten – now on Spotify</p>
-
-        <a href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ?si=Q3_VM_m9RcO4Jr4vNBSS5A" target="_blank" class="button">
-          <img src="spotify-icon.PNG" alt="Spotify Logo">
-          Listen now on Spotify
-        </a>
-      </div>
-    </section>
-
-    <footer>© 2025 DJ Gurten</footer>
+    <footer>© 2025 DJ GURTEN</footer>
   </div>
 
   <script>
@@ -316,11 +271,10 @@
       document.getElementById("sidebar").classList.toggle("active");
     }
 
-    function toggleDropdown(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      const dropdown = e.target.parentElement;
-      dropdown.classList.toggle('active');
+    function toggleDropdown(event) {
+      event.stopPropagation();
+      const dropdown = event.currentTarget;
+      dropdown.classList.toggle("open");
     }
 
     function updateCountdown() {

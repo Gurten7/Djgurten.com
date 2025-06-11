@@ -346,48 +346,74 @@
       countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    function showTour(year) {
-      document.getElementById("btn2025").classList.remove("active");
-      document.getElementById("btn2026").classList.remove("active");
-      document.getElementById(`btn${year}`).classList.add("active");
+    <script>
+  let currentYear = 2025;
 
-      document.getElementById("tour-title").textContent = year === 2025 ? "Electric Groove Tour 2025" : "Colors of Sound Tour 2026";
-      currentYear = year;
-      loadTourData(year);
+  function showTour(year) {
+    document.getElementById("btn2025").classList.remove("active");
+    document.getElementById("btn2026").classList.remove("active");
+    document.getElementById(`btn${year}`).classList.add("active");
+
+    document.getElementById("tour-title").textContent =
+      year === 2025 ? "Electric Groove Tour 2025" : "Colors of Sound Tour 2026";
+
+    currentYear = year;
+    loadTourData(year);
+  }
+
+  function goToFullTour() {
+    window.location.href = currentYear === 2025 ? "tour2025.html" : "tour.html";
+  }
+
+  async function loadTourData(year) {
+    const url = year === 2025 ? "tour2025.html" : "tour.html";
+    const response = await fetch(url);
+    const html = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const cards = doc.querySelectorAll(".tour-card");
+
+    const futureCards = Array.from(cards).filter(card => {
+      const dateEl = card.querySelector(".tour-date");
+      if (!dateEl) return false;
+
+      const parts = dateEl.innerHTML.split("<br>").map(p => p.trim());
+      if (parts.length < 3) return false;
+
+      const [day, monthStr, yearStr] = parts;
+      const parsedDate = new Date(`${monthStr} ${day}, ${yearStr}`);
+      return parsedDate >= new Date();
+    });
+
+    const container = document.getElementById("tour-cards");
+    container.innerHTML = "";
+    futureCards.slice(0, 3).forEach(card => container.appendChild(card.cloneNode(true)));
+  }
+
+  // Countdown updater
+  function updateCountdown() {
+    const target = new Date("April 1, 2026 12:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    const countdown = document.getElementById("countdown");
+    if (!countdown) return;
+
+    if (diff <= 0) {
+      countdown.innerText = "Released!";
+      return;
     }
 
-    function goToFullTour() {
-      window.location.href = currentYear === 2025 ? 'tour2025.html' : 'tour.html';
-    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
 
-    async function loadTourData(year) {
-  const response = await fetch(year === 2025 ? 'tour2025.html' : 'tour.html');
-  const html = await response.text();
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-  const cards = doc.querySelectorAll('.tour-card');
-
-  const futureCards = Array.from(cards).filter(card => {
-    const dateText = card.querySelector('.tour-date')?.textContent.trim();
-    if (!dateText) return false;
-
-    const parts = dateText.split(/\s+/); // Splits op witruimte (werkt ook bij <br>)
-    if (parts.length < 3) return false;
-
-    const [day, monthStr, yearStr] = parts;
-    const parsedDate = new Date(`${monthStr} ${day}, ${yearStr}`);
-    return parsedDate >= new Date();
-  });
-
-  const container = document.getElementById("tour-cards");
-  container.innerHTML = "";
-  futureCards.slice(0, 3).forEach(card => container.appendChild(card.cloneNode(true)));
-}
-
-    let currentYear = 2025;
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-    showTour(2025);
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+  showTour(2025);
   </script>
 </body>
 </html>

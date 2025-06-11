@@ -314,39 +314,38 @@
     <footer>© 2025 DJ Gurten</footer>
   </div> <!-- overlay -->
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
+ <script>
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+  }
+
+  function toggleDropdown(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const dropdown = e.target.parentElement;
+    dropdown.classList.toggle('active');
+  }
+
+  function updateCountdown() {
+    const target = new Date("April 1, 2026 12:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    const countdown = document.getElementById("countdown");
+    if (!countdown) return;
+
+    if (diff <= 0) {
+      countdown.innerText = "Released!";
+      return;
     }
 
-    function toggleDropdown(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      const dropdown = e.target.parentElement;
-      dropdown.classList.toggle('active');
-    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
 
-    function updateCountdown() {
-      const target = new Date("April 1, 2026 12:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = target - now;
-
-      const countdown = document.getElementById("countdown");
-      if (!countdown) return;
-
-      if (diff <= 0) {
-        countdown.innerText = "Released!";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    <script>
   let currentYear = 2025;
 
   function showTour(year) {
@@ -377,7 +376,7 @@
       const dateEl = card.querySelector(".tour-date");
       if (!dateEl) return false;
 
-      const parts = dateEl.innerHTML.split("<br>").map(p => p.trim());
+      const parts = dateEl.innerText.trim().split("\n");
       if (parts.length < 3) return false;
 
       const [day, monthStr, yearStr] = parts;
@@ -390,30 +389,9 @@
     futureCards.slice(0, 3).forEach(card => container.appendChild(card.cloneNode(true)));
   }
 
-  // Countdown updater
-  function updateCountdown() {
-    const target = new Date("April 1, 2026 12:00:00").getTime();
-    const now = new Date().getTime();
-    const diff = target - now;
-
-    const countdown = document.getElementById("countdown");
-    if (!countdown) return;
-
-    if (diff <= 0) {
-      countdown.innerText = "Released!";
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
-
   setInterval(updateCountdown, 1000);
   updateCountdown();
   showTour(2025);
-  </script>
+</script>
 </body>
 </html>

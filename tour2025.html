@@ -130,6 +130,16 @@
       color: white;
       cursor: not-allowed;
     }
+
+    .tour-card.sold-out {
+      background-color: #333;
+      opacity: 0.7;
+    }
+
+    .tour-card.final-show {
+      border: 2px solid yellow;
+      box-shadow: 0 0 10px yellow;
+    }
   </style>
 </head>
 <body>
@@ -163,16 +173,25 @@
     <section id="tour">
       <h2>🔥 Electric Groove Tour 2025</h2>
 
-      <div class="tour-card"><div class="tour-date">12<br>MAR</div><div class="tour-info"><strong>Scorpios</strong><br>Mykonos</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">29<br>MAR</div><div class="tour-info"><strong>Green Valley</strong><br>Brazil</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">15<br>APR</div><div class="tour-info"><strong>Zamna Tulum</strong><br>Mexico</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">03<br>MAY</div><div class="tour-info"><strong>Watergate</strong><br>Berlin</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">17<br>MAY</div><div class="tour-info"><strong>Beachclub Fuel</strong><br>Bloemendaal</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">08<br>JUN</div><div class="tour-info"><strong>Cavo Paradiso</strong><br>Mykonos</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">22<br>JUN</div><div class="tour-info"><strong>Pacha</strong><br>Ibiza</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">12<br>JUL</div><div class="tour-info"><strong>Sound</strong><br>Los Angeles</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">03<br>AUG</div><div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">17<br>AUG</div><div class="tour-info"><strong>The Brooklyn Mirage</strong><br>New York</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">01<br>JUL<br>2025</div><div class="tour-info"><strong>Sound</strong><br>Los Angeles</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card"><div class="tour-date">04<br>JUL<br>2025</div><div class="tour-info"><strong>DC10</strong><br>Ibiza</div><button class="ticket-button">Last Tickets</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">06<br>JUL<br>2025</div><div class="tour-info"><strong>Bootshaus</strong><br>Cologne</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">08<br>JUL<br>2025</div><div class="tour-info"><strong>Gashouder</strong><br>Amsterdam</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card"><div class="tour-date">11<br>JUL<br>2025</div><div class="tour-info"><strong>Printworks</strong><br>London</div><button class="ticket-button">Last Tickets</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">13<br>JUL<br>2025</div><div class="tour-info"><strong>Else</strong><br>Berlin</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card"><div class="tour-date">16<br>JUL<br>2025</div><div class="tour-info"><strong>Pacha</strong><br>Ibiza</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">18<br>JUL<br>2025</div><div class="tour-info"><strong>Zamna</strong><br>Tulum</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card"><div class="tour-date">20<br>JUL<br>2025</div><div class="tour-info"><strong>Watergate</strong><br>Berlin</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">23<br>JUL<br>2025</div><div class="tour-info"><strong>La Machine</strong><br>Paris</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">26<br>JUL<br>2025</div><div class="tour-info"><strong>Green Valley</strong><br>Brazil</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card"><div class="tour-date">30<br>JUL<br>2025</div><div class="tour-info"><strong>Cavo Paradiso</strong><br>Mykonos</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">02<br>AUG<br>2025</div><div class="tour-info"><strong>Rex Club</strong><br>Paris</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card"><div class="tour-date">05<br>AUG<br>2025</div><div class="tour-info"><strong>Warehouse Project</strong><br>Manchester</div><button class="ticket-button">Last Tickets</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">08<br>AUG<br>2025</div><div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card sold-out"><div class="tour-date">12<br>AUG<br>2025</div><div class="tour-info"><strong>The Brooklyn Mirage</strong><br>New York</div><button class="ticket-button" disabled>Sold Out</button></div>
+      <div class="tour-card"><div class="tour-date">20<br>AUG<br>2025</div><div class="tour-info"><strong>TivoliVredenburg</strong><br>Utrecht</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">30<br>AUG<br>2025</div><div class="tour-info"><strong>Beachclub Fuel</strong><br>Bloemendaal</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card final-show"><div class="tour-date">18<br>OCT<br>2025</div><div class="tour-info"><strong>Palau Sant Jordi</strong><br>Barcelona</div><button class="ticket-button">Final Show – Tickets</button></div>
     </section>
   </div>
 

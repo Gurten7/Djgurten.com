@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ GURTEN – Colors of Sound Tour</title>
+  <title>DJ Gurten – Colors of Sound Tour</title>
   <style>
     * { box-sizing: border-box; }
 
@@ -83,10 +83,6 @@
       font-weight: bold;
     }
 
-    .dropdown a {
-      cursor: pointer;
-    }
-
     .dropdown-menu {
       display: none;
       margin-left: 1em;
@@ -96,7 +92,7 @@
       font-weight: normal;
     }
 
-    .dropdown.open .dropdown-menu {
+    .dropdown.active .dropdown-menu {
       display: block;
     }
 
@@ -134,6 +130,7 @@
       width: 24px;
       height: 24px;
       vertical-align: middle;
+      display: block;
     }
 
     #tour {
@@ -141,14 +138,34 @@
       max-width: 700px;
       margin-top: 3em;
       padding: 0 1em;
+      text-align: center;
     }
 
     #tour h2 {
       color: yellow;
       text-shadow: 0 0 8px yellow;
-      margin-bottom: 1em;
       text-transform: uppercase;
-      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    .switch-buttons {
+      margin-bottom: 1em;
+    }
+
+    .switch-buttons button {
+      background: #444;
+      color: white;
+      border: 2px solid yellow;
+      padding: 0.5em 1em;
+      margin: 0 0.5em;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .switch-buttons button.active {
+      background: yellow;
+      color: black;
     }
 
     .tour-card {
@@ -185,12 +202,31 @@
       cursor: not-allowed;
     }
 
-    .view-all {
-      color: yellow;
+    #music {
+      width: 100%;
+      max-width: 700px;
+      margin: 4em auto 2em;
+      padding: 0 1em;
       text-align: center;
-      text-decoration: underline;
-      cursor: pointer;
-      margin-top: 1em;
+    }
+
+    #music h2 {
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
+      text-transform: uppercase;
+      margin-bottom: 1em;
+    }
+
+    .music-card {
+      background: #111;
+      padding: 1em;
+      border-radius: 15px;
+    }
+
+    .music-card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1em;
     }
 
     footer {
@@ -209,15 +245,13 @@
   <div class="sidebar" id="sidebar">
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
     <a href="index.html">HOME</a>
-
-    <div class="dropdown" onclick="toggleDropdown(event)">
-      <a>TOUR DATES ▾</a>
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
       <div class="dropdown-menu" id="tourDropdown">
         <a href="tour2025.html">Tour 2025</a>
         <a href="tour.html">Tour 2026</a>
       </div>
     </div>
-
     <a href="news.html">NEWS</a>
     <a href="music.html">MUSIC</a>
     <a href="biography.html">BIOGRAPHY</a>
@@ -236,34 +270,34 @@
     <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" class="button" target="_blank">
       <img src="spotify-icon.PNG" alt="Spotify" /> Listen on Spotify
     </a>
-
     <a href="https://www.instagram.com/dj_gurten" class="button" target="_blank">
       <img src="instagram.PNG" alt="Instagram" /> Follow on Instagram
     </a>
 
     <section id="tour">
-      <h2>🎤 Colors of Sound Tour 2026</h2>
-
-      <div class="tour-card">
-        <div class="tour-date">23<br>MAY<br>2026</div>
-        <div class="tour-info"><strong>Razzmatazz</strong><br>Barcelona</div>
-        <button class="ticket-button" disabled>Tickets</button>
-      </div>
-      <div class="tour-card">
-        <div class="tour-date">30<br>JUN<br>2026</div>
-        <div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div>
-        <button class="ticket-button" disabled>Tickets</button>
-      </div>
-      <div class="tour-card">
-        <div class="tour-date">--<br>---<br>----</div>
-        <div class="tour-info"><strong>KDW '26</strong><br>Location TBA</div>
-        <button class="ticket-button" disabled>Available soon</button>
+      <div class="switch-buttons">
+        <button class="active" onclick="showTour(2025)">Tour 2025</button>
+        <button onclick="showTour(2026)">Tour 2026</button>
       </div>
 
-      <div class="view-all" onclick="window.location='tour.html'">View all tour dates</div>
+      <h2 id="tourTitle">Electric Groove Tour 2025</h2>
+
+      <div id="tourList"></div>
     </section>
 
-    <footer>© 2025 DJ GURTEN</footer>
+    <section id="music">
+      <h2>🎵 Latest Music</h2>
+      <div class="music-card">
+        <img src="Colors of sound.PNG" alt="Colors of Sound Cover">
+        <h3>Color of Sounds</h3>
+        <p>The brand new single by DJ Gurten – now on Spotify</p>
+        <a href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ?si=Q3_VM_m9RcO4Jr4vNBSS5A" target="_blank" class="button">
+          <img src="spotify-icon.PNG" alt="Spotify Logo"> Listen now on Spotify
+        </a>
+      </div>
+    </section>
+
+    <footer>© 2025 DJ Gurten</footer>
   </div>
 
   <script>
@@ -271,33 +305,63 @@
       document.getElementById("sidebar").classList.toggle("active");
     }
 
-    function toggleDropdown(event) {
-      event.stopPropagation();
-      const dropdown = event.currentTarget;
-      dropdown.classList.toggle("open");
+    function toggleDropdown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.target.parentElement.classList.toggle("active");
     }
 
     function updateCountdown() {
       const target = new Date("April 1, 2026 12:00:00").getTime();
       const now = new Date().getTime();
       const diff = target - now;
-
       if (diff <= 0) {
         document.getElementById("countdown").innerText = "Released!";
         return;
       }
-
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
-
       document.getElementById("countdown").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
-
     setInterval(updateCountdown, 1000);
     updateCountdown();
-  </script>
 
+    const tourData = {
+      2025: [
+        { date: "14<br>JUN<br>2025", venue: "Nikki Beach", city: "Saint-Tropez" },
+        { date: "27<br>JUL<br>2025", venue: "Zamna Tulum", city: "Tulum" },
+        { date: "12<br>AUG<br>2025", venue: "Soho Garden", city: "Dubai" }
+      ],
+      2026: [
+        { date: "23<br>MAY<br>2026", venue: "Razzmatazz", city: "Barcelona" },
+        { date: "30<br>JUN<br>2026", venue: "Ushuaïa", city: "Ibiza" },
+        { date: "--<br>---<br>----", venue: "KDW '26", city: "Location TBA" }
+      ]
+    };
+
+    function showTour(year) {
+      const list = document.getElementById("tourList");
+      const title = document.getElementById("tourTitle");
+      const buttons = document.querySelectorAll(".switch-buttons button");
+      buttons.forEach(btn => btn.classList.remove("active"));
+      buttons[year === 2025 ? 0 : 1].classList.add("active");
+
+      title.innerText = year === 2025 ? "Electric Groove Tour 2025" : "Color of Sounds Tour 2026";
+      list.innerHTML = "";
+
+      tourData[year].forEach(t => {
+        list.innerHTML += `
+          <div class="tour-card">
+            <div class="tour-date">${t.date}</div>
+            <div class="tour-info"><strong>${t.venue}</strong><br>${t.city}</div>
+            <button class="ticket-button" disabled>Tickets</button>
+          </div>`;
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => showTour(2025));
+  </script>
 </body>
 </html>

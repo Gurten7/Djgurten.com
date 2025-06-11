@@ -33,6 +33,14 @@
       margin-bottom: 0.5em;
     }
 
+    .album-cover {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1.5em;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
     .album-description {
       max-width: 800px;
       background: #111;
@@ -46,8 +54,8 @@
     .spotify-button {
       display: inline-flex;
       align-items: center;
-      background-color: #1DB954;
-      color: white;
+      background-color: #FFD700;
+      color: black;
       padding: 0.75em 1.5em;
       border: none;
       border-radius: 50px;
@@ -59,7 +67,7 @@
     }
 
     .spotify-button:hover {
-      background-color: #1aa34a;
+      background-color: #e6c200;
     }
 
     .spotify-icon {
@@ -69,47 +77,63 @@
     }
 
     .tracklist {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5em;
-      max-width: 1000px;
+      max-width: 800px;
       width: 100%;
       margin-top: 2em;
     }
 
-    .track {
+    .track-item {
+      display: flex;
+      align-items: center;
       background: #222;
       padding: 1em;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .track img {
-      width: 100%;
-      max-width: 150px;
-      height: auto;
       border-radius: 10px;
-      margin-bottom: 0.5em;
+      margin-bottom: 1em;
     }
 
-    footer {
+    .track-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      margin-right: 1em;
+      object-fit: cover;
+    }
+
+    .track-info h3 {
+      margin: 0 0 0.3em 0;
+      font-size: 1.1em;
+    }
+
+    .track-info p {
+      margin: 0;
+      font-size: 0.95em;
+      opacity: 0.8;
+    }
+
+    .back-button {
       margin-top: 3em;
-      font-size: 0.8em;
-      opacity: 0.7;
-      text-align: center;
+      text-decoration: none;
+      color: white;
+      font-size: 1em;
+      padding: 0.6em 1.4em;
+      background: #444;
+      border-radius: 50px;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background: #666;
     }
   </style>
 </head>
 <body>
-
   <div class="overlay">
-    <h1>Electric Groove – The Album</h1>
+    <h1>Electric Groove</h1>
+    <img src="album-electric-groove.PNG" alt="Electric Groove Album Cover" class="album-cover">
 
     <div class="album-description">
-      <p>
-        Released in March 2025, <strong>Electric Groove</strong> is the debut album from DJ Gûrten — a sonic journey blending futuristic funk, velvet house, retro electro and peak-time EDM. 
-        Featuring standout singles like <em>Electric Groove</em>, <em>Velvet Circuit</em> and <em>Neon Moves</em>, the album is both a tribute to classic club energy and a bold step into new soundscapes.
-      </p>
+      <p><strong>Electric Groove</strong> is DJ Gûrten’s most ambitious project to date – blending nu disco, electronic funk, brass elements and experimental house into a dazzling sonic ride.</p>
+      <p>Each track tells its own story while together forming a nonstop energy wave. Perfect for late nights, summer drives, or festival flashbacks.</p>
 
       <a href="#" class="spotify-button" onclick="alert('Spotify link coming soon!'); return false;">
         <img src="spotify-icon.PNG" alt="Spotify" class="spotify-icon">
@@ -118,34 +142,31 @@
     </div>
 
     <div class="tracklist">
-      <div class="track">
-        <img src="Electric Groove Single.PNG" alt="Electric Groove">
-        <p><strong>Electric Groove</strong></p>
+      <div class="track-item">
+        <img src="thumb-electric-groove.PNG" alt="Electric Groove">
+        <div class="track-info">
+          <h3>Electric Groove</h3>
+          <p>A retro-futuristic club banger with funky basslines and brass stabs. Instant party starter.</p>
+        </div>
       </div>
-      <div class="track">
-        <img src="velvet-circuit-cover.png" alt="Velvet Circuit">
-        <p><strong>Velvet Circuit</strong></p>
+      <div class="track-item">
+        <img src="thumb-velvet-circuit.PNG" alt="Velvet Circuit">
+        <div class="track-info">
+          <h3>Velvet Circuit</h3>
+          <p>Silky synths, pulsating rhythms and midnight city vibes – wrapped in velvet texture.</p>
+        </div>
       </div>
-      <div class="track">
-        <img src="neon-moves-cover.png" alt="Neon Moves">
-        <p><strong>Neon Moves</strong></p>
+      <div class="track-item">
+        <img src="thumb-neon-moves.PNG" alt="Neon Moves">
+        <div class="track-info">
+          <h3>Neon Moves</h3>
+          <p>High-octane energy meets 80s nostalgia. Built for movement, made for the night.</p>
+        </div>
       </div>
-      <div class="track">
-        <img src="hyperloop-love-cover.png" alt="Hyperloop Love">
-        <p><strong>Hyperloop Love</strong></p>
-      </div>
-      <div class="track">
-        <img src="afterglow-data-cover.png" alt="Afterglow Data">
-        <p><strong>Afterglow Data</strong></p>
-      </div>
-      <div class="track">
-        <img src="circuit-breaker-cover.png" alt="Circuit Breaker">
-        <p><strong>Circuit Breaker</strong></p>
-      </div>
+      <!-- Voeg hier extra nummers toe indien nodig -->
     </div>
 
-    <footer>© 2025 DJ Gûrten</footer>
+    <a href="music.html" class="back-button">← Back to Music</a>
   </div>
-
 </body>
 </html>

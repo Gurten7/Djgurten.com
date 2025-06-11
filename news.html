@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DJ Gûrten – News</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -58,6 +56,19 @@
       text-decoration: none;
       margin: 1em 0;
       font-weight: bold;
+    }
+
+    .dropdown-menu {
+      display: none;
+      margin-left: 1em;
+    }
+
+    .dropdown-menu a {
+      font-weight: normal;
+    }
+
+    .dropdown.active .dropdown-menu {
+      display: block;
     }
 
     h1 {
@@ -112,20 +123,28 @@
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
   <div class="sidebar" id="sidebar">
-  <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
-  <a href="index.html">HOME</a>
-  <a href="tour.html">TOUR DATES</a>
-  <a href="news.html">NEWS</a>
-  <a href="music.html">MUSIC</a>
-  <a href="biography.html">BIOGRAPHY</a>
-  <a href="videos.html">VIDEOS</a>
-  <a href="shop.html">SHOP</a>
-  <a href="contact.html">CONTACT</a>
-  <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
-</div>
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+      <div class="dropdown-menu">
+        <a href="tour2025.html">Tour 2025</a>
+        <a href="tour.html">Tour 2026</a>
+      </div>
+    </div>
+    <a href="news.html">NEWS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="videos.html">VIDEOS</a>
+    <a href="shop.html">SHOP</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+  </div>
+
   <div class="overlay">
     <h1>Latest News</h1>
     <section class="news-section">
+
 <article class="news-article">
   <div class="news-date">July 12, 2025</div>
   <h2>New Collab: ‘Electric Groove’ with Magnus Maximus</h2>
@@ -151,7 +170,8 @@
     🎟️ Album drops July 2025. Pre-save and tour details soon at <a href="https://www.djgurten.com">www.djgurten.com</a>.
   </p>
 </article>
-      <article class="news-article">
+
+<article class="news-article">
   <div class="news-date">June 11, 2025</div>
   <h2>Global Collab in the Works?</h2>
   <p>
@@ -160,8 +180,8 @@
     Brace yourselves – a sonic bomb may be on the way.
   </p>
 </article>
-      
-      <article class="news-article">
+
+<article class="news-article">
   <div class="news-date">June 9, 2025</div>
   <h2>Limited Vinyl Edition Now Available</h2>
   <p>
@@ -207,13 +227,19 @@
 </article>
 
     </section>
-
     <footer>© 2025 DJ Gûrten</footer>
   </div>
 
   <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function toggleDropdown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const dropdown = e.target.parentElement;
+      dropdown.classList.toggle('active');
     }
   </script>
 

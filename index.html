@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Gûrten – Colors of Sound Tour</title>
+  <title>DJ Gurten – Colors of Sound Tour</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -19,15 +17,16 @@
       background-attachment: fixed;
     }
 
-  .overlay {
-  position: relative; /* ← voeg deze regel toe */
-  background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
-  min-height: 100vh;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .overlay {
+      position: relative;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .logo {
       width: 120px;
       margin: 1em auto;
@@ -84,6 +83,19 @@
       font-weight: bold;
     }
 
+    .dropdown-menu {
+      display: none;
+      margin-left: 1em;
+    }
+
+    .dropdown-menu a {
+      font-weight: normal;
+    }
+
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+
     h1 {
       font-size: 2em;
       margin-top: 0.5em;
@@ -100,27 +112,27 @@
       margin-bottom: 1.5em;
     }
 
- .button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  background: #222;
-  padding: 0.7em 1.2em;
-  border-radius: 30px;
-  color: white;
-  margin: 0.5em 0;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1em;
-  line-height: 1;
-}
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      background: #222;
+      padding: 0.7em 1.2em;
+      border-radius: 30px;
+      color: white;
+      margin: 0.5em 0;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      line-height: 1;
+    }
 
-.button img {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-  display: block;
-}
+    .button img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+      display: block;
+    }
 
     #tour {
       width: 100%;
@@ -129,17 +141,18 @@
       padding: 0 1em;
     }
 
-   #tour h2 {
-  color: yellow;
-  text-shadow: 0 0 8px yellow;
-  margin-bottom: 1em;
-  text-transform: uppercase;
-  text-align: center;
-  line-height: 1.2;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
+    #tour h2 {
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
+      margin-bottom: 1em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.2;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .tour-card {
       display: flex;
       justify-content: space-between;
@@ -220,28 +233,28 @@
 <body>
 
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-  <a href="mailto:bookings@djgûrten.com" class="book-btn">BOOK NOW</a>
+  <a href="mailto:bookings@djgurten.com" class="book-btn">BOOK NOW</a>
 
   <div class="sidebar" id="sidebar">
-  <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
-  <a href="index.html">HOME</a>
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
 
-  <div class="dropdown">
-    <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
-    <div class="dropdown-menu" id="tourDropdown">
-      <a href="tour2025.html">Tour 2025</a>
-      <a href="tour.html">Tour 2026</a>
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+      <div class="dropdown-menu" id="tourDropdown">
+        <a href="tour2025.html">Tour 2025</a>
+        <a href="tour.html">Tour 2026</a>
+      </div>
     </div>
-  </div>
 
-  <a href="news.html">NEWS</a>
-  <a href="music.html">MUSIC</a>
-  <a href="biography.html">BIOGRAPHY</a>
-  <a href="videos.html">VIDEOS</a>
-  <a href="shop.html">SHOP</a>
-  <a href="contact.html">CONTACT</a>
-  <a href="all-access.html">DJ GURTEN’S ALL-ACCESS</a>
-</div>
+    <a href="news.html">NEWS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="videos.html">VIDEOS</a>
+    <a href="shop.html">SHOP</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="all-access.html">DJ GURTEN’S ALL-ACCESS</a>
+  </div>
 
   <div class="overlay">
     <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo" />
@@ -281,26 +294,33 @@
       <div class="view-all">View all tour dates</div>
     </section>
 
-  <section id="music">
-  <h2>🎵 Latest Music</h2>
-  <div class="music-card">
-    <img src="Colors of sound.PNG" alt="Colors of Sound Cover">
-    <h3>Color of Sounds</h3>
-    <p>The brand new single by DJ Gûrten – now on Spotify</p>
+    <section id="music">
+      <h2>🎵 Latest Music</h2>
+      <div class="music-card">
+        <img src="Colors of sound.PNG" alt="Colors of Sound Cover">
+        <h3>Color of Sounds</h3>
+        <p>The brand new single by DJ Gurten – now on Spotify</p>
 
-    <a href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ?si=Q3_VM_m9RcO4Jr4vNBSS5A" target="_blank" class="button">
-  <img src="spotify-icon.PNG" alt="Spotify Logo">
-  Listen now on Spotify
-</a>
-  </div>
-</section>
-    
-    <footer>© 2025 DJ Gûrten</footer>
+        <a href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ?si=Q3_VM_m9RcO4Jr4vNBSS5A" target="_blank" class="button">
+          <img src="spotify-icon.PNG" alt="Spotify Logo">
+          Listen now on Spotify
+        </a>
+      </div>
+    </section>
+
+    <footer>© 2025 DJ Gurten</footer>
   </div>
 
   <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function toggleDropdown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const dropdown = e.target.parentElement;
+      dropdown.classList.toggle('active');
     }
 
     function updateCountdown() {
@@ -324,5 +344,6 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
+
 </body>
 </html>

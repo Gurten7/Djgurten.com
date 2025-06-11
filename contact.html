@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DJ Gûrten – Contact</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -63,6 +61,19 @@
       font-weight: bold;
     }
 
+    .dropdown-menu {
+      display: none;
+      margin-left: 1em;
+    }
+
+    .dropdown-menu a {
+      font-weight: normal;
+    }
+
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+
     h1 {
       font-size: 2em;
       text-align: center;
@@ -108,17 +119,24 @@
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
   <div class="sidebar" id="sidebar">
-  <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
-  <a href="index.html">HOME</a>
-  <a href="tour.html">TOUR DATES</a>
-  <a href="news.html">NEWS</a>
-  <a href="music.html">MUSIC</a>
-  <a href="biography.html">BIOGRAPHY</a>
-  <a href="videos.html">VIDEOS</a>
-  <a href="shop.html">SHOP</a>
-  <a href="contact.html">CONTACT</a>
-  <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
-</div>
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+      <div class="dropdown-menu">
+        <a href="tour2025.html">Tour 2025</a>
+        <a href="tour.html">Tour 2026</a>
+      </div>
+    </div>
+    <a href="news.html">NEWS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="videos.html">VIDEOS</a>
+    <a href="shop.html">SHOP</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+  </div>
+
   <div class="overlay">
     <h1>Contact</h1>
 
@@ -126,21 +144,24 @@
       <h2>Bookings</h2>
       <p>For national and international booking inquiries, please contact:</p>
       <p><strong>Gûrten Bookings Agency</strong><br>
-      Email: <a class="mail-link" href="mailto:bookings@djgûrten.com">bookings@djgûrten.com</a></p>
+        Email: <a class="mail-link" href="mailto:bookings@djgûrten.com">bookings@djgûrten.com</a>
+      </p>
     </div>
 
     <div class="contact-section">
       <h2>Management</h2>
       <p>For business collaborations, brand partnerships or general management inquiries:</p>
       <p><strong>NextWave Artist Management</strong><br>
-      Email: <a class="mail-link" href="mailto:management@djgûrten.com">management@djgûrten.com</a></p>
+        Email: <a class="mail-link" href="mailto:management@djgûrten.com">management@djgûrten.com</a>
+      </p>
     </div>
 
     <div class="contact-section">
       <h2>Press & Media</h2>
       <p>For interviews, press kits or promotional content:</p>
       <p><strong>Press Department DJ Gûrten</strong><br>
-      Email: <a class="mail-link" href="mailto:press@djgûrten.com">press@djgûrten.com</a></p>
+        Email: <a class="mail-link" href="mailto:press@djgûrten.com">press@djgûrten.com</a>
+      </p>
     </div>
 
     <footer>© 2025 DJ Gûrten</footer>
@@ -149,6 +170,13 @@
   <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function toggleDropdown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const dropdown = e.target.parentElement;
+      dropdown.classList.toggle('active');
     }
   </script>
 

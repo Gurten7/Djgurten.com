@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DJ Gurten – Electric Groove Tour 2025</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 1.5em;
+      color: white;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding: 2em 1em;
+      transition: 0.3s ease;
+      z-index: 999;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 1em 0;
+      font-weight: bold;
+    }
+
+    #tour {
+      width: 100%;
+      max-width: 700px;
+      margin-top: 5em;
+      padding: 0 1em;
+    }
+
+    #tour h2 {
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
+      margin-bottom: 1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .tour-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #111;
+      border-radius: 12px;
+      padding: 1em;
+      margin-bottom: 1em;
+    }
+
+    .tour-date {
+      text-align: center;
+      color: yellow;
+      font-weight: bold;
+      font-size: 1em;
+      min-width: 60px;
+    }
+
+    .tour-info {
+      flex-grow: 1;
+      text-align: left;
+      margin-left: 1em;
+    }
+
+    .ticket-button {
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 0.5em 1.2em;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .ticket-button[disabled] {
+      background-color: #888;
+      color: white;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
+    <a href="tour2025.html">TOUR DATES</a>
+    <a href="news.html">NEWS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="videos.html">VIDEOS</a>
+    <a href="shop.html">SHOP</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="all-access.html">DJ GURTEN’S ALL-ACCESS</a>
+  </div>
+
+  <div class="overlay">
+    <img src="Electric Groove.PNG" alt="Electric Groove Tour Banner" style="max-width: 700px; width: 100%; border-radius: 12px; margin-bottom: 1em;">
+    
+    <section id="tour">
+      <h2>🔥 Electric Groove Tour 2025</h2>
+
+      <div class="tour-card"><div class="tour-date">12<br>MAR</div><div class="tour-info"><strong>Scorpios</strong><br>Mykonos</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">29<br>MAR</div><div class="tour-info"><strong>Green Valley</strong><br>Brazil</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">15<br>APR</div><div class="tour-info"><strong>Zamna Tulum</strong><br>Mexico</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">03<br>MAY</div><div class="tour-info"><strong>Watergate</strong><br>Berlin</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">17<br>MAY</div><div class="tour-info"><strong>Beachclub Fuel</strong><br>Bloemendaal</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">08<br>JUN</div><div class="tour-info"><strong>Cavo Paradiso</strong><br>Mykonos</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">22<br>JUN</div><div class="tour-info"><strong>Pacha</strong><br>Ibiza</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">12<br>JUL</div><div class="tour-info"><strong>Sound</strong><br>Los Angeles</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">03<br>AUG</div><div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div><button class="ticket-button">Tickets</button></div>
+      <div class="tour-card"><div class="tour-date">17<br>AUG</div><div class="tour-info"><strong>The Brooklyn Mirage</strong><br>New York</div><button class="ticket-button">Tickets</button></div>
+    </section>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

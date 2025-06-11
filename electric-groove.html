@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Electric Groove – Album Info</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 1.5em;
+      color: white;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding: 2em 1em;
+      transition: 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 1em 0;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 2em;
+      text-transform: uppercase;
+      margin-top: 1em;
+      text-align: center;
+    }
+
+    .album-cover {
+      width: 300px;
+      border-radius: 12px;
+      margin: 2em 0 1em;
+    }
+
+    .tracklist {
+      max-width: 600px;
+      width: 100%;
+      background: #222;
+      padding: 2em;
+      border-radius: 12px;
+      margin-top: 1em;
+    }
+
+    .tracklist h2 {
+      margin-top: 0;
+      color: yellow;
+      font-size: 1.2em;
+      text-transform: uppercase;
+    }
+
+    .tracklist ol {
+      padding-left: 1.2em;
+    }
+
+    .tracklist li {
+      margin: 0.5em 0;
+    }
+
+    .button {
+      display: inline-block;
+      background: #FFD700;
+      color: black;
+      padding: 0.8em 1.5em;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 2em;
+      font-size: 1em;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8em;
+      opacity: 0.7;
+      margin-top: 4em;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="index.html">HOME</a>
+    <a href="tour.html">TOUR DATES</a>
+    <a href="news.html">NEWS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="biography.html">BIOGRAPHY</a>
+    <a href="videos.html">VIDEOS</a>
+    <a href="shop.html">SHOP</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+  </div>
+
+  <div class="overlay">
+    <h1>Electric Groove – Album</h1>
+    <img src="Electric Groove Album.PNG" alt="Electric Groove Album Cover" class="album-cover" />
+
+    <div class="tracklist">
+      <h2>Tracklist</h2>
+      <ol>
+        <li>Electric Groove (Intro)</li>
+        <li>Velvet Circuit</li>
+        <li>Neon Moves</li>
+        <li>Rushlight</li>
+        <li>Echoes in the Night</li>
+        <li>High Frequency Heartbeat</li>
+        <li>Magnetic Pulse</li>
+        <li>Afterglow Anthem</li>
+        <li>Electric Groove (Club Remix)</li>
+      </ol>
+    </div>
+
+    <a href="music.html" class="button">← Back to Music</a>
+
+    <footer>© 2025 DJ Gûrten</footer>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

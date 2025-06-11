@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Electric Groove – Album by DJ Gûrten</title>
+  <title>Electric Groove – The Album</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -15,133 +19,133 @@
     }
 
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
-      padding: 2em 1em;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
       min-height: 100vh;
+      padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    h1, h2 {
+    h1 {
+      font-size: 2.2em;
       text-align: center;
-      text-transform: uppercase;
+      margin-bottom: 0.5em;
     }
 
-    .intro {
+    .album-description {
       max-width: 800px;
-      margin: 2em auto;
-      background: #222;
+      background: #111;
       padding: 2em;
-      border-radius: 10px;
+      border-radius: 12px;
+      margin-bottom: 2em;
+      text-align: center;
       line-height: 1.6;
-      font-size: 1.1em;
     }
 
     .spotify-button {
-      display: block;
-      width: max-content;
-      margin: 1.5em auto;
+      display: inline-flex;
+      align-items: center;
+      background-color: #1DB954;
+      color: white;
       padding: 0.75em 1.5em;
-      background-color: #f2c300;
-      color: #000;
-      font-weight: bold;
+      border: none;
+      border-radius: 50px;
       text-decoration: none;
-      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1em;
+      transition: background-color 0.3s;
+      margin-top: 1em;
     }
 
     .spotify-button:hover {
-      background-color: #ffd700;
+      background-color: #1aa34a;
+    }
+
+    .spotify-icon {
+      height: 20px;
+      margin-right: 10px;
+      vertical-align: middle;
     }
 
     .tracklist {
-      max-width: 800px;
-      margin: 2em auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5em;
+      max-width: 1000px;
+      width: 100%;
+      margin-top: 2em;
     }
 
     .track {
-      display: flex;
-      align-items: center;
-      background: #111;
+      background: #222;
       padding: 1em;
-      margin: 1em 0;
-      border-radius: 8px;
+      border-radius: 12px;
+      text-align: center;
     }
 
     .track img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-right: 1em;
-    }
-
-    .track-info {
-      flex: 1;
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 0.5em;
     }
 
     footer {
-      text-align: center;
-      margin-top: 4em;
+      margin-top: 3em;
       font-size: 0.8em;
       opacity: 0.7;
+      text-align: center;
     }
   </style>
 </head>
 <body>
+
   <div class="overlay">
-    <h1>Electric Groove</h1>
-    <h2>The Album</h2>
+    <h1>Electric Groove – The Album</h1>
 
-    <div class="intro">
-      <p><strong>Electric Groove</strong> is DJ Gûrten’s genre-bending debut album, blending electronic funk, retro disco, deep house, and brass-infused madness. From underground club vibes to festival bangers, this album captures the full range of Gûrten’s wild sonic identity.</p>
-      <p>Including standout tracks like <em>Velvet Circuit</em>, <em>Neon Moves</em> and the title track <em>Electric Groove</em>, the album delivers high voltage energy and rich textures.</p>
+    <div class="album-description">
+      <p>
+        Released in March 2025, <strong>Electric Groove</strong> is the debut album from DJ Gûrten — a sonic journey blending futuristic funk, velvet house, retro electro and peak-time EDM. 
+        Featuring standout singles like <em>Electric Groove</em>, <em>Velvet Circuit</em> and <em>Neon Moves</em>, the album is both a tribute to classic club energy and a bold step into new soundscapes.
+      </p>
+
+      <a href="#" class="spotify-button" onclick="alert('Spotify link coming soon!'); return false;">
+        <img src="spotify-icon.PNG" alt="Spotify" class="spotify-icon">
+        Listen on Spotify
+      </a>
     </div>
-
-    <a href="#" class="spotify-button" onclick="alert('Spotify link coming soon!'); return false;">
-      Listen on Spotify
-    </a>
 
     <div class="tracklist">
       <div class="track">
-        <img src="cover-electricgroove.jpg" alt="Electric Groove">
-        <div class="track-info">
-          <strong>Electric Groove</strong><br>
-          The title track – a collab with Magnus Maximus. Pure energy.
-        </div>
+        <img src="Electric Groove Single.PNG" alt="Electric Groove">
+        <p><strong>Electric Groove</strong></p>
       </div>
-
       <div class="track">
-        <img src="cover-velvetcircuit.jpg" alt="Velvet Circuit">
-        <div class="track-info">
-          <strong>Velvet Circuit</strong><br>
-          Silky synths meet warehouse kicks in this smooth banger.
-        </div>
+        <img src="velvet-circuit-cover.png" alt="Velvet Circuit">
+        <p><strong>Velvet Circuit</strong></p>
       </div>
-
       <div class="track">
-        <img src="cover-neonmoves.jpg" alt="Neon Moves">
-        <div class="track-info">
-          <strong>Neon Moves</strong><br>
-          A late-night anthem for strobe-lit cityscapes and rooftop chaos.
-        </div>
+        <img src="neon-moves-cover.png" alt="Neon Moves">
+        <p><strong>Neon Moves</strong></p>
       </div>
-
       <div class="track">
-        <img src="cover-midnightrunner.jpg" alt="Midnight Runner">
-        <div class="track-info">
-          <strong>Midnight Runner</strong><br>
-          Funky bassline, driving groove – perfect for 3AM.
-        </div>
+        <img src="hyperloop-love-cover.png" alt="Hyperloop Love">
+        <p><strong>Hyperloop Love</strong></p>
       </div>
-
       <div class="track">
-        <img src="cover-sparkpulse.jpg" alt="Spark Pulse">
-        <div class="track-info">
-          <strong>Spark Pulse</strong><br>
-          A short instrumental interlude with glitchy textures and tension.
-        </div>
+        <img src="afterglow-data-cover.png" alt="Afterglow Data">
+        <p><strong>Afterglow Data</strong></p>
+      </div>
+      <div class="track">
+        <img src="circuit-breaker-cover.png" alt="Circuit Breaker">
+        <p><strong>Circuit Breaker</strong></p>
       </div>
     </div>
 
     <footer>© 2025 DJ Gûrten</footer>
   </div>
+
 </body>
 </html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color of Sounds – The Album</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      min-height: 100vh;
+      padding: 2em 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      text-align: center;
+      margin-bottom: 0.5em;
+    }
+
+    .album-cover {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1.5em;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .album-description {
+      max-width: 800px;
+      background: #111;
+      padding: 2em;
+      border-radius: 12px;
+      margin-bottom: 2em;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .spotify-button {
+      display: inline-flex;
+      align-items: center;
+      background-color: #FFD700;
+      color: black;
+      padding: 0.75em 1.5em;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      transition: background-color 0.3s;
+      margin-top: 1em;
+    }
+
+    .spotify-button:hover {
+      background-color: #e6c200;
+    }
+
+    .spotify-icon {
+      height: 20px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .tracklist {
+      max-width: 800px;
+      width: 100%;
+      margin-top: 2em;
+    }
+
+    .track-item {
+      display: flex;
+      align-items: center;
+      background: #222;
+      padding: 1em;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+
+    .track-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      margin-right: 1em;
+      object-fit: cover;
+    }
+
+    .track-info h3 {
+      margin: 0 0 0.3em 0;
+      font-size: 1.1em;
+    }
+
+    .track-info p {
+      margin: 0;
+      font-size: 0.95em;
+      opacity: 0.8;
+    }
+
+    .back-button {
+      margin-top: 3em;
+      text-decoration: none;
+      color: white;
+      font-size: 1em;
+      padding: 0.6em 1.4em;
+      background: #444;
+      border-radius: 50px;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>Color of Sounds</h1>
+    <img src="Colors-of-sounds.PNG" alt="Color of Sounds Album Cover" class="album-cover">
+
+    <div class="album-description">
+      <p><strong>Color of Sounds</strong> paints emotion in every frequency – a vibrant journey through sunset grooves, midnight moods and radiant house rhythms.</p>
+      <p>DJ Gûrten invites you to explore sound as color, rhythm as feeling. From golden highs to deep echoes — this is the soundtrack to your inner motion.</p>
+
+      <a href="#" class="spotify-button" onclick="alert('Spotify link coming soon!'); return false;">
+        <img src="spotify-icon.PNG" alt="Spotify" class="spotify-icon">
+        Listen on Spotify
+      </a>
+    </div>
+
+    <div class="tracklist">
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Color Of Sounds">
+        <div class="track-info">
+          <h3>Color Of Sounds</h3>
+          <p>The heartbeat of the album. Melodic, moody, magnetic.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Golden Horizon">
+        <div class="track-info">
+          <h3>Golden Horizon</h3>
+          <p>Sun-kissed synths stretching into infinity.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Sway Like the Sun">
+        <div class="track-info">
+          <h3>Sway Like the Sun</h3>
+          <p>A glowing groove made for sunset dancing.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Sunset Sax">
+        <div class="track-info">
+          <h3>Sunset Sax</h3>
+          <p>Warm brass meets chilled-out beats. Pure vibe.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Gravity Lies">
+        <div class="track-info">
+          <h3>Gravity Lies</h3>
+          <p>Floating melodies that defy expectation.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Only You Know">
+        <div class="track-info">
+          <h3>Only You Know</h3>
+          <p>Intimate, hypnotic and laced with mystery.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Echoes in the Night">
+        <div class="track-info">
+          <h3>Echoes in the Night</h3>
+          <p>Dark grooves echoing through starlit skies.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Midnight the Mirage">
+        <div class="track-info">
+          <h3>Midnight the Mirage</h3>
+          <p>Dreamy textures. Unexpected turns.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Save Me From The Silence">
+        <div class="track-info">
+          <h3>Save Me From The Silence</h3>
+          <p>Emotive highs in a slow-burning groove.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Don’t Slow Down">
+        <div class="track-info">
+          <h3>Don’t Slow Down</h3>
+          <p>Forward energy. Relentless rhythm.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="Higher Ground">
+        <div class="track-info">
+          <h3>Higher Ground</h3>
+          <p>A soulful climb into euphoric heights.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <img src="Colors-of-sounds.PNG" alt="ALL INN">
+        <div class="track-info">
+          <h3>ALL INN</h3>
+          <p>Closing with power. No holding back.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="music.html" class="back-button">← Back to Music</a>
+  </div>
+</body>
+</html>

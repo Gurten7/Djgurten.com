@@ -63,6 +63,19 @@
       font-weight: bold;
     }
 
+    .dropdown-menu {
+      display: none;
+      margin-left: 1em;
+    }
+
+    .dropdown-menu a {
+      font-weight: normal;
+    }
+
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+
     #tour {
       width: 100%;
       max-width: 700px;
@@ -126,7 +139,15 @@
   <div class="sidebar" id="sidebar">
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
     <a href="index.html">HOME</a>
-    <a href="tour2025.html">TOUR DATES</a>
+
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+      <div class="dropdown-menu">
+        <a href="tour2025.html">Tour 2025</a>
+        <a href="tour.html">Tour 2026</a>
+      </div>
+    </div>
+
     <a href="news.html">NEWS</a>
     <a href="music.html">MUSIC</a>
     <a href="biography.html">BIOGRAPHY</a>
@@ -138,7 +159,7 @@
 
   <div class="overlay">
     <img src="Electric Groove.PNG" alt="Electric Groove Tour Banner" style="max-width: 700px; width: 100%; border-radius: 12px; margin-bottom: 1em;">
-    
+
     <section id="tour">
       <h2>🔥 Electric Groove Tour 2025</h2>
 
@@ -158,6 +179,13 @@
   <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function toggleDropdown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const dropdown = e.target.parentElement;
+      dropdown.classList.toggle('active');
     }
   </script>
 

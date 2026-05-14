@@ -8,6 +8,7 @@
   <title>DJ Gurten – Infinite Frequencies Era</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -26,8 +27,8 @@
       position: relative;
       background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.65),
-        rgba(0, 0, 0, 0.96)
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.95)
       );
       min-height: 100vh;
       padding: 1em;
@@ -45,16 +46,15 @@
       position: absolute;
       top: 15px;
       right: 15px;
-      background: linear-gradient(135deg, #7df9ff, #5a7dff);
-      color: black;
+      background: deeppink;
+      color: white;
       border: none;
-      padding: 0.6em 1.3em;
+      padding: 0.5em 1.2em;
       border-radius: 30px;
       font-weight: bold;
       font-size: 1em;
       z-index: 1000;
       text-decoration: none;
-      box-shadow: 0 0 15px rgba(125, 249, 255, 0.35);
     }
 
     .menu-toggle {
@@ -107,19 +107,15 @@
     }
 
     h1 {
-      font-size: 2.4em;
+      font-size: 2em;
       margin-top: 0.5em;
-      margin-bottom: 0.3em;
       text-align: center;
-      color: #7df9ff;
-      text-shadow:
-        0 0 10px #7df9ff,
-        0 0 20px #7df9ff;
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
     }
 
     .release-date {
       margin-bottom: 0.5em;
-      opacity: 0.85;
       text-align: center;
     }
 
@@ -127,17 +123,16 @@
       font-size: 1.5em;
       font-weight: bold;
       margin-bottom: 1.5em;
-      color: #7df9ff;
-      text-shadow: 0 0 8px #7df9ff;
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       gap: 0.5em;
-      background: rgba(20, 20, 20, 0.9);
-      border: 1px solid rgba(125, 249, 255, 0.2);
-      padding: 0.8em 1.4em;
+      background: #222;
+      padding: 0.7em 1.2em;
       border-radius: 30px;
       color: white;
       margin: 0.5em 0;
@@ -150,8 +145,6 @@
 
     .button:hover {
       transform: scale(1.03);
-      border-color: rgba(125, 249, 255, 0.6);
-      box-shadow: 0 0 15px rgba(125, 249, 255, 0.35);
     }
 
     .button img {
@@ -166,11 +159,11 @@
     }
 
     .year-buttons button {
-      background: #111;
+      background: #222;
       color: white;
-      border: 2px solid #7df9ff;
+      border: 2px solid yellow;
       margin: 0 0.5em;
-      padding: 0.6em 1.2em;
+      padding: 0.5em 1em;
       border-radius: 30px;
       font-weight: bold;
       cursor: pointer;
@@ -178,9 +171,8 @@
     }
 
     .year-buttons button.active {
-      background: #7df9ff;
+      background: yellow;
       color: black;
-      box-shadow: 0 0 12px rgba(125, 249, 255, 0.6);
     }
 
     #tour {
@@ -191,41 +183,29 @@
     }
 
     #tour h2 {
-      color: #7df9ff;
-      text-shadow:
-        0 0 10px #7df9ff,
-        0 0 20px #7df9ff;
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
       margin-bottom: 1em;
       text-transform: uppercase;
       text-align: center;
-      letter-spacing: 2px;
     }
 
     .tour-card {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(17, 17, 17, 0.92);
-      border-radius: 14px;
+      background: #111;
+      border-radius: 12px;
       padding: 1em;
       margin-bottom: 1em;
-      border: 1px solid rgba(125, 249, 255, 0.1);
-      transition: 0.3s ease;
-    }
-
-    .tour-card:hover {
-      transform: scale(1.01);
-      border-color: rgba(125, 249, 255, 0.35);
-      box-shadow: 0 0 18px rgba(125, 249, 255, 0.18);
     }
 
     .tour-date {
       text-align: center;
-      color: #7df9ff;
+      color: yellow;
       font-weight: bold;
       font-size: 1em;
       min-width: 60px;
-      text-shadow: 0 0 8px #7df9ff;
     }
 
     .tour-info {
@@ -235,21 +215,24 @@
     }
 
     .ticket-button {
-      background: linear-gradient(135deg, #7df9ff, #5a7dff);
+      background-color: white;
       color: black;
       border: none;
-      padding: 0.6em 1.3em;
+      padding: 0.5em 1.2em;
       border-radius: 25px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .view-all {
-      color: #7df9ff;
+      background: transparent;
+      border: none;
+      color: yellow;
       text-align: center;
       text-decoration: underline;
       cursor: pointer;
       margin-top: 1em;
+      font-size: 1em;
     }
 
     #music {
@@ -261,17 +244,16 @@
     }
 
     #music h2 {
-      color: #7df9ff;
-      text-shadow: 0 0 8px #7df9ff;
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
       text-transform: uppercase;
       margin-bottom: 1em;
     }
 
     .music-card {
-      background: rgba(17, 17, 17, 0.92);
+      background: #111;
       padding: 1em;
       border-radius: 15px;
-      border: 1px solid rgba(125, 249, 255, 0.12);
     }
 
     .music-card img {
@@ -298,11 +280,8 @@
       .ticket-button {
         width: 100%;
       }
-
-      h1 {
-        font-size: 2em;
-      }
     }
+
   </style>
 </head>
 
@@ -321,6 +300,7 @@
     <a href="index.html">HOME</a>
 
     <div class="dropdown">
+
       <a href="#" onclick="toggleDropdown(event)">
         TOUR DATES ▾
       </a>
@@ -329,6 +309,7 @@
         <a href="tour2026.html">Tour 2026</a>
         <a href="tour2027.html">Tour 2027</a>
       </div>
+
     </div>
 
     <a href="news.html">NEWS</a>
@@ -379,14 +360,16 @@
 
       <div class="year-buttons">
 
-        <button id="btn2026"
-                onclick="showTour(2026)"
-                class="active">
+        <button
+          id="btn2026"
+          onclick="showTour(2026)"
+          class="active">
           2026
         </button>
 
-        <button id="btn2027"
-                onclick="showTour(2027)">
+        <button
+          id="btn2027"
+          onclick="showTour(2027)">
           2027
         </button>
 
@@ -398,13 +381,12 @@
 
       <div id="tour-cards"></div>
 
-      <div
+      <button
         class="view-all"
         id="view-all-link"
-        onclick="goToFullTour()"
-      >
+        onclick="goToFullTour()">
         View all tour dates
-      </div>
+      </button>
 
     </section>
 
@@ -447,6 +429,7 @@
   <script>
 
     function toggleMenu() {
+
       document
         .getElementById("sidebar")
         .classList
@@ -454,10 +437,13 @@
     }
 
     function toggleDropdown(e) {
+
       e.preventDefault();
       e.stopPropagation();
 
-      const dropdown = e.target.parentElement;
+      const dropdown =
+        e.target.parentElement;
+
       dropdown.classList.toggle('active');
     }
 
@@ -476,6 +462,7 @@
       if (!countdown) return;
 
       if (diff <= 0) {
+
         countdown.innerText = "Released!";
         return;
       }
@@ -597,6 +584,7 @@
       futureCards
         .slice(0, 3)
         .forEach(card => {
+
           container.appendChild(
             card.cloneNode(true)
           );

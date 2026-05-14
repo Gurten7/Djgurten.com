@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DJ Gûrten – News</title>
+
   <style>
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -17,7 +22,11 @@
     }
 
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.95)
+      );
       min-height: 100vh;
       padding: 1em;
     }
@@ -76,6 +85,8 @@
       margin-top: 2em;
       font-size: 2em;
       text-transform: uppercase;
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
     }
 
     .news-section {
@@ -86,18 +97,20 @@
 
     .news-article {
       background: #222;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 1.5em;
       margin-bottom: 2em;
+      border: 1px solid rgba(255,255,0,0.08);
     }
 
     .news-article h2 {
       color: yellow;
       margin-top: 0;
+      text-shadow: 0 0 8px rgba(255,255,0,0.35);
     }
 
     .news-article p {
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .news-date {
@@ -116,22 +129,33 @@
       font-size: 0.8em;
       opacity: 0.7;
     }
+
   </style>
 </head>
+
 <body>
 
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
   <div class="sidebar" id="sidebar">
+
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+
     <a href="index.html">HOME</a>
+
     <div class="dropdown">
-      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+
+      <a href="#" onclick="toggleDropdown(event)">
+        TOUR DATES ▾
+      </a>
+
       <div class="dropdown-menu">
         <a href="tour2026.html">Tour 2026</a>
         <a href="tour2027.html">Tour 2027</a>
       </div>
+
     </div>
+
     <a href="news.html">NEWS</a>
     <a href="music.html">MUSIC</a>
     <a href="biography.html">BIOGRAPHY</a>
@@ -139,100 +163,343 @@
     <a href="shop.html">SHOP</a>
     <a href="contact.html">CONTACT</a>
     <a href="all-access.html">DJ GÛRTEN’S ALL-ACCESS</a>
+
   </div>
 
   <div class="overlay">
+
     <h1>Latest News</h1>
+
     <section class="news-section">
 
-<section id="news">
-  <h1>News</h1>
+      <section id="news">
 
-  <article class="news-article">
-    <div class="news-date">8 June 2026</div>
-    <h2>Tour Dates Announced for 2026</h2>
-    <p>
-      DJ Gûrten is hitting the road again! The <strong>2026 Colors of Sound Tour</strong> is official. 
-      Expect new visuals, unreleased tracks, and surprise guests. Check the full list on the tour page.
-    </p>
-  </article>
+        <article class="news-article">
 
-  <article class="news-article">
-    <div class="news-date">2 June 2025</div>
-    <h2>New Single: Colors of Sound Out Now</h2>
-    <p>
-      The wait is over – <strong>Colors of Sound</strong> has dropped! A vibrant mix of uplifting house and smooth melodies. Available now on all platforms.
-    </p>
-  </article>
+          <div class="news-date">
+            10 June 2026
+          </div>
 
-  <article class="news-article">
-    <div class="news-date">12 May 2025</div>
-    <h2>KDW ’26 Performance Announced</h2>
-    <p>
-      DJ Gûrten will return to <strong>KDW in 2026</strong> for an exclusive live show. Prepare for a new anthem, surprise visuals and a set that will melt minds.
-    </p>
-  </article>
+          <h2>
+            EXTRA SHOW ADDED TO THE 2026 TOUR CALENDAR 🔥
+          </h2>
 
-  <article class="news-article">
-    <div class="news-date">4 April 2025</div>
-    <h2>New in Shop: Club Essentials</h2>
-    <p>
-      Just launched: Gûrten’s <strong>Club Essentials</strong>. Glowsticks, branded ponchos, fans & more. <a href="shop.html">Visit the shop now</a>.
-    </p>
-  </article>
+          <p>
+            Before the highly anticipated start of the
+            <strong>Colors of Sounds Tour 2026</strong>,
+            DJ Gûrten has already added an extra performance
+            to the official tour schedule.
+          </p>
 
-  <article class="news-article">
-    <div class="news-date">21 March 2025</div>
-    <h2>KDW ’25 – The Anthem Released + Tour Announcement</h2>
-    <p>
-      DJ Gûrten drops the official <strong>KDW ’25 Anthem</strong> – the ultimate party soundtrack. 
-      Also announced: the full <strong>Electric Groove Tour 2025</strong> schedule. Get your tickets!
-    </p>
-  </article>
+          <p>
+            📍 <strong>KDW’26</strong><br>
+            📅 <strong>Saturday June 13, 2026</strong>
+          </p>
 
-  <article class="news-article">
-    <div class="news-date">12 March 2025</div>
-    <h2>Electric Groove – Full Album Out Now</h2>
-    <p>
-      The <strong>Electric Groove</strong> album is live! Including <em>Velvet Circuit</em>, <em>Neon Moves</em> and more. 
-      Dive into DJ Gûrten’s genre-bending sonic experience.
-    </p>
-  </article>
+          <p>
+            The countdown to the next chapter has officially begun.
+          </p>
 
-  <article class="news-article">
-    <div class="news-date">3 February 2025</div>
-    <h2>Out Now: Electric Groove ft. Magnus Maximus</h2>
-    <p>
-      The single that started it all. <strong>Electric Groove</strong> is available now. 
-      A bold collab with <strong>Magnus Maximus</strong> – raw synths, dirty bass, pure energy.
-    </p>
-  </article>
+          <p>
+            Known for explosive energy, massive crowd moments
+            and unforgettable festival atmospheres,
+            DJ Gûrten will bring the very first taste
+            of the Colors of Sounds era to KDW’26 this summer.
+          </p>
 
-  <article class="news-article">
-    <div class="news-date">22 December 2024</div>
-    <h2>Collab Announced: DJ Gûrten x Magnus Maximus</h2>
-    <p>
-      It’s official: DJ Gûrten and <strong>Magnus Maximus</strong> have teamed up. Expect a storm of synths and sonic power.
-      <br>🎛️ Full single coming in February.
-    </p>
-  </article>
-</section>
+          <p>
+            Expect brand-new visuals, fresh music,
+            huge drops and a show built to set the tone
+            for what promises to become the biggest
+            DJ Gûrten tour so far.
+          </p>
+
+          <p>
+            This is not just another festival set.<br>
+            This is the beginning of something bigger.
+          </p>
+
+          <p>
+            The colors are coming. 🌈⚡
+          </p>
+
+          <p>
+            #DJGurten #ColorsOfSounds #KDW26
+            #Tour2026 #FestivalSeason
+          </p>
+
+        </article>
+
+        <article class="news-article">
+
+          <div class="news-date">
+            14 May 2026
+          </div>
+
+          <h2>
+            DJ GURTEN ENTERS A BRAND-NEW ERA FOR 2027 🚀
+          </h2>
+
+          <p>
+            After the explosive success of the
+            <strong>Electric Groove Tour 2025</strong>
+            and the highly anticipated
+            <strong>Colors of Sounds Tour 2026</strong>,
+            the time has come for the next evolution
+            of DJ Gûrten.
+          </p>
+
+          <p>
+            2027 will be bigger.<br>
+            Bolder.<br>
+            Louder.<br>
+            More spectacular than ever before.
+          </p>
+
+          <p>
+            Expect:<br>
+            🔥 massive new stage productions<br>
+            ⚡ groundbreaking visuals<br>
+            🌍 bigger crowds<br>
+            🎆 insane special effects<br>
+            🎵 brand-new music<br>
+            🔊 an even more powerful live experience
+          </p>
+
+          <p>
+            Every tour pushed the limits further.<br>
+            But 2027 is set to become the biggest
+            chapter in DJ Gûrten history.
+          </p>
+
+          <p>
+            More energy.<br>
+            More emotion.<br>
+            More chaos.<br>
+            More unforgettable nights.
+          </p>
+
+          <p>
+            A completely new show concept is currently
+            in development and promises to take the
+            live experience to an entirely new level.
+          </p>
+
+          <p>
+            This is not just another tour.<br>
+            This is the start of a new era.
+          </p>
+
+          <p>
+            More information, tour dates and the official
+            2027 tour announcement will be revealed soon.
+          </p>
+
+          <p>
+            The future of DJ Gûrten starts now.
+          </p>
+
+          <p>
+            #DJGurten #Tour2027 #NewEra
+            #FestivalSeason #BiggerThanEver
+          </p>
+
+        </article>
+
+        <article class="news-article">
+
+          <div class="news-date">
+            8 June 2026
+          </div>
+
+          <h2>
+            Tour Dates Announced for 2026
+          </h2>
+
+          <p>
+            DJ Gûrten is hitting the road again!
+            The <strong>2026 Colors of Sound Tour</strong>
+            is official.
+            Expect new visuals, unreleased tracks,
+            and surprise guests.
+            Check the full list on the tour page.
+          </p>
+
+        </article>
+
+        <article class="news-article">
+
+          <div class="news-date">
+            2 June 2025
+          </div>
+
+          <h2>
+            New Single: Colors of Sound Out Now
+          </h2>
+
+          <p>
+            The wait is over –
+            <strong>Colors of Sound</strong> has dropped!
+            A vibrant mix of uplifting house and smooth melodies.
+            Available now on all platforms.
+          </p>
+
+        </article>
+
+        <article class="news-article">
+
+          <div class="news-date">
+            12 May 2025
+          </div>
+
+          <h2>
+            KDW ’26 Performance Announced
+          </h2>
+
+          <p>
+            DJ Gûrten will return to
+            <strong>KDW in 2026</strong>
+            for an exclusive live show.
+            Prepare for a new anthem,
+            surprise visuals and a set that will melt minds.
+          </p>
+
+        </article>
+
+        <article class="news-article">
+
+          <div class="news-date">
+            4 April 2025
+          </div>
+
+          <h2>
+            New in Shop: Club Essentials
+          </h2>
+
+          <p>
+            Just launched:
+            Gûrten’s <strong>Club Essentials</strong>.
+            Glowsticks, branded ponchos, fans & more.
+            <a href="shop.html">Visit the shop now</a>.
+          </p>
+
+        </article>
+
+        <article class="news-article">
+
+          <div class="news-date">
+            21 March 2025
+          </div>
+
+          <h2>
+            KDW ’25 – The Anthem Released + Tour Announcement
+          </h2>
+
+          <p>
+            DJ Gûrten drops the official
+            <strong>KDW ’25 Anthem</strong> –
+            the ultimate party soundtrack.
+            Also announced:
+            the full <strong>Electric Groove Tour 2025</strong>
+            schedule.
+            Get your tickets!
+          </p>
+
+        </article>
+
+        <article class="news-article">
+
+          <div class="news-date">
+            12 March 2025
+          </div>
+
+          <h2>
+            Electric Groove – Full Album Out Now
+          </h2>
+
+          <p>
+            The <strong>Electric Groove</strong> album is live!
+            Including <em>Velvet Circuit</em>,
+            <em>Neon Moves</em> and more.
+            Dive into DJ Gûrten’s genre-bending sonic experience.
+          </p>
+
+        </article>
+
+        <article class="news-article">
+
+          <div class="news-date">
+            3 February 2025
+          </div>
+
+          <h2>
+            Out Now: Electric Groove ft. Magnus Maximus
+          </h2>
+
+          <p>
+            The single that started it all.
+            <strong>Electric Groove</strong>
+            is available now.
+            A bold collab with
+            <strong>Magnus Maximus</strong> –
+            raw synths, dirty bass, pure energy.
+          </p>
+
+        </article>
+
+        <article class="news-article">
+
+          <div class="news-date">
+            22 December 2024
+          </div>
+
+          <h2>
+            Collab Announced: DJ Gûrten x Magnus Maximus
+          </h2>
+
+          <p>
+            It’s official:
+            DJ Gûrten and
+            <strong>Magnus Maximus</strong>
+            have teamed up.
+            Expect a storm of synths and sonic power.
+            <br><br>
+            🎛️ Full single coming in February.
+          </p>
+
+        </article>
+
+      </section>
 
     </section>
-    <footer>© 2025 DJ Gûrten</footer>
+
+    <footer>
+      © 2026 DJ Gûrten
+    </footer>
+
   </div>
 
   <script>
+
     function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
+
+      document
+        .getElementById("sidebar")
+        .classList
+        .toggle("active");
     }
 
     function toggleDropdown(e) {
+
       e.preventDefault();
       e.stopPropagation();
-      const dropdown = e.target.parentElement;
+
+      const dropdown =
+        e.target.parentElement;
+
       dropdown.classList.toggle('active');
     }
+
   </script>
 
 </body>

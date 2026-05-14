@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Gurten – Electric Groove Tour 2025</title>
+  <title>DJ Gurten – Infinite Frequencies Tour 2027</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -19,7 +20,7 @@
     }
 
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.96));
       min-height: 100vh;
       padding: 1em;
       display: flex;
@@ -84,29 +85,39 @@
     }
 
     #tour h2 {
-      color: yellow;
-      text-shadow: 0 0 8px yellow;
+      color: #7df9ff;
+      text-shadow: 0 0 10px #7df9ff, 0 0 20px #7df9ff;
       margin-bottom: 1em;
       text-transform: uppercase;
       text-align: center;
+      letter-spacing: 2px;
     }
 
     .tour-card {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #111;
-      border-radius: 12px;
+      background: rgba(17,17,17,0.92);
+      border-radius: 14px;
       padding: 1em;
       margin-bottom: 1em;
+      transition: 0.3s ease;
+      border: 1px solid rgba(125,249,255,0.08);
+    }
+
+    .tour-card:hover {
+      transform: scale(1.01);
+      border-color: rgba(125,249,255,0.35);
+      box-shadow: 0 0 15px rgba(125,249,255,0.15);
     }
 
     .tour-date {
       text-align: center;
-      color: yellow;
+      color: #7df9ff;
       font-weight: bold;
       font-size: 1em;
-      min-width: 60px;
+      min-width: 70px;
+      text-shadow: 0 0 8px #7df9ff;
     }
 
     .tour-info {
@@ -115,46 +126,77 @@
       margin-left: 1em;
     }
 
+    .tour-info strong {
+      font-size: 1.05em;
+    }
+
     .ticket-button {
-      background-color: white;
+      background: linear-gradient(135deg, #7df9ff, #5a7dff);
       color: black;
       border: none;
-      padding: 0.5em 1.2em;
+      padding: 0.6em 1.3em;
       border-radius: 25px;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .ticket-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(125,249,255,0.5);
     }
 
     .ticket-button[disabled] {
-      background-color: #888;
+      background: #555;
       color: white;
       cursor: not-allowed;
+      box-shadow: none;
     }
 
     .tour-card.sold-out {
-      background-color: #333;
-      opacity: 0.7;
+      opacity: 0.72;
     }
 
     .tour-card.final-show {
-      border: 2px solid yellow;
-      box-shadow: 0 0 10px yellow;
+      border: 2px solid #7df9ff;
+      box-shadow: 0 0 20px rgba(125,249,255,0.6);
+      background: rgba(25,25,35,0.95);
+    }
+
+    @media (max-width: 600px) {
+      .tour-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1em;
+      }
+
+      .tour-date {
+        min-width: auto;
+      }
+
+      .ticket-button {
+        width: 100%;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
   <div class="sidebar" id="sidebar">
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+
     <a href="index.html">HOME</a>
 
     <div class="dropdown">
       <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+
       <div class="dropdown-menu">
         <a href="tour2025.html">Tour 2025</a>
-        <a href="tour.html">Tour 2026</a>
+        <a href="tour2026.html">Tour 2026</a>
+        <a href="tour2027.html">Tour 2027</a>
       </div>
     </div>
 
@@ -168,30 +210,145 @@
   </div>
 
   <div class="overlay">
-    <img src="Electric Groove.PNG" alt="Electric Groove Tour Banner" style="max-width: 700px; width: 100%; border-radius: 12px; margin-bottom: 1em;">
+
+    <img 
+      src="Infinite Frequencies.PNG"
+      alt="Infinite Frequencies Tour Banner"
+      style="
+        max-width: 700px;
+        width: 100%;
+        border-radius: 14px;
+        margin-bottom: 1em;
+        box-shadow: 0 0 25px rgba(125,249,255,0.25);
+      "
+    >
 
     <section id="tour">
-      <h2>🔥 Electric Groove Tour 2025</h2>
 
-      <div class="tour-card sold-out"><div class="tour-date">01<br>JUL<br>2025</div><div class="tour-info"><strong>Sound</strong><br>Los Angeles</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">04<br>JUL<br>2025</div><div class="tour-info"><strong>DC10</strong><br>Ibiza</div><button class="ticket-button">Last Tickets</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">06<br>JUL<br>2025</div><div class="tour-info"><strong>Bootshaus</strong><br>Cologne</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">08<br>JUL<br>2025</div><div class="tour-info"><strong>Gashouder</strong><br>Amsterdam</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">11<br>JUL<br>2025</div><div class="tour-info"><strong>Printworks</strong><br>London</div><button class="ticket-button">Last Tickets</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">13<br>JUL<br>2025</div><div class="tour-info"><strong>Else</strong><br>Berlin</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">16<br>JUL<br>2025</div><div class="tour-info"><strong>Pacha</strong><br>Ibiza</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">18<br>JUL<br>2025</div><div class="tour-info"><strong>Zamna</strong><br>Tulum</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">20<br>JUL<br>2025</div><div class="tour-info"><strong>Watergate</strong><br>Berlin</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">23<br>JUL<br>2025</div><div class="tour-info"><strong>La Machine</strong><br>Paris</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">26<br>JUL<br>2025</div><div class="tour-info"><strong>Green Valley</strong><br>Brazil</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">30<br>JUL<br>2025</div><div class="tour-info"><strong>Cavo Paradiso</strong><br>Mykonos</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">02<br>AUG<br>2025</div><div class="tour-info"><strong>Rex Club</strong><br>Paris</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">05<br>AUG<br>2025</div><div class="tour-info"><strong>Warehouse Project</strong><br>Manchester</div><button class="ticket-button">Last Tickets</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">08<br>AUG<br>2025</div><div class="tour-info"><strong>Ushuaïa</strong><br>Ibiza</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">12<br>AUG<br>2025</div><div class="tour-info"><strong>The Brooklyn Mirage</strong><br>New York</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">20<br>AUG<br>2025</div><div class="tour-info"><strong>TivoliVredenburg</strong><br>Utrecht</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card"><div class="tour-date">30<br>AUG<br>2025</div><div class="tour-info"><strong>Beachclub Fuel</strong><br>Bloemendaal</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card final-show"><div class="tour-date">18<br>OCT<br>2025</div><div class="tour-info"><strong>Palau Sant Jordi</strong><br>Barcelona</div><button class="ticket-button">Final Show – Tickets</button></div>
+      <h2>∞ Infinite Frequencies Tour 2027</h2>
+
+      <div class="tour-card sold-out">
+        <div class="tour-date">03<br>MAR<br>2027</div>
+        <div class="tour-info">
+          <strong>Sphere</strong><br>Las Vegas
+        </div>
+        <button class="ticket-button" disabled>Sold Out</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">08<br>MAR<br>2027</div>
+        <div class="tour-info">
+          <strong>Printworks</strong><br>London
+        </div>
+        <button class="ticket-button">Last Tickets</button>
+      </div>
+
+      <div class="tour-card sold-out">
+        <div class="tour-date">12<br>MAR<br>2027</div>
+        <div class="tour-info">
+          <strong>Bootshaus</strong><br>Cologne
+        </div>
+        <button class="ticket-button" disabled>Sold Out</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">19<br>MAR<br>2027</div>
+        <div class="tour-info">
+          <strong>Ziggo Dome</strong><br>Amsterdam
+        </div>
+        <button class="ticket-button">Tickets</button>
+      </div>
+
+      <div class="tour-card sold-out">
+        <div class="tour-date">27<br>MAR<br>2027</div>
+        <div class="tour-info">
+          <strong>Ushuaïa</strong><br>Ibiza
+        </div>
+        <button class="ticket-button" disabled>Sold Out</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">02<br>APR<br>2027</div>
+        <div class="tour-info">
+          <strong>Warehouse Project</strong><br>Manchester
+        </div>
+        <button class="ticket-button">Tickets</button>
+      </div>
+
+      <div class="tour-card sold-out">
+        <div class="tour-date">10<br>APR<br>2027</div>
+        <div class="tour-info">
+          <strong>Brooklyn Mirage</strong><br>New York
+        </div>
+        <button class="ticket-button" disabled>Sold Out</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">16<br>APR<br>2027</div>
+        <div class="tour-info">
+          <strong>Zamna</strong><br>Tulum
+        </div>
+        <button class="ticket-button">Last Tickets</button>
+      </div>
+
+      <div class="tour-card sold-out">
+        <div class="tour-date">24<br>APR<br>2027</div>
+        <div class="tour-info">
+          <strong>Gashouder</strong><br>Amsterdam
+        </div>
+        <button class="ticket-button" disabled>Sold Out</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">30<br>APR<br>2027</div>
+        <div class="tour-info">
+          <strong>Pacha</strong><br>Ibiza
+        </div>
+        <button class="ticket-button">Tickets</button>
+      </div>
+
+      <div class="tour-card sold-out">
+        <div class="tour-date">08<br>MAY<br>2027</div>
+        <div class="tour-info">
+          <strong>Rex Club</strong><br>Paris
+        </div>
+        <button class="ticket-button" disabled>Sold Out</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">14<br>MAY<br>2027</div>
+        <div class="tour-info">
+          <strong>TivoliVredenburg</strong><br>Utrecht
+        </div>
+        <button class="ticket-button">Tickets</button>
+      </div>
+
+      <div class="tour-card sold-out">
+        <div class="tour-date">22<br>MAY<br>2027</div>
+        <div class="tour-info">
+          <strong>Tomorrowland Afterlife</strong><br>Boom
+        </div>
+        <button class="ticket-button" disabled>Sold Out</button>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-date">29<br>MAY<br>2027</div>
+        <div class="tour-info">
+          <strong>Cavo Paradiso</strong><br>Mykonos
+        </div>
+        <button class="ticket-button">Tickets</button>
+      </div>
+
+      <div class="tour-card final-show">
+        <div class="tour-date">16<br>OCT<br>2027</div>
+        <div class="tour-info">
+          <strong>Palau Sant Jordi</strong><br>Barcelona
+        </div>
+        <button class="ticket-button">
+          Final Show – Tickets
+        </button>
+      </div>
+
     </section>
   </div>
 
@@ -203,6 +360,7 @@
     function toggleDropdown(e) {
       e.preventDefault();
       e.stopPropagation();
+
       const dropdown = e.target.parentElement;
       dropdown.classList.toggle('active');
     }

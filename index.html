@@ -162,7 +162,6 @@
     .year-buttons button {
       background: #222;
       color: white;
-      border: 2px solid yellow;
       margin: 0 0.5em;
       padding: 0.5em 1em;
       border-radius: 30px;
@@ -171,9 +170,29 @@
       transition: 0.3s ease;
     }
 
-    .year-buttons button.active {
+    /* 2026 knop */
+
+    #btn2026 {
+      border: 2px solid yellow;
+    }
+
+    #btn2026.active {
       background: yellow;
       color: black;
+      box-shadow: 0 0 12px rgba(255,255,0,0.5);
+    }
+
+    /* 2027 knop */
+
+    #btn2027 {
+      border: 2px solid #7df9ff;
+      color: #7df9ff;
+    }
+
+    #btn2027.active {
+      background: #7df9ff;
+      color: black;
+      box-shadow: 0 0 12px rgba(125,249,255,0.6);
     }
 
     #tour {
@@ -281,13 +300,6 @@
       text-shadow:
         0 0 10px #7df9ff,
         0 0 20px #7df9ff;
-    }
-
-    .infinite-mode .year-buttons button.active {
-      background: #7df9ff;
-      color: black;
-      border-color: #7df9ff;
-      box-shadow: 0 0 12px rgba(125,249,255,0.6);
     }
 
     .infinite-mode .tour-card {

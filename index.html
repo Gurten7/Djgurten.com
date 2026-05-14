@@ -35,6 +35,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      transition: 0.3s ease;
     }
 
     .logo {
@@ -198,6 +199,7 @@
       border-radius: 12px;
       padding: 1em;
       margin-bottom: 1em;
+      transition: 0.3s ease;
     }
 
     .tour-date {
@@ -267,6 +269,42 @@
       font-size: 0.9em;
       opacity: 0.7;
       text-align: center;
+    }
+
+    /* 2027 Infinite Frequencies Mode */
+
+    .infinite-mode #tour h2,
+    .infinite-mode #tour-title,
+    .infinite-mode .tour-date,
+    .infinite-mode .view-all {
+      color: #7df9ff !important;
+      text-shadow:
+        0 0 10px #7df9ff,
+        0 0 20px #7df9ff;
+    }
+
+    .infinite-mode .year-buttons button.active {
+      background: #7df9ff;
+      color: black;
+      border-color: #7df9ff;
+      box-shadow: 0 0 12px rgba(125,249,255,0.6);
+    }
+
+    .infinite-mode .tour-card {
+      border: 1px solid rgba(125,249,255,0.18);
+    }
+
+    .infinite-mode .tour-card:hover {
+      border-color: rgba(125,249,255,0.35);
+      box-shadow: 0 0 18px rgba(125,249,255,0.2);
+    }
+
+    .infinite-mode .ticket-button {
+      background: linear-gradient(
+        135deg,
+        #7df9ff,
+        #5a7dff
+      );
     }
 
     @media (max-width: 600px) {
@@ -496,11 +534,16 @@
         .classList
         .add("active");
 
+      const overlay =
+        document.querySelector(".overlay");
+
       if (year === 2026) {
 
         document.getElementById("tour-title")
           .textContent =
           "Colors of Sound Tour 2026";
+
+        overlay.classList.remove("infinite-mode");
       }
 
       else {
@@ -508,6 +551,8 @@
         document.getElementById("tour-title")
           .textContent =
           "Infinite Frequencies Tour 2027";
+
+        overlay.classList.add("infinite-mode");
       }
 
       currentYear = year;

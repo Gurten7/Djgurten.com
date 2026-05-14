@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Gurten – Colors of Sound Tour</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>DJ Gurten – Infinite Frequencies Era</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       color: white;
       background: url('achtergrond-hoogres.PNG') no-repeat center top;
-      background-size: contain;
+      background-size: cover;
       background-color: black;
       background-attachment: fixed;
     }
 
     .overlay {
       position: relative;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.96)
+      );
       min-height: 100vh;
       padding: 1em;
       display: flex;
@@ -36,15 +45,16 @@
       position: absolute;
       top: 15px;
       right: 15px;
-      background: deeppink;
-      color: white;
+      background: linear-gradient(135deg, #7df9ff, #5a7dff);
+      color: black;
       border: none;
-      padding: 0.5em 1.2em;
+      padding: 0.6em 1.3em;
       border-radius: 30px;
       font-weight: bold;
       font-size: 1em;
       z-index: 1000;
       text-decoration: none;
+      box-shadow: 0 0 15px rgba(125, 249, 255, 0.35);
     }
 
     .menu-toggle {
@@ -97,27 +107,37 @@
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 2.4em;
       margin-top: 0.5em;
+      margin-bottom: 0.3em;
       text-align: center;
+      color: #7df9ff;
+      text-shadow:
+        0 0 10px #7df9ff,
+        0 0 20px #7df9ff;
     }
 
     .release-date {
       margin-bottom: 0.5em;
+      opacity: 0.85;
+      text-align: center;
     }
 
     #countdown {
       font-size: 1.5em;
       font-weight: bold;
       margin-bottom: 1.5em;
+      color: #7df9ff;
+      text-shadow: 0 0 8px #7df9ff;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       gap: 0.5em;
-      background: #222;
-      padding: 0.7em 1.2em;
+      background: rgba(20, 20, 20, 0.9);
+      border: 1px solid rgba(125, 249, 255, 0.2);
+      padding: 0.8em 1.4em;
       border-radius: 30px;
       color: white;
       margin: 0.5em 0;
@@ -125,15 +145,20 @@
       font-weight: bold;
       font-size: 1em;
       line-height: 1;
+      transition: 0.3s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.03);
+      border-color: rgba(125, 249, 255, 0.6);
+      box-shadow: 0 0 15px rgba(125, 249, 255, 0.35);
     }
 
     .button img {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-  display: block;
-  object-fit: contain;
-}
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
 
     .year-buttons {
       text-align: center;
@@ -141,19 +166,21 @@
     }
 
     .year-buttons button {
-      background: #222;
+      background: #111;
       color: white;
-      border: 2px solid yellow;
+      border: 2px solid #7df9ff;
       margin: 0 0.5em;
-      padding: 0.5em 1em;
+      padding: 0.6em 1.2em;
       border-radius: 30px;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.3s ease;
     }
 
     .year-buttons button.active {
-      background: yellow;
+      background: #7df9ff;
       color: black;
+      box-shadow: 0 0 12px rgba(125, 249, 255, 0.6);
     }
 
     #tour {
@@ -164,29 +191,41 @@
     }
 
     #tour h2 {
-      color: yellow;
-      text-shadow: 0 0 8px yellow;
+      color: #7df9ff;
+      text-shadow:
+        0 0 10px #7df9ff,
+        0 0 20px #7df9ff;
       margin-bottom: 1em;
       text-transform: uppercase;
       text-align: center;
+      letter-spacing: 2px;
     }
 
     .tour-card {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #111;
-      border-radius: 12px;
+      background: rgba(17, 17, 17, 0.92);
+      border-radius: 14px;
       padding: 1em;
       margin-bottom: 1em;
+      border: 1px solid rgba(125, 249, 255, 0.1);
+      transition: 0.3s ease;
+    }
+
+    .tour-card:hover {
+      transform: scale(1.01);
+      border-color: rgba(125, 249, 255, 0.35);
+      box-shadow: 0 0 18px rgba(125, 249, 255, 0.18);
     }
 
     .tour-date {
       text-align: center;
-      color: yellow;
+      color: #7df9ff;
       font-weight: bold;
       font-size: 1em;
       min-width: 60px;
+      text-shadow: 0 0 8px #7df9ff;
     }
 
     .tour-info {
@@ -196,17 +235,17 @@
     }
 
     .ticket-button {
-      background-color: white;
+      background: linear-gradient(135deg, #7df9ff, #5a7dff);
       color: black;
       border: none;
-      padding: 0.5em 1.2em;
+      padding: 0.6em 1.3em;
       border-radius: 25px;
       font-weight: bold;
-      cursor: not-allowed;
+      cursor: pointer;
     }
 
     .view-all {
-      color: yellow;
+      color: #7df9ff;
       text-align: center;
       text-decoration: underline;
       cursor: pointer;
@@ -222,16 +261,17 @@
     }
 
     #music h2 {
-      color: yellow;
-      text-shadow: 0 0 8px yellow;
+      color: #7df9ff;
+      text-shadow: 0 0 8px #7df9ff;
       text-transform: uppercase;
       margin-bottom: 1em;
     }
 
     .music-card {
-      background: #111;
+      background: rgba(17, 17, 17, 0.92);
       padding: 1em;
       border-radius: 15px;
+      border: 1px solid rgba(125, 249, 255, 0.12);
     }
 
     .music-card img {
@@ -246,23 +286,51 @@
       opacity: 0.7;
       text-align: center;
     }
+
+    @media (max-width: 600px) {
+
+      .tour-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1em;
+      }
+
+      .ticket-button {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-  <a href="mailto:bookings@djgurten.com" class="book-btn">BOOK NOW</a>
+
+  <a href="mailto:bookings@djgurten.com" class="book-btn">
+    BOOK NOW
+  </a>
 
   <div class="sidebar" id="sidebar">
+
     <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+
     <a href="index.html">HOME</a>
+
     <div class="dropdown">
-      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+      <a href="#" onclick="toggleDropdown(event)">
+        TOUR DATES ▾
+      </a>
+
       <div class="dropdown-menu" id="tourDropdown">
-        <a href="tour2025.html">Tour 2025</a>
-        <a href="tour.html">Tour 2026</a>
+        <a href="tour2026.html">Tour 2026</a>
+        <a href="tour2027.html">Tour 2027</a>
       </div>
     </div>
+
     <a href="news.html">NEWS</a>
     <a href="music.html">MUSIC</a>
     <a href="biography.html">BIOGRAPHY</a>
@@ -270,129 +338,278 @@
     <a href="shop.html">SHOP</a>
     <a href="contact.html">CONTACT</a>
     <a href="all-access.html">DJ GURTEN’S ALL-ACCESS</a>
+
   </div>
 
   <div class="overlay">
-    <img src="djgurten-logo.PNG" alt="DJ Gurten Logo" class="logo" />
 
-        <h1>KDW '26 – The Anthem</h1>
-    <div class="release-date">Release date: April 1st, 2026 at 12:00 PM</div>
+    <img
+      src="djgurten-logo.PNG"
+      alt="DJ Gurten Logo"
+      class="logo"
+    />
+
+    <h1>KDW '26 – The Anthem</h1>
+
+    <div class="release-date">
+      Release date: June 6th, 2026 at 12:00 PM
+    </div>
+
     <div id="countdown">Loading...</div>
 
-    <a href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74" class="button" target="_blank">
-      <img src="spotify-icon.PNG" alt="Spotify" /> Listen on Spotify
+    <a
+      href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74"
+      class="button"
+      target="_blank"
+    >
+      <img src="spotify-icon.PNG" alt="Spotify" />
+      Listen on Spotify
     </a>
 
-    <a href="https://www.instagram.com/dj_gurten" class="button" target="_blank">
-      <img src="instagram.PNG" alt="Instagram" /> Follow on Instagram
+    <a
+      href="https://www.instagram.com/dj_gurten"
+      class="button"
+      target="_blank"
+    >
+      <img src="instagram.PNG" alt="Instagram" />
+      Follow on Instagram
     </a>
 
     <section id="tour">
-  <div class="year-buttons">
-    <button id="btn2025" onclick="showTour(2025)" class="active">2025</button>
-<button id="btn2026" onclick="showTour(2026)">2026</button>
-  </div>
-  <h2 id="tour-title">Colors of Sound Tour 2026</h2>
-  <div id="tour-cards">
-    <!-- Tourcards komen hier -->
-  </div>
-  <div class="view-all" id="view-all-link" onclick="goToFullTour()">View all tour dates</div>
-</section>
-</body>
-        <section id="music">
+
+      <div class="year-buttons">
+
+        <button id="btn2026"
+                onclick="showTour(2026)"
+                class="active">
+          2026
+        </button>
+
+        <button id="btn2027"
+                onclick="showTour(2027)">
+          2027
+        </button>
+
+      </div>
+
+      <h2 id="tour-title">
+        Colors of Sound Tour 2026
+      </h2>
+
+      <div id="tour-cards"></div>
+
+      <div
+        class="view-all"
+        id="view-all-link"
+        onclick="goToFullTour()"
+      >
+        View all tour dates
+      </div>
+
+    </section>
+
+    <section id="music">
+
       <h2>🎵 Latest Music</h2>
+
       <div class="music-card">
-        <img src="Colors of sound.PNG" alt="Colors of Sound Cover">
-        <h3>Color of Sounds</h3>
-        <p>The brand new single by DJ Gurten – now on Spotify</p>
-        <a href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ" target="_blank" class="button">
+
+        <img
+          src="Colors of sound.PNG"
+          alt="Colors of Sound Cover"
+        >
+
+        <h3>Colors of Sound</h3>
+
+        <p>
+          The brand new single by DJ Gurten – now on Spotify
+        </p>
+
+        <a
+          href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ"
+          target="_blank"
+          class="button"
+        >
           <img src="spotify-icon.PNG" alt="Spotify Logo">
           Listen now on Spotify
         </a>
+
       </div>
+
     </section>
 
-    <footer>© 2025 DJ Gurten</footer>
-  </div> <!-- overlay -->
+    <footer>
+      © 2026 DJ Gurten
+    </footer>
 
- <script>
-  function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
-  }
+  </div>
 
-  function toggleDropdown(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    const dropdown = e.target.parentElement;
-    dropdown.classList.toggle('active');
-  }
+  <script>
 
-  function updateCountdown() {
-    const target = new Date("April 1, 2026 12:00:00").getTime();
-    const now = new Date().getTime();
-    const diff = target - now;
-
-    const countdown = document.getElementById("countdown");
-    if (!countdown) return;
-
-    if (diff <= 0) {
-      countdown.innerText = "Released!";
-      return;
+    function toggleMenu() {
+      document
+        .getElementById("sidebar")
+        .classList
+        .toggle("active");
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
+    function toggleDropdown(e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-  let currentYear = 2025;
+      const dropdown = e.target.parentElement;
+      dropdown.classList.toggle('active');
+    }
 
-  function showTour(year) {
-    document.getElementById("btn2025").classList.remove("active");
-    document.getElementById("btn2026").classList.remove("active");
-    document.getElementById(`btn${year}`).classList.add("active");
+    function updateCountdown() {
 
-    document.getElementById("tour-title").textContent =
-      year === 2025 ? "Electric Groove Tour 2025" : "Colors of Sound Tour 2026";
+      const target =
+        new Date("June 6, 2026 12:00:00").getTime();
 
-    currentYear = year;
-    loadTourData(year);
-  }
+      const now = new Date().getTime();
 
-  function goToFullTour() {
-    window.location.href = currentYear === 2025 ? "tour2025.html" : "tour.html";
-  }
+      const diff = target - now;
 
-  async function loadTourData(year) {
-    const url = year === 2025 ? "tour2025.html" : "tour.html";
-    const response = await fetch(url);
-    const html = await response.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-    const cards = doc.querySelectorAll(".tour-card");
+      const countdown =
+        document.getElementById("countdown");
 
-    const futureCards = Array.from(cards).filter(card => {
-      const dateEl = card.querySelector(".tour-date");
-      if (!dateEl) return false;
+      if (!countdown) return;
 
-      const parts = dateEl.innerText.trim().split("\n");
-      if (parts.length < 3) return false;
+      if (diff <= 0) {
+        countdown.innerText = "Released!";
+        return;
+      }
 
-      const [day, monthStr, yearStr] = parts;
-      const parsedDate = new Date(`${monthStr} ${day}, ${yearStr}`);
-      return parsedDate >= new Date();
-    });
+      const days =
+        Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    const container = document.getElementById("tour-cards");
-    container.innerHTML = "";
-    futureCards.slice(0, 3).forEach(card => container.appendChild(card.cloneNode(true)));
-  }
+      const hours =
+        Math.floor((diff / (1000 * 60 * 60)) % 24);
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-  showTour(2025);
-</script>
+      const minutes =
+        Math.floor((diff / (1000 * 60)) % 60);
+
+      const seconds =
+        Math.floor((diff / 1000) % 60);
+
+      countdown.innerText =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    let currentYear = 2026;
+
+    function showTour(year) {
+
+      document
+        .querySelectorAll(".year-buttons button")
+        .forEach(btn => btn.classList.remove("active"));
+
+      document
+        .getElementById(`btn${year}`)
+        .classList
+        .add("active");
+
+      if (year === 2026) {
+
+        document.getElementById("tour-title")
+          .textContent =
+          "Colors of Sound Tour 2026";
+      }
+
+      else {
+
+        document.getElementById("tour-title")
+          .textContent =
+          "Infinite Frequencies Tour 2027";
+      }
+
+      currentYear = year;
+
+      loadTourData(year);
+    }
+
+    function goToFullTour() {
+
+      if (currentYear === 2026) {
+
+        window.location.href = "tour2026.html";
+      }
+
+      else {
+
+        window.location.href = "tour2027.html";
+      }
+    }
+
+    async function loadTourData(year) {
+
+      let url = "";
+
+      if (year === 2026) {
+
+        url = "tour2026.html";
+      }
+
+      else {
+
+        url = "tour2027.html";
+      }
+
+      const response = await fetch(url);
+
+      const html = await response.text();
+
+      const parser = new DOMParser();
+
+      const doc =
+        parser.parseFromString(html, "text/html");
+
+      const cards =
+        doc.querySelectorAll(".tour-card");
+
+      const futureCards = Array
+        .from(cards)
+        .filter(card => {
+
+          const dateEl =
+            card.querySelector(".tour-date");
+
+          if (!dateEl) return false;
+
+          const parts =
+            dateEl.innerText.trim().split("\n");
+
+          if (parts.length < 3) return false;
+
+          const [day, monthStr, yearStr] = parts;
+
+          const parsedDate =
+            new Date(`${monthStr} ${day}, ${yearStr}`);
+
+          return parsedDate >= new Date();
+        });
+
+      const container =
+        document.getElementById("tour-cards");
+
+      container.innerHTML = "";
+
+      futureCards
+        .slice(0, 3)
+        .forEach(card => {
+          container.appendChild(
+            card.cloneNode(true)
+          );
+        });
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    updateCountdown();
+
+    showTour(2026);
+
+  </script>
+
 </body>
 </html>

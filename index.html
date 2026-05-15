@@ -98,10 +98,6 @@
       margin-left: 1em;
     }
 
-    .dropdown-menu a {
-      font-weight: normal;
-    }
-
     .dropdown.active .dropdown-menu {
       display: block;
     }
@@ -151,6 +147,8 @@
         0 0 50px rgba(255,255,0,0.08);
     }
 
+    /* BUTTONS */
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -175,24 +173,38 @@
       object-fit: contain;
     }
 
+    /* TOUR */
+
+    #tour {
+      width: 100%;
+      max-width: 750px;
+      margin-top: 4em;
+      padding: 0 1em;
+    }
+
+    #tour h2 {
+      color: yellow;
+      text-shadow: 0 0 8px yellow;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1.5em;
+    }
+
     .year-buttons {
       text-align: center;
-      margin: 1em 0;
+      margin-bottom: 2em;
     }
 
     .year-buttons button {
       background: #222;
       color: white;
+      border: none;
+      padding: 0.7em 1.4em;
       margin: 0 0.5em;
-      padding: 0.5em 1em;
       border-radius: 30px;
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s ease;
-    }
-
-    #btn2026 {
-      border: 2px solid yellow;
     }
 
     #btn2026.active {
@@ -201,30 +213,10 @@
       box-shadow: 0 0 12px rgba(255,255,0,0.5);
     }
 
-    #btn2027 {
-      border: 2px solid #7df9ff;
-      color: #7df9ff;
-    }
-
     #btn2027.active {
       background: #7df9ff;
       color: black;
-      box-shadow: 0 0 12px rgba(125,249,255,0.6);
-    }
-
-    #tour {
-      width: 100%;
-      max-width: 700px;
-      margin-top: 3em;
-      padding: 0 1em;
-    }
-
-    #tour h2 {
-      color: yellow;
-      text-shadow: 0 0 8px yellow;
-      margin-bottom: 1em;
-      text-transform: uppercase;
-      text-align: center;
+      box-shadow: 0 0 12px rgba(125,249,255,0.5);
     }
 
     .tour-card {
@@ -232,8 +224,8 @@
       justify-content: space-between;
       align-items: center;
       background: #111;
-      border-radius: 12px;
-      padding: 1em;
+      border-radius: 15px;
+      padding: 1.2em;
       margin-bottom: 1em;
     }
 
@@ -241,33 +233,25 @@
       text-align: center;
       color: yellow;
       font-weight: bold;
-      min-width: 60px;
+      min-width: 70px;
     }
 
     .tour-info {
       flex-grow: 1;
-      margin-left: 1em;
+      margin-left: 1.2em;
     }
 
     .ticket-button {
-      background-color: white;
+      background: white;
       color: black;
       border: none;
-      padding: 0.5em 1.2em;
+      padding: 0.6em 1.2em;
       border-radius: 25px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    .view-all {
-      background: transparent;
-      border: none;
-      color: yellow;
-      text-decoration: underline;
-      cursor: pointer;
-      margin-top: 1em;
-      font-size: 1em;
-    }
+    /* MUSIC */
 
     #music {
       width: 100%;
@@ -285,13 +269,13 @@
 
     .music-card {
       background: #111;
-      padding: 1em;
+      padding: 1.5em;
       border-radius: 15px;
     }
 
     .music-card img {
       max-width: 100%;
-      border-radius: 10px;
+      border-radius: 12px;
       margin-bottom: 1em;
     }
 
@@ -312,6 +296,14 @@
 
       .ticket-button {
         width: 100%;
+      }
+
+      h1 {
+        font-size: 1.6em;
+      }
+
+      #countdown {
+        font-size: 1.2em;
       }
     }
 
@@ -351,7 +343,6 @@
     <a href="videos.html">VIDEOS</a>
     <a href="shop.html">SHOP</a>
     <a href="contact.html">CONTACT</a>
-    <a href="all-access.html">DJ GURTEN’S ALL-ACCESS</a>
 
   </div>
 
@@ -384,7 +375,6 @@
           playsinline
         >
           <source src="kdw26-trailer.mp4" type="video/mp4">
-          Your browser does not support the video tag.
         </video>
 
       </div>
@@ -394,7 +384,7 @@
     <!-- BUTTONS -->
 
     <a
-      href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74"
+      href="https://open.spotify.com"
       class="button"
       target="_blank"
     >
@@ -403,7 +393,7 @@
     </a>
 
     <a
-      href="https://www.instagram.com/dj_gurten"
+      href="https://instagram.com"
       class="button"
       target="_blank"
     >
@@ -417,57 +407,26 @@
 
       <div class="year-buttons">
 
-        <button id="btn2026" class="active">
+        <button
+          id="btn2026"
+          class="active"
+          onclick="showTour(2026)">
           2026
         </button>
 
-        <button id="btn2027">
+        <button
+          id="btn2027"
+          onclick="showTour(2027)">
           2027
         </button>
 
       </div>
 
-      <h2>
-        Colors of Sound Tour 2026
+      <h2 id="tour-title">
+        Upcoming Shows 2026
       </h2>
 
-      <div class="tour-card">
-
-        <div class="tour-date">
-          13<br>JUN<br>2026
-        </div>
-
-        <div class="tour-info">
-          <strong>KDW’26</strong><br>
-          Lichtenvoorde, Netherlands
-        </div>
-
-        <button class="ticket-button">
-          Festival Exclusive
-        </button>
-
-      </div>
-
-      <div class="tour-card">
-
-        <div class="tour-date">
-          10<br>OCT<br>2026
-        </div>
-
-        <div class="tour-info">
-          <strong>Sky Club Malta</strong><br>
-          St. Julian’s, Malta
-        </div>
-
-        <button class="ticket-button">
-          Live at Sky Malta Club
-        </button>
-
-      </div>
-
-      <button class="view-all">
-        View all tour dates
-      </button>
+      <div id="tour-cards"></div>
 
     </section>
 
@@ -495,7 +454,7 @@
           target="_blank"
           class="button"
         >
-          <img src="spotify-icon.PNG" alt="Spotify Logo">
+          <img src="spotify-icon.PNG" alt="Spotify">
           Listen now on Spotify
         </a>
 
@@ -510,6 +469,8 @@
   </div>
 
   <script>
+
+    /* MENU */
 
     function toggleMenu() {
 
@@ -526,17 +487,21 @@
       const dropdown =
         e.target.parentElement;
 
-      dropdown.classList.toggle('active');
+      dropdown.classList.toggle("active");
     }
+
+    /* COUNTDOWN */
 
     function updateCountdown() {
 
       const target =
         new Date("June 10, 2026 12:00:00").getTime();
 
-      const now = new Date().getTime();
+      const now =
+        new Date().getTime();
 
-      const diff = target - now;
+      const diff =
+        target - now;
 
       const countdown =
         document.getElementById("countdown");
@@ -567,7 +532,7 @@
 
     updateCountdown();
 
-    /* VIDEO AUTOPLAY 1X */
+    /* VIDEO */
 
     window.addEventListener("load", () => {
 
@@ -578,11 +543,117 @@
 
       video.onended = () => {
 
-        video.controls = true;
+        video.currentTime = 0;
       };
     });
+
+    /* TOUR DATA */
+
+    const tours = {
+
+      2026: [
+
+        {
+          date: "13<br>JUN<br>2026",
+          venue: "KDW’26",
+          location: "Lichtenvoorde, Netherlands",
+          button: "Festival Exclusive"
+        },
+
+        {
+          date: "10<br>OCT<br>2026",
+          venue: "Sky Club Malta",
+          location: "St. Julian’s, Malta",
+          button: "Live at Sky Malta"
+        },
+
+        {
+          date: "18<br>OCT<br>2026",
+          venue: "Palau Sant Jordi",
+          location: "Barcelona, Spain",
+          button: "Grand Finale"
+        }
+
+      ],
+
+      2027: [
+
+        {
+          date: "05<br>FEB<br>2027",
+          venue: "Infinity Arena",
+          location: "Amsterdam, Netherlands",
+          button: "Infinity Opening"
+        },
+
+        {
+          date: "19<br>MAR<br>2027",
+          venue: "Neon Dome",
+          location: "Berlin, Germany",
+          button: "Infinite Frequencies"
+        },
+
+        {
+          date: "24<br>APR<br>2027",
+          venue: "Skyline Festival",
+          location: "Prague, Czech Republic",
+          button: "Mainstage Headliner"
+        }
+
+      ]
+    };
+
+    function showTour(year) {
+
+      document
+        .querySelectorAll(".year-buttons button")
+        .forEach(btn => btn.classList.remove("active"));
+
+      document
+        .getElementById(`btn${year}`)
+        .classList
+        .add("active");
+
+      document
+        .getElementById("tour-title")
+        .innerText =
+        `Upcoming Shows ${year}`;
+
+      const container =
+        document.getElementById("tour-cards");
+
+      container.innerHTML = "";
+
+      tours[year]
+        .slice(0, 3)
+        .forEach(show => {
+
+          container.innerHTML += `
+
+            <div class="tour-card">
+
+              <div class="tour-date">
+                ${show.date}
+              </div>
+
+              <div class="tour-info">
+                <strong>${show.venue}</strong><br>
+                ${show.location}
+              </div>
+
+              <button class="ticket-button">
+                ${show.button}
+              </button>
+
+            </div>
+
+          `;
+        });
+    }
+
+    showTour(2026);
 
   </script>
 
 </body>
+
 </html>

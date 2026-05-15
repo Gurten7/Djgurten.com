@@ -373,40 +373,123 @@
       Follow on Instagram
     </a>
 
-    <!-- TOUR -->
+    async function loadTourData(year) {
 
-    <section id="tour">
+  const url =
+    year === 2026
+    ? "tour2026.html"
+    : "tour2027.html";
 
-      <div class="year-buttons">
+  const response =
+    await fetch(url);
 
-        <button
-          id="btn2026"
-          class="active"
-          onclick="showTour(2026)">
-          2026
-        </button>
+  const html =
+    await response.text();
 
-        <button
-          id="btn2027"
-          onclick="showTour(2027)">
-          2027
-        </button>
+  const parser =
+    new DOMParser();
 
-      </div>
+  const doc =
+    parser.parseFromString(html, "text/html");
 
-      <h2 id="tour-title">
-        Upcoming Shows 2026
-      </h2>
+  const cards =
+    Array.from(
+      doc.querySelectorAll(".tour-card")
+    );
 
-      <div id="tour-cards"></div>
+  /* MAANDEN */
 
-      <button
-        class="view-all"
-        onclick="goToFullTour()">
-        View all tour dates
-      </button>
+  const months = {
+    JAN: 0,
+    FEB: 1,
+    MAR: 2,
+    APR: 3,
+    MAY: 4,
+    JUN: 5,
+    JUL: 6,
+    AUG: 7,
+    SEP: 8,
+    OCT: 9,
+    NOV: 10,
+    DEC: 11
+  };
 
-    </section>
+  /* FILTER */
+
+  const futureCards =
+    cards.filter(card => {
+
+      const dateEl =
+        card.querySelector(".tour-date");
+
+      if (!dateEl) return false;
+
+      const raw =
+        dateEl.innerText
+          .trim()
+          .split(/\s+/);
+
+      if (raw.length < 3) return false;
+
+      const day =
+        parseInt(raw[0]);
+
+      const month =
+        months[raw[1].toUpperCase()];
+
+      const year =
+        parseInt(raw[2]);
+
+      const parsedDate =
+        new Date(year, month, day);
+
+      return parsedDate >= new Date();
+    });
+
+  /* SORTEREN */
+
+  futureCards.sort((a, b) => {
+
+    function getDate(card) {
+
+      const raw =
+        card.querySelector(".tour-date")
+          .innerText
+          .trim()
+          .split(/\s+/);
+
+      const day =
+        parseInt(raw[0]);
+
+      const month =
+        months[raw[1].toUpperCase()];
+
+      const year =
+        parseInt(raw[2]);
+
+      return new Date(year, month, day);
+    }
+
+    return getDate(a) - getDate(b);
+  });
+
+  /* EERSTE 3 */
+
+  const firstThree =
+    futureCards.slice(0, 3);
+
+  const container =
+    document.getElementById("tour-cards");
+
+  container.innerHTML = "";
+
+  firstThree.forEach(card => {
+
+    container.appendChild(
+      card.cloneNode(true)
+    );
+  });
+}
 
     <!-- MUSIC -->
 

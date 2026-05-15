@@ -219,38 +219,6 @@
       box-shadow: 0 0 12px rgba(125,249,255,0.5);
     }
 
-    .tour-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #111;
-      border-radius: 15px;
-      padding: 1.2em;
-      margin-bottom: 1em;
-    }
-
-    .tour-date {
-      text-align: center;
-      color: yellow;
-      font-weight: bold;
-      min-width: 70px;
-    }
-
-    .tour-info {
-      flex-grow: 1;
-      margin-left: 1.2em;
-    }
-
-    .ticket-button {
-      background: white;
-      color: black;
-      border: none;
-      padding: 0.6em 1.2em;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
     /* MUSIC */
 
     #music {
@@ -287,16 +255,6 @@
     }
 
     @media (max-width: 600px) {
-
-      .tour-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1em;
-      }
-
-      .ticket-button {
-        width: 100%;
-      }
 
       h1 {
         font-size: 1.6em;
@@ -569,10 +527,14 @@
       const doc =
         parser.parseFromString(html, "text/html");
 
+      /* PAK LETTERLIJK DE TOUR CARDS */
+
       const cards =
         Array.from(
           doc.querySelectorAll(".tour-card")
         );
+
+      /* FILTER OP TOEKOMSTIGE SHOWS */
 
       const futureCards =
         cards.filter(card => {
@@ -597,9 +559,11 @@
           return parsedDate >= new Date();
         });
 
+      /* SORTEER OP DATUM */
+
       futureCards.sort((a, b) => {
 
-        const getDate = card => {
+        function getDate(card) {
 
           const raw =
             card.querySelector(".tour-date")
@@ -610,10 +574,12 @@
           const [day, month, year] = raw;
 
           return new Date(`${month} ${day}, ${year}`);
-        };
+        }
 
         return getDate(a) - getDate(b);
       });
+
+      /* EERSTE 3 */
 
       const firstThree =
         futureCards.slice(0, 3);
@@ -630,6 +596,8 @@
         );
       });
     }
+
+    /* SWITCH BUTTONS */
 
     function showTour(year) {
 
@@ -651,6 +619,8 @@
 
       loadTourData(year);
     }
+
+    /* START */
 
     showTour(2026);
 

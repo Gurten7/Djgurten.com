@@ -219,6 +219,19 @@
       box-shadow: 0 0 12px rgba(125,249,255,0.5);
     }
 
+    .view-all {
+      background: transparent;
+      border: none;
+      color: yellow;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 1.5em;
+      font-size: 1em;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     /* MUSIC */
 
     #music {
@@ -387,6 +400,12 @@
 
       <div id="tour-cards"></div>
 
+      <button
+        class="view-all"
+        onclick="goToFullTour()">
+        View all tour dates
+      </button>
+
     </section>
 
     <!-- MUSIC -->
@@ -527,14 +546,10 @@
       const doc =
         parser.parseFromString(html, "text/html");
 
-      /* PAK LETTERLIJK DE TOUR CARDS */
-
       const cards =
         Array.from(
           doc.querySelectorAll(".tour-card")
         );
-
-      /* FILTER OP TOEKOMSTIGE SHOWS */
 
       const futureCards =
         cards.filter(card => {
@@ -547,7 +562,7 @@
           const raw =
             dateEl.innerText
               .trim()
-              .split("\n");
+              .split(/\s+/);
 
           if (raw.length < 3) return false;
 
@@ -559,8 +574,6 @@
           return parsedDate >= new Date();
         });
 
-      /* SORTEER OP DATUM */
-
       futureCards.sort((a, b) => {
 
         function getDate(card) {
@@ -569,7 +582,7 @@
             card.querySelector(".tour-date")
               .innerText
               .trim()
-              .split("\n");
+              .split(/\s+/);
 
           const [day, month, year] = raw;
 
@@ -578,8 +591,6 @@
 
         return getDate(a) - getDate(b);
       });
-
-      /* EERSTE 3 */
 
       const firstThree =
         futureCards.slice(0, 3);
@@ -597,7 +608,7 @@
       });
     }
 
-    /* SWITCH BUTTONS */
+    /* TOUR SWITCH */
 
     function showTour(year) {
 
@@ -618,6 +629,26 @@
         `Upcoming Shows ${year}`;
 
       loadTourData(year);
+    }
+
+    /* TOUR PAGE LINK */
+
+    function goToFullTour() {
+
+      const btn2026 =
+        document.getElementById("btn2026");
+
+      if (btn2026.classList.contains("active")) {
+
+        window.location.href =
+          "tour2026.html";
+      }
+
+      else {
+
+        window.location.href =
+          "tour2027.html";
+      }
     }
 
     /* START */

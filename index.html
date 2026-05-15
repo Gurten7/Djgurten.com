@@ -27,15 +27,14 @@
       position: relative;
       background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.95)
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.95)
       );
       min-height: 100vh;
       padding: 1em;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: 0.3s ease;
     }
 
     .logo {
@@ -123,7 +122,7 @@
     #countdown {
       font-size: 1.5em;
       font-weight: bold;
-      margin-bottom: 1.5em;
+      margin-bottom: 2em;
       color: yellow;
       text-shadow: 0 0 8px yellow;
     }
@@ -134,21 +133,17 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      margin: 30px 0 40px;
+      margin: 10px 0 40px;
       padding: 0 20px;
     }
 
     .video-container {
       width: 100%;
       max-width: 850px;
-      display: flex;
-      justify-content: center;
     }
 
     .video-container video {
       width: 100%;
-      max-width: 850px;
-      height: auto;
       border-radius: 22px;
       display: block;
       box-shadow:
@@ -167,8 +162,6 @@
       margin: 0.5em 0;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1em;
-      line-height: 1;
       transition: 0.3s ease;
     }
 
@@ -242,20 +235,17 @@
       border-radius: 12px;
       padding: 1em;
       margin-bottom: 1em;
-      transition: 0.3s ease;
     }
 
     .tour-date {
       text-align: center;
       color: yellow;
       font-weight: bold;
-      font-size: 1em;
       min-width: 60px;
     }
 
     .tour-info {
       flex-grow: 1;
-      text-align: left;
       margin-left: 1em;
     }
 
@@ -273,7 +263,6 @@
       background: transparent;
       border: none;
       color: yellow;
-      text-align: center;
       text-decoration: underline;
       cursor: pointer;
       margin-top: 1em;
@@ -291,7 +280,6 @@
     #music h2 {
       color: yellow;
       text-shadow: 0 0 8px yellow;
-      text-transform: uppercase;
       margin-bottom: 1em;
     }
 
@@ -314,33 +302,6 @@
       text-align: center;
     }
 
-    .infinite-mode #tour h2,
-    .infinite-mode #tour-title,
-    .infinite-mode .tour-date,
-    .infinite-mode .view-all {
-      color: #7df9ff !important;
-      text-shadow:
-        0 0 10px #7df9ff,
-        0 0 20px #7df9ff;
-    }
-
-    .infinite-mode .tour-card {
-      border: 1px solid rgba(125,249,255,0.18);
-    }
-
-    .infinite-mode .tour-card:hover {
-      border-color: rgba(125,249,255,0.35);
-      box-shadow: 0 0 18px rgba(125,249,255,0.2);
-    }
-
-    .infinite-mode .ticket-button {
-      background: linear-gradient(
-        135deg,
-        #7df9ff,
-        #5a7dff
-      );
-    }
-
     @media (max-width: 600px) {
 
       .tour-card {
@@ -351,14 +312,6 @@
 
       .ticket-button {
         width: 100%;
-      }
-
-      h1 {
-        font-size: 1.6em;
-      }
-
-      #countdown {
-        font-size: 1.2em;
       }
     }
 
@@ -418,16 +371,27 @@
 
     <div id="countdown">Loading...</div>
 
+    <!-- VIDEO -->
+
     <section class="anthem-trailer">
 
       <div class="video-container">
-        <video autoplay muted loop controls playsinline>
+
+        <video
+          id="anthemVideo"
+          muted
+          controls
+          playsinline
+        >
           <source src="kdw26-trailer.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
+
       </div>
 
     </section>
+
+    <!-- BUTTONS -->
 
     <a
       href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74"
@@ -447,6 +411,102 @@
       Follow on Instagram
     </a>
 
+    <!-- TOUR -->
+
+    <section id="tour">
+
+      <div class="year-buttons">
+
+        <button id="btn2026" class="active">
+          2026
+        </button>
+
+        <button id="btn2027">
+          2027
+        </button>
+
+      </div>
+
+      <h2>
+        Colors of Sound Tour 2026
+      </h2>
+
+      <div class="tour-card">
+
+        <div class="tour-date">
+          13<br>JUN<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>KDW’26</strong><br>
+          Lichtenvoorde, Netherlands
+        </div>
+
+        <button class="ticket-button">
+          Festival Exclusive
+        </button>
+
+      </div>
+
+      <div class="tour-card">
+
+        <div class="tour-date">
+          10<br>OCT<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Sky Club Malta</strong><br>
+          St. Julian’s, Malta
+        </div>
+
+        <button class="ticket-button">
+          Live at Sky Malta Club
+        </button>
+
+      </div>
+
+      <button class="view-all">
+        View all tour dates
+      </button>
+
+    </section>
+
+    <!-- MUSIC -->
+
+    <section id="music">
+
+      <h2>🎵 Latest Music</h2>
+
+      <div class="music-card">
+
+        <img
+          src="Colors of sound.PNG"
+          alt="Colors of Sound Cover"
+        >
+
+        <h3>Colors of Sound</h3>
+
+        <p>
+          The brand new single by DJ Gurten – now on Spotify
+        </p>
+
+        <a
+          href="https://open.spotify.com"
+          target="_blank"
+          class="button"
+        >
+          <img src="spotify-icon.PNG" alt="Spotify Logo">
+          Listen now on Spotify
+        </a>
+
+      </div>
+
+    </section>
+
+    <footer>
+      © 2026 DJ Gurten
+    </footer>
+
   </div>
 
   <script>
@@ -462,7 +522,6 @@
     function toggleDropdown(e) {
 
       e.preventDefault();
-      e.stopPropagation();
 
       const dropdown =
         e.target.parentElement;
@@ -507,6 +566,21 @@
     setInterval(updateCountdown, 1000);
 
     updateCountdown();
+
+    /* VIDEO AUTOPLAY 1X */
+
+    window.addEventListener("load", () => {
+
+      const video =
+        document.getElementById("anthemVideo");
+
+      video.play();
+
+      video.onended = () => {
+
+        video.controls = true;
+      };
+    });
 
   </script>
 

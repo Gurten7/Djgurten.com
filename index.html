@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>DJ Gurten – Colors of sound</title>
+  <title>DJ Gurten – Colors of Sound</title>
 
   <style>
 
@@ -128,6 +128,34 @@
       text-shadow: 0 0 8px yellow;
     }
 
+    /* VIDEO */
+
+    .anthem-trailer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 30px 0 40px;
+      padding: 0 20px;
+    }
+
+    .video-container {
+      width: 100%;
+      max-width: 850px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .video-container video {
+      width: 100%;
+      max-width: 850px;
+      height: auto;
+      border-radius: 22px;
+      display: block;
+      box-shadow:
+        0 0 25px rgba(255,255,0,0.15),
+        0 0 50px rgba(255,255,0,0.08);
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -170,8 +198,6 @@
       transition: 0.3s ease;
     }
 
-    /* 2026 knop */
-
     #btn2026 {
       border: 2px solid yellow;
     }
@@ -181,8 +207,6 @@
       color: black;
       box-shadow: 0 0 12px rgba(255,255,0,0.5);
     }
-
-    /* 2027 knop */
 
     #btn2027 {
       border: 2px solid #7df9ff;
@@ -290,8 +314,6 @@
       text-align: center;
     }
 
-    /* 2027 Infinite Frequencies Mode */
-
     .infinite-mode #tour h2,
     .infinite-mode #tour-title,
     .infinite-mode .tour-date,
@@ -330,6 +352,14 @@
       .ticket-button {
         width: 100%;
       }
+
+      h1 {
+        font-size: 1.6em;
+      }
+
+      #countdown {
+        font-size: 1.2em;
+      }
     }
 
   </style>
@@ -355,7 +385,7 @@
         TOUR DATES ▾
       </a>
 
-      <div class="dropdown-menu" id="tourDropdown">
+      <div class="dropdown-menu">
         <a href="tour2026.html">Tour 2026</a>
         <a href="tour2027.html">Tour 2027</a>
       </div>
@@ -388,14 +418,16 @@
 
     <div id="countdown">Loading...</div>
 
-  <section class="anthem-trailer">
-  <h2>KDW’26 – The Anthem Trailer</h2>
+    <section class="anthem-trailer">
 
-  <video autoplay muted loop controls playsinline>
-    <source src="kdw26-trailer.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</section>
+      <div class="video-container">
+        <video autoplay muted loop controls playsinline>
+          <source src="kdw26-trailer.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </section>
 
     <a
       href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74"
@@ -414,74 +446,6 @@
       <img src="instagram.PNG" alt="Instagram" />
       Follow on Instagram
     </a>
-
-    <section id="tour">
-
-      <div class="year-buttons">
-
-        <button
-          id="btn2026"
-          onclick="showTour(2026)"
-          class="active">
-          2026
-        </button>
-
-        <button
-          id="btn2027"
-          onclick="showTour(2027)">
-          2027
-        </button>
-
-      </div>
-
-      <h2 id="tour-title">
-        Colors of Sound Tour 2026
-      </h2>
-
-      <div id="tour-cards"></div>
-
-      <button
-        class="view-all"
-        id="view-all-link"
-        onclick="goToFullTour()">
-        View all tour dates
-      </button>
-
-    </section>
-
-    <section id="music">
-
-      <h2>🎵 Latest Music</h2>
-
-      <div class="music-card">
-
-        <img
-          src="Colors of sound.PNG"
-          alt="Colors of Sound Cover"
-        >
-
-        <h3>Colors of Sound</h3>
-
-        <p>
-          The brand new single by DJ Gurten – now on Spotify
-        </p>
-
-        <a
-          href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ"
-          target="_blank"
-          class="button"
-        >
-          <img src="spotify-icon.PNG" alt="Spotify Logo">
-          Listen now on Spotify
-        </a>
-
-      </div>
-
-    </section>
-
-    <footer>
-      © 2026 DJ Gurten
-    </footer>
 
   </div>
 
@@ -509,7 +473,7 @@
     function updateCountdown() {
 
       const target =
-        new Date("June 6, 2026 12:00:00").getTime();
+        new Date("June 10, 2026 12:00:00").getTime();
 
       const now = new Date().getTime();
 
@@ -517,8 +481,6 @@
 
       const countdown =
         document.getElementById("countdown");
-
-      if (!countdown) return;
 
       if (diff <= 0) {
 
@@ -542,126 +504,9 @@
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    let currentYear = 2026;
-
-    function showTour(year) {
-
-      document
-        .querySelectorAll(".year-buttons button")
-        .forEach(btn => btn.classList.remove("active"));
-
-      document
-        .getElementById(`btn${year}`)
-        .classList
-        .add("active");
-
-      const overlay =
-        document.querySelector(".overlay");
-
-      if (year === 2026) {
-
-        document.getElementById("tour-title")
-          .textContent =
-          "Colors of Sound Tour 2026";
-
-        overlay.classList.remove("infinite-mode");
-      }
-
-      else {
-
-        document.getElementById("tour-title")
-          .textContent =
-          "Infinite Frequencies Tour 2027";
-
-        overlay.classList.add("infinite-mode");
-      }
-
-      currentYear = year;
-
-      loadTourData(year);
-    }
-
-    function goToFullTour() {
-
-      if (currentYear === 2026) {
-
-        window.location.href = "tour2026.html";
-      }
-
-      else {
-
-        window.location.href = "tour2027.html";
-      }
-    }
-
-    async function loadTourData(year) {
-
-      let url = "";
-
-      if (year === 2026) {
-
-        url = "tour2026.html";
-      }
-
-      else {
-
-        url = "tour2027.html";
-      }
-
-      const response = await fetch(url);
-
-      const html = await response.text();
-
-      const parser = new DOMParser();
-
-      const doc =
-        parser.parseFromString(html, "text/html");
-
-      const cards =
-        doc.querySelectorAll(".tour-card");
-
-      const futureCards = Array
-        .from(cards)
-        .filter(card => {
-
-          const dateEl =
-            card.querySelector(".tour-date");
-
-          if (!dateEl) return false;
-
-          const parts =
-            dateEl.innerText.trim().split("\n");
-
-          if (parts.length < 3) return false;
-
-          const [day, monthStr, yearStr] = parts;
-
-          const parsedDate =
-            new Date(`${monthStr} ${day}, ${yearStr}`);
-
-          return parsedDate >= new Date();
-        });
-
-      const container =
-        document.getElementById("tour-cards");
-
-      container.innerHTML = "";
-
-      futureCards
-        .slice(0, 3)
-        .forEach(card => {
-
-          container.appendChild(
-            card.cloneNode(true)
-          );
-        });
-    }
-
     setInterval(updateCountdown, 1000);
 
     updateCountdown();
-
-    showTour(2026);
 
   </script>
 

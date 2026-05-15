@@ -2,11 +2,9 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>DJ Gurten – Colors of Sound</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DJ Gurten – Colors of Sound Tour 2026</title>
 
   <style>
 
@@ -18,62 +16,61 @@
       margin: 0;
       font-family: Arial, sans-serif;
       color: white;
-      background: url('achtergrond-hoogres.PNG') no-repeat center top;
+
+      background:
+        url('achtergrond-hoogres.PNG')
+        no-repeat center top;
+
       background-size: cover;
-      background-color: black;
       background-attachment: fixed;
     }
 
     .overlay {
-      position: relative;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.7),
-        rgba(0,0,0,0.95)
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.96)
       );
+
       min-height: 100vh;
+
       padding: 1em;
+
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* MENU */
-
     .menu-toggle {
       position: fixed;
       top: 15px;
       left: 15px;
+
       font-size: 1.5em;
+
       color: white;
       background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
-    }
 
-    .book-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: deeppink;
-      color: white;
-      padding: 0.5em 1.2em;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      z-index: 1000;
+      border: none;
+
+      z-index: 1001;
+      cursor: pointer;
     }
 
     .sidebar {
       position: fixed;
       top: 0;
       left: -250px;
+
       width: 250px;
       height: 100%;
+
       background: #111;
+
       padding: 2em 1em;
+
       transition: 0.3s ease;
+
       z-index: 999;
     }
 
@@ -83,9 +80,12 @@
 
     .sidebar a {
       display: block;
+
       color: white;
       text-decoration: none;
+
       margin: 1em 0;
+
       font-weight: bold;
     }
 
@@ -94,261 +94,189 @@
       margin-left: 1em;
     }
 
+    .dropdown-menu a {
+      font-weight: normal;
+    }
+
     .dropdown.active .dropdown-menu {
       display: block;
     }
 
-    /* HERO */
-
-    .logo {
-      width: 120px;
-      margin-top: 1em;
-    }
-
-    h1 {
-      font-size: 2.2em;
-      color: yellow;
-      text-shadow: 0 0 12px yellow;
-      text-align: center;
-      margin-bottom: 0.3em;
-    }
-
-    .release-date {
-      text-align: center;
-      margin-bottom: 0.8em;
-    }
-
-    #countdown {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: yellow;
-      text-shadow: 0 0 10px yellow;
-      margin-bottom: 2em;
-    }
-
-    /* VIDEO */
-
-    .anthem-trailer {
-      width: 100%;
-      max-width: 850px;
-      margin-bottom: 2em;
-      padding: 0 1em;
-    }
-
-    .anthem-trailer video {
-      width: 100%;
-      border-radius: 20px;
-      display: block;
-      box-shadow:
-        0 0 30px rgba(255,255,0,0.15),
-        0 0 60px rgba(255,255,0,0.08);
-    }
-
-    /* BUTTONS */
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6em;
-      background: #222;
-      color: white;
-      padding: 0.8em 1.4em;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0.5em 0;
-      transition: 0.3s ease;
-    }
-
-    .button:hover {
-      transform: scale(1.03);
-    }
-
-    .button img {
-      width: 24px;
-      height: 24px;
-    }
-
-    /* TOUR */
-
     #tour {
       width: 100%;
-      max-width: 750px;
-      margin-top: 4em;
+      max-width: 700px;
+
+      margin-top: 5em;
+
       padding: 0 1em;
     }
 
     #tour h2 {
-      color: yellow;
-      text-shadow: 0 0 10px yellow;
-      text-align: center;
+
+      color: #ffe600;
+
+      text-shadow:
+        0 0 10px #ffe600,
+        0 0 20px #ffe600;
+
+      margin-bottom: 1em;
+
       text-transform: uppercase;
-      margin-bottom: 1.5em;
-      font-size: 2em;
-    }
-
-    .year-buttons {
       text-align: center;
-      margin-bottom: 2em;
-    }
 
-    .year-buttons button {
-      background: #222;
-      color: white;
-      border: none;
-      padding: 0.8em 1.4em;
-      border-radius: 30px;
-      margin: 0 0.4em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
+      letter-spacing: 2px;
     }
-
-    #btn2026.active {
-      background: yellow;
-      color: black;
-      box-shadow: 0 0 15px rgba(255,255,0,0.6);
-    }
-
-    #btn2027.active {
-      background: #7df9ff;
-      color: black;
-      box-shadow: 0 0 15px rgba(125,249,255,0.6);
-    }
-
-    /* TOUR CARDS */
 
     .tour-card {
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #111;
+
+      background: rgba(17,17,17,0.92);
+
       border-radius: 14px;
+
       padding: 1em;
+
       margin-bottom: 1em;
-      width: 100%;
+
+      transition: 0.3s ease;
+
+      border: 1px solid rgba(255,230,0,0.08);
     }
 
-    .tour-card.sold-out {
-      background: #1a1a1a;
+    .tour-card:hover {
+
+      transform: scale(1.01);
+
+      border-color: rgba(255,230,0,0.35);
+
+      box-shadow:
+        0 0 15px rgba(255,230,0,0.15);
     }
 
     .tour-date {
-      color: yellow;
-      font-weight: bold;
+
       text-align: center;
+
+      color: #ffe600;
+
+      font-weight: bold;
+      font-size: 1em;
+
       min-width: 70px;
-      line-height: 1.2;
-      font-size: 1.1em;
+
+      text-shadow:
+        0 0 8px #ffe600;
     }
 
     .tour-info {
       flex-grow: 1;
-      margin-left: 1em;
+
       text-align: left;
+
+      margin-left: 1em;
+    }
+
+    .tour-info strong {
+      font-size: 1.05em;
     }
 
     .ticket-button {
-      background: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffe600,
+          #ffb300
+        );
+
       color: black;
+
       border: none;
+
+      padding: 0.6em 1.3em;
+
       border-radius: 25px;
-      padding: 0.6em 1.2em;
+
       font-weight: bold;
+
       cursor: pointer;
+
+      transition: 0.3s ease;
+    }
+
+    .ticket-button:hover {
+
+      transform: scale(1.05);
+
+      box-shadow:
+        0 0 15px rgba(255,230,0,0.5);
     }
 
     .ticket-button[disabled] {
-      background: #666;
+
+      background: #555;
+
       color: white;
+
       cursor: not-allowed;
+
+      box-shadow: none;
     }
 
-    .view-all {
-      display: block;
-      text-align: center;
-      color: yellow;
-      margin-top: 1.5em;
-      text-decoration: underline;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      font-size: 1em;
+    .tour-card.sold-out {
+      opacity: 0.72;
     }
 
-    /* MUSIC */
+    .tour-card.final-show {
 
-    #music {
-      width: 100%;
-      max-width: 700px;
-      margin-top: 4em;
-      text-align: center;
-      padding: 0 1em;
+      border: 2px solid #ffe600;
+
+      box-shadow:
+        0 0 20px rgba(255,230,0,0.6);
+
+      background: rgba(35,30,10,0.95);
     }
 
-    #music h2 {
-      color: yellow;
-      text-shadow: 0 0 10px yellow;
-      margin-bottom: 1em;
-    }
-
-    .music-card {
-      background: #111;
-      padding: 1.5em;
-      border-radius: 15px;
-    }
-
-    .music-card img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-bottom: 1em;
-    }
-
-    footer {
-      margin-top: 4em;
-      opacity: 0.7;
-      font-size: 0.9em;
-      text-align: center;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
 
       .tour-card {
+
         flex-direction: column;
+
         align-items: flex-start;
+
         gap: 1em;
+      }
+
+      .tour-date {
+        min-width: auto;
       }
 
       .ticket-button {
         width: 100%;
       }
-
-      h1 {
-        font-size: 1.7em;
-      }
-
-      #countdown {
-        font-size: 1.2em;
-      }
     }
 
   </style>
-
 </head>
 
 <body>
 
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-  <a href="mailto:bookings@djgurten.com" class="book-btn">
-    BOOK NOW
-  </a>
+  <button
+    class="menu-toggle"
+    onclick="toggleMenu()"
+  >
+    ☰
+  </button>
 
   <div class="sidebar" id="sidebar">
 
-    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+    <a href="#" onclick="toggleMenu()">
+      ✕ CLOSE
+    </a>
 
     <a href="index.html">HOME</a>
 
@@ -359,8 +287,15 @@
       </a>
 
       <div class="dropdown-menu">
-        <a href="tour2026.html">Tour 2026</a>
-        <a href="tour2027.html">Tour 2027</a>
+
+        <a href="tour2026.html">
+          Tour 2026
+        </a>
+
+        <a href="tour2027.html">
+          Tour 2027
+        </a>
+
       </div>
 
     </div>
@@ -372,135 +307,40 @@
     <a href="shop.html">SHOP</a>
     <a href="contact.html">CONTACT</a>
 
+    <a href="all-access.html">
+      DJ GURTEN’S ALL-ACCESS
+    </a>
+
   </div>
 
   <div class="overlay">
 
     <img
-      src="djgurten-logo.PNG"
-      alt="DJ Gurten Logo"
-      class="logo"
-    />
+      src="Tour.PNG"
+      alt="Colors of Sound Tour Banner"
 
-    <h1>KDW '26 – The Anthem</h1>
-
-    <div class="release-date">
-      Release date: June 10th, 2026 at 12:00 PM
-    </div>
-
-    <div id="countdown">Loading...</div>
-
-    <!-- VIDEO -->
-
-    <section class="anthem-trailer">
-
-      <video
-        id="anthemVideo"
-        muted
-        controls
-        playsinline
-      >
-        <source src="kdw26-trailer.mp4" type="video/mp4">
-      </video>
-
-    </section>
-
-    <!-- SOCIALS -->
-
-    <a
-      href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74"
-      class="button"
-      target="_blank"
+      style="
+        max-width: 700px;
+        width: 100%;
+        border-radius: 14px;
+        margin-bottom: 1em;
+        box-shadow: 0 0 25px rgba(255,230,0,0.25);
+      "
     >
-      <img src="spotify-icon.PNG" alt="Spotify" />
-      Listen on Spotify
-    </a>
-
-    <a
-      href="https://www.instagram.com/dj_gurten"
-      class="button"
-      target="_blank"
-    >
-      <img src="instagram.PNG" alt="Instagram" />
-      Follow on Instagram
-    </a>
-
-    <!-- TOUR -->
 
     <section id="tour">
 
-      <div class="year-buttons">
-
-        <button
-          id="btn2026"
-          class="active"
-          onclick="showTour(2026)">
-          2026
-        </button>
-
-        <button
-          id="btn2027"
-          onclick="showTour(2027)">
-          2027
-        </button>
-
-      </div>
-
-      <h2 id="tour-title">
-        Upcoming Shows 2026
+      <h2>
+        🎤 Colors of Sound Tour 2026
       </h2>
 
-      <div id="tour-cards"></div>
-
-      <button
-        class="view-all"
-        onclick="goToFullTour()">
-        View all tour dates
-      </button>
+      <!-- TOUR CARDS HERE -->
 
     </section>
-
-    <!-- MUSIC -->
-
-    <section id="music">
-
-      <h2>🎵 Latest Music</h2>
-
-      <div class="music-card">
-
-        <img
-          src="Colors of sound.PNG"
-          alt="Colors of Sound Cover"
-        >
-
-        <h3>Colors of Sound</h3>
-
-        <p>
-          The brand new single by DJ Gurten – now on Spotify
-        </p>
-
-        <a
-          href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ"
-          target="_blank"
-          class="button"
-        >
-          <img src="spotify-icon.PNG" alt="Spotify">
-          Listen now on Spotify
-        </a>
-
-      </div>
-
-    </section>
-
-    <footer>
-      © 2026 DJ Gurten
-    </footer>
 
   </div>
 
   <script>
-
-    /* MENU */
 
     function toggleMenu() {
 
@@ -513,160 +353,15 @@
     function toggleDropdown(e) {
 
       e.preventDefault();
+      e.stopPropagation();
 
       const dropdown =
         e.target.parentElement;
 
-      dropdown.classList.toggle("active");
+      dropdown.classList.toggle('active');
     }
-
-    /* COUNTDOWN */
-
-    function updateCountdown() {
-
-      const target =
-        new Date("June 10, 2026 12:00:00").getTime();
-
-      const now =
-        new Date().getTime();
-
-      const diff =
-        target - now;
-
-      const countdown =
-        document.getElementById("countdown");
-
-      if (diff <= 0) {
-
-        countdown.innerText = "Released!";
-        return;
-      }
-
-      const days =
-        Math.floor(diff / (1000 * 60 * 60 * 24));
-
-      const hours =
-        Math.floor((diff / (1000 * 60 * 60)) % 24);
-
-      const minutes =
-        Math.floor((diff / (1000 * 60)) % 60);
-
-      const seconds =
-        Math.floor((diff / 1000) % 60);
-
-      countdown.innerText =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    setInterval(updateCountdown, 1000);
-
-    updateCountdown();
-
-    /* VIDEO */
-
-    window.addEventListener("load", () => {
-
-      const video =
-        document.getElementById("anthemVideo");
-
-      video.play();
-
-      video.onended = () => {
-
-        video.currentTime = 0;
-      };
-    });
-
-    /* TOUR DATA */
-
-    async function loadTourData(year) {
-
-      const url =
-        year === 2026
-        ? "tour2026.html"
-        : "tour2027.html";
-
-      const response =
-        await fetch(url);
-
-      const html =
-        await response.text();
-
-      const parser =
-        new DOMParser();
-
-      const doc =
-        parser.parseFromString(html, "text/html");
-
-      const cards =
-        doc.querySelectorAll(".tour-card");
-
-      const container =
-        document.getElementById("tour-cards");
-
-      container.innerHTML = "";
-
-      Array.from(cards)
-        .slice(0, 3)
-        .forEach(card => {
-
-          container.appendChild(
-            card.cloneNode(true)
-          );
-        });
-    }
-
-    /* TOUR SWITCH */
-
-    function showTour(year) {
-
-      document
-        .querySelectorAll(".year-buttons button")
-        .forEach(btn =>
-          btn.classList.remove("active")
-        );
-
-      document
-        .getElementById(`btn${year}`)
-        .classList
-        .add("active");
-
-      document
-        .getElementById("tour-title")
-        .innerText =
-        `Upcoming Shows ${year}`;
-
-      loadTourData(year);
-    }
-
-    /* TOUR LINK */
-
-    function goToFullTour() {
-
-      if (
-        document
-          .getElementById("btn2026")
-          .classList
-          .contains("active")
-      ) {
-
-        window.location.href =
-          "tour2026.html";
-      }
-
-      else {
-
-        window.location.href =
-          "tour2027.html";
-      }
-    }
-
-    /* START */
-
-    showTour(2026);
 
   </script>
 
 </body>
-
 </html>

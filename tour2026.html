@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DJ Gurten – Colors of Sound Tour 2026</title>
+
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -13,13 +16,26 @@
       margin: 0;
       font-family: Arial, sans-serif;
       color: white;
-      background-color: #222;
+
+      background:
+        url('colors-of-sound-bg.PNG')
+        no-repeat center top;
+
+      background-size: cover;
+      background-attachment: fixed;
     }
 
     .overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.96)
+      );
+
       min-height: 100vh;
+
       padding: 1em;
+
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -29,10 +45,14 @@
       position: fixed;
       top: 15px;
       left: 15px;
+
       font-size: 1.5em;
+
       color: white;
       background: transparent;
+
       border: none;
+
       z-index: 1001;
       cursor: pointer;
     }
@@ -41,11 +61,16 @@
       position: fixed;
       top: 0;
       left: -250px;
+
       width: 250px;
       height: 100%;
+
       background: #111;
+
       padding: 2em 1em;
+
       transition: 0.3s ease;
+
       z-index: 999;
     }
 
@@ -55,9 +80,12 @@
 
     .sidebar a {
       display: block;
+
       color: white;
       text-decoration: none;
+
       margin: 1em 0;
+
       font-weight: bold;
     }
 
@@ -77,128 +105,634 @@
     #tour {
       width: 100%;
       max-width: 700px;
+
       margin-top: 5em;
+
       padding: 0 1em;
     }
 
     #tour h2 {
-      color: yellow;
-      text-shadow: 0 0 8px yellow;
+
+      color: #ffe600;
+
+      text-shadow:
+        0 0 10px #ffe600,
+        0 0 20px #ffe600;
+
       margin-bottom: 1em;
+
       text-transform: uppercase;
       text-align: center;
+
+      letter-spacing: 2px;
     }
 
     .tour-card {
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #111;
-      border-radius: 12px;
+
+      background: rgba(17,17,17,0.92);
+
+      border-radius: 14px;
+
       padding: 1em;
+
       margin-bottom: 1em;
+
+      transition: 0.3s ease;
+
+      border: 1px solid rgba(255,230,0,0.08);
     }
 
-    .tour-card.sold-out {
-      background-color: #333;
+    .tour-card:hover {
+
+      transform: scale(1.01);
+
+      border-color: rgba(255,230,0,0.35);
+
+      box-shadow:
+        0 0 15px rgba(255,230,0,0.15);
     }
 
     .tour-date {
+
       text-align: center;
-      color: yellow;
+
+      color: #ffe600;
+
       font-weight: bold;
       font-size: 1em;
-      min-width: 60px;
+
+      min-width: 70px;
+
+      text-shadow:
+        0 0 8px #ffe600;
     }
 
     .tour-info {
       flex-grow: 1;
+
       text-align: left;
+
       margin-left: 1em;
     }
 
+    .tour-info strong {
+      font-size: 1.05em;
+    }
+
     .ticket-button {
-      background-color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffe600,
+          #ffb300
+        );
+
       color: black;
+
       border: none;
-      padding: 0.5em 1.2em;
+
+      padding: 0.6em 1.3em;
+
       border-radius: 25px;
+
       font-weight: bold;
+
       cursor: pointer;
+
+      transition: 0.3s ease;
+    }
+
+    .ticket-button:hover {
+
+      transform: scale(1.05);
+
+      box-shadow:
+        0 0 15px rgba(255,230,0,0.5);
     }
 
     .ticket-button[disabled] {
-      background-color: #888;
+
+      background: #555;
+
       color: white;
+
       cursor: not-allowed;
+
+      box-shadow: none;
     }
+
+    .tour-card.sold-out {
+      opacity: 0.72;
+    }
+
+    .tour-card.final-show {
+
+      border: 2px solid #ffe600;
+
+      box-shadow:
+        0 0 20px rgba(255,230,0,0.6);
+
+      background: rgba(35,30,10,0.95);
+    }
+
+    @media (max-width: 600px) {
+
+      .tour-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 1em;
+      }
+
+      .tour-date {
+        min-width: auto;
+      }
+
+      .ticket-button {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
+
 <body>
 
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <button
+    class="menu-toggle"
+    onclick="toggleMenu()"
+  >
+    ☰
+  </button>
 
   <div class="sidebar" id="sidebar">
-    <a href="#" onclick="toggleMenu()">✕ CLOSE</a>
+
+    <a href="#" onclick="toggleMenu()">
+      ✕ CLOSE
+    </a>
+
     <a href="index.html">HOME</a>
+
     <div class="dropdown">
-      <a href="#" onclick="toggleDropdown(event)">TOUR DATES ▾</a>
+
+      <a href="#" onclick="toggleDropdown(event)">
+        TOUR DATES ▾
+      </a>
+
       <div class="dropdown-menu">
-        <a href="tour2026.html">Tour 2026</a>
-        <a href="tour2027.html">Tour 2027</a>
+
+        <a href="tour2026.html">
+          Tour 2026
+        </a>
+
+        <a href="tour2027.html">
+          Tour 2027
+        </a>
+
       </div>
+
     </div>
+
     <a href="news.html">NEWS</a>
     <a href="music.html">MUSIC</a>
     <a href="biography.html">BIOGRAPHY</a>
     <a href="videos.html">VIDEOS</a>
     <a href="shop.html">SHOP</a>
     <a href="contact.html">CONTACT</a>
-    <a href="all-access.html">DJ GURTEN’S ALL-ACCESS</a>
+
+    <a href="all-access.html">
+      DJ GURTEN’S ALL-ACCESS
+    </a>
+
   </div>
 
   <div class="overlay">
-    <img src="Tour.PNG" alt="Colors of Sound Tour Banner" style="max-width: 700px; width: 100%; border-radius: 12px; margin-bottom: 1em;">
-    
-    <section id="tour">
-      <h2>🎤 Colors of Sound Tour 2026</h2>
 
-      <div class="tour-card sold-out"><div class="tour-date">13<br>JUN<br>2026</div><div class="tour-info"><strong>KDW’26 – Exclusive Show</strong><br>Secret Location</div><button class="ticket-button" disabled>Private Event</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">04<br>JUL<br>2026</div><div class="tour-info"><strong>Hï Ibiza</strong><br>Ibiza</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">06<br>JUL<br>2026</div><div class="tour-info"><strong>The Loft</strong><br>Amsterdam</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">10<br>JUL<br>2026</div><div class="tour-info"><strong>Berghain</strong><br>Berlin</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold out"><div class="tour-date">13<br>JUL<br>2026</div><div class="tour-info"><strong>DC10</strong><br>Ibiza</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">17<br>JUL<br>2026</div><div class="tour-info"><strong>Printworks</strong><br>London</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">20<br>JUL<br>2026</div><div class="tour-info"><strong>Razzmatazz</strong><br>Barcelona</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">24<br>JUL<br>2026</div><div class="tour-info"><strong>Bootshaus</strong><br>Cologne</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">28<br>JUL<br>2026</div><div class="tour-info"><strong>Else</strong><br>Berlin</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">02<br>AUG<br>2026</div><div class="tour-info"><strong>Warehouse Project</strong><br>Manchester</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">06<br>AUG<br>2026</div><div class="tour-info"><strong>La Machine du Moulin Rouge</strong><br>Paris</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">10<br>AUG<br>2026</div><div class="tour-info"><strong>Audio</strong><br>San Francisco</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">13<br>AUG<br>2026</div><div class="tour-info"><strong>Fabrik</strong><br>Madrid</div><button class="ticket-button">Last Tickets</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">17<br>AUG<br>2026</div><div class="tour-info"><strong>Sisyphos</strong><br>Berlin</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">21<br>AUG<br>2026</div><div class="tour-info"><strong>Club Space</strong><br>Miami</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">24<br>AUG<br>2026</div><div class="tour-info"><strong>Amnesia</strong><br>Ibiza</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card"><div class="tour-date">28<br>AUG<br>2026</div><div class="tour-info"><strong>TivoliVredenburg</strong><br>Utrecht</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">03<br>SEP<br>2026</div><div class="tour-info"><strong>The Echo</strong><br>Los Angeles</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">08<br>SEP<br>2026</div><div class="tour-info"><strong>Melkweg</strong><br>Amsterdam</div><button class="ticket-button">Tickets</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">14<br>SEP<br>2026</div><div class="tour-info"><strong>KOKO</strong><br>London</div><button class="ticket-button" disabled>Sold Out</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">10<br>OCT<br>2026</div><div class="tour-info"><strong>Sky Club Malta</strong><br>St. Julian’s, Malta</div><button class="ticket-button">Last Available Tickets</button></div>
-      <div class="tour-card sold-out"><div class="tour-date">18<br>OCT<br>2026</div><div class="tour-info"><strong>Palau Sant Jordi</strong><br>Barcelona</div><button class="ticket-button" disabled>Grand Finale Sold Out</button></div>
+    <img
+      src="Tour.PNG"
+      alt="Colors of Sound Tour Banner"
+
+      style="
+        max-width: 700px;
+        width: 100%;
+        border-radius: 14px;
+        margin-bottom: 1em;
+        box-shadow: 0 0 25px rgba(255,230,0,0.25);
+      "
+    >
+
+    <section id="tour">
+
+      <h2>
+        🎤 Colors of Sound Tour 2026
+      </h2>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          13<br>JUN<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>KDW’26 – Exclusive Show</strong><br>
+          Secret Location
+        </div>
+
+        <button class="ticket-button" disabled>
+          Private Event
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          04<br>JUL<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Hï Ibiza</strong><br>
+          Ibiza
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          06<br>JUL<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>The Loft</strong><br>
+          Amsterdam
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          10<br>JUL<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Berghain</strong><br>
+          Berlin
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          13<br>JUL<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>DC10</strong><br>
+          Ibiza
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          17<br>JUL<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Printworks</strong><br>
+          London
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          20<br>JUL<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Razzmatazz</strong><br>
+          Barcelona
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          24<br>JUL<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Bootshaus</strong><br>
+          Cologne
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          28<br>JUL<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Else</strong><br>
+          Berlin
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          02<br>AUG<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Warehouse Project</strong><br>
+          Manchester
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          06<br>AUG<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>La Machine du Moulin Rouge</strong><br>
+          Paris
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          10<br>AUG<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Audio</strong><br>
+          San Francisco
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card">
+
+        <div class="tour-date">
+          13<br>AUG<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Fabrik</strong><br>
+          Madrid
+        </div>
+
+        <button class="ticket-button">
+          Last Tickets
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          17<br>AUG<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Sisyphos</strong><br>
+          Berlin
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          21<br>AUG<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Club Space</strong><br>
+          Miami
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          24<br>AUG<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Amnesia</strong><br>
+          Ibiza
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          28<br>AUG<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>TivoliVredenburg</strong><br>
+          Utrecht
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          03<br>SEP<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>The Echo</strong><br>
+          Los Angeles
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card">
+
+        <div class="tour-date">
+          08<br>SEP<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Melkweg</strong><br>
+          Amsterdam
+        </div>
+
+        <button class="ticket-button">
+          Tickets
+        </button>
+
+      </div>
+
+      <div class="tour-card sold-out">
+
+        <div class="tour-date">
+          14<br>SEP<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>KOKO</strong><br>
+          London
+        </div>
+
+        <button class="ticket-button" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+      <div class="tour-card">
+
+        <div class="tour-date">
+          10<br>OCT<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Sky Club Malta</strong><br>
+          St. Julian’s, Malta
+        </div>
+
+        <button class="ticket-button">
+          Last Available Tickets
+        </button>
+
+      </div>
+
+      <div class="tour-card final-show">
+
+        <div class="tour-date">
+          18<br>OCT<br>2026
+        </div>
+
+        <div class="tour-info">
+          <strong>Palau Sant Jordi</strong><br>
+          Barcelona
+        </div>
+
+        <button class="ticket-button">
+          Grand Finale – Tickets
+        </button>
+
+      </div>
+
     </section>
+
   </div>
 
   <script>
+
     function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
+
+      document
+        .getElementById("sidebar")
+        .classList
+        .toggle("active");
     }
 
     function toggleDropdown(e) {
+
       e.preventDefault();
       e.stopPropagation();
-      const dropdown = e.target.parentElement;
+
+      const dropdown =
+        e.target.parentElement;
+
       dropdown.classList.toggle('active');
     }
+
   </script>
 
 </body>

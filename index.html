@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -52,9 +53,8 @@
       padding: 0.5em 1.2em;
       border-radius: 30px;
       font-weight: bold;
-      font-size: 1em;
-      z-index: 1000;
       text-decoration: none;
+      z-index: 1000;
     }
 
     .menu-toggle {
@@ -65,8 +65,8 @@
       color: white;
       background: transparent;
       border: none;
-      z-index: 1001;
       cursor: pointer;
+      z-index: 1001;
     }
 
     .sidebar {
@@ -308,6 +308,7 @@
     }
 
   </style>
+
 </head>
 
 <body>
@@ -381,10 +382,10 @@
 
     </section>
 
-    <!-- BUTTONS -->
+    <!-- SOCIALS -->
 
     <a
-      href="https://open.spotify.com"
+      href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74"
       class="button"
       target="_blank"
     >
@@ -393,7 +394,7 @@
     </a>
 
     <a
-      href="https://instagram.com"
+      href="https://www.instagram.com/dj_gurten"
       class="button"
       target="_blank"
     >
@@ -450,7 +451,7 @@
         </p>
 
         <a
-          href="https://open.spotify.com"
+          href="https://open.spotify.com/album/2yOml30OXBsT3qRtaJQdDQ"
           target="_blank"
           class="button"
         >
@@ -549,64 +550,94 @@
 
     /* TOUR DATA */
 
-    const tours = {
+    async function loadTourData(year) {
 
-      2026: [
+      const url =
+        year === 2026
+        ? "tour2026.html"
+        : "tour2027.html";
 
-        {
-          date: "13<br>JUN<br>2026",
-          venue: "KDW’26",
-          location: "Lichtenvoorde, Netherlands",
-          button: "Festival Exclusive"
-        },
+      const response =
+        await fetch(url);
 
-        {
-          date: "10<br>OCT<br>2026",
-          venue: "Sky Club Malta",
-          location: "St. Julian’s, Malta",
-          button: "Live at Sky Malta"
-        },
+      const html =
+        await response.text();
 
-        {
-          date: "18<br>OCT<br>2026",
-          venue: "Palau Sant Jordi",
-          location: "Barcelona, Spain",
-          button: "Grand Finale"
-        }
+      const parser =
+        new DOMParser();
 
-      ],
+      const doc =
+        parser.parseFromString(html, "text/html");
 
-      2027: [
+      const cards =
+        Array.from(
+          doc.querySelectorAll(".tour-card")
+        );
 
-        {
-          date: "05<br>FEB<br>2027",
-          venue: "Infinity Arena",
-          location: "Amsterdam, Netherlands",
-          button: "Infinity Opening"
-        },
+      const futureCards =
+        cards.filter(card => {
 
-        {
-          date: "19<br>MAR<br>2027",
-          venue: "Neon Dome",
-          location: "Berlin, Germany",
-          button: "Infinite Frequencies"
-        },
+          const dateEl =
+            card.querySelector(".tour-date");
 
-        {
-          date: "24<br>APR<br>2027",
-          venue: "Skyline Festival",
-          location: "Prague, Czech Republic",
-          button: "Mainstage Headliner"
-        }
+          if (!dateEl) return false;
 
-      ]
-    };
+          const raw =
+            dateEl.innerText
+              .trim()
+              .split("\n");
+
+          if (raw.length < 3) return false;
+
+          const [day, month, year] = raw;
+
+          const parsedDate =
+            new Date(`${month} ${day}, ${year}`);
+
+          return parsedDate >= new Date();
+        });
+
+      futureCards.sort((a, b) => {
+
+        const getDate = card => {
+
+          const raw =
+            card.querySelector(".tour-date")
+              .innerText
+              .trim()
+              .split("\n");
+
+          const [day, month, year] = raw;
+
+          return new Date(`${month} ${day}, ${year}`);
+        };
+
+        return getDate(a) - getDate(b);
+      });
+
+      const firstThree =
+        futureCards.slice(0, 3);
+
+      const container =
+        document.getElementById("tour-cards");
+
+      container.innerHTML = "";
+
+      firstThree.forEach(card => {
+
+        container.appendChild(
+          card.cloneNode(true)
+        );
+      });
+    }
 
     function showTour(year) {
 
       document
         .querySelectorAll(".year-buttons button")
-        .forEach(btn => btn.classList.remove("active"));
+        .forEach(btn =>
+          btn.classList.remove("active")
+        );
 
       document
         .getElementById(`btn${year}`)
@@ -618,36 +649,7 @@
         .innerText =
         `Upcoming Shows ${year}`;
 
-      const container =
-        document.getElementById("tour-cards");
-
-      container.innerHTML = "";
-
-      tours[year]
-        .slice(0, 3)
-        .forEach(show => {
-
-          container.innerHTML += `
-
-            <div class="tour-card">
-
-              <div class="tour-date">
-                ${show.date}
-              </div>
-
-              <div class="tour-info">
-                <strong>${show.venue}</strong><br>
-                ${show.location}
-              </div>
-
-              <button class="ticket-button">
-                ${show.button}
-              </button>
-
-            </div>
-
-          `;
-        });
+      loadTourData(year);
     }
 
     showTour(2026);

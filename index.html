@@ -233,6 +233,8 @@
       background: #1a1a1a;
     }
 
+    /* DEFAULT 2026 */
+
     .tour-date {
       color: yellow;
       font-weight: bold;
@@ -240,6 +242,14 @@
       min-width: 70px;
       line-height: 1.2;
       font-size: 1.1em;
+      text-shadow: 0 0 8px yellow;
+    }
+
+    /* 2027 */
+
+    .tour-2027 .tour-date {
+      color: #7df9ff;
+      text-shadow: 0 0 8px #7df9ff;
     }
 
     .tour-info {
@@ -264,16 +274,30 @@
       cursor: not-allowed;
     }
 
+    /* VIEW ALL */
+
     .view-all {
       display: block;
+      width: fit-content;
+      margin: 2em auto 0 auto;
       text-align: center;
       color: yellow;
-      margin-top: 1.5em;
       text-decoration: underline;
       cursor: pointer;
       background: transparent;
       border: none;
       font-size: 1em;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .view-all.blue {
+      color: #7df9ff;
+      text-shadow: 0 0 8px #7df9ff;
+    }
+
+    .view-all:hover {
+      transform: scale(1.03);
     }
 
     /* MUSIC */
@@ -390,8 +414,6 @@
 
     <div id="countdown">Loading...</div>
 
-    <!-- VIDEO -->
-
     <section class="anthem-trailer">
 
       <video
@@ -404,8 +426,6 @@
       </video>
 
     </section>
-
-    <!-- SOCIALS -->
 
     <a
       href="https://open.spotify.com/artist/57wix6s4SG2XLtgaZj3F74"
@@ -424,8 +444,6 @@
       <img src="instagram.PNG" alt="Instagram" />
       Follow on Instagram
     </a>
-
-    <!-- TOUR -->
 
     <section id="tour">
 
@@ -459,8 +477,6 @@
       </button>
 
     </section>
-
-    <!-- MUSIC -->
 
     <section id="music">
 
@@ -500,8 +516,6 @@
 
   <script>
 
-    /* MENU */
-
     function toggleMenu() {
 
       document
@@ -519,8 +533,6 @@
 
       dropdown.classList.toggle("active");
     }
-
-    /* COUNTDOWN */
 
     function updateCountdown() {
 
@@ -562,8 +574,6 @@
 
     updateCountdown();
 
-    /* VIDEO */
-
     window.addEventListener("load", () => {
 
       const video =
@@ -576,8 +586,6 @@
         video.currentTime = 0;
       };
     });
-
-    /* TOUR DATA */
 
     async function loadTourData(year) {
 
@@ -616,8 +624,6 @@
         });
     }
 
-    /* TOUR SWITCH */
-
     function showTour(year) {
 
       document
@@ -636,10 +642,26 @@
         .innerText =
         `Upcoming Shows ${year}`;
 
+      const tourSection =
+        document.getElementById("tour");
+
+      const viewAllButton =
+        document.querySelector(".view-all");
+
+      if (year === 2027) {
+
+        tourSection.classList.add("tour-2027");
+        viewAllButton.classList.add("blue");
+      }
+
+      else {
+
+        tourSection.classList.remove("tour-2027");
+        viewAllButton.classList.remove("blue");
+      }
+
       loadTourData(year);
     }
-
-    /* TOUR LINK */
 
     function goToFullTour() {
 
@@ -660,8 +682,6 @@
           "tour2027.html";
       }
     }
-
-    /* START */
 
     showTour(2026);
 
